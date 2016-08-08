@@ -1,0 +1,25 @@
+# Apple notification properties
+# In the common case of a backend for one application, this properties file
+#   is a handy way to skip instantiating an AppleNotificationSender and use
+#   the singleton instance instead which uses values from this properties
+#   file
+# Set to use the singleton method for AppleNotificationSender instead of
+#   having to create an instance and hard code these properties
+
+# Points to the path of apple;s certificate.p12 for notifications
+#   provided by Apple for each app
+# Default: InvalidValue
+certificate_path=InvalidValue
+
+# The certificate's password
+# Default: InvalidValue
+certificate_password=InvalidValue
+
+# enum {DEVELOPMENT, PRODUCTION}
+# Default: InvalidValue
+client_type=InvalidValue
+
+# The value of UID in the subject your APNs certificate. It begin's with
+#   com.apple.mgmt.
+# Default: InvalidValue
+topic=InvalidValue

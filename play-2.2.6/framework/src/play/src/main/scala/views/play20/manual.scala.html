@@ -1,0 +1,40 @@
+@(title: String, main: Option[String], sidebar: Option[String])
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="/@@documentation/resources/style/main.css"></link>
+    </head>
+    <body>
+        
+        <section id="top">
+            <div class="wrapper">
+                <h1><a href="/@@documentation">Manual, tutorials & references</a></h1>
+                <nav>
+                    <span class="versions">
+                        <span>Browse APIs</span>
+                        <select onchange="document.location=this.value">
+                            <option selected disabled>Select language</option>
+                            <option value="/@@documentation/api/scala/index.html">Scala</option>
+                            <option value="/@@documentation/api/java/index.html">Java</option>
+                        </select>
+                    </span>
+                </nav>
+            </div>
+        </section>
+        
+        <div id="content" class="wrapper doc">
+            <article id="main">
+                @main.map { html =>
+                    @Html(html)
+                }.getOrElse {
+                    <h1>Page not found [@title]</h1>
+                }
+            </article>
+            <aside>
+                @sidebar.map(Html.apply)
+            </aside>
+        </div>
+        
+    </body>
+</html>

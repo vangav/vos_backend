@@ -1,0 +1,62 @@
+# CassandraProperties defines how an app's backend instance interacts with
+#   cassandra
+
+# How many times to try to connect to each cassandra instance
+# In multi_deployment all instances in the topology are tried
+# default is 3
+connection_retries=3
+
+# How many times to retry a query upon failure
+# Default: 3
+query_retries=3
+
+# Write Consistency Level
+# The consistency level determines the number of replicas on which the write
+#   must succeed before returning an acknowledgment to the client application
+# Possible values -->
+# docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html
+# Default : ONE
+# Description of ONE: A write must be written to the commit log and memtable of
+#                       at least one replica node
+# Usage of ONE: Satisfies the needs of most users because consistency
+#                 requirements are not stringent
+write_consistency_level=ONE
+
+# Read Consistency Level
+# The consistency level specifies how many replicas must respond to a read
+#   request before returning data to the client application
+# Possible values -->
+# docs.datastax.com/en/cassandra/2.0/cassandra/dml/dml_config_consistency_c.html
+# Default : ONE
+# Description of ONE: Returns a response from the closest replica, as
+#                       determined by the snitch. By default, a read repair
+#                       runs in the background to make the other replicas
+#                       consistent.
+# Usage of ONE: Provides the highest availability of all the levels if you can
+#                 tolerate a comparatively high probability of stale data being
+#                 read. The replicas contacted for reads may not always have
+#                 the most recent write.
+read_consistency_level=ONE
+
+# Possible deployment modes
+#	1- single_deployment for a single cassandra instance deployment
+#	2- multi_deployment for multi-instances on multiple nodes
+# Default: single_deployment
+deployment_mode=single_deployment
+
+# single_deployment instance ip
+# Default: 127.0.0.1
+single_deployment_ip=127.0.0.1
+
+# topology of multi_deployment instances gives instances names comma ','
+#   separated
+# Default: one instance with ip 127.0.0.1
+# e.g.: multi_deployment_topology=dc1_rack1_node1,dc2_rack1_node1
+multi_deployment_topology=dc1_rack1_node1
+
+# the ip for each instance in the topology
+# ips set here must be reachable from this backend instance
+# Default: 127.0.0.1
+# e.g.: dc1_rack1_node1_ip=192.168.1.111
+# e.g.: dc2_rack1_node1_ip=192.168.1.112
+dc1_rack1_node1_ip=127.0.0.1

@@ -1,0 +1,11 @@
+# Android notification properties
+# In the common case of a backend for one application, this properties file
+#   is a handy way to skip instantiating an AndroidNotificationSender and use
+#   the singleton instance instead which uses values from this properties
+#   file
+# Set to use the singleton method for AndroidNotificationSender instead of
+#   having to create an instance and hard code these properties
+
+# apiKey: API key obtained through the Google API Console
+# Default: InvalidValue
+api_key=InvalidValue

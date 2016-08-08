@@ -1,0 +1,9 @@
+# Dispatcher properties
+
+# workers_topology: API key obtained through the Google API Console
+# IMPORTANT: this entry must be set if dispatcher/worker is to be used
+#              Comma ',' separated without any spaces like the following
+#              examples
+# e.g.: http://127.0.0.1:8000
+# e.g.: http://192.168.1.101:8001,http://192.168.1.102:8002
+workers_topology=http://127.0.0.1:8000

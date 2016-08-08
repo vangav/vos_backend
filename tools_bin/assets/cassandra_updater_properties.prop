@@ -1,0 +1,17 @@
+# Dispatcher properties
+
+# config_dir_path: API key obtained through the Google API Console
+# Default: InvalidValue
+config_dir_path=../generator_config
+
+# project_dir_path: API key obtained through the Google API Console
+# Default: InvalidValue
+project_dir_path=..
+
+# project_name: API key obtained through the Google API Console
+# Default: InvalidValue
+project_name=
+
+# root_package: API key obtained through the Google API Console
+# Default: InvalidValue
+root_package=

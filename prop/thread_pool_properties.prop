@@ -1,0 +1,20 @@
+# Thread pool properties
+# These numbers control the backend's performance on scale
+#   basically keeping the backend stable and performant even with high
+#   demand spikes
+
+# All properties are commented-out since default values are optimal for most
+#   cases and are calculated dynamically based on the machine's number of cores
+# And values are left empty - all types are integers
+
+# Used for new threads for in-memory operations
+# Default: min ((number of processor cores + 1) * 10, 1000)
+#runnable_pool_size=
+
+# Used for blocking operations like disk and network operations
+# Default: number of processor cores + 1
+#blocking_pool_size=
+
+# Used by the dispatcher
+# Default: number of processor cores + 1
+#dispatcher_pool_size=

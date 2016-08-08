@@ -1,0 +1,2 @@
+home.title=ffff
+hello=Bonjour

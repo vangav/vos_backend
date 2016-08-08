@@ -1,0 +1,19 @@
+# Param Validator properties
+
+# In addition to checking a param's type/format (e.g.: int, float, base64,
+#   e-mail, phone number, etc ...) some params have other validation
+#   requirements that vary from one backend service to another
+#   (e.g.: text length, photo size, etc ...)
+# This properties file is used to define such validation values
+
+# Photo Size is used to define the maximum photo's size (int Bytes)
+# Default: 5000000 (five million)
+photo_size=5000000
+
+# Caption Length is used define the maximum length for a photo's caption text
+# Default: 100
+caption_length=100
+
+# Chat Message Lentgh is used to define the maximum length for a chat's message
+# Default: 10000 (ten thousand)
+chat_message_length=10000
