@@ -1,32 +1,34 @@
-= Vangav Backend = [back-the-end]
+# Vangav Backend
+## [back-the-end]
 
-[[http://vangav.com/ | vangav.com]]
+[vangav.com](http://vangav.com/)
 
-= Prerequisites =
+# Prerequisites
 
 - unix operating systems (e.g.: mac os, ubuntu, etc ...)
 
 - JAVA 8
 
-= Quick Start =
+# Quick Start
 
-# create a workspace directory (e.g.: my_services)
+1. create a workspace directory (e.g.: my_services)
 
-# download this (vos_backend.zip) project inside the workspace and unzip it
+2. download this (vos_backend.zip) project inside the workspace and unzip it
 
-# optional - in the workspace directory add a new directory (e.g.: my_new_service) and put the new servie's config files inside that directory
+3. optional - in the workspace directory add a new directory (e.g.: my_new_service) and put the new servie's config files inside that directory
 
-# from the terminal cd to vos_backend/tools_bin
+4. from the terminal cd to vos_backend/tools_bin
 
-# type > java -jar backend_generator.jar new my_new_service
+5. type > java -jar backend_generator.jar new my_new_service
 
-# in case of using the optional config files for controllers, the generated backend will have a Handler class for each controller where the controller's logic should be implemented
+6. in case of using the optional config files for controllers, the generated backend will have a Handler class for each controller where the controller's logic should be implemented
 
-= Community =
+# Community
 
-[[fb.com/groups/575834775932682/ | Facebook Group: Vangav Open Source - Backend]]
+[Facebook Group: Vangav Open Source - Backend](fb.com/groups/575834775932682/)
 
-[[fb.com/vangav.f | Facebook Page: Vangav]]
+[Facebook Page: Vangav](fb.com/vangav.f)
+
 
 Third party communities for Vangav Backend
 - play framework
