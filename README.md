@@ -15,13 +15,15 @@
 
 2. download this (vos_backend.zip) project inside the workspace and unzip it
 
-3. optional - in the workspace directory add a new directory (e.g.: my_new_service) and put the new servie's config files inside that directory
+3. rename downloaded vos_backend-master to vos_backend
 
-4. from the terminal cd to vos_backend/tools_bin
+4. optional - in the workspace directory add a new directory (e.g.: my_new_service) and put the new servie's config files inside that directory
 
-5. type > java -jar backend_generator.jar new my_new_service
+5. from the terminal cd to vos_backend/tools_bin
 
-6. in case of using the optional config files for controllers, the generated backend will have a Handler class for each controller where the controller's logic should be implemented
+6. type > java -jar backend_generator.jar new my_new_service
+
+7. in case of using the optional config files for controllers, the generated backend will have a Handler class for each controller where the controller's logic should be implemented
 
 # Community
 
