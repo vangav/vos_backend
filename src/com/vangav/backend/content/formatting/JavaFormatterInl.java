@@ -130,4 +130,98 @@ public class JavaFormatterInl {
     
     return stringBuffer.toString();
   }
+  
+  private static final int kDefaultMaxLineLength = 75;
+  /**
+   * formatStringLength
+   * divides param string into a multi-line String with a maximum length of
+   *   kDefaultMaxLineLength
+   * @param string
+   * @param newLinePrefix
+   * @param isStringVariable
+   * @return multi-line String
+   * @throws Exception
+   */
+  public static final String formatStringLength (
+    String string,
+    String newLinePrefix,
+    boolean isStringVariable) throws Exception {
+    
+    return
+      formatStringLength(
+        string,
+        kDefaultMaxLineLength,
+        newLinePrefix,
+        isStringVariable);
+  }
+  
+  /**
+   * formatStringLength
+   * divides param string into a multi-line String with a maximum length of
+   *   param maxLineLength
+   * @param string
+   * @param maxLineLength
+   * @param newLinePrefix
+   * @param isStringVariable
+   * @return multi-line String
+   * @throws Exception
+   */
+  public static final String formatStringLength (
+    String string,
+    int maxLineLength,
+    String newLinePrefix,
+    boolean isStringVariable) throws Exception {
+    
+    if (newLinePrefix.length() > (maxLineLength / 2) ) {
+      
+      return string;
+    }
+    
+    StringBuffer stringBuffer = new StringBuffer();
+    
+    String[] spaceSplit = string.split("\\s+");
+    
+    String currLine = "";
+    
+    for (int i = 0; i < spaceSplit.length; i ++) {
+      
+      if ((newLinePrefix.length()
+           + currLine.length()
+           + spaceSplit[i].length()
+           + 1) > maxLineLength) {
+        
+        if (i < (spaceSplit.length - 1) ) {
+          
+          if (isStringVariable == true) {
+          
+            stringBuffer.append(currLine + "\"\n");
+          } else {
+          
+            stringBuffer.append(currLine + "\n");
+          }
+        } else {
+        
+          stringBuffer.append(currLine);
+        }
+        
+        if (isStringVariable == true) {
+        
+          currLine = newLinePrefix + "+ \"" + spaceSplit[i] + " ";
+        } else {
+        
+          currLine = newLinePrefix + spaceSplit[i] + " ";
+        }
+      } else {
+        
+        currLine += spaceSplit[i] + " ";
+        
+        if (i == (spaceSplit.length - 1) ) {
+        
+          stringBuffer.append(currLine);
+        }
+      }
+    }
+    
+    return stringBuffer.toString();
+  }
 }

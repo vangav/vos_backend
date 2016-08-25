@@ -28,6 +28,8 @@
 
 package com.vangav.backend.content.formatting;
 
+import java.util.ArrayList;
+
 import com.vangav.backend.exceptions.VangavException.ExceptionType;
 import com.vangav.backend.exceptions.handlers.ArgumentsInl;
 
@@ -56,6 +58,55 @@ public class CodeIdentifiersFormatterInl {
       ExceptionType.CODE_EXCEPTION);
     
     StringBuffer stringBuffer = new StringBuffer();
+    
+    if (identifiers.length == 1) {
+      
+      if (identifiers[0] != null && identifiers[0].length() > 4) {
+      
+        int lowerCaseCount = 0;
+        int upperCaseCount = 0;
+        
+        for (int i = 0; i < identifiers[0].length(); i ++) {
+          
+          if (Character.isUpperCase(identifiers[0].charAt(i) ) == true) {
+            
+            upperCaseCount += 1;
+          } else if (Character.isLowerCase(identifiers[0].charAt(i) ) ==
+                     true) {
+            
+            lowerCaseCount += 1;
+          }
+        }
+        
+        if (lowerCaseCount > 0 &&
+            upperCaseCount > 0 &&
+            lowerCaseCount >= upperCaseCount) {
+          
+          ArrayList<String> identifiersList = new ArrayList<String>();
+          String currIdentifier;
+          
+          for (int i = 0; i < identifiers[0].length(); i ++) {
+            
+            currIdentifier = "" + identifiers[0].charAt(i);
+            
+            for (int j = i + 1; j < identifiers[0].length(); j ++) {
+              
+              if (Character.isLowerCase(identifiers[0].charAt(j) ) == true) {
+                
+                currIdentifier += identifiers[0].charAt(j);
+              } else {
+                
+                identifiersList.add(currIdentifier);
+                i = j - 1;
+                break;
+              }
+            }
+          }
+          
+          identifiers = identifiersList.toArray(new String[0]);
+        }
+      }
+    }
     
     for (int i = 0; i < identifiers.length; i ++) {
       

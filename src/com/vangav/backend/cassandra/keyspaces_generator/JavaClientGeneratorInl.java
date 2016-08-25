@@ -442,7 +442,10 @@ public class JavaClientGeneratorInl {
         tableJson.name,
         keyspaceName,
         tableJson.name,
-        tableJson.description,
+        JavaFormatterInl.formatStringLength(
+          tableJson.description,
+          " *   ",
+          false),
         getTableColumnsComment(tableJson),
         getTablePartitionKeysComment(tableJson),
         getTableSecondaryKeysComment(tableJson),
@@ -631,8 +634,14 @@ public class JavaClientGeneratorInl {
         String.format(
           kTableClassCommentQueryFormat,
           queryJson.name,
-          queryJson.description,
-          queryJson.prepared_statement) );
+          JavaFormatterInl.formatStringLength(
+            queryJson.description,
+            " *     ",
+            false),
+          JavaFormatterInl.formatStringLength(
+            queryJson.prepared_statement,
+            " *     ",
+            false) ) );
     }
     
     return stringBuffer.toString();
@@ -661,14 +670,26 @@ public class JavaClientGeneratorInl {
         String.format(
           kTableQueryMemberVariableFormat,
           queryJson.name,
-          queryJson.description,
-          queryJson.prepared_statement,
+          JavaFormatterInl.formatStringLength(
+            queryJson.description,
+            "   *   ",
+            false),
+          JavaFormatterInl.formatStringLength(
+            queryJson.prepared_statement,
+            "   *   ",
+            false),
           camelCaseName,
           queryJson.name,
           camelCaseName,
-          queryJson.description,
+          JavaFormatterInl.formatStringLength(
+            queryJson.description,
+            "    ",
+            true),
           camelCaseName,
-          queryJson.prepared_statement,
+          JavaFormatterInl.formatStringLength(
+            queryJson.prepared_statement,
+            "    ",
+            true),
           camelCaseName,
           camelCaseName,
           camelCaseName,
@@ -821,8 +842,14 @@ public class JavaClientGeneratorInl {
       String.format(
         kQueryStartCommentFormat,
         nameCamelCase,
-        queryJson.description,
-        queryJson.prepared_statement) );
+        JavaFormatterInl.formatStringLength(
+          queryJson.description,
+          "  //   ",
+          false),
+        JavaFormatterInl.formatStringLength(
+          queryJson.prepared_statement,
+          "  //   ",
+          false) ) );
     
     stringBuffer.append(
       String.format(
