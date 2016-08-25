@@ -190,18 +190,12 @@ public class JavaFormatterInl {
            + spaceSplit[i].length()
            + 1) > maxLineLength) {
         
-        if (i < (spaceSplit.length - 1) ) {
-          
-          if (isStringVariable == true) {
-          
-            stringBuffer.append(currLine + "\"\n");
-          } else {
-          
-            stringBuffer.append(currLine + "\n");
-          }
+        if (isStringVariable == true) {
+        
+          stringBuffer.append(currLine + "\"\n");
         } else {
         
-          stringBuffer.append(currLine);
+          stringBuffer.append(currLine + "\n");
         }
         
         if (isStringVariable == true) {
@@ -210,6 +204,11 @@ public class JavaFormatterInl {
         } else {
         
           currLine = newLinePrefix + spaceSplit[i] + " ";
+        }
+        
+        if (i == (spaceSplit.length - 1) ) {
+        
+          stringBuffer.append(currLine);
         }
       } else {
         
