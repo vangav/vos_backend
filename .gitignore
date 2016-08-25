@@ -22,5 +22,5 @@ hs_err_pid*
 .metadata/
 
 # vos_backend
-vangav/vos_backend/apache-cassandra-2.1.2/data/
-vangav/vos_backend/apache-cassandra-2.1.2/logs/
+apache-cassandra-2.1.2/data/
+apache-cassandra-2.1.2/logs/
