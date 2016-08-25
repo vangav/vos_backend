@@ -59,6 +59,7 @@ public class CodeIdentifiersFormatterInl {
     
     StringBuffer stringBuffer = new StringBuffer();
     
+    // split a CamelCase String into multiple strings?
     if (identifiers.length == 1) {
       
       if (identifiers[0] != null && identifiers[0].length() > 4) {
@@ -66,6 +67,7 @@ public class CodeIdentifiersFormatterInl {
         int lowerCaseCount = 0;
         int upperCaseCount = 0;
         
+        // Check if it's a CamelCase String
         for (int i = 0; i < identifiers[0].length(); i ++) {
           
           if (Character.isUpperCase(identifiers[0].charAt(i) ) == true) {
@@ -79,28 +81,51 @@ public class CodeIdentifiersFormatterInl {
         }
         
         if (lowerCaseCount > 0 &&
-            upperCaseCount > 0 &&
+            upperCaseCount > 1 &&
             lowerCaseCount >= upperCaseCount) {
           
           ArrayList<String> identifiersList = new ArrayList<String>();
-          String currIdentifier;
+          String currIdentifier = "";
           
+          // Split CamelCase String into multiple Strings
           for (int i = 0; i < identifiers[0].length(); i ++) {
             
             currIdentifier = "" + identifiers[0].charAt(i);
             
             for (int j = i + 1; j < identifiers[0].length(); j ++) {
               
-              if (Character.isLowerCase(identifiers[0].charAt(j) ) == true) {
+              if (j == (identifiers[0].length() - 1) ) {
+                
+                currIdentifier += identifiers[0].charAt(j);
+                identifiersList.add(currIdentifier);
+                
+                currIdentifier = "";
+                i = j;
+                break;
+              }
+              
+              if (Character.isUpperCase(identifiers[0].charAt(j) ) == false) {
                 
                 currIdentifier += identifiers[0].charAt(j);
               } else {
                 
                 identifiersList.add(currIdentifier);
-                i = j - 1;
+                
+                if (j < (identifiers[0].length() - 1) ) {
+                  
+                  i = j - 1;
+                } else {
+                  
+                  i = j;
+                }
                 break;
               }
             }
+          }
+          
+          if (currIdentifier.length() > 0) {
+            
+            identifiersList.add(currIdentifier);
           }
           
           identifiers = identifiersList.toArray(new String[0]);
@@ -108,6 +133,7 @@ public class CodeIdentifiersFormatterInl {
       }
     }
     
+    // do the lower_under part
     for (int i = 0; i < identifiers.length; i ++) {
       
       identifiers[i] = identifiers[i].replaceAll("\\s+","");
