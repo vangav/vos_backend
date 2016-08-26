@@ -320,6 +320,9 @@ public class JavaClientGeneratorInl {
     + " * */\n";
   private static final String kTableClassStartFormat =
     "public class %s extends Table {\n\n";
+  private static final String kTableColumnMemberVariableFormat =
+    "  public static final String k%sColumnName =\n"
+    + "    \"%s\";\n";
   private static final String kTableQueryMemberVariableFormat =
     "  /**\n"
     + "   * Query:\n"
@@ -340,6 +343,8 @@ public class JavaClientGeneratorInl {
     + "    \"%s\";\n"
     + "  private static final String kTableName =\n"
     + "    \"%s\";\n\n"
+    
+    + "%s\n"
     
     + "%s";
   private static final String kTableConstructorQueryArgumentFormat =
@@ -458,11 +463,25 @@ public class JavaClientGeneratorInl {
         kTableClassStartFormat,
         tableNameCamelCase) );
     
+    StringBuffer columnsBuffer = new StringBuffer();
+    
+    for (ColumnJson columnJson : tableJson.columns) {
+      
+      columnsBuffer.append(
+        String.format(
+          kTableColumnMemberVariableFormat,
+          CodeIdentifiersFormatterInl.camelCase(
+            true,
+            columnJson.name),
+          columnJson.name) );
+    }
+    
     stringBuffer.append(
       String.format(
         kTableMemberVariablesFormat,
         keyspaceName,
         tableJson.name,
+        columnsBuffer.toString(),
         getTableQueriesMemeberVariables(tableJson) ) );
     
     stringBuffer.append(

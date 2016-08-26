@@ -167,6 +167,11 @@ public class CodeIdentifiersFormatterInl {
     
     StringBuffer stringBuffer = new StringBuffer();
     
+    if (identifiers.length == 1 && removeUnderscores == true) {
+      
+      identifiers = identifiers[0].split("_");
+    }
+    
     for (int i = 0; i < identifiers.length; i ++) {
       
       ArgumentsInl.checkNotNull(

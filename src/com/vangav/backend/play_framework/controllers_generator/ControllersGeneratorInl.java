@@ -1332,7 +1332,11 @@ public class ControllersGeneratorInl {
     }
     
     stringBuffer.append(kResponseAuthorFormat);
-    stringBuffer.append(kResponseClassCommentFormat);
+    
+    stringBuffer.append(
+      String.format(
+        kResponseClassCommentFormat,
+        nameCamelCase) );
     
     if (controllerJson.response_type.compareToIgnoreCase("JSON") == 0) {
       
