@@ -1,0 +1,9 @@
+# MailGunEmail properties
+
+# register at mailgun.com in order to get values for the following properties
+
+# Set the following property to the api-key provided by mailgun, e.g.: key-***
+mail_gun_api_key=
+
+# Set the following property to mailgun's domain name, e.g.: mydomainname.com
+mail_gun_domain_name=

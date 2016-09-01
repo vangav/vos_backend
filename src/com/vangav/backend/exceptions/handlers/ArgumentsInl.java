@@ -29,6 +29,7 @@
 package com.vangav.backend.exceptions.handlers;
 
 import java.util.Collection;
+import java.util.Map;
 
 import com.vangav.backend.exceptions.VangavException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
@@ -119,7 +120,7 @@ public class ArgumentsInl {
   /**
    * checkNotEmpty
    * @param name
-   * @param string
+   * @param array
    * @param exceptionType
    * @throws Exception if param array is null or empty
    */
@@ -143,7 +144,7 @@ public class ArgumentsInl {
   /**
    * checkNotEmpty
    * @param name
-   * @param string
+   * @param collection
    * @param exceptionType
    * @throws Exception if param collection is null or empty
    */
@@ -155,6 +156,30 @@ public class ArgumentsInl {
     checkNotNull(name, collection, exceptionType);
     
     if (collection.size() == 0) {
+      
+      throw VangavException.exceptionFactory(
+        name
+        + " can't be empty",
+        exceptionType,
+        ExceptionClass.ARGUMENT);
+    }
+  }
+  
+  /**
+   * checkNotEmpty
+   * @param name
+   * @param map
+   * @param exceptionType
+   * @throws Exception if param map is null or empty
+   */
+  public static void checkNotEmpty (
+    String name,
+    Map<?, ?> map,
+    ExceptionType exceptionType) throws Exception {
+    
+    checkNotNull(name, map, exceptionType);
+    
+    if (map.size() == 0) {
       
       throw VangavException.exceptionFactory(
         name
