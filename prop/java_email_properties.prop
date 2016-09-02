@@ -1,0 +1,22 @@
+# JavaEmail properties
+
+# fill in the following properties with valid values for JavaEmail's
+#   functionality to work
+
+# e.g.: username@gmail.com
+smtp_user_name=
+
+# e.g.: password
+smtp_password=
+
+# e.g.: smtp.gmail.com
+smtp_host=
+
+# setting one of the following ports is enough unless both SSL and NO-SSL
+#   modes are required for your system's functionality
+
+# e.g.: 587
+smtp_no_ssl_port=
+
+# e.g.: 465
+smtp_ssl_port=
