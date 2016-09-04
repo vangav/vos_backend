@@ -311,7 +311,7 @@ public class ControllersGeneratorInl {
 
     + "# Analysis is used to enable doing analysis after requests\n"
     + "# Default: false\n"
-    + "analysis=\n\n"
+    + "analysis=%s\n\n"
 
     + "# Logging is used to enable logging requests, responses, exceptions, etc ...\n"
     + "# Default: false\n"
