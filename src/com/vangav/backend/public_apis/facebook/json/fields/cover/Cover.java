@@ -26,42 +26,63 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.security.authentication.facebook;
+package com.vangav.backend.public_apis.facebook.json.fields.cover;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.vangav.backend.networks.rest.RestResponseJson;
+import com.vangav.backend.networks.DownloadInl;
+import com.vangav.backend.public_apis.facebook.json.fields.FacebookGraphApiField;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * ResponseFacebookAuth: JSON class representing Facebook's authentication
- *                         response
- */
+ * Cover represents Facebook's graph API cover field
+ * 
+ * Reference:
+ * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
+ * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseFacebookAuth extends RestResponseJson {
+public class Cover extends FacebookGraphApiField {
 
   @Override
   @JsonIgnore
   protected String getName () throws Exception {
     
-    return "FacebookAuth";
+    return "cover";
   }
   
   @Override
   @JsonIgnore
-  protected ResponseFacebookAuth getThis () throws Exception {
+  protected Cover getThis () throws Exception {
     
     return this;
   }
-  
-  /**
-   * id: the Facebook app's ID (i.e.: your app's Facebook ID, provided by
-   *       Facebook for each registered app; mobile app, web app, etc ...)
-   */
+
+  @Override
+  @JsonIgnore
+  public String getFieldName () throws Exception {
+    
+    return "cover";
+  }
+
+  @JsonProperty
+  public CoverElement cover;
+
   @JsonProperty
   public String id;
+  
+  /**
+   * downloadCoverPhoto
+   * @return the facebook user's cover photo as a string, and returns null or
+   *           throws an exception on failure
+   * @throws Exception
+   */
+  @JsonIgnore
+  public String downloadCoverPhoto () throws Exception {
+    
+    return DownloadInl.downloadFileAsString(this.cover.source);
+  }
 }

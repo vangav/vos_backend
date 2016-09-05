@@ -26,42 +26,50 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.security.authentication.facebook;
+package com.vangav.backend.public_apis.facebook.json.fields.favorite_teams;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.vangav.backend.networks.rest.RestResponseJson;
+import com.vangav.backend.public_apis.facebook.json.fields.FacebookGraphApiField;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * ResponseFacebookAuth: JSON class representing Facebook's authentication
- *                         response
- */
+ * FavoriteTeams represents Facebook's graph API favorite_teams field
+ * 
+ * Reference:
+ * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
+ * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseFacebookAuth extends RestResponseJson {
+public class FavoriteTeams extends FacebookGraphApiField {
 
   @Override
   @JsonIgnore
   protected String getName () throws Exception {
     
-    return "FacebookAuth";
+    return "favorite_teams";
   }
   
   @Override
   @JsonIgnore
-  protected ResponseFacebookAuth getThis () throws Exception {
+  protected FavoriteTeams getThis () throws Exception {
     
     return this;
   }
+
+  @Override
+  @JsonIgnore
+  public String getFieldName () throws Exception {
+    
+    return "favorite_teams";
+  }
   
-  /**
-   * id: the Facebook app's ID (i.e.: your app's Facebook ID, provided by
-   *       Facebook for each registered app; mobile app, web app, etc ...)
-   */
+  @JsonProperty
+  public FavoriteTeam [] favorite_teams;
+
   @JsonProperty
   public String id;
 }

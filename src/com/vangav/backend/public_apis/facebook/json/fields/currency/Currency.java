@@ -26,42 +26,50 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.security.authentication.facebook;
+package com.vangav.backend.public_apis.facebook.json.fields.currency;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.vangav.backend.networks.rest.RestResponseJson;
+import com.vangav.backend.public_apis.facebook.json.fields.FacebookGraphApiField;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * ResponseFacebookAuth: JSON class representing Facebook's authentication
- *                         response
- */
+ * Currency represents Facebook's graph API currency field
+ * 
+ * Reference:
+ * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
+ * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseFacebookAuth extends RestResponseJson {
+public class Currency extends FacebookGraphApiField {
 
   @Override
   @JsonIgnore
   protected String getName () throws Exception {
     
-    return "FacebookAuth";
+    return "currency";
   }
   
   @Override
   @JsonIgnore
-  protected ResponseFacebookAuth getThis () throws Exception {
+  protected Currency getThis () throws Exception {
     
     return this;
   }
+
+  @Override
+  @JsonIgnore
+  public String getFieldName () throws Exception {
+    
+    return "currency";
+  }
   
-  /**
-   * id: the Facebook app's ID (i.e.: your app's Facebook ID, provided by
-   *       Facebook for each registered app; mobile app, web app, etc ...)
-   */
+  @JsonProperty
+  public CurrencyElement currency;
+
   @JsonProperty
   public String id;
 }

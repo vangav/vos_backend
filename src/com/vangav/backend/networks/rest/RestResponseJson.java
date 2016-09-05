@@ -62,6 +62,7 @@ public abstract class RestResponseJson {
    * @return  json object representation of the response
    * @throws Exception
    */
+  @JsonIgnore
   final protected RestResponseJson fromJsonString (
     String json) throws Exception {
     
@@ -88,6 +89,7 @@ public abstract class RestResponseJson {
   }
   
   @Override
+  @JsonIgnore
   public String toString () {
     
     try {

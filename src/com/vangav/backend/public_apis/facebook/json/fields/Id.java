@@ -26,42 +26,46 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.security.authentication.facebook;
+package com.vangav.backend.public_apis.facebook.json.fields;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.vangav.backend.networks.rest.RestResponseJson;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * ResponseFacebookAuth: JSON class representing Facebook's authentication
- *                         response
- */
+ * Id represents Facebook's graph API id field
+ * 
+ * Reference:
+ * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
+ * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseFacebookAuth extends RestResponseJson {
+public class Id extends FacebookGraphApiField {
 
   @Override
   @JsonIgnore
   protected String getName () throws Exception {
     
-    return "FacebookAuth";
+    return "id";
   }
   
   @Override
   @JsonIgnore
-  protected ResponseFacebookAuth getThis () throws Exception {
+  protected Id getThis () throws Exception {
     
     return this;
   }
-  
-  /**
-   * id: the Facebook app's ID (i.e.: your app's Facebook ID, provided by
-   *       Facebook for each registered app; mobile app, web app, etc ...)
-   */
+
+  @Override
+  @JsonIgnore
+  public String getFieldName () throws Exception {
+    
+    return "id";
+  }
+
   @JsonProperty
   public String id;
 }

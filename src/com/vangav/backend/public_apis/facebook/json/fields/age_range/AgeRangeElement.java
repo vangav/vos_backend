@@ -26,42 +26,27 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.security.authentication.facebook;
+package com.vangav.backend.public_apis.facebook.json.fields.age_range;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.vangav.backend.networks.rest.RestResponseJson;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * ResponseFacebookAuth: JSON class representing Facebook's authentication
- *                         response
- */
+ * AgeRangeElement represent the age_range sub-field in Facebook's graph API
+ *   age_range field
+ * 
+ * Reference:
+ * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
+ * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ResponseFacebookAuth extends RestResponseJson {
+public class AgeRangeElement {
 
-  @Override
-  @JsonIgnore
-  protected String getName () throws Exception {
-    
-    return "FacebookAuth";
-  }
-  
-  @Override
-  @JsonIgnore
-  protected ResponseFacebookAuth getThis () throws Exception {
-    
-    return this;
-  }
-  
-  /**
-   * id: the Facebook app's ID (i.e.: your app's Facebook ID, provided by
-   *       Facebook for each registered app; mobile app, web app, etc ...)
-   */
   @JsonProperty
-  public String id;
+  public int min;
+  @JsonProperty
+  public int max;
 }
