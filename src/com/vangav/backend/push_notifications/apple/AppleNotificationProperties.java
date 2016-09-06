@@ -52,6 +52,7 @@ public class AppleNotificationProperties extends PropertiesFile {
 
   private static AppleNotificationProperties instance = null;
   
+  //disable default instantiation
   private AppleNotificationProperties () {}
   
   /**

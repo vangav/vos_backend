@@ -26,25 +26,47 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.public_apis.facebook.json.fields;
+package com.vangav.backend.public_apis.facebook.json.edges.tagged_places;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vangav.backend.networks.rest.RestResponseJson;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * FacebookGraphApiField is the parent class for all Facebook Graph API fields
+ * Location represents a data sub-element of Facebook's graph API edge
+ *   tagged_places
  * 
  * Reference:
  * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class FacebookGraphApiField extends RestResponseJson {
+public class Location {
 
-  @JsonIgnore
-  public abstract String getFieldName () throws Exception;
+  @JsonProperty
+  public String city;
+  @JsonProperty
+  public int city_id;
+  @JsonProperty
+  public String country;
+  @JsonProperty
+  public String country_code;
+  @JsonProperty
+  public float latitude;
+  @JsonProperty
+  public float longitude;
+  @JsonProperty
+  public String name;
+  @JsonProperty
+  public String region;
+  @JsonProperty
+  public int region_id;
+  @JsonProperty
+  public String state;
+  @JsonProperty
+  public String street;
+  @JsonProperty
+  public String zip;
 }

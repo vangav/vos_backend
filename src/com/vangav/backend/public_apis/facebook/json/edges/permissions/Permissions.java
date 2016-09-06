@@ -26,25 +26,47 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.public_apis.facebook.json.fields;
+package com.vangav.backend.public_apis.facebook.json.edges.permissions;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vangav.backend.networks.rest.RestResponseJson;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vangav.backend.public_apis.facebook.json.edges.edge.FacebookGraphApiEdge;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * FacebookGraphApiField is the parent class for all Facebook Graph API fields
+ * Permissions represents Facebook's graph API edge permissions
  * 
  * Reference:
  * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class FacebookGraphApiField extends RestResponseJson {
+public class Permissions extends FacebookGraphApiEdge {
 
+  @Override
   @JsonIgnore
-  public abstract String getFieldName () throws Exception;
+  protected String getName () throws Exception {
+    
+    return "permissions";
+  }
+  
+  @Override
+  @JsonIgnore
+  protected Permissions getThis () throws Exception {
+    
+    return this;
+  }
+
+  @Override
+  @JsonIgnore
+  public String getEdgeName () throws Exception {
+    
+    return "permissions";
+  }
+  
+  @JsonProperty
+  public Permission [] data;
 }

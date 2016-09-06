@@ -26,25 +26,47 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.public_apis.facebook.json.fields;
+package com.vangav.backend.public_apis.facebook.json.edges.movies;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vangav.backend.networks.rest.RestResponseJson;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vangav.backend.public_apis.facebook.json.edges.edge.FacebookGraphApiEdge;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * FacebookGraphApiField is the parent class for all Facebook Graph API fields
+ * Movies represents Facebook's graph API edge movies
  * 
  * Reference:
  * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class FacebookGraphApiField extends RestResponseJson {
+public class Movies extends FacebookGraphApiEdge {
 
+  @Override
   @JsonIgnore
-  public abstract String getFieldName () throws Exception;
+  protected String getName () throws Exception {
+    
+    return "movies";
+  }
+  
+  @Override
+  @JsonIgnore
+  protected Movies getThis () throws Exception {
+    
+    return this;
+  }
+
+  @Override
+  @JsonIgnore
+  public String getEdgeName () throws Exception {
+    
+    return "movies";
+  }
+  
+  @JsonProperty
+  public Movie [] data;
 }

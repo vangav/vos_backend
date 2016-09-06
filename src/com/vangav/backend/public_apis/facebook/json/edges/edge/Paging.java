@@ -26,25 +26,28 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.public_apis.facebook.json.fields;
+package com.vangav.backend.public_apis.facebook.json.edges.edge;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.vangav.backend.networks.rest.RestResponseJson;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 /**
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
 /**
- * FacebookGraphApiField is the parent class for all Facebook Graph API fields
+ * Paging represent the paging sub-element of a Facebook's graph API edge
  * 
  * Reference:
  * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public abstract class FacebookGraphApiField extends RestResponseJson {
+public class Paging {
 
-  @JsonIgnore
-  public abstract String getFieldName () throws Exception;
+  @JsonProperty
+  public Cursors cursors;
+  @JsonProperty
+  public String next;
+  @JsonProperty
+  public String previous;
 }

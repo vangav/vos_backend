@@ -1,0 +1,11 @@
+# Facebook Graph API Edge properties
+# This properties file defines how to deal with edges' paging
+
+# page_limit: restricts the number of objects to get per page
+# Default: 5000
+page_limit=5000
+
+# get_all_pages: true to fetch all API request's pages and false to fetch the
+#                  first page only
+# Default: true
+get_all_pages=true

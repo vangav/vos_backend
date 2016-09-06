@@ -26,7 +26,7 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.push_notifications.android;
+package com.vangav.backend.public_apis.facebook.json.edges.edge;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,39 +38,29 @@ import com.vangav.backend.properties.PropertiesLoader;
  * @author mustapha
  * fb.com/mustapha.abdallah
  */
-/**
- * OPTIONAL
- * AndroidNotificationProperties
- * In the common case of a backend for one application, this properties file
- *   is a handy way to skip instantiating an AndroidNotificationSender and use
- *   the singleton instance instead which uses values from this properties
- *   file
- * NOTE: values must be defined in the .prop file, default values are invalid
- *         values in that case of AndroidNotificationProperties
- * */
-public class AndroidNotificationProperties extends PropertiesFile {
+public class FacebookGraphApiEdgeProperties extends PropertiesFile {
 
-  private static AndroidNotificationProperties instance = null;
+  private static FacebookGraphApiEdgeProperties instance = null;
   
-  //disable default instantiation
-  private AndroidNotificationProperties () {}
+  // disable default instantiation
+  private FacebookGraphApiEdgeProperties () {}
   
   /**
    * static singleton getter
    * @return static singleton instance
    * @throws Exception
    */
-  public static AndroidNotificationProperties i () throws Exception {
+  public static FacebookGraphApiEdgeProperties i () throws Exception {
     
     if (instance == null) {
       
-      instance = new AndroidNotificationProperties();
+      instance = new FacebookGraphApiEdgeProperties();
     }
     
-    return instance;
+    return null;
   }
   
-  private static final String kName = "android_notification_properties";
+  private static final String kName = "facebook_graph_api_edge_properties";
   
   @Override
   public String getName () {
@@ -79,27 +69,8 @@ public class AndroidNotificationProperties extends PropertiesFile {
   }
   
   // properties names
-  public static final String kApiKey = "api_key";
-  
-  private static final String kInvalidValue = "InvalidValue";
-  
-  /**
-   * isDefined
-   * @return true if values in android_notification_properties.prop are defined
-   *           and false otherwise
-   */
-  public boolean isDefined () {
-    
-    for (String key : kProperties.keySet() ) {
-      
-      if (kProperties.get(key).compareTo(kInvalidValue) == 0) {
-        
-        return false;
-      }
-    }
-    
-    return true;
-  }
+  public static final String kPageLimit = "page_limit";
+  public static final String kGetAllPages = "get_all_pages";
   
   // property name -> property default value
   private static final Map<String, String> kProperties;
@@ -108,8 +79,11 @@ public class AndroidNotificationProperties extends PropertiesFile {
     kProperties = new HashMap<String, String>();
     
     kProperties.put(
-      kApiKey,
-      kInvalidValue);
+      kPageLimit,
+      "5000");
+    kProperties.put(
+      kGetAllPages,
+      "true");
   }
   
   @Override
