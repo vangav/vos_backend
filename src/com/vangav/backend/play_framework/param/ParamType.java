@@ -115,11 +115,12 @@ public enum ParamType {
       case CHAT_MSG:
       case TRACKING_ID:
         return "String";
+
       default:
         throw new CodeException(
           "Unhandled type ["
-          + this.toString()
-          + "]",
+            + this.toString()
+            + "]",
           ExceptionClass.TYPE);
     }
   }

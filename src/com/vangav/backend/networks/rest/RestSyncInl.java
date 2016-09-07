@@ -44,12 +44,13 @@ import com.vangav.backend.files.FileWriterInl;
  * fb.com/mustapha.abdallah
  */
 /**
- * RestInl has inline static methods for handling REST calls of different types
+ * RestSyncInl has inline static methods for handling REST calls of different
+ *   types synchronously
  * */
-public class RestInl {
+public class RestSyncInl {
 
   // disable default instantiation
-  private RestInl () {}
+  private RestSyncInl () {}
   
   public enum RestCallType {
     

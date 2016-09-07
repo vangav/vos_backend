@@ -34,7 +34,7 @@ import java.net.URLConnection;
 import com.vangav.backend.exceptions.BadRequestException;
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
-import com.vangav.backend.networks.rest.RestInl;
+import com.vangav.backend.networks.rest.RestSyncInl;
 import com.vangav.backend.networks.rest.RestRequestGetQuery;
 
 /**
@@ -74,14 +74,14 @@ public class GoogleAuthInl {
       
       // send auth request to Google
       URLConnection urlConnection =
-        RestInl.restCall(kGoogleApiAppLink, getQuery);
+        RestSyncInl.restCall(kGoogleApiAppLink, getQuery);
       
       // check if response's status is OK (200)
-      if (RestInl.getResponseStatus(urlConnection) !=
+      if (RestSyncInl.getResponseStatus(urlConnection) !=
           HttpURLConnection.HTTP_OK) {
         
         // internal server error?
-        if (RestInl.getResponseStatus(urlConnection) ==
+        if (RestSyncInl.getResponseStatus(urlConnection) ==
             HttpURLConnection.HTTP_INTERNAL_ERROR) {
           
           throw new CodeException(
@@ -100,7 +100,7 @@ public class GoogleAuthInl {
       
       // get Google's response content (App id and user's Google ID)
       ResponseGoogleAuth responseGoogleAuth =
-        (ResponseGoogleAuth)RestInl.getRestResponseJson(
+        (ResponseGoogleAuth)RestSyncInl.getRestResponseJson(
           new ResponseGoogleAuth(),
           urlConnection);
       

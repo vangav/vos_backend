@@ -11,10 +11,14 @@
 # Default: min ((number of processor cores + 1) * 10, 1000)
 #runnable_pool_size=
 
-# Used for blocking operations like disk and network operations
+# Used for cassandra's blocking operations
 # Default: number of processor cores + 1
-#blocking_pool_size=
+#cassandra_pool_size=
 
 # Used by the dispatcher
 # Default: number of processor cores + 1
 #dispatcher_pool_size=
+
+# Used by the REST client
+# Default: number of processor cores + 1
+#rest_client_pool_size=

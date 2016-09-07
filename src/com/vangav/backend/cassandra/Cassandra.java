@@ -422,7 +422,7 @@ public class Cassandra {
         
         if (execType == ExecType.SYNC) {
           
-          ThreadPool.i().<PreparedStatement>executeInBlockingPool(result);
+          ThreadPool.i().<PreparedStatement>executeInCassandraPool(result);
           
           PreparedStatement preparedStatementResult =
             result.get(
@@ -518,7 +518,7 @@ public class Cassandra {
         
         if (execType == ExecType.SYNC) {
           
-          ThreadPool.i().<ResultSet>executeInBlockingPool(result);
+          ThreadPool.i().<ResultSet>executeInCassandraPool(result);
           
           return
             result.getUninterruptibly(

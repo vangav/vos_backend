@@ -77,8 +77,9 @@ public class ThreadPoolProperties extends PropertiesFile {
   
   // properties names
   public static final String kRunnablePoolSize = "runnable_pool_size";
-  public static final String kBlockingPoolSize = "blocking_pool_size";
+  public static final String kCassandraPoolSize = "cassandra_pool_size";
   public static final String kDispatcherPoolSize = "dispatcher_pool_size";
+  public static final String kRestClientPoolSize = "rest_client_pool_size";
   
   // property name -> property default value
   private static final Map<String, String> kProperties;
@@ -93,11 +94,15 @@ public class ThreadPoolProperties extends PropertiesFile {
           ((Runtime.getRuntime().availableProcessors() + 1) * 10),
           1000) );
     kProperties.put(
-      kBlockingPoolSize,
+      kCassandraPoolSize,
       ""
       + Runtime.getRuntime().availableProcessors() + 1);
     kProperties.put(
       kDispatcherPoolSize,
+      ""
+      + Runtime.getRuntime().availableProcessors() + 1);
+    kProperties.put(
+      kRestClientPoolSize,
       ""
       + Runtime.getRuntime().availableProcessors() + 1);
   }

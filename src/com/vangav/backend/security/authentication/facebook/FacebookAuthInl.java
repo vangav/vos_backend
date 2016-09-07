@@ -35,7 +35,7 @@ import com.vangav.backend.exceptions.BadRequestException;
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
 import com.vangav.backend.networks.rest.RestRequestGetQuery;
-import com.vangav.backend.networks.rest.RestInl;
+import com.vangav.backend.networks.rest.RestSyncInl;
 
 /**
  * @author mustapha
@@ -73,10 +73,10 @@ public class FacebookAuthInl {
       
       // send auth request to Facebook
       URLConnection urlConnection =
-        RestInl.restCall(kFacebookGraphApiAppLink, getQuery);
+        RestSyncInl.restCall(kFacebookGraphApiAppLink, getQuery);
       
       // check if response's status is OK (200)
-      if (RestInl.getResponseStatus(urlConnection) !=
+      if (RestSyncInl.getResponseStatus(urlConnection) !=
           HttpURLConnection.HTTP_OK) {
         
         throw new CodeException(
@@ -88,7 +88,7 @@ public class FacebookAuthInl {
       
       // get Facebook's response content (App id)
       ResponseFacebookAuth responseFacebookAuth =
-        (ResponseFacebookAuth)RestInl.getRestResponseJson(
+        (ResponseFacebookAuth)RestSyncInl.getRestResponseJson(
           new ResponseFacebookAuth(),
           urlConnection);
       

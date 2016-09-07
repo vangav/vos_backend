@@ -33,6 +33,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.google.common.util.concurrent.ListenableFuture;
+import com.vangav.backend.networks.rest.RestAsync;
 
 /**
  * @author mustapha
@@ -44,8 +45,7 @@ import com.google.common.util.concurrent.ListenableFuture;
  *     like starting a new thread for in-memory operation, this thread pool
  *     is important to limit the number of running threads to avoid memory
  *     failure and processing congestion
- * - Blocking thread pool is used for blocking operations like
- *     Database operations
+ * - Cassandra thread pool is used for cassandra's blocking operations
  * - Dispatcher thread pool is used by the dispatcher to dispatch messages
  *     to worker services
  * */
@@ -105,8 +105,9 @@ public class ThreadPool {
   }
 
   private ExecutorService runnablePool;
-  private ExecutorService blockingPool;
+  private ExecutorService cassandraPool;
   private ExecutorService dispatcherPool;
+  private ExecutorService restClientPool;
   
   /**
    * Constructor ThreadPool
@@ -119,14 +120,18 @@ public class ThreadPool {
       Executors.newFixedThreadPool(
         ThreadPoolProperties.i().getIntProperty(
           ThreadPoolProperties.kRunnablePoolSize) );
-    this.blockingPool =
+    this.cassandraPool =
       Executors.newFixedThreadPool(
         ThreadPoolProperties.i().getIntProperty(
-          ThreadPoolProperties.kBlockingPoolSize) );
+          ThreadPoolProperties.kCassandraPoolSize) );
     this.dispatcherPool =
       Executors.newFixedThreadPool(
         ThreadPoolProperties.i().getIntProperty(
           ThreadPoolProperties.kDispatcherPoolSize) );
+    this.restClientPool =
+      Executors.newFixedThreadPool(
+        ThreadPoolProperties.i().getIntProperty(
+          ThreadPoolProperties.kRestClientPoolSize) );
   }
   
   private static ThreadPool instance = null;
@@ -159,20 +164,20 @@ public class ThreadPool {
   }
   
   /**
-   * executeInBlockingPool
+   * executeInCassandraPool
    * executes a listenable future in the blocking thread pool
    * @param listenableFuture: object to execute
    * @return result when ready (sleeps meanwhile)
    * @throws Exception
    */
-  public <T> void executeInBlockingPool (
+  public <T> void executeInCassandraPool (
     ListenableFuture<T> listenableFuture) throws Exception {
     
     WaitObject waitObject = new WaitObject();
     
     listenableFuture.addListener(
       new NotifyRunnable(waitObject),
-      this.blockingPool);
+      this.cassandraPool);
     
     synchronized (waitObject) {
   
@@ -192,5 +197,17 @@ public class ThreadPool {
   public void executeInDispatcherPool (Runnable runnable) throws Exception {
     
     this.dispatcherPool.execute(runnable);
+  }
+  
+  /**
+   * executeInRestClientPool
+   * executes a REST asynchronous request's runnable LatchThread in the
+   *   REST Client thread pool
+   * @param restAsync - RestAsync Latch Thread object to execute
+   * @throws Exception
+   */
+  public void executeInRestClientPool (RestAsync restAsync) throws Exception {
+    
+    this.restClientPool.execute(restAsync);
   }
 }

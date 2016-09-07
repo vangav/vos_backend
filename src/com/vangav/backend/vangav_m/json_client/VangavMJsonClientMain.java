@@ -37,7 +37,7 @@ import java.util.Map;
 import com.vangav.backend.exceptions.VangavException;
 import com.vangav.backend.files.FileLoaderInl;
 import com.vangav.backend.files.FileWriterInl;
-import com.vangav.backend.networks.rest.RestInl;
+import com.vangav.backend.networks.rest.RestSyncInl;
 import com.vangav.backend.system.CommandLineInl;
 import com.vangav.backend.vangav_m.json_client.json.VangavMSolutionJson;
 
@@ -223,11 +223,11 @@ public class VangavMJsonClientMain {
         + "] ...");
       
       currURLConnection =
-        RestInl.restCall(
+        RestSyncInl.restCall(
           kVangavMApiLink,
           solutions.get(solutionName) );
       
-      if (RestInl.isResponseStatusSuccess(currURLConnection) == false) {
+      if (RestSyncInl.isResponseStatusSuccess(currURLConnection) == false) {
         
         resetSolutionsGeneration();
         
@@ -237,7 +237,7 @@ public class VangavMJsonClientMain {
           + "] from solution file ["
           + solutionsFileNames.get(solutionName)
           + "], API returned response status code ["
-          + RestInl.getResponseStatus(currURLConnection)
+          + RestSyncInl.getResponseStatus(currURLConnection)
           + "]. Cancelling Vangav M solution's generation, fix problematic "
           + "solution and try again ....\n");
         System.exit(0);
@@ -252,7 +252,7 @@ public class VangavMJsonClientMain {
       
       try {
         
-        RestInl.writeResponseFile(
+        RestSyncInl.writeResponseFile(
           currSolutionPath,
           currURLConnection,
           false);

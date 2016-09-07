@@ -33,8 +33,8 @@ import java.util.ArrayList;
 
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
-import com.vangav.backend.networks.rest.RestInl;
-import com.vangav.backend.networks.rest.RestInl.RestCallType;
+import com.vangav.backend.networks.rest.RestSyncInl;
+import com.vangav.backend.networks.rest.RestSyncInl.RestCallType;
 import com.vangav.backend.thread_pool.ThreadPool;
 
 /**
@@ -124,12 +124,12 @@ public class Dispatcher {
       
         try {
           
-          URLConnection urlConnection = RestInl.restCall(
+          URLConnection urlConnection = RestSyncInl.restCall(
             workerTopologyPoint,
             RestCallType.POST,
             this.dispatchMessages);
           
-          if (RestInl.isResponseStatusSuccess(urlConnection) == true) {
+          if (RestSyncInl.isResponseStatusSuccess(urlConnection) == true) {
           
             break;
           }
