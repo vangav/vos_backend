@@ -53,7 +53,8 @@ public class Request {
   private Calendar startCalendar;
   private long endTime;
   private int execTime;
-  
+
+  private final UUID requestId;
   private RequestHeader header;
   private RequestJsonBody body;
   private ResponseBody response;
@@ -87,6 +88,7 @@ public class Request {
     this.endTime = this.startTime;
     this.execTime = 0;
     
+    this.requestId = UUID.randomUUID();
     this.header = new RequestHeader(request);
     this.body = requestJsonBody;
     this.response = responseBody;
@@ -105,7 +107,7 @@ public class Request {
    * getStartTime
    * @return unix time when request is received
    */
-  public long getStartTime () {
+  public long getStartTime () throws Exception {
 	
     return this.startTime;
   }
@@ -114,7 +116,7 @@ public class Request {
    * getStartCalendar
    * @return calendar when request is received
    */
-  public Calendar getStartCalendar () {
+  public Calendar getStartCalendar () throws Exception {
 
     return this.startCalendar;
   }
@@ -135,7 +137,7 @@ public class Request {
    * getEndTime
    * @return request's end time
    */
-  public long getEndTime () {
+  public long getEndTime () throws Exception {
 	  
     return this.endTime;
   }
@@ -144,16 +146,21 @@ public class Request {
    * getExecTime
    * @return request's execution time
    */
-  public int getExecTime () {
+  public int getExecTime () throws Exception {
     
     return this.execTime;
+  }
+  
+  public UUID getRequestId () throws Exception {
+    
+    return this.requestId;
   }
   
   /**
    * getRequestHeader
    * @return request's header
    */
-  public RequestHeader getRequestHeader () {
+  public RequestHeader getRequestHeader () throws Exception {
     
     return this.header;
   }
@@ -162,7 +169,7 @@ public class Request {
    * getRequestJsonBody
    * @return request's body in json format
    */
-  public RequestJsonBody getRequestJsonBody () {
+  public RequestJsonBody getRequestJsonBody () throws Exception {
     
     return this.body;
   }
@@ -171,7 +178,7 @@ public class Request {
    * getResponseBody
    * @return request's response body
    */
-  public ResponseBody getResponseBody () {
+  public ResponseBody getResponseBody () throws Exception {
     
     return this.response;
   }
@@ -180,7 +187,7 @@ public class Request {
    * getDispatcher
    * @return request's dispatcher
    */
-  public Dispatcher getDispatcher () {
+  public Dispatcher getDispatcher () throws Exception {
     
     return this.dispatcher;
   }
@@ -189,7 +196,7 @@ public class Request {
    * getControllerName
    * @return controller's name
    */
-  public String getControllerName () {
+  public String getControllerName () throws Exception {
     
     return this.controllerName;
   }
@@ -201,7 +208,7 @@ public class Request {
    *   Facebook ID, etc ...)
    * @param userId
    */
-  public void setUserId (UUID userId) {
+  public void setUserId (UUID userId) throws Exception {
     
     this.userId = userId;
   }
@@ -211,7 +218,7 @@ public class Request {
    * @return user id for the user who sent the request (useful for services
    *           like mobile applications)
    */
-  public UUID getUserId () {
+  public UUID getUserId () throws Exception {
     
     return this.userId;
   }
@@ -220,7 +227,7 @@ public class Request {
    * setIsThrottled
    * @param isThrottled: (true for throttled request and false otherwise)
    */
-  public void setIsThrottled (boolean isThrottled) {
+  public void setIsThrottled (boolean isThrottled) throws Exception {
     
     this.isThrottled = isThrottled;
   }
@@ -229,7 +236,7 @@ public class Request {
    * getIsThrottled
    * @return true is request is throttled and false otherwise
    */
-  public boolean getIsThrottled () {
+  public boolean getIsThrottled () throws Exception {
     
     return this.isThrottled;
   }
@@ -238,7 +245,7 @@ public class Request {
    * setState
    * @param state: (e.g.: OK, BAD_REQUEST, INTERNAL_SERVER_ERROR, etc ...)
    */
-  public void setState (RequestState state) {
+  public void setState (RequestState state) throws Exception {
     
     this.state = state;
   }
@@ -247,7 +254,7 @@ public class Request {
    * getState
    * @return (e.g.: OK, BAD_REQUEST, INTERNAL_SERVER_ERROR, etc ...)
    */
-  public RequestState getState () {
+  public RequestState getState () throws Exception {
     
     return this.state;
   }
@@ -258,7 +265,8 @@ public class Request {
    *   for response, analysis, logging, etc ...
    * @param vangavException
    */
-  public void addVangavException (VangavException vangavException) {
+  public void addVangavException (
+    VangavException vangavException) throws Exception {
     
     this.vangavExceptions.add(vangavException);
   }
@@ -268,7 +276,7 @@ public class Request {
    * @return arraylist of Vangav Exceptions that occured during the processing
    *           of this request
    */
-  public ArrayList<VangavException> getVangavExceptions () {
+  public ArrayList<VangavException> getVangavExceptions () throws Exception {
     
     return this.vangavExceptions;
   }
@@ -279,7 +287,7 @@ public class Request {
    *   for response, analysis, logging, etc ...
    * @param exception
    */
-  public void addException (Exception exception) {
+  public void addException (Exception exception) throws Exception {
     
     this.exceptions.add(exception);
   }
@@ -289,7 +297,7 @@ public class Request {
    * @return arraylist of Exceptions that occured during the processing
    *           of this request
    */
-  public ArrayList<Exception> getExceptions () {
+  public ArrayList<Exception> getExceptions () throws Exception {
     
     return this.exceptions;
   }
@@ -307,6 +315,8 @@ public class Request {
       + this.endTime
       + ")\nexecution time("
       + this.execTime
+      + ")\nrequest id("
+      + this.requestId.toString()
       + ")\n"
       + this.header.toString()
       + this.body.toString()

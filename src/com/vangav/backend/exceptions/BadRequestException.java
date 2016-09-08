@@ -40,7 +40,7 @@ public class BadRequestException extends VangavException {
   /**
    * Generated serial version ID
    */
-  private static final long serialVersionUID = -6978997818769090256L;
+  private static final long serialVersionUID = -8910926874385881113L;
 
   /**
    * @return returns the exception type

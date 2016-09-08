@@ -49,7 +49,7 @@ public class AppleNotification implements Serializable {
   /**
    * Generated serial version ID
    */
-  private static final long serialVersionUID = 551982876828507486L;
+  private static final long serialVersionUID = -8584619114492996393L;
 
   private static final int kInvalidBadgeNumber = -1;
   

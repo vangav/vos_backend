@@ -287,10 +287,10 @@ public abstract class ParentPlayHandler {
       
       if (request != null) {
         
-        request.setState(RequestState.BAD_REQUEST);
-        request.addVangavException(bre);
-        
         try {
+          
+          request.setState(RequestState.BAD_REQUEST);
+          request.addVangavException(bre);
         
           result = request.getResponseBody().getBadRequestResult();
         } catch (Exception e2) {
@@ -305,10 +305,10 @@ public abstract class ParentPlayHandler {
       
       if (request != null) {
         
-        request.setState(RequestState.INTERNAL_SERVER_ERROR);
-        request.addVangavException(ce);
-        
         try {
+          
+          request.setState(RequestState.INTERNAL_SERVER_ERROR);
+          request.addVangavException(ce);
         
           result = request.getResponseBody().getInternalServerErrorResult();
         } catch (Exception e2) {
@@ -323,9 +323,9 @@ public abstract class ParentPlayHandler {
       
       if (request != null) {
         
-        request.setState(RequestState.INTERNAL_SERVER_ERROR);
-        
         try {
+          
+          request.setState(RequestState.INTERNAL_SERVER_ERROR);
         
           request.addException(e);
         } catch (Exception e2) {

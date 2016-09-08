@@ -40,7 +40,7 @@ public abstract class VangavException extends RuntimeException {
   /**
    * Generated serial version ID
    */
-  private static final long serialVersionUID = 9184242240315965735L;
+  private static final long serialVersionUID = -1854638714325542046L;
 
   /**
    * ExceptionType

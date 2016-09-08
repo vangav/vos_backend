@@ -52,7 +52,7 @@ public class AndroidNotification implements Serializable {
   /**
    * Generated serial version ID
    */
-  private static final long serialVersionUID = -3864168114187903379L;
+  private static final long serialVersionUID = -8137373708468532389L;
 
   private Message message;
   private String to;

@@ -40,7 +40,7 @@ public class CodeException extends VangavException {
   /**
    * Generated serial version ID
    */
-  private static final long serialVersionUID = -4586452168053990387L;
+  private static final long serialVersionUID = -5124498973561584330L;
 
   /**
    * @return returns the exception type
