@@ -112,6 +112,11 @@ public abstract class VangavException extends RuntimeException {
     return new CodeException(message, exceptionClass);
   }
   
+  protected static final int kDefaultCode = 0;
+  protected static final int kDefaultSubCode = 0;
+  
+  private int code;
+  private int subCode;
   private String message;
   private ExceptionClass exceptionClass;
   private String stackTrace;
@@ -122,11 +127,15 @@ public abstract class VangavException extends RuntimeException {
    * @param exceptionClass: exception's class
    */
   protected VangavException (
+    final int code,
+    final int subCode,
     final String message,
     final ExceptionClass exceptionClass) {
     
     super(exceptionClass.toString() + ": " + message);
     
+    this.code = code;
+    this.subCode = subCode;
     this.message = exceptionClass.toString() + ": " + message;
     this.exceptionClass = exceptionClass;
     
@@ -141,6 +150,24 @@ public abstract class VangavException extends RuntimeException {
     this.stackTrace = stackTraceBuff.toString();
   }
   
+  /**
+   * getCode
+   * @return this exception's code
+   */
+  public final int getCode () {
+    
+    return this.code;
+  }
+  
+  /**
+   * getSubCode
+   * @return this exception's sub_code
+   */
+  public final int getSubCode () {
+    
+    return this.subCode;
+  }
+  
   @Override
   public final String getMessage () {
     
@@ -148,6 +175,7 @@ public abstract class VangavException extends RuntimeException {
   }
   
   /**
+   * getExceptionClass
    * @return ExceptionClass
    */
   public final ExceptionClass getExceptionClass () {
@@ -156,6 +184,7 @@ public abstract class VangavException extends RuntimeException {
   }
   
   /**
+   * getExceptionStackTrace
    * @return String representation of the exception's stack trace
    */
   public final String getExceptionStackTrace () {
@@ -185,6 +214,10 @@ public abstract class VangavException extends RuntimeException {
     
     return
       "VangavException:"
+      + "\ncode: "
+      + this.code
+      + "\nsub_code: "
+      + this.subCode
       + "\nmessage: "
       + this.message
       + "\nexception class: "

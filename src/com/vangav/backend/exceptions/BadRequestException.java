@@ -62,6 +62,35 @@ public class BadRequestException extends VangavException {
     final String message,
     final ExceptionClass exceptionClass) {
     
-    super(message, exceptionClass);
+    super(
+      VangavException.kDefaultCode,
+      VangavException.kDefaultSubCode,
+      message,
+      exceptionClass);
+  }
+
+  public BadRequestException (
+    final int code,
+    final String message,
+    final ExceptionClass exceptionClass) {
+    
+    super(
+      code,
+      VangavException.kDefaultSubCode,
+      message,
+      exceptionClass);
+  }
+
+  public BadRequestException (
+    final int code,
+    final int subCode,
+    final String message,
+    final ExceptionClass exceptionClass) {
+    
+    super(
+      code,
+      subCode,
+      message,
+      exceptionClass);
   }
 }
