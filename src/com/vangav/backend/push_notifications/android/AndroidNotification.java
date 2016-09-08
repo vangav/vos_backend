@@ -67,7 +67,7 @@ public class AndroidNotification implements Serializable {
    *              message will be sent
    * @return new AndroidNotification Object
    */
-  public AndroidNotification (Message message, String to) {
+  public AndroidNotification (Message message, String to) throws Exception {
     
     this(message, to, kDefaultRetries);
   }
@@ -80,7 +80,10 @@ public class AndroidNotification implements Serializable {
    * @param retries: number of retries in case of service unavailability errors
    * @return new AndroidNotification Object;
    */
-  public AndroidNotification (Message message, String to, int retries) {
+  public AndroidNotification (
+    Message message,
+    String to,
+    int retries) throws Exception {
     
     this.message = message;
     this.to = to;
@@ -108,7 +111,7 @@ public class AndroidNotification implements Serializable {
    * getMessage
    * @return notifications's Message
    */
-  public Message getMessage () {
+  public Message getMessage () throws Exception {
     
     return this.message;
   }
@@ -117,7 +120,7 @@ public class AndroidNotification implements Serializable {
    * getTo
    * @return notification's to
    */
-  public String getTo () {
+  public String getTo () throws Exception {
     
     return this.to;
   }
@@ -126,7 +129,7 @@ public class AndroidNotification implements Serializable {
    * getRetries
    * @return notification's retries
    */
-  public int getRetries () {
+  public int getRetries () throws Exception {
     
     return this.retries;
   }

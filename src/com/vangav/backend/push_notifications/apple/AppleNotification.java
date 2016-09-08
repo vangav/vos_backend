@@ -90,7 +90,6 @@ public class AppleNotification implements Serializable {
   private HashMap<String, String> customProperties;
   
   // disable default instantiation
-  @SuppressWarnings("unused")
   private AppleNotification () {}
   
   /**
@@ -98,8 +97,8 @@ public class AppleNotification implements Serializable {
    * @param appleNotificationBuilder
    * @return new AppleNotification Object
    */
-  public AppleNotification (
-    AppleNotificationBuilder appleNotificationBuilder) {
+  private AppleNotification (
+    AppleNotificationBuilder appleNotificationBuilder) throws Exception {
     
     this.deviceToken = appleNotificationBuilder.deviceToken;
     this.badgeNumber = appleNotificationBuilder.badgeNumber;
@@ -130,7 +129,7 @@ public class AppleNotification implements Serializable {
    * getDeviceToken
    * @return device token
    */
-  public String getDeviceToken () {
+  public String getDeviceToken () throws Exception {
     
     return this.deviceToken;
   }
@@ -139,7 +138,7 @@ public class AppleNotification implements Serializable {
    * isValidBadgeNumber
    * @return true if badge number is valid and false otherwise
    */
-  public boolean isValidBadgeNumber () {
+  public boolean isValidBadgeNumber () throws Exception {
     
     if (this.badgeNumber != kInvalidBadgeNumber) {
       
@@ -153,7 +152,7 @@ public class AppleNotification implements Serializable {
    * getBadgeNumber
    * @return badge number
    */
-  public int getBadgeNumber () {
+  public int getBadgeNumber () throws Exception {
     
     return this.badgeNumber;
   }
@@ -162,7 +161,7 @@ public class AppleNotification implements Serializable {
    * getSound
    * @return notification's sound
    */
-  public String getSound () {
+  public String getSound () throws Exception {
     
     return this.sound;
   }
@@ -171,7 +170,7 @@ public class AppleNotification implements Serializable {
    * getAlertBody
    * @return alert's body
    */
-  public String getAlertBody () {
+  public String getAlertBody () throws Exception {
     
     return this.alertBody;
   }
@@ -181,7 +180,7 @@ public class AppleNotification implements Serializable {
    * @return true if this notification has custom properties and false
    *           otherwise
    */
-  public boolean hasCustomProperties () {
+  public boolean hasCustomProperties () throws Exception {
     
     if (this.customProperties.isEmpty() == true) {
       
@@ -197,7 +196,7 @@ public class AppleNotification implements Serializable {
    * @param key
    * @param value
    */
-  public void addCustomProperty (String key, String value) {
+  public void addCustomProperty (String key, String value) throws Exception {
     
     this.customProperties.put(key, value);
   }
@@ -207,7 +206,7 @@ public class AppleNotification implements Serializable {
    * @param key
    * @return custom property's value that corresponds to param key
    */
-  public String getCustomProperty (String key) {
+  public String getCustomProperty (String key) throws Exception {
     
     return this.customProperties.get(key);
   }
@@ -216,7 +215,7 @@ public class AppleNotification implements Serializable {
    * getCustomProperties
    * @return custom properties
    */
-  public HashMap<String, String> getCustomProperties () {
+  public HashMap<String, String> getCustomProperties () throws Exception {
     
     return this.customProperties;
   }
@@ -267,7 +266,7 @@ public class AppleNotification implements Serializable {
      * Constructor AppleNotificationBuilder
      * @param deviceToken: (e.g: an iPhone device token)
      */
-    public AppleNotificationBuilder (String deviceToken) {
+    public AppleNotificationBuilder (String deviceToken) throws Exception {
       
       this.deviceToken = deviceToken;
       this.badgeNumber = kInvalidBadgeNumber;
@@ -283,7 +282,8 @@ public class AppleNotification implements Serializable {
      * @param badgeNumber
      * @return AppleNotificationBuilder with badge number value set
      */
-    public AppleNotificationBuilder badgeNumber (int badgeNumber) {
+    public AppleNotificationBuilder badgeNumber (
+      int badgeNumber) throws Exception {
       
       this.badgeNumber = badgeNumber;
       
@@ -297,7 +297,7 @@ public class AppleNotification implements Serializable {
      * @param sound
      * @return AppleNotificationBuilder with sound value set
      */
-    public AppleNotificationBuilder sound (String sound) {
+    public AppleNotificationBuilder sound (String sound) throws Exception {
       
       this.sound = sound;
       
@@ -311,7 +311,8 @@ public class AppleNotification implements Serializable {
      * @param alertBody
      * @return AppleNotificationBuilder with alert body value set
      */
-    public AppleNotificationBuilder alertBody (String alertBody) {
+    public AppleNotificationBuilder alertBody (
+      String alertBody) throws Exception {
       
       this.alertBody = alertBody;
       
@@ -326,7 +327,7 @@ public class AppleNotification implements Serializable {
      * @return AppleNotificationBuilder with customProperties value set
      */
     public AppleNotificationBuilder customProperties (
-      HashMap<String, String> customProperties) {
+      HashMap<String, String> customProperties) throws Exception {
       
       if (customProperties == null) {
         
@@ -347,7 +348,7 @@ public class AppleNotification implements Serializable {
      */
     public AppleNotificationBuilder addCustomProperty (
       String key,
-      String value) {
+      String value) throws Exception {
       
       this.customProperties.put(key, value);
       
@@ -359,7 +360,7 @@ public class AppleNotification implements Serializable {
      * @return new AppleNotification Object configured with this builder's
      *           values
      */
-    public AppleNotification build () {
+    public AppleNotification build () throws Exception {
       
       return new AppleNotification (this);
     }

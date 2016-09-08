@@ -172,6 +172,31 @@ public class RestSyncInl {
   }
   
   /**
+   * getRestResponseJson
+   * @param restResponseJsonGroup
+   * @param urlConnection
+   * @return RestResponseJson representing the JSON response and null if param
+   *           restResponseJsonGroup doesn't have a RestResponseJson Object
+   *           for param urlConnection's HTTP Status Code
+   * @throws Exception
+   */
+  public static RestResponseJson getRestResponseJson (
+    RestResponseJsonGroup restResponseJsonGroup,
+    URLConnection urlConnection) throws Exception {
+    
+    RestResponseJson restResponseJson =
+      restResponseJsonGroup.getRestResponseJson(
+        getResponseStatus(urlConnection) );
+    
+    if (restResponseJson == null) {
+   
+      return null;
+    }
+    
+    return getRestResponseJson(restResponseJson, urlConnection);
+  }
+  
+  /**
    * getResponseString
    * NOTE: doesn't work for binary file responses
    * @param urlConnection

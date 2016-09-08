@@ -64,7 +64,8 @@ public class RestAsync extends LatchThread {
   
   private static final int kInvalidRestResponseStatus = -1;
   
-  private int restResponseStatus;
+  private int restResponseHttpStatusCode;
+  private RestResponseJsonGroup restResponseJsonGroup;
   private RestResponseJson restResponseJson;
   
   /**
@@ -75,8 +76,7 @@ public class RestAsync extends LatchThread {
    *          execution
    * @param restRequestPostJson - POST Request Object
    * @param url - e.g.: https://graph.facebook.com/v2.7/me
-   * @param restResponseJson - a sub-class of RestResponseJson to hold this
-   *          request's response
+   * @param restResponseJsonGroup
    * @return new RestAsync Object
    * @throws Exception
    */
@@ -84,7 +84,7 @@ public class RestAsync extends LatchThread {
     final CountDownLatch countDownLatch,
     final RestRequestPostJson restRequestPostJson,
     String url,
-    RestResponseJson restResponseJson) throws Exception {
+    RestResponseJsonGroup restResponseJsonGroup) throws Exception {
     
     super(countDownLatch);
     
@@ -93,8 +93,9 @@ public class RestAsync extends LatchThread {
     
     this.url = url;
     
-    this.restResponseStatus = kInvalidRestResponseStatus;
-    this.restResponseJson = restResponseJson;
+    this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
+    this.restResponseJsonGroup = restResponseJsonGroup;
+    this.restResponseJson = null;
   }
   
   /**
@@ -105,8 +106,8 @@ public class RestAsync extends LatchThread {
    *          execution
    * @param restRequestGetQuery - GET Request Object
    * @param url - e.g.: https://graph.facebook.com/v2.7/me
-   * @param restResponseJson - a sub-class of RestResponseJson to hold this
-   *          request's response
+   * @param restResponseJsonGroup - a sub-class of RestResponseJson to hold
+   *          this request's response
    * @return new RestAsync Object
    * @throws Exception
    */
@@ -114,7 +115,7 @@ public class RestAsync extends LatchThread {
     final CountDownLatch countDownLatch,
     final RestRequestGetQuery restRequestGetQuery,
     String url,
-    RestResponseJson restResponseJson) throws Exception {
+    RestResponseJsonGroup restResponseJsonGroup) throws Exception {
     
     super(countDownLatch);
     
@@ -123,8 +124,9 @@ public class RestAsync extends LatchThread {
     
     this.url = url + "?" + this.requestString;
     
-    this.restResponseStatus = kInvalidRestResponseStatus;
-    this.restResponseJson = restResponseJson;
+    this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
+    this.restResponseJsonGroup = restResponseJsonGroup;
+    this.restResponseJson = null;
   }
   
   /**
@@ -134,7 +136,7 @@ public class RestAsync extends LatchThread {
    */
   public boolean isResponseStatusSuccess () throws Exception {
     
-    if (this.restResponseStatus == HttpURLConnection.HTTP_OK) {
+    if (this.restResponseHttpStatusCode == HttpURLConnection.HTTP_OK) {
       
       return true;
     }
@@ -153,12 +155,14 @@ public class RestAsync extends LatchThread {
    */
   public int getResponseStatusCode () throws Exception {
     
-    return this.restResponseStatus;
+    return this.restResponseHttpStatusCode;
   }
   
   /**
    * getRestResponseJson
-   * @return this request's response JSON Object
+   * @return this request's response JSON Object and null if this Object's
+   *           RestResponseJsonGroup doesn't include a RestResponseJson Object
+   *           for this request's response's HTTP Status Code
    * @throws Exception
    */
   public RestResponseJson getRestResponseJson () throws Exception {
@@ -191,13 +195,13 @@ public class RestAsync extends LatchThread {
     }
 
     // get response's status
-    this.restResponseStatus =
+    this.restResponseHttpStatusCode =
       ((HttpURLConnection) urlConnection).getResponseCode();
 
     // to store response's content
     InputStream responseInputStream = null;
 
-    if (this.restResponseStatus == HttpURLConnection.HTTP_OK) {
+    if (this.restResponseHttpStatusCode == HttpURLConnection.HTTP_OK) {
 
       responseInputStream = urlConnection.getInputStream();
     } else {
@@ -237,6 +241,15 @@ public class RestAsync extends LatchThread {
     reader.close();
     
     // set the response's JSON content
-    this.restResponseJson = this.restResponseJson.fromJsonString(responseStr);
+    this.restResponseJson =
+      this.restResponseJsonGroup.getRestResponseJson(
+        this.restResponseHttpStatusCode);
+    
+    // got a RestResponseJson Object for the current Http Status Code?
+    if (this.restResponseJson != null) {
+    
+      this.restResponseJson =
+        this.restResponseJson.fromJsonString(responseStr);
+    }
   }
 }
