@@ -1,0 +1,45 @@
+# Response Error properties
+
+# In case of a 400 BAD_REQUEST or a 500 INTERNAL_ERROR an error JSON response
+#   with a fixed structure is returned containing the following elements:
+#   - error_type
+#   - error_code
+#   - error_sub_code
+#   - error_message
+#   - error_class
+#   - error_stack_trace
+#   - error_trace_id
+#
+# This properties file controls which elements should be part of an error
+#   response.
+# For example one can only include error_code and sub_code for a client app
+#   while including everything including stack_trace for an internal debugging
+#   tool
+
+# error_type
+# Default: true
+error_type=true
+
+# error_code
+# Default: true
+error_code=true
+
+# error_sub_code
+# Default: true
+error_sub_code=true
+
+# error_message
+# Default: true
+error_message=true
+
+# error_class
+# Default: true
+error_class=true
+
+# error_stack_trace
+# Default: true
+error_stack_trace=true
+
+# error_trace_id
+# Default: true
+error_trace_id=true

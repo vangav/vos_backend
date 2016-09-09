@@ -40,7 +40,7 @@ public abstract class VangavException extends RuntimeException {
   /**
    * Generated serial version ID
    */
-  private static final long serialVersionUID = -1854638714325542046L;
+  private static final long serialVersionUID = 2633993578900209129L;
 
   /**
    * ExceptionType
@@ -49,8 +49,15 @@ public abstract class VangavException extends RuntimeException {
   public enum ExceptionType {
     
     BAD_REQUEST_EXCEPTION,
-    CODE_EXCEPTION
+    CODE_EXCEPTION,
+    DEFAULT_EXCEPTION
   }
+  
+  /**
+   * getExceptionType
+   * @return ExceptionType
+   * */
+  public abstract ExceptionType getExceptionType ();
 
   /**
    * ExceptionClass
@@ -80,14 +87,10 @@ public abstract class VangavException extends RuntimeException {
     TYPE,
     UNAUTHORIZED,
     UNHANDLED,
-    UNIMPLEMENTED
+    UNIMPLEMENTED,
+    
+    UNKNOWN_TYPE
   }
-  
-  /**
-   * getExceptionType
-   * @return ExceptionType
-   * */
-  public abstract ExceptionType getExceptionType ();
   
   /**
    * exceptionFactory
@@ -100,9 +103,9 @@ public abstract class VangavException extends RuntimeException {
    * @return new Object of Vangav Exception sub-class
    */
   public static VangavException exceptionFactory (
-    String message,
-    ExceptionType exceptionType,
-    ExceptionClass exceptionClass) {
+    final String message,
+    final ExceptionType exceptionType,
+    final ExceptionClass exceptionClass) {
     
     if (exceptionType == ExceptionType.BAD_REQUEST_EXCEPTION) {
       
@@ -110,6 +113,58 @@ public abstract class VangavException extends RuntimeException {
     }
     
     return new CodeException(message, exceptionClass);
+  }
+
+  /**
+   * exceptionFactory
+   * makes a new Vangav Exception sub-class depending on the ExceptionType
+   * @param code: exception's code
+   * @param message: exception's message
+   * @param exceptionType: used to decide which sub-class Vangav Exception
+   *                         to create
+   * @param exceptionClass: sub-type of the exception (e.g.: authentication,
+   *                          etc ...)
+   * @return new Object of Vangav Exception sub-class
+   */
+  public static VangavException exceptionFactory (
+    final int code,
+    final String message,
+    final ExceptionType exceptionType,
+    final ExceptionClass exceptionClass) {
+    
+    if (exceptionType == ExceptionType.BAD_REQUEST_EXCEPTION) {
+      
+      return new BadRequestException(code, message, exceptionClass);
+    }
+    
+    return new CodeException(code, message, exceptionClass);
+  }
+
+  /**
+   * exceptionFactory
+   * makes a new Vangav Exception sub-class depending on the ExceptionType
+   * @param code: exception's code
+   * @param sub_code: exception's sub-code
+   * @param message: exception's message
+   * @param exceptionType: used to decide which sub-class Vangav Exception
+   *                         to create
+   * @param exceptionClass: sub-type of the exception (e.g.: authentication,
+   *                          etc ...)
+   * @return new Object of Vangav Exception sub-class
+   */
+  public static VangavException exceptionFactory (
+    final int code,
+    final int subCode,
+    final String message,
+    final ExceptionType exceptionType,
+    final ExceptionClass exceptionClass) {
+    
+    if (exceptionType == ExceptionType.BAD_REQUEST_EXCEPTION) {
+      
+      return new BadRequestException(code, subCode, message, exceptionClass);
+    }
+    
+    return new CodeException(code, subCode, message, exceptionClass);
   }
   
   protected static final int kDefaultCode = 0;
@@ -120,9 +175,11 @@ public abstract class VangavException extends RuntimeException {
   private String message;
   private ExceptionClass exceptionClass;
   private String stackTrace;
-  
+
   /**
    * Constructor VangavException
+   * @param code
+   * @param subCode
    * @param message: exception's message
    * @param exceptionClass: exception's class
    */
@@ -136,8 +193,29 @@ public abstract class VangavException extends RuntimeException {
     
     this.code = code;
     this.subCode = subCode;
-    this.message = exceptionClass.toString() + ": " + message;
+    this.message = message;
     this.exceptionClass = exceptionClass;
+    
+    StringBuffer stackTraceBuff =
+      new StringBuffer(this.message + System.lineSeparator() );
+    
+    for (StackTraceElement ste : Thread.currentThread().getStackTrace() ) {
+
+      stackTraceBuff.append(ste + System.lineSeparator() );
+    }
+    
+    this.stackTrace = stackTraceBuff.toString();
+  }
+  
+  /**
+   * Constructor VangavException
+   */
+  protected VangavException () {
+    
+    this.code = kDefaultCode;
+    this.subCode = kDefaultSubCode;
+    this.message = "";
+    this.exceptionClass = ExceptionClass.UNKNOWN_TYPE;
     
     StringBuffer stackTraceBuff =
       new StringBuffer(this.message + System.lineSeparator() );
@@ -214,6 +292,8 @@ public abstract class VangavException extends RuntimeException {
     
     return
       "VangavException:"
+      + "\nexception type: "
+      + this.getExceptionType().toString()
       + "\ncode: "
       + this.code
       + "\nsub_code: "

@@ -282,6 +282,23 @@ public class Request {
   }
   
   /**
+   * getTheLastVangavException
+   * @return the last thrown VangavException (i.e.: the fatal exception that
+   *           caused this request to fail) and null if vangav exceptions' list
+   *           is empty
+   * @throws Exception
+   */
+  public VangavException getTheLastVangavException () throws Exception {
+    
+    if (this.vangavExceptions.isEmpty() == true) {
+      
+      return null;
+    }
+    
+    return this.vangavExceptions.get(this.vangavExceptions.size() - 1);
+  }
+  
+  /**
    * addException
    * when exceptions happen they are added to the request object to be used
    *   for response, analysis, logging, etc ...
@@ -300,6 +317,51 @@ public class Request {
   public ArrayList<Exception> getExceptions () throws Exception {
     
     return this.exceptions;
+  }
+  
+  /**
+   * getTheLastException
+   * @return the last thrown Exception (i.e.: the fatal exception that caused
+   *           this request to fail) and null if exceptions' list is empty
+   * @throws Exception
+   */
+  public Exception getTheLastException () throws Exception {
+    
+    if (this.exceptions.isEmpty() == true) {
+      
+      return null;
+    }
+    
+    return this.exceptions.get(this.exceptions.size() - 1);
+  }
+  
+  /**
+   * getAllExceptionsAsString
+   * @return both VangavException and Exception exceptions' stack traces as
+   *           as a String
+   * @throws Exception
+   */
+  public String getAllExceptionsAsString () throws Exception {
+    
+    StringBuffer stringBuffer = new StringBuffer();
+    
+    stringBuffer.append("VANGAV EXCEPTIONS\n\n");
+    
+    for (VangavException vangavException : this.vangavExceptions) {
+      
+      stringBuffer.append(vangavException.toString() );
+      stringBuffer.append("\n\n");
+    }
+    
+    stringBuffer.append("\n\nEXCEPTIONS\n\n");
+    
+    for (Exception exception : this.exceptions) {
+      
+      stringBuffer.append(VangavException.getExceptionStackTrace(exception) );
+      stringBuffer.append("\n\n");
+    }
+    
+    return stringBuffer.toString();
   }
   
   @Override
