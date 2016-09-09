@@ -79,6 +79,16 @@ public class ResponseBodyError extends ResponseBodyJson {
   
   /**
    * Constructor ResponseBodyError
+   * @return new ResponseBodyError Object
+   * @throws Exception
+   */
+  public ResponseBodyError () throws Exception {
+    
+    this(new DefaultException(), UUID.fromString(kDefaultErrorTraceId) );
+  }
+  
+  /**
+   * Constructor ResponseBodyError
    * @param requestId
    * @return new ResponseBodyError Object
    * @throws Exception
@@ -86,6 +96,17 @@ public class ResponseBodyError extends ResponseBodyJson {
   public ResponseBodyError (UUID requestId) throws Exception {
     
     this(new DefaultException(), requestId);
+  }
+  
+  /**
+   * Constructor ResponseBodyError
+   * @param vangavException
+   * @return new ResponseBodyError Object
+   * @throws Exception
+   */
+  public ResponseBodyError (VangavException vangavException) throws Exception {
+    
+    this(vangavException, UUID.fromString(kDefaultErrorTraceId) );
   }
 
   /**

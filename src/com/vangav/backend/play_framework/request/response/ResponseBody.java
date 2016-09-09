@@ -29,9 +29,11 @@
 package com.vangav.backend.play_framework.request.response;
 
 import java.io.FileInputStream;
+import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.vangav.backend.exceptions.CodeException;
+import com.vangav.backend.exceptions.VangavException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
 
 import play.mvc.Content;
@@ -120,28 +122,96 @@ public abstract class ResponseBody {
   
   /**
    * getBadRequestResult
-   * NOTE: override this method to alter its behavior (e.g.: add info about
-   *         the reasons for returning a bad request)
-   * @return default bad request response
+   * @return bad request response
    * @throws Exception
    */
   @JsonIgnore
-  public Result getBadRequestResult () throws Exception {
+  public Result getBadRequestResult (
+    VangavException vangavException,
+    UUID requestId) throws Exception {
     
-    return Results.badRequest();
+    try {
+      
+      ResponseBodyError responseBodyError =
+        new ResponseBodyError(vangavException, requestId);
+      
+      return Results.badRequest((String)responseBodyError.getContent() );
+    } catch (Exception e) {
+      
+      try {
+        
+        ResponseBodyError responseBodyError =
+          new ResponseBodyError(vangavException);
+        
+        return Results.badRequest((String)responseBodyError.getContent() );
+      } catch (Exception e2) {
+        
+        try {
+
+          ResponseBodyError responseBodyError =
+            new ResponseBodyError(requestId);
+          
+          return Results.badRequest((String)responseBodyError.getContent() );
+        } catch (Exception e3) {
+
+          ResponseBodyError responseBodyError =
+            new ResponseBodyError();
+          
+          return Results.badRequest((String)responseBodyError.getContent() );
+        }
+      }
+    }
   }
   
   /**
    * getInternalServerErrorResult
-   * NOTE: override this method to alter its behavior (e.g.: add info about
-   *         the reasons for returning an internal server error)
-   * @return default internal server error response
+   * @param vangavException
+   * @param requestId
+   * @return internal server error response
    * @throws Exception
    */
   @JsonIgnore
-  public Result getInternalServerErrorResult () throws Exception {
+  public Result getInternalServerErrorResult (
+    VangavException vangavException,
+    UUID requestId) throws Exception {
     
-    return Results.internalServerError();
+    try {
+      
+      ResponseBodyError responseBodyError =
+        new ResponseBodyError(vangavException, requestId);
+      
+      return
+        Results.internalServerError((String)responseBodyError.getContent() );
+    } catch (Exception e) {
+      
+      try {
+        
+        ResponseBodyError responseBodyError =
+          new ResponseBodyError(vangavException);
+        
+        return
+          Results.internalServerError((String)responseBodyError.getContent() );
+      } catch (Exception e2) {
+        
+        try {
+
+          ResponseBodyError responseBodyError =
+            new ResponseBodyError(requestId);
+          
+          return
+            Results.internalServerError(
+              (String)responseBodyError.getContent() );
+        } catch (Exception e3) {
+
+          ResponseBodyError responseBodyError =
+            new ResponseBodyError();
+          
+          return
+            Results.internalServerError(
+              (String)responseBodyError.getContent() );
+        }
+      }
+    }
   }
   
   @Override

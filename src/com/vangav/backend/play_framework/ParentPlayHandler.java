@@ -35,6 +35,7 @@ import play.mvc.Results;
 
 import com.vangav.backend.exceptions.BadRequestException;
 import com.vangav.backend.exceptions.CodeException;
+import com.vangav.backend.exceptions.DefaultException;
 import com.vangav.backend.play_framework.request.Request;
 import com.vangav.backend.play_framework.request.RequestJsonBody;
 import com.vangav.backend.play_framework.request.RequestProperties;
@@ -292,7 +293,10 @@ public abstract class ParentPlayHandler {
           request.setState(RequestState.BAD_REQUEST);
           request.addVangavException(bre);
         
-          result = request.getResponseBody().getBadRequestResult();
+          result =
+            request.getResponseBody().getBadRequestResult(
+              bre,
+              request.getRequestId() );
         } catch (Exception e2) {
           
           result = Results.internalServerError();
@@ -310,7 +314,10 @@ public abstract class ParentPlayHandler {
           request.setState(RequestState.INTERNAL_SERVER_ERROR);
           request.addVangavException(ce);
         
-          result = request.getResponseBody().getInternalServerErrorResult();
+          result =
+            request.getResponseBody().getInternalServerErrorResult(
+              ce,
+              request.getRequestId() );
         } catch (Exception e2) {
           
           result = Results.internalServerError();
@@ -326,23 +333,23 @@ public abstract class ParentPlayHandler {
         try {
           
           request.setState(RequestState.INTERNAL_SERVER_ERROR);
-        
           request.addException(e);
-        } catch (Exception e2) {
-          
-          this.absorbUnhandledExceptions(e2);
-        }
         
-        try {
-        
-          result = request.getResponseBody().getInternalServerErrorResult();
+          result =
+            request.getResponseBody().getInternalServerErrorResult(
+              new DefaultException(),
+              request.getRequestId() );
         } catch (Exception e2) {
           
           result = Results.internalServerError();
+          
+          this.absorbUnhandledExceptions(e2);
         }
       } else {
         
         result = Results.internalServerError();
+        
+        this.absorbUnhandledExceptions(e);
       }
     }
 
