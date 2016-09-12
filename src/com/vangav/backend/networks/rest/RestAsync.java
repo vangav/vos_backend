@@ -231,6 +231,40 @@ public class RestAsync extends LatchThread {
   }
   
   /**
+   * isResponseStatusBadRequest
+   * @return true if response's status is 400 HTTP_BAD_REQUEST and false
+   *           otherwise
+   * @throws Exception
+   */
+  public boolean isResponseStatusBadRequest () throws Exception {
+    
+    if (this.restResponseHttpStatusCode ==
+          HttpURLConnection.HTTP_BAD_REQUEST) {
+      
+      return true;
+    }
+    
+    return false;
+  }
+  
+  /**
+   * isResponseStatusInternalError
+   * @return true if response's status is 500 HTTP_INTERNAL_ERROR and false
+   *           otherwise
+   * @throws Exception
+   */
+  public boolean isResponseStatusInternalError () throws Exception {
+    
+    if (this.restResponseHttpStatusCode ==
+          HttpURLConnection.HTTP_INTERNAL_ERROR) {
+      
+      return true;
+    }
+    
+    return false;
+  }
+  
+  /**
    * getResponseStatusCode
    * @return response's status code
    *           e.g.: 200 OK

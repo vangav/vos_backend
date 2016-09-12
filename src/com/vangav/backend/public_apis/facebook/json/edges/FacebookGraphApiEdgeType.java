@@ -73,6 +73,21 @@ public enum FacebookGraphApiEdgeType {
   TAGGED_PLACES,
   TELEVISION;
   
+  /**
+   * getName
+   * @return string value for this type for Facebook Graph API query
+   * @throws Exception
+   */
+  public String getName () throws Exception {
+    
+    return this.toString().toLowerCase();
+  }
+  
+  /**
+   * getNewEdgeInstance
+   * @return the corresponding FacebookGraphApiEdge new Object to this type
+   * @throws Exception
+   */
   public FacebookGraphApiEdge getNewEdgeInstance () throws Exception {
     
     switch (this) {

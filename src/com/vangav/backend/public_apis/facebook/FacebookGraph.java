@@ -33,14 +33,19 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 
+import com.vangav.backend.data_structures_and_algorithms.tuple.Pair;
 import com.vangav.backend.exceptions.BadRequestException;
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
 import com.vangav.backend.exceptions.VangavException.ExceptionType;
 import com.vangav.backend.exceptions.handlers.ArgumentsInl;
 import com.vangav.backend.networks.rest.RestAsync;
+import com.vangav.backend.networks.rest.RestResponseJson;
 import com.vangav.backend.networks.rest.RestResponseJsonGroup;
 import com.vangav.backend.public_apis.facebook.json.BadRequestResponse;
+import com.vangav.backend.public_apis.facebook.json.ErrorResponse;
+import com.vangav.backend.public_apis.facebook.json.edges.FacebookGraphApiEdgeType;
+import com.vangav.backend.public_apis.facebook.json.fields.FacebookGraphApiFieldType;
 import com.vangav.backend.public_apis.facebook.json.fields.Id;
 import com.vangav.backend.thread_pool.ThreadPool;
 
@@ -96,13 +101,13 @@ public class FacebookGraph {
   /**
    * FutureResponse is used to hold future response of asynchronous requests
    */
-  private class FutureResponse {
+  private class FutureResponse<T> {
     
     private static final String kSingletonEntryKey =
       "00000000-0000-1000-0000-000000000000";
     
     private CountDownLatch countDownLatch;
-    private Map<Object, RestAsync> entries;
+    private Map<T, RestAsync> entries;
     
     /**
      * Constructor FutureResponse
@@ -112,15 +117,16 @@ public class FacebookGraph {
      * @return new FutureResponse Object
      * @throws Exception
      */
+    @SuppressWarnings("unchecked")
     private FutureResponse (
       CountDownLatch countDownLatch,
       RestAsync restAsync) throws Exception {
       
       this.countDownLatch = countDownLatch;
-      this.entries = new HashMap<Object, RestAsync>();
+      this.entries = new HashMap<T, RestAsync>();
       
       this.entries.put(
-        kSingletonEntryKey,
+        (T)kSingletonEntryKey,
         restAsync);
     }
     
@@ -134,7 +140,7 @@ public class FacebookGraph {
      */
     private FutureResponse (
       CountDownLatch countDownLatch,
-      Map<Object, RestAsync> entries) throws Exception {
+      Map<T, RestAsync> entries) throws Exception {
       
       this.countDownLatch = countDownLatch;
       this.entries = entries;
@@ -159,7 +165,7 @@ public class FacebookGraph {
      * @return all RestAsync Objects
      * @throws Exception
      */
-    private Map<Object, RestAsync> getAll () throws Exception {
+    private Map<T, RestAsync> getAll () throws Exception {
       
       this.countDownLatch.await();
       
@@ -167,7 +173,15 @@ public class FacebookGraph {
     }
   }
   
-  private Map<String, FutureResponse> futureResponses;
+  private Map<String, FutureResponse<String> > futureDownloadResponses;
+  private
+    Map<
+      String,
+      FutureResponse<FacebookGraphApiFieldType> > futureFieldResponses;
+  private
+    Map<
+      String,
+      FutureResponse<FacebookGraphApiEdgeType> > futureEdgeResponses;
 
   /**
    * Constructor FacebookGraph - BLOCKING
@@ -243,7 +257,12 @@ public class FacebookGraph {
     
     this.userId = id.id;
     
-    this.futureResponses = new HashMap<String, FutureResponse>();
+    this.futureDownloadResponses =
+      new HashMap<String, FutureResponse<String> >();
+    this.futureFieldResponses =
+      new HashMap<String, FutureResponse<FacebookGraphApiFieldType> >();
+    this.futureEdgeResponses =
+      new HashMap<String, FutureResponse<FacebookGraphApiEdgeType> >();
   }
   
   private enum RequestType {
@@ -278,7 +297,8 @@ public class FacebookGraph {
    * issues an async request to a facebook user's profile picture and returns
    *   a tracking id for the request to get the response at a later time
    * @param pictureWidth
-   * @return
+   * @return the tracking id to be used at a later time to get this async
+   *           request's response
    * @throws Exception
    */
   public String getProfilePictureAsync (int pictureWidth) throws Exception {
@@ -298,7 +318,8 @@ public class FacebookGraph {
   public String getProfilePictureAsync (
     String requestTrackingUuid) throws Exception {
     
-    if (this.futureResponses.containsKey(requestTrackingUuid) == false) {
+    if (this.futureDownloadResponses.containsKey(
+          requestTrackingUuid) == false) {
       
       throw new CodeException(
         "Invalid request tracking id ["
@@ -308,7 +329,7 @@ public class FacebookGraph {
     }
     
     RestAsync restAsync =
-      this.futureResponses.remove(requestTrackingUuid).get();
+      this.futureDownloadResponses.remove(requestTrackingUuid).get();
     
     if (restAsync.isResponseStatusSuccess() == true) {
       
@@ -318,6 +339,12 @@ public class FacebookGraph {
       throw new BadRequestException(
         "Couldn't get profile picture for user wit facebook user id ["
           + this.userId
+          + "] and fb_access_token ["
+          + this.accessToken
+          + "], got http status code ["
+          + restAsync.getResponseStatusCode()
+          + "] and raw response ["
+          + restAsync.getRawResponseString()
           + "]",
         ExceptionClass.COMMUNICATION);
     }
@@ -367,9 +394,9 @@ public class FacebookGraph {
       
       String uuid = UUID.randomUUID().toString();
       
-      this.futureResponses.put(
+      this.futureDownloadResponses.put(
         uuid,
-        new FutureResponse(countDownLatch, restAsync) );
+        new FutureResponse<String>(countDownLatch, restAsync) );
       
       return uuid;
     }
@@ -387,6 +414,194 @@ public class FacebookGraph {
   //   String access_token
   private static final String kGetUserPicture =
     "https://graph.facebook.com/%s/%s/picture?access_token=%s";
+  
+  /**
+   * getPicturesSync
+   * BLOCKING method
+   * @param pictureIds - of all the picture to be fetched
+   * @return Map<String, Pair<Boolean, String> >
+   *          key is the picture_id
+   *          pair-Boolean is true for success response HTTP_OK (200)
+   *            and false otherwise
+   *          pair-String for the raw response String (the picture in case of a
+   *            success response)
+   * @throws Exception
+   */
+  @SuppressWarnings("unchecked")
+  public Map<String, Pair<Boolean, String> > getPicturesSync (
+    String... pictureIds) throws Exception {
+   
+    return
+      (Map<String, Pair<Boolean, String> >)this.getPictures(
+        RequestType.SYNC,
+        pictureIds);
+  }
+  
+  /**
+   * getPicturesAsync
+   * NON-BLOCKING method
+   * @param pictureIds - of all the pictures to be fetched
+   * @return the tracking id to be used at a later time to get this async
+   *           request's response
+   * @throws Exception
+   */
+  public String getPicturesAsync (
+    String... pictureIds) throws Exception {
+    
+    return (String)this.getPictures(RequestType.ASYNC, pictureIds);
+  }
+  
+  /**
+   * getPicturesAsync
+   * BLOCKING method
+   * @param requestTrackingUuid
+   * @return Map<String, Pair<Boolean, String> >
+   *          key is the picture_id
+   *          pair-Boolean is true for success response HTTP_OK (200)
+   *            and false otherwise
+   *          pair-String for the raw response String (the picture in case of a
+   *            success response)
+   * @throws Exception
+   */
+  public Map<String, Pair<Boolean, String> > getPicturesAsync (
+    String requestTrackingUuid) throws Exception {
+
+    if (this.futureDownloadResponses.containsKey(
+          requestTrackingUuid) == false) {
+
+      throw new CodeException(
+        "Invalid request tracking id ["
+        + requestTrackingUuid
+        + "]",
+        ExceptionClass.INVALID);
+    }
+    
+    Map<String, RestAsync> requests =
+      this.futureDownloadResponses.remove(requestTrackingUuid).getAll();
+    
+    RestAsync currRestAsync;
+    
+    Map<String, Pair<Boolean, String> > result =
+      new HashMap<String, Pair<Boolean, String> >();
+    
+    for (String pictureId : requests.keySet() ) {
+      
+      currRestAsync = requests.get(pictureId);
+      
+      if (currRestAsync.isResponseStatusSuccess() == true) {
+        
+        result.put(
+          pictureId,
+          new Pair<Boolean, String>(
+            true,
+            currRestAsync.getRawResponseString() ) );
+      } else {
+        
+        result.put(
+          pictureId,
+          new Pair<Boolean, String>(
+            false,
+            currRestAsync.getRawResponseString() ) );
+      }
+    }
+    
+    return result;
+  }
+  
+  /**
+   * getPictures
+   * @param requestType SYNC or ASYNC
+   * @param pictureIds
+   * @return
+   *        SYNC: Map<String, Pair<Boolean, String> >
+   *          key is the picture_id
+   *          pair-Boolean is true for success response HTTP_OK (200)
+   *            and false otherwise
+   *          pair-String for the raw response String (the picture in case of a
+   *            success response)
+   *        ASYNC: String representing the request-tracking-uuid
+   * @throws Exception
+   */
+  private Object getPictures (
+    RequestType requestType,
+    String... pictureIds) throws Exception {
+    
+    ArgumentsInl.checkNotEmpty(
+      "picture ids",
+      pictureIds,
+      ExceptionType.CODE_EXCEPTION);
+    
+    CountDownLatch countDownLatch = new CountDownLatch(pictureIds.length);
+    
+    Map<String, RestAsync> requests = new HashMap<String, RestAsync>();
+    
+    RestAsync currRestAsync;
+    
+    for (String pictureId : pictureIds) {
+      
+      currRestAsync =
+        new RestAsync(
+          countDownLatch,
+          String.format(
+            kGetUserPicture,
+            this.version,
+            pictureId,
+            this.accessToken) );
+      
+      requests.put(
+        pictureId,
+         currRestAsync);
+      
+      ThreadPool.i().executeInRestClientPool(currRestAsync);
+    }
+    
+    if (requestType == RequestType.SYNC) {
+      
+      countDownLatch.await();
+      
+      Map<String, Pair<Boolean, String> > result =
+        new HashMap<String, Pair<Boolean, String> >();
+      
+      for (String pictureId : pictureIds) {
+        
+        currRestAsync = requests.get(pictureId);
+        
+        if (currRestAsync.isResponseStatusSuccess() == true) {
+          
+          result.put(
+            pictureId,
+            new Pair<Boolean, String>(
+              true,
+              currRestAsync.getRawResponseString() ) );
+        } else {
+          
+          result.put(
+            pictureId,
+            new Pair<Boolean, String>(
+              false,
+              currRestAsync.getRawResponseString() ) );
+        }
+      }
+      
+      return result;
+    } else if (requestType == RequestType.ASYNC) {
+      
+      String uuid = UUID.randomUUID().toString();
+      
+      this.futureDownloadResponses.put(
+        uuid,
+        new FutureResponse<String>(countDownLatch, requests) );
+      
+      return uuid;
+    }
+
+    throw new CodeException(
+      "Unhandled RequestType ["
+        + requestType.toString()
+        + "]",
+      ExceptionClass.TYPE);
+  }
+  
   // format:
   //   String version,
   //   String fb_user_id,
@@ -394,6 +609,96 @@ public class FacebookGraph {
   //   String access_token
   private static final String kGetField =
     "https://graph.facebook.com/%s/%s?fields=%s&access_token=%s";
+  
+  private Object getFields (
+    RequestType requestType,
+    FacebookGraphApiFieldType... fields) throws Exception {
+    
+    ArgumentsInl.checkNotEmpty(
+      "fields",
+      fields,
+      ExceptionType.CODE_EXCEPTION);
+    
+    CountDownLatch countDownLatch = new CountDownLatch(fields.length);
+    
+    Map<FacebookGraphApiFieldType, RestAsync> requests =
+      new HashMap<FacebookGraphApiFieldType, RestAsync>();
+
+    RestAsync currRestAsync;
+    
+    for (FacebookGraphApiFieldType field : fields) {
+      
+      currRestAsync =
+        new RestAsync(
+          countDownLatch,
+          String.format(
+            kGetField,
+            this.version,
+            this.userId,
+            field.getName(),
+            this.accessToken),
+          new RestResponseJsonGroup(
+            field.getNewFieldInstance(),
+            new BadRequestResponse() ) );
+      
+      requests.put(
+        field,
+        currRestAsync);
+
+      ThreadPool.i().executeInRestClientPool(currRestAsync);
+    }
+    
+    if (requestType == RequestType.SYNC) {
+      
+      countDownLatch.await();
+
+      Map<FacebookGraphApiFieldType, Pair<Integer, RestResponseJson> > result =
+        new HashMap<
+          FacebookGraphApiFieldType,
+          Pair<Integer, RestResponseJson> >();
+      
+      for (FacebookGraphApiFieldType field : fields) {
+        
+        currRestAsync = requests.get(field);
+        
+        if (currRestAsync.gotMatchingJsonResponse() == true) {
+          
+          result.put(
+            field,
+            new Pair<Integer, RestResponseJson>(
+              currRestAsync.getResponseStatusCode(),
+              currRestAsync.getRestResponseJson() ) );
+        } else {
+          
+          result.put(
+            field,
+            new Pair<Integer, RestResponseJson>(
+              currRestAsync.getResponseStatusCode(),
+              new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
+        }
+      }
+      
+      return result;
+    } else if (requestType == RequestType.ASYNC) {
+
+      String uuid = UUID.randomUUID().toString();
+      
+      this.futureFieldResponses.put(
+        uuid,
+        new FutureResponse<FacebookGraphApiFieldType>(
+          countDownLatch,
+          requests) );
+      
+      return uuid;
+    }
+
+    throw new CodeException(
+      "Unhandled RequestType ["
+        + requestType.toString()
+        + "]",
+      ExceptionClass.TYPE);
+  }
+  
   // format:
   //   String version,
   //   String fb_user_id,

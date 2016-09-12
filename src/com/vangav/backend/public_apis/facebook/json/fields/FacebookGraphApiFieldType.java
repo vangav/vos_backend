@@ -88,6 +88,21 @@ public enum FacebookGraphApiFieldType {
   TIMEZONE,
   VERIFIED;
   
+  /**
+   * getName
+   * @return string value for this type for Facebook Graph API query
+   * @throws Exception
+   */
+  public String getName () throws Exception {
+    
+    return this.toString().toLowerCase();
+  }
+  
+  /**
+   * getNewFieldInstance
+   * @return the corresponding FacebookGraphApiField new Object to this type
+   * @throws Exception
+   */
   public FacebookGraphApiField getNewFieldInstance () throws Exception {
     
     switch (this) {

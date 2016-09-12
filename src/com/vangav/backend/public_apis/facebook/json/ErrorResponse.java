@@ -38,28 +38,40 @@ import com.vangav.backend.networks.rest.RestResponseJson;
  * fb.com/mustapha.abdallah
  */
 /**
- * BadRequestResponse represents Facebook's graph API BadRequest response
+ * ErrorResponse represents Facebook's graph API responses other than Success
+ *   200 and BadRequest 400
  * 
  * Reference:
  * https://developers.facebook.com/docs/graph-api/reference/v2.7/user
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class BadRequestResponse extends RestResponseJson {
+public class ErrorResponse extends RestResponseJson {
 
   @Override
   @JsonIgnore
   protected String getName () throws Exception {
     
-    return "facebook_graph_api_bad_request_response";
+    return "facebook_graph_api_error_response";
   }
   
   @Override
   @JsonIgnore
-  protected BadRequestResponse getThis () throws Exception {
+  protected ErrorResponse getThis () throws Exception {
     
     return this;
   }
+  
+  /**
+   * Constructor ErrorResponse
+   * @param rawResponse
+   * @return new ErrorResponse Object
+   * @throws Exception
+   */
+  public ErrorResponse (String rawResponse) throws Exception {
+    
+    this.raw_response = rawResponse;
+  } 
 
   @JsonProperty
-  public BadRequestResponseError error;
+  public String raw_response;
 }
