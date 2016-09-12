@@ -37,6 +37,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.concurrent.CountDownLatch;
 
+import com.vangav.backend.networks.DownloadInl;
 import com.vangav.backend.thread_pool.LatchThread;
 
 /**
@@ -44,7 +45,8 @@ import com.vangav.backend.thread_pool.LatchThread;
  * fb.com/mustapha.abdallah
  */
 /**
- * RestAsync handles REST calls (GET/POST) with JSON response asynchronously
+ * RestAsync handles REST calls (GET/POST) with JSON/DOWNLOAD responses
+ *   asynchronously
  * */
 public class RestAsync extends LatchThread {
 
@@ -57,7 +59,18 @@ public class RestAsync extends LatchThread {
     GET
   }
   
+  /**
+   * enum RestCallResponseType defines the types of HTTP responses this class
+   *   handles
+   */
+  private enum RestCallResponseType {
+    
+    JSON,
+    DOWNLOAD
+  }
+  
   private final RestCallType restCallType;
+  private final RestCallResponseType restCallResponseType;
   private final String requestString;
   
   private String url;
@@ -67,6 +80,9 @@ public class RestAsync extends LatchThread {
   private int restResponseHttpStatusCode;
   private RestResponseJsonGroup restResponseJsonGroup;
   private RestResponseJson restResponseJson;
+  
+  private boolean gotMatchingJsonResponse;
+  private String rawResponseString;
   
   /**
    * Constructor RestAsync
@@ -89,6 +105,7 @@ public class RestAsync extends LatchThread {
     super(countDownLatch);
     
     this.restCallType = RestCallType.POST;
+    this.restCallResponseType = RestCallResponseType.JSON;
     this.requestString = restRequestPostJson.getAsString();
     
     this.url = url;
@@ -96,6 +113,9 @@ public class RestAsync extends LatchThread {
     this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
     this.restResponseJsonGroup = restResponseJsonGroup;
     this.restResponseJson = null;
+    
+    this.gotMatchingJsonResponse = false;
+    this.rawResponseString = null;
   }
   
   /**
@@ -120,6 +140,7 @@ public class RestAsync extends LatchThread {
     super(countDownLatch);
     
     this.restCallType = RestCallType.GET;
+    this.restCallResponseType = RestCallResponseType.JSON;
     this.requestString = restRequestGetQuery.getQuery();
     
     this.url = url + "?" + this.requestString;
@@ -127,6 +148,71 @@ public class RestAsync extends LatchThread {
     this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
     this.restResponseJsonGroup = restResponseJsonGroup;
     this.restResponseJson = null;
+    
+    this.gotMatchingJsonResponse = false;
+    this.rawResponseString = null;
+  }
+  
+  /**
+   * Constructor RestAsync
+   * @param countDownLatch - automatically ticks down on request completion;
+   *          used to execute multiple requests asynchronously in parallel then
+   *          this CountDownLatch is notified after all requests finish
+   *          execution
+   * @param url - full url (including GET parameters, if any)
+   *          e.g.: https://graph.facebook.com/v2.7/123/friends?access_token=ab
+   * @param restResponseJsonGroup
+   * @throws Exception
+   */
+  public RestAsync (
+    final CountDownLatch countDownLatch,
+    final String url,
+    RestResponseJsonGroup restResponseJsonGroup) throws Exception {
+    
+    super(countDownLatch);
+    
+    this.restCallType = RestCallType.GET;
+    this.restCallResponseType = RestCallResponseType.JSON;
+    this.requestString = "";
+    
+    this.url = url;
+    
+    this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
+    this.restResponseJsonGroup = restResponseJsonGroup;
+    this.restResponseJson = null;
+    
+    this.gotMatchingJsonResponse = false;
+    this.rawResponseString = null;
+  }
+  
+  /**
+   * Constructor RestAsync - FOR DOWNLOAD REQUESTS
+   * @param countDownLatch - automatically ticks down on request completion;
+   *          used to execute multiple requests asynchronously in parallel then
+   *          this CountDownLatch is notified after all requests finish
+   *          execution
+   * @param url - full url (including GET parameters, if any)
+   *          e.g.: https://graph.facebook.com/v2.7/123/picture?width=500
+   * @throws Exception
+   */
+  public RestAsync (
+    final CountDownLatch countDownLatch,
+    final String url) throws Exception {
+    
+    super(countDownLatch);
+    
+    this.restCallType = RestCallType.GET;
+    this.restCallResponseType = RestCallResponseType.DOWNLOAD;
+    this.requestString = "";
+    
+    this.url = url;
+    
+    this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
+    this.restResponseJsonGroup = null;
+    this.restResponseJson = null;
+    
+    this.gotMatchingJsonResponse = false;
+    this.rawResponseString = null;
   }
   
   /**
@@ -169,9 +255,47 @@ public class RestAsync extends LatchThread {
     
     return this.restResponseJson;
   }
+  
+  /**
+   * gotMatchingJsonResponse
+   * @return true if the returned status matched one of those in the
+   *           RestResponseJsonGroup and false otherwise
+   * @throws Exception
+   */
+  public boolean gotMatchingJsonResponse () throws Exception {
+    
+    return this.gotMatchingJsonResponse;
+  }
+  
+  /**
+   * getRawResponseString
+   * @return raw response's String (used when method gotMatchingJsonResponse
+   *           returns false and when response's type is DOWNLOAD)
+   * @throws Exception
+   */
+  public String getRawResponseString () throws Exception {
+    
+    return this.rawResponseString;
+  }
 
   @Override
   protected void execute () throws Exception {
+    
+    if (this.restCallResponseType == RestCallResponseType.JSON) {
+      
+      this.executeJsonResponse();
+    } else if (this.restCallResponseType == RestCallResponseType.DOWNLOAD) {
+      
+      this.executeDownloadResponse();
+    }
+  }
+  
+  /**
+   * executeJsonResponse
+   * executes requests with JSON response
+   * @throws Exception
+   */
+  private void executeJsonResponse () throws Exception {
 
     // initiate connection
     URLConnection urlConnection = new URL(url).openConnection();
@@ -240,6 +364,9 @@ public class RestAsync extends LatchThread {
     
     reader.close();
     
+    // set raw response String
+    this.rawResponseString = responseStr;
+    
     // set the response's JSON content
     this.restResponseJson =
       this.restResponseJsonGroup.getRestResponseJson(
@@ -248,8 +375,29 @@ public class RestAsync extends LatchThread {
     // got a RestResponseJson Object for the current Http Status Code?
     if (this.restResponseJson != null) {
     
+      this.gotMatchingJsonResponse = true;
+      
       this.restResponseJson =
         this.restResponseJson.fromJsonString(responseStr);
+    }
+  }
+  
+  /**
+   * executeDownloadResponse
+   * executes download requests
+   * @throws Exception
+   */
+  private void executeDownloadResponse () throws Exception {
+    
+    String downloadedData = DownloadInl.downloadFileAsString(this.url);
+    
+    if (downloadedData == null) {
+      
+      this.restResponseHttpStatusCode = HttpURLConnection.HTTP_BAD_REQUEST;
+    } else {
+      
+      this.restResponseHttpStatusCode = HttpURLConnection.HTTP_OK;
+      this.rawResponseString = downloadedData;
     }
   }
 }

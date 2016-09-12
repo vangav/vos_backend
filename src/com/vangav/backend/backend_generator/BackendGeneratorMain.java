@@ -634,6 +634,10 @@ public class BackendGeneratorMain {
       "cp ../prop/dispatcher_properties.prop ../../"
       + projectName
       + "/conf/prop/");
+    CommandLineInl.executeCommand(
+      "cp ../prop/response_error_properties.prop ../../"
+      + projectName
+      + "/conf/prop/");
   }
   
   /**
