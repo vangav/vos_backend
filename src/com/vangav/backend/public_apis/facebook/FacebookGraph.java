@@ -183,6 +183,19 @@ public class FacebookGraph {
     Map<
       String,
       FutureResponse<FacebookGraphApiEdgeType> > futureEdgeResponses;
+  
+  /**
+   * Constructor FacebookGraph (uses default API version v2.7
+   * makes a Facebook Graph API request to get the user's ID and throws
+   *   exceptions on failure
+   * @param accessToken
+   * @return new FacebookGraph Object
+   * @throws Exception
+   */
+  public FacebookGraph (String accessToken) throws Exception {
+    
+    this(Version.V_2_7, accessToken);
+  }
 
   /**
    * Constructor FacebookGraph - BLOCKING
