@@ -33,7 +33,7 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import com.google.common.util.concurrent.ListenableFuture;
-import com.vangav.backend.networks.rest.RestAsync;
+import com.vangav.backend.networks.rest_client.RestAsync;
 
 /**
  * @author mustapha

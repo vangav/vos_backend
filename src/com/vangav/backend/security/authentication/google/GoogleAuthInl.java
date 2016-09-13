@@ -34,8 +34,8 @@ import java.net.URLConnection;
 import com.vangav.backend.exceptions.BadRequestException;
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
-import com.vangav.backend.networks.rest.RestSyncInl;
-import com.vangav.backend.networks.rest.RestRequestGetQuery;
+import com.vangav.backend.networks.rest_client.RestRequestGetQuery;
+import com.vangav.backend.networks.rest_client.RestSyncInl;
 
 /**
  * @author mustapha

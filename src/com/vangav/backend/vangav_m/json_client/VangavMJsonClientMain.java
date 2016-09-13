@@ -37,7 +37,7 @@ import java.util.Map;
 import com.vangav.backend.exceptions.VangavException;
 import com.vangav.backend.files.FileLoaderInl;
 import com.vangav.backend.files.FileWriterInl;
-import com.vangav.backend.networks.rest.RestSyncInl;
+import com.vangav.backend.networks.rest_client.RestSyncInl;
 import com.vangav.backend.system.CommandLineInl;
 import com.vangav.backend.vangav_m.json_client.json.VangavMSolutionJson;
 

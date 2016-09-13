@@ -41,7 +41,7 @@ import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
 import com.vangav.backend.exceptions.VangavException.ExceptionType;
 import com.vangav.backend.exceptions.handlers.ArgumentsInl;
-import com.vangav.backend.networks.rest.RestRequestPostJson;
+import com.vangav.backend.networks.rest_client.RestRequestPostJson;
 
 /**
  * @author mustapha

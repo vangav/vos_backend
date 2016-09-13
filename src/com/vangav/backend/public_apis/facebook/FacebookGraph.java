@@ -39,9 +39,9 @@ import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
 import com.vangav.backend.exceptions.VangavException.ExceptionType;
 import com.vangav.backend.exceptions.handlers.ArgumentsInl;
-import com.vangav.backend.networks.rest.RestAsync;
-import com.vangav.backend.networks.rest.RestResponseJson;
-import com.vangav.backend.networks.rest.RestResponseJsonGroup;
+import com.vangav.backend.networks.rest_client.RestAsync;
+import com.vangav.backend.networks.rest_client.RestResponseJson;
+import com.vangav.backend.networks.rest_client.RestResponseJsonGroup;
 import com.vangav.backend.public_apis.facebook.json.BadRequestResponse;
 import com.vangav.backend.public_apis.facebook.json.ErrorResponse;
 import com.vangav.backend.public_apis.facebook.json.edges.FacebookGraphApiEdgeType;
@@ -225,6 +225,8 @@ public class FacebookGraph {
           new Id(),
           new BadRequestResponse() ) );
     
+    ThreadPool.i().executeInRestClientPool(restAsync);
+    
     countDownLatch.await();
     
     // got a response status other than 200 (success) and 400 (bad_request)
@@ -264,6 +266,16 @@ public class FacebookGraph {
       new HashMap<String, FutureResponse<FacebookGraphApiFieldType> >();
     this.futureEdgeResponses =
       new HashMap<String, FutureResponse<FacebookGraphApiEdgeType> >();
+  }
+  
+  /**
+   * getUserId
+   * @return user's facebook id
+   * @throws Exception
+   */
+  public String getUserId () throws Exception {
+    
+    return this.userId;
   }
   
   private enum RequestType {

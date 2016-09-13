@@ -33,8 +33,8 @@ import java.util.ArrayList;
 
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
-import com.vangav.backend.networks.rest.RestSyncInl;
-import com.vangav.backend.networks.rest.RestSyncInl.RestCallType;
+import com.vangav.backend.networks.rest_client.RestSyncInl;
+import com.vangav.backend.networks.rest_client.RestSyncInl.RestCallType;
 import com.vangav.backend.thread_pool.ThreadPool;
 
 /**

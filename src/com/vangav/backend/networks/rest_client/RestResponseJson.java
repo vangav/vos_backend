@@ -26,7 +26,7 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.networks.rest;
+package com.vangav.backend.networks.rest_client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,9 +36,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * fb.com/mustapha.abdallah
  */
 /**
- * RestRequestPostJson is the parent class for a REST request's POST JSON
+ * RestResponseJson is the parent class for a REST response's JSON
  * */
-public abstract class RestRequestPostJson {
+public abstract class RestResponseJson {
   
   /**
    * getName
@@ -54,26 +54,28 @@ public abstract class RestRequestPostJson {
    * @throws Exception
    */
   @JsonIgnore
-  protected abstract RestRequestPostJson getThis () throws Exception;
+  protected abstract RestResponseJson getThis () throws Exception;
   
   /**
    * fromJsonString
-   * @param json representation of a REST's request
-   * @return json object representation of the request
+   * @param json representation of a REST's response
+   * @return  json object representation of the response
    * @throws Exception
    */
   @JsonIgnore
-  final public RestRequestPostJson fromJsonString (
+  final protected RestResponseJson fromJsonString (
     String json) throws Exception {
     
     ObjectMapper objectMapper = new ObjectMapper();
     
-    return objectMapper.readValue(json, this.getThis().getClass() );
+    return
+      (RestResponseJson)
+      (objectMapper.readValue(json, this.getThis().getClass() ) );
   }
   
   /**
    * getAsString
-   * @return string representation of the REST request POST JSON
+   * @return string representation of the REST response JSON
    * @throws Exception
    */
   @JsonIgnore
@@ -93,14 +95,14 @@ public abstract class RestRequestPostJson {
     try {
     
       return
-        "REST Request POST JSON ["
+        "REST Response JSON ["
         + this.getName()
         + "]:\n"
         + this.getAsString();
     } catch (Exception e) {
       
       return
-        "REST Request POST JSON: threw an Exception!";
+        "REST Response JSON: threw an Exception!";
     }
   }
 }

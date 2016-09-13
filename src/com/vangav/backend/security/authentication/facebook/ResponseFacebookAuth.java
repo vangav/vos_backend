@@ -31,7 +31,7 @@ package com.vangav.backend.security.authentication.facebook;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.vangav.backend.networks.rest.RestResponseJson;
+import com.vangav.backend.networks.rest_client.RestResponseJson;
 
 /**
  * @author mustapha

@@ -26,7 +26,7 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.networks.rest;
+package com.vangav.backend.networks.rest_client;
 
 import java.io.BufferedReader;
 import java.io.InputStream;

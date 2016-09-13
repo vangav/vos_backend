@@ -26,7 +26,7 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.networks.rest;
+package com.vangav.backend.networks.rest_client;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -36,9 +36,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * fb.com/mustapha.abdallah
  */
 /**
- * RestResponseJson is the parent class for a REST response's JSON
+ * RestRequestPostJson is the parent class for a REST request's POST JSON
  * */
-public abstract class RestResponseJson {
+public abstract class RestRequestPostJson {
   
   /**
    * getName
@@ -54,28 +54,26 @@ public abstract class RestResponseJson {
    * @throws Exception
    */
   @JsonIgnore
-  protected abstract RestResponseJson getThis () throws Exception;
+  protected abstract RestRequestPostJson getThis () throws Exception;
   
   /**
    * fromJsonString
-   * @param json representation of a REST's response
-   * @return  json object representation of the response
+   * @param json representation of a REST's request
+   * @return json object representation of the request
    * @throws Exception
    */
   @JsonIgnore
-  final protected RestResponseJson fromJsonString (
+  final public RestRequestPostJson fromJsonString (
     String json) throws Exception {
     
     ObjectMapper objectMapper = new ObjectMapper();
     
-    return
-      (RestResponseJson)
-      (objectMapper.readValue(json, this.getThis().getClass() ) );
+    return objectMapper.readValue(json, this.getThis().getClass() );
   }
   
   /**
    * getAsString
-   * @return string representation of the REST response JSON
+   * @return string representation of the REST request POST JSON
    * @throws Exception
    */
   @JsonIgnore
