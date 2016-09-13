@@ -45,6 +45,7 @@ import com.vangav.backend.networks.rest.RestResponseJsonGroup;
 import com.vangav.backend.public_apis.facebook.json.BadRequestResponse;
 import com.vangav.backend.public_apis.facebook.json.ErrorResponse;
 import com.vangav.backend.public_apis.facebook.json.edges.FacebookGraphApiEdgeType;
+import com.vangav.backend.public_apis.facebook.json.edges.edge.FacebookGraphApiEdgeProperties;
 import com.vangav.backend.public_apis.facebook.json.fields.FacebookGraphApiFieldType;
 import com.vangav.backend.public_apis.facebook.json.fields.Id;
 import com.vangav.backend.thread_pool.ThreadPool;
@@ -602,6 +603,13 @@ public class FacebookGraph {
       ExceptionClass.TYPE);
   }
   
+  public enum FacebookApiResponseStatus {
+    
+    SUCCESS,
+    BAD_REQUEST,
+    ERROR
+  }
+  
   // format:
   //   String version,
   //   String fb_user_id,
@@ -610,6 +618,158 @@ public class FacebookGraph {
   private static final String kGetField =
     "https://graph.facebook.com/%s/%s?fields=%s&access_token=%s";
   
+  /**
+   * getFieldsSync
+   * BLOCKING method
+   * @param fields - of all the fields to be fetched
+   * @return Map<
+   *           FacebookGraphApiFieldType,
+   *           Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *         key is the field enum type
+   *         pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
+   *           indicate which type of JSON Object is in pair-RestResponseJson
+   *         pair-RestResponseJson is a JSON Object containing the response,
+   *           on 200 HTTP_SUCCESS it contains an Object from the JSON class
+   *             corresponding to the field
+   *           on 400 HTTP_BADREQUEST it contains a BadRequestResponse Object
+   *           for all other Http Status Codes it contains an ErrorResponse
+   *             Object containing a raw String response
+   * @throws Exception
+   */
+  @SuppressWarnings("unchecked")
+  public
+    Map<
+      FacebookGraphApiFieldType,
+      Pair<FacebookApiResponseStatus, RestResponseJson> > getFieldsSync (
+        FacebookGraphApiFieldType... fields) throws Exception {
+    
+    return
+      (Map<
+        FacebookGraphApiFieldType,
+        Pair<FacebookApiResponseStatus, RestResponseJson> > )this.getFields(
+          RequestType.SYNC,
+          fields);
+  }
+  
+  /**
+   * getFieldsAsync
+   * NON-BLOCKING method
+   * @param fields - of all the fields to be fetched
+   * @return the tracking id to be used at a later time to get this async
+   *           request's response
+   * @throws Exception
+   */
+  public String getFieldsAsync (
+    FacebookGraphApiFieldType... fields) throws Exception {
+    
+    return (String)this.getFields(RequestType.ASYNC, fields);
+  }
+  
+  /**
+   * getFieldsAsync
+   * BLOCKING method
+   * @param requestTrackingUuid
+   * @return Map<
+   *           FacebookGraphApiFieldType,
+   *           Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *         key is the field enum type
+   *         pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
+   *           indicate which type of JSON Object is in pair-RestResponseJson
+   *         pair-RestResponseJson is a JSON Object containing the response,
+   *           on 200 HTTP_SUCCESS it contains an Object from the JSON class
+   *             corresponding to the field
+   *           on 400 HTTP_BADREQUEST it contains a BadRequestResponse Object
+   *           for all other Http Status Codes it contains an ErrorResponse
+   *             Object containing a raw String response
+   * @throws Exception
+   */
+  public
+    Map<
+      FacebookGraphApiFieldType,
+      Pair<FacebookApiResponseStatus, RestResponseJson> > getFieldsAsync (
+        String requestTrackingUuid) throws Exception {
+
+    if (this.futureFieldResponses.containsKey(
+          requestTrackingUuid) == false) {
+
+      throw new CodeException(
+        "Invalid request tracking id ["
+        + requestTrackingUuid
+        + "]",
+        ExceptionClass.INVALID);
+    }
+    
+    Map<FacebookGraphApiFieldType, RestAsync> requests =
+      this.futureFieldResponses.remove(requestTrackingUuid).getAll();
+
+    RestAsync currRestAsync;
+
+    Map<
+      FacebookGraphApiFieldType,
+      Pair<FacebookApiResponseStatus, RestResponseJson> > result =
+        new HashMap<
+          FacebookGraphApiFieldType,
+          Pair<FacebookApiResponseStatus, RestResponseJson> >();
+    
+    FacebookApiResponseStatus currFacebookApiResponseStatus;
+    
+    for (FacebookGraphApiFieldType field : requests.keySet() ) {
+      
+      currRestAsync = requests.get(field);
+      
+      if (currRestAsync.isResponseStatusSuccess() == true) {
+        
+        currFacebookApiResponseStatus = FacebookApiResponseStatus.SUCCESS;
+      } else if (currRestAsync.isResponseStatusBadRequest() == true) {
+        
+        currFacebookApiResponseStatus =
+          FacebookApiResponseStatus.BAD_REQUEST;
+      } else {
+        
+        currFacebookApiResponseStatus = FacebookApiResponseStatus.ERROR;
+      }
+      
+      if (currRestAsync.gotMatchingJsonResponse() == true) {
+        
+        result.put(
+          field,
+          new Pair<FacebookApiResponseStatus, RestResponseJson>(
+            currFacebookApiResponseStatus,
+            currRestAsync.getRestResponseJson() ) );
+      } else {
+        
+        result.put(
+          field,
+          new Pair<FacebookApiResponseStatus, RestResponseJson>(
+            currFacebookApiResponseStatus,
+            new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
+      }
+    }
+    
+    return result;
+  }
+  
+  /**
+   * getFields
+   * @param requestType SYNC and ASYNC
+   * @param fields
+   * @return
+   *        SYNC:
+   *          Map<
+   *            FacebookGraphApiFieldType,
+   *            Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *          key is the field enum type
+   *          pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
+   *            indicate which type of JSON Object is in pair-RestResponseJson
+   *          pair-RestResponseJson is a JSON Object containing the response,
+   *            on 200 HTTP_SUCCESS it contains an Object from the JSON class
+   *              corresponding to the field
+   *            on 400 HTTP_BADREQUEST it contains a BadRequestResponse Object
+   *            for all other Http Status Codes it contains an ErrorResponse
+   *              Object containing a raw String response
+   *        ASYNC: String representing the request-tracking-uuid
+   * @throws Exception
+   */
   private Object getFields (
     RequestType requestType,
     FacebookGraphApiFieldType... fields) throws Exception {
@@ -652,28 +812,44 @@ public class FacebookGraph {
       
       countDownLatch.await();
 
-      Map<FacebookGraphApiFieldType, Pair<Integer, RestResponseJson> > result =
-        new HashMap<
-          FacebookGraphApiFieldType,
-          Pair<Integer, RestResponseJson> >();
+      Map<
+        FacebookGraphApiFieldType,
+        Pair<FacebookApiResponseStatus, RestResponseJson> > result =
+          new HashMap<
+            FacebookGraphApiFieldType,
+            Pair<FacebookApiResponseStatus, RestResponseJson> >();
+      
+      FacebookApiResponseStatus currFacebookApiResponseStatus;
       
       for (FacebookGraphApiFieldType field : fields) {
         
         currRestAsync = requests.get(field);
         
+        if (currRestAsync.isResponseStatusSuccess() == true) {
+          
+          currFacebookApiResponseStatus = FacebookApiResponseStatus.SUCCESS;
+        } else if (currRestAsync.isResponseStatusBadRequest() == true) {
+          
+          currFacebookApiResponseStatus =
+            FacebookApiResponseStatus.BAD_REQUEST;
+        } else {
+          
+          currFacebookApiResponseStatus = FacebookApiResponseStatus.ERROR;
+        }
+        
         if (currRestAsync.gotMatchingJsonResponse() == true) {
           
           result.put(
             field,
-            new Pair<Integer, RestResponseJson>(
-              currRestAsync.getResponseStatusCode(),
+            new Pair<FacebookApiResponseStatus, RestResponseJson>(
+              currFacebookApiResponseStatus,
               currRestAsync.getRestResponseJson() ) );
         } else {
           
           result.put(
             field,
-            new Pair<Integer, RestResponseJson>(
-              currRestAsync.getResponseStatusCode(),
+            new Pair<FacebookApiResponseStatus, RestResponseJson>(
+              currFacebookApiResponseStatus,
               new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
         }
       }
@@ -707,6 +883,281 @@ public class FacebookGraph {
   //   String access_token
   private static final String kGetEdge =
     "https://graph.facebook.com/%s/%s/%s?limit=%d&access_token=%s";
+  
+  /**
+   * getEdgesSync
+   * BLOCKING method
+   * NOTE: This method doesn't support paging (gets only the first page),
+   *         paging will be added in the next iteration. However the returned
+   *         JSON Object has the paging elements and check/get methods so that
+   *         paging right now can be done externally.
+   * @param edges - of all the edges to be fetched
+   * @return Map<
+   *           FacebookGraphApiEdgeType,
+   *           Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *         key is the edge enum type
+   *         pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
+   *           indicate which type of JSON Object is in pair-RestResponseJson
+   *         pair-RestResponseJson is a JSON Object containing the response,
+   *           on 200 HTTP_SUCCESS it contains an Object from the JSON class
+   *             corresponding to the edge
+   *           on 400 HTTP_BADREQUEST it contains a BadRequestResponse Object
+   *           for all other Http Status Codes it contains an ErrorResponse
+   *             Object containing a raw String response
+   * @throws Exception
+   */
+  @SuppressWarnings("unchecked")
+  public
+    Map<
+      FacebookGraphApiEdgeType,
+      Pair<FacebookApiResponseStatus, RestResponseJson> > getEdgesSync (
+        FacebookGraphApiEdgeType... edges) throws Exception {
+    
+    return
+      (Map<
+        FacebookGraphApiEdgeType,
+        Pair<FacebookApiResponseStatus, RestResponseJson> > )this.getEdges(
+          RequestType.SYNC,
+          edges);
+  }
+  
+  /**
+   * getEdgesAsync
+   * NON-BLOCKING method
+   * NOTE: This method doesn't support paging (gets only the first page),
+   *         paging will be added in the next iteration. However the returned
+   *         JSON Object has the paging elements and check/get methods so that
+   *         paging right now can be done externally.
+   * @param edges - of all the edges to be fetched
+   * @return the tracking id to be used at a later time to get this async
+   *           request's response
+   * @throws Exception
+   */
+  public String getEdgesAsync (
+    FacebookGraphApiEdgeType... edges) throws Exception {
+    
+    return (String)this.getEdges(RequestType.ASYNC, edges);
+  }
+  
+  /**
+   * getEdgesAsync
+   * BLOCKING method
+   * NOTE: This method doesn't support paging (gets only the first page),
+   *         paging will be added in the next iteration. However the returned
+   *         JSON Object has the paging elements and check/get methods so that
+   *         paging right now can be done externally.
+   * @param requestTrackingUuid
+   * @return Map<
+   *           FacebookGraphApiEdgeType,
+   *           Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *         key is the edge enum type
+   *         pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
+   *           indicate which type of JSON Object is in pair-RestResponseJson
+   *         pair-RestResponseJson is a JSON Object containing the response,
+   *           on 200 HTTP_SUCCESS it contains an Object from the JSON class
+   *             corresponding to the edge
+   *           on 400 HTTP_BADREQUEST it contains a BadRequestResponse Object
+   *           for all other Http Status Codes it contains an ErrorResponse
+   *             Object containing a raw String response
+   * @throws Exception
+   */
+  public
+    Map<
+      FacebookGraphApiEdgeType,
+      Pair<FacebookApiResponseStatus, RestResponseJson> > getEdgesAsync (
+        String requestTrackingUuid) throws Exception {
+
+    if (this.futureEdgeResponses.containsKey(
+          requestTrackingUuid) == false) {
+
+      throw new CodeException(
+        "Invalid request tracking id ["
+        + requestTrackingUuid
+        + "]",
+        ExceptionClass.INVALID);
+    }
+    
+    Map<FacebookGraphApiEdgeType, RestAsync> requests =
+      this.futureEdgeResponses.remove(requestTrackingUuid).getAll();
+
+    RestAsync currRestAsync;
+
+    Map<
+      FacebookGraphApiEdgeType,
+      Pair<FacebookApiResponseStatus, RestResponseJson> > result =
+        new HashMap<
+          FacebookGraphApiEdgeType,
+          Pair<FacebookApiResponseStatus, RestResponseJson> >();
+    
+    FacebookApiResponseStatus currFacebookApiResponseStatus;
+    
+    for (FacebookGraphApiEdgeType edge : requests.keySet() ) {
+      
+      currRestAsync = requests.get(edge);
+      
+      if (currRestAsync.isResponseStatusSuccess() == true) {
+        
+        currFacebookApiResponseStatus = FacebookApiResponseStatus.SUCCESS;
+      } else if (currRestAsync.isResponseStatusBadRequest() == true) {
+        
+        currFacebookApiResponseStatus =
+          FacebookApiResponseStatus.BAD_REQUEST;
+      } else {
+        
+        currFacebookApiResponseStatus = FacebookApiResponseStatus.ERROR;
+      }
+      
+      if (currRestAsync.gotMatchingJsonResponse() == true) {
+        
+        result.put(
+          edge,
+          new Pair<FacebookApiResponseStatus, RestResponseJson>(
+            currFacebookApiResponseStatus,
+            currRestAsync.getRestResponseJson() ) );
+      } else {
+        
+        result.put(
+          edge,
+          new Pair<FacebookApiResponseStatus, RestResponseJson>(
+            currFacebookApiResponseStatus,
+            new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
+      }
+    }
+    
+    return result;
+  }
+  
+  /**
+   * getEdges
+   * NOTE: This method doesn't support paging (gets only the first page),
+   *         paging will be added in the next iteration. However the returned
+   *         JSON Object has the paging elements and check/get methods so that
+   *         paging right now can be done externally.
+   * @param requestType SYNC and ASYNC
+   * @param edges
+   * @return
+   *        SYNC:
+   *          Map<
+   *            FacebookGraphApiEdgeType,
+   *            Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *          key is the edge enum type
+   *          pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
+   *            indicate which type of JSON Object is in pair-RestResponseJson
+   *          pair-RestResponseJson is a JSON Object containing the response,
+   *            on 200 HTTP_SUCCESS it contains an Object from the JSON class
+   *              corresponding to the edge
+   *            on 400 HTTP_BADREQUEST it contains a BadRequestResponse Object
+   *            for all other Http Status Codes it contains an ErrorResponse
+   *              Object containing a raw String response
+   *        ASYNC: String representing the request-tracking-uuid
+   * @throws Exception
+   */
+  private Object getEdges (
+    RequestType requestType,
+    FacebookGraphApiEdgeType... edges) throws Exception {
+    
+    ArgumentsInl.checkNotEmpty(
+      "edges",
+      edges,
+      ExceptionType.CODE_EXCEPTION);
+    
+    CountDownLatch countDownLatch = new CountDownLatch(edges.length);
+    
+    Map<FacebookGraphApiEdgeType, RestAsync> requests =
+      new HashMap<FacebookGraphApiEdgeType, RestAsync>();
+
+    RestAsync currRestAsync;
+    
+    for (FacebookGraphApiEdgeType edge : edges) {
+      
+      currRestAsync =
+        new RestAsync(
+          countDownLatch,
+          String.format(
+            kGetEdge,
+            this.version,
+            this.userId,
+            edge.getName(),
+            FacebookGraphApiEdgeProperties.i().getIntProperty(
+              FacebookGraphApiEdgeProperties.kPageLimit),
+            this.accessToken),
+          new RestResponseJsonGroup(
+            edge.getNewEdgeInstance(),
+            new BadRequestResponse() ) );
+      
+      requests.put(
+        edge,
+        currRestAsync);
+
+      ThreadPool.i().executeInRestClientPool(currRestAsync);
+    }
+    
+    if (requestType == RequestType.SYNC) {
+      
+      countDownLatch.await();
+
+      Map<
+        FacebookGraphApiEdgeType,
+        Pair<FacebookApiResponseStatus, RestResponseJson> > result =
+          new HashMap<
+            FacebookGraphApiEdgeType,
+            Pair<FacebookApiResponseStatus, RestResponseJson> >();
+      
+      FacebookApiResponseStatus currFacebookApiResponseStatus;
+      
+      for (FacebookGraphApiEdgeType edge : edges) {
+        
+        currRestAsync = requests.get(edge);
+        
+        if (currRestAsync.isResponseStatusSuccess() == true) {
+          
+          currFacebookApiResponseStatus = FacebookApiResponseStatus.SUCCESS;
+        } else if (currRestAsync.isResponseStatusBadRequest() == true) {
+          
+          currFacebookApiResponseStatus =
+            FacebookApiResponseStatus.BAD_REQUEST;
+        } else {
+          
+          currFacebookApiResponseStatus = FacebookApiResponseStatus.ERROR;
+        }
+        
+        if (currRestAsync.gotMatchingJsonResponse() == true) {
+          
+          result.put(
+            edge,
+            new Pair<FacebookApiResponseStatus, RestResponseJson>(
+              currFacebookApiResponseStatus,
+              currRestAsync.getRestResponseJson() ) );
+        } else {
+          
+          result.put(
+            edge,
+            new Pair<FacebookApiResponseStatus, RestResponseJson>(
+              currFacebookApiResponseStatus,
+              new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
+        }
+      }
+      
+      return result;
+    } else if (requestType == RequestType.ASYNC) {
+
+      String uuid = UUID.randomUUID().toString();
+      
+      this.futureEdgeResponses.put(
+        uuid,
+        new FutureResponse<FacebookGraphApiEdgeType>(
+          countDownLatch,
+          requests) );
+      
+      return uuid;
+    }
+
+    throw new CodeException(
+      "Unhandled RequestType ["
+        + requestType.toString()
+        + "]",
+      ExceptionClass.TYPE);
+  }
   
   @Override
   public String toString () {
