@@ -50,7 +50,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PlaceMark {
 
   @JsonProperty
-  public double[] coordinates;
+  public float[] coordinates;
   @JsonProperty
   public String name;
   @JsonProperty

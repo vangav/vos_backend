@@ -48,7 +48,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PlaceMark {
 
   @JsonProperty
-  public double[] coordinates;
+  public float[] coordinates;
   @JsonProperty
   public String name;
   
@@ -58,7 +58,7 @@ public class PlaceMark {
    * @throws Exception
    */
   @JsonIgnore
-  public double getLongitude () throws Exception {
+  public float getLongitude () throws Exception {
     
     return this.coordinates[0];
   }
@@ -69,7 +69,7 @@ public class PlaceMark {
    * @throws Exception
    */
   @JsonIgnore
-  public double getLatitude () throws Exception {
+  public float getLatitude () throws Exception {
     
     return this.coordinates[1];
   }
@@ -80,7 +80,7 @@ public class PlaceMark {
    * @throws Exception
    */
   @JsonIgnore
-  public double getAltitude () throws Exception {
+  public float getAltitude () throws Exception {
     
     return this.coordinates[2];
   }
