@@ -30,6 +30,7 @@ package com.vangav.backend.dispatcher.worker.worker_generator.defaults;
 
 import com.vangav.backend.exceptions.VangavException;
 import com.vangav.backend.properties.PropertiesLoader;
+import com.vangav.backend.thread_pool.ThreadPool;
 
 import play.Application;
 import play.GlobalSettings;
@@ -87,6 +88,8 @@ public class Global extends GlobalSettings {
   public void onStop(Application app) {
 
     try {
+      
+      ThreadPool.i().shutdown(true);
 
       // On Stop: this method gets executed between quitting this
       //   service and actual termination.

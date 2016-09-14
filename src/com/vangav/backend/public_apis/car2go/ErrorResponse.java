@@ -26,7 +26,7 @@
  *   to easier find questions/answers online
  * */
 
-package com.vangav.backend.public_apis.car2go.json.operation_area;
+package com.vangav.backend.public_apis.car2go;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -38,7 +38,8 @@ import com.vangav.backend.networks.rest_client.RestResponseJson;
  * fb.com/mustapha.abdallah
  */
 /**
- * OperationAreas represents car2go API's operation areas in a given location
+ * ErrorResponse represents Car2Go's graph API responses other than Success
+ *   200
  * 
  * v2.1
  * 
@@ -46,22 +47,33 @@ import com.vangav.backend.networks.rest_client.RestResponseJson;
  * https://github.com/car2go/openAPI
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OperationAreas extends RestResponseJson {
+public class ErrorResponse extends RestResponseJson {
 
   @Override
   @JsonIgnore
-  public String getName () throws Exception {
+  protected String getName () throws Exception {
     
-    return "operation_areas";
+    return "car2go_api_error_response";
   }
   
   @Override
   @JsonIgnore
-  public OperationAreas getThis () throws Exception {
+  protected ErrorResponse getThis () throws Exception {
     
     return this;
   }
   
+  /**
+   * Constructor ErrorResponse
+   * @param rawResponse
+   * @return new ErrorResponse Object
+   * @throws Exception
+   */
+  public ErrorResponse (String rawResponse) throws Exception {
+    
+    this.raw_response = rawResponse;
+  } 
+
   @JsonProperty
-  public PlaceMark[] placemarks;
+  public String raw_response;
 }

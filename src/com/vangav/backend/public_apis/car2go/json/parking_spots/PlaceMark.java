@@ -48,7 +48,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class PlaceMark {
 
   @JsonProperty
-  public double[] coordinates;
+  public float[] coordinates;
   @JsonProperty
   public String name;
   @JsonProperty
@@ -64,7 +64,7 @@ public class PlaceMark {
    * @throws Exception
    */
   @JsonIgnore
-  public double getLongitude () throws Exception {
+  public float getLongitude () throws Exception {
     
     return this.coordinates[0];
   }
@@ -75,7 +75,7 @@ public class PlaceMark {
    * @throws Exception
    */
   @JsonIgnore
-  public double getLatitude () throws Exception {
+  public float getLatitude () throws Exception {
     
     return this.coordinates[1];
   }
@@ -86,7 +86,7 @@ public class PlaceMark {
    * @throws Exception
    */
   @JsonIgnore
-  public double getAltitude () throws Exception {
+  public float getAltitude () throws Exception {
     
     return this.coordinates[2];
   }
@@ -96,6 +96,7 @@ public class PlaceMark {
    * @return the number of free parking places in this parking spot
    * @throws Exception
    */
+  @JsonIgnore
   public int getFreeSpots () throws Exception {
     
     return this.totalCapacity - this.usedCapacity;

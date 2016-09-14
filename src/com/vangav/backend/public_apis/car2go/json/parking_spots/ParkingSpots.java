@@ -59,7 +59,7 @@ public class ParkingSpots extends RestResponseJson {
   @JsonIgnore
   public ParkingSpots getThis () throws Exception {
     
-    return getThis();
+    return this;
   }
   
   @JsonProperty

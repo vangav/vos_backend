@@ -88,9 +88,9 @@ public enum LocationType {
       case WIEN:
         return "Wien";
       case SAN_DIEGO:
-        return "San Diego";
+        return "SanDiego";
       case WASHINGTON_DC:
-        return "Washington DC";
+        return "WashingtonDC";
       case PORTLAND:
         return "Portland";
       case BERLIN:
@@ -112,9 +112,9 @@ public enum LocationType {
       case MONTREAL:
         return "Montreal";
       case MÜNCHEN:
-        return "München";
+        return "Muenchen";
       case TWIN_CITIES:
-        return "Twin Cities";
+        return "TwinCities";
       case COLUMBUS:
         return "Columbus";
       case ROMA:
@@ -122,7 +122,7 @@ public enum LocationType {
       case FRANKFURT:
         return "Frankfurt";
       case NEW_YORK_CITY:
-        return "New York City";
+        return "NewYorkCity";
       case MADRID:
         return "Madrid";
       case FIRENZE:

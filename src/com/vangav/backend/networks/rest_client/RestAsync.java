@@ -370,7 +370,7 @@ public class RestAsync extends LatchThread {
 
     final String contentType = urlConnection.getHeaderField("Content-Type");
 
-    String responseCharSet = null;
+    String responseCharSet = "UTF-8";
 
     for (String param : contentType.replace(" ", "").split(";") ) {
 

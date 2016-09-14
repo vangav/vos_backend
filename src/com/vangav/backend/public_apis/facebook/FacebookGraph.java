@@ -39,6 +39,7 @@ import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
 import com.vangav.backend.exceptions.VangavException.ExceptionType;
 import com.vangav.backend.exceptions.handlers.ArgumentsInl;
+import com.vangav.backend.networks.rest_client.FutureResponse;
 import com.vangav.backend.networks.rest_client.RestAsync;
 import com.vangav.backend.networks.rest_client.RestResponseJson;
 import com.vangav.backend.networks.rest_client.RestResponseJsonGroup;
@@ -98,81 +99,6 @@ public class FacebookGraph {
   //   String access_token
   private static final String kGetUserIdFormat =
     "https://graph.facebook.com/%s/me?fields=id&access_token=%s";
-  
-  /**
-   * FutureResponse is used to hold future response of asynchronous requests
-   */
-  private class FutureResponse<T> {
-    
-    private static final String kSingletonEntryKey =
-      "00000000-0000-1000-0000-000000000000";
-    
-    private CountDownLatch countDownLatch;
-    private Map<T, RestAsync> entries;
-    
-    /**
-     * Constructor FutureResponse
-     * for singular requests
-     * @param countDownLatch
-     * @param restAsync
-     * @return new FutureResponse Object
-     * @throws Exception
-     */
-    @SuppressWarnings("unchecked")
-    private FutureResponse (
-      CountDownLatch countDownLatch,
-      RestAsync restAsync) throws Exception {
-      
-      this.countDownLatch = countDownLatch;
-      this.entries = new HashMap<T, RestAsync>();
-      
-      this.entries.put(
-        (T)kSingletonEntryKey,
-        restAsync);
-    }
-    
-    /**
-     * Constructor FutureResponse
-     * for multiple requests
-     * @param countDownLatch
-     * @param entries
-     * @return new FutureResponse Object
-     * @throws Exception
-     */
-    private FutureResponse (
-      CountDownLatch countDownLatch,
-      Map<T, RestAsync> entries) throws Exception {
-      
-      this.countDownLatch = countDownLatch;
-      this.entries = entries;
-    }
-    
-    /**
-     * get
-     * gets RestAsnc Object for single request FutureResponse Objects
-     * @return RestAsync Object
-     * @throws Exception
-     */
-    private RestAsync get () throws Exception {
-      
-      this.countDownLatch.await();
-      
-      return this.entries.get(kSingletonEntryKey);
-    }
-    
-    /**
-     * getAll
-     * gets all RestAsync Objects for multi-request FutureResponse Objects
-     * @return all RestAsync Objects
-     * @throws Exception
-     */
-    private Map<T, RestAsync> getAll () throws Exception {
-      
-      this.countDownLatch.await();
-      
-      return this.entries;
-    }
-  }
   
   private Map<String, FutureResponse<String> > futureDownloadResponses;
   private
@@ -291,6 +217,10 @@ public class FacebookGraph {
     return this.userId;
   }
   
+  /**
+   * enum RequestType is used to distinguish between sync and async processing
+   *   in the private common method that does the processing for both modes
+   * */
   private enum RequestType {
     
     SYNC,
@@ -378,7 +308,7 @@ public class FacebookGraph {
   
   /**
    * getProfilePicture
-   * @param requestType - SYNC pr ASYNC
+   * @param requestType - SYNC or ASYNC
    * @param pictureWidth
    * @return profile picture for SYNC requests and future response tracking id
    *           for ASYNC requests

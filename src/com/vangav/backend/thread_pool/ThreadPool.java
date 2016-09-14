@@ -210,4 +210,57 @@ public class ThreadPool {
     
     this.restClientPool.execute(restAsync);
   }
+  
+  /**
+   * isShutdown
+   * @return true if all thread pools are shutdown and false if one of more
+   *           thread pools aren't shutdown
+   * @throws Exception
+   */
+  public boolean isShutdown () throws Exception {
+    
+    if (this.runnablePool.isShutdown() == false) {
+      
+      return false;
+    }
+    
+    if (this.cassandraPool.isShutdown() == false) {
+      
+      return false;
+    }
+    
+    if (this.dispatcherPool.isShutdown() == false) {
+      
+      return false;
+    }
+    
+    if (this.restClientPool.isShutdown() == false) {
+      
+      return false;
+    }
+    
+    return true;
+  }
+  
+  /**
+   * shutDown
+   * @param forceShutDown true to use shutdownNow and false to use shutdown
+   * @throws Exception
+   */
+  public void shutdown (boolean forceShutDown) throws Exception {
+
+    if (forceShutDown == true) {
+    
+      this.runnablePool.shutdownNow();
+      this.cassandraPool.shutdownNow();
+      this.dispatcherPool.shutdownNow();
+      this.restClientPool.shutdownNow();
+    } else {
+
+      this.runnablePool.shutdown();
+      this.cassandraPool.shutdown();
+      this.dispatcherPool.shutdown();
+      this.restClientPool.shutdown();
+    }
+  }
 }

@@ -38,7 +38,7 @@ import com.vangav.backend.networks.rest_client.RestResponseJson;
  * fb.com/mustapha.abdallah
  */
 /**
- * ParkingSpots represents car2go API's parking spots in a given location
+ * Vehicles represents car2go API's vehicles in a given location
  * 
  * v2.1
  * 
@@ -46,20 +46,20 @@ import com.vangav.backend.networks.rest_client.RestResponseJson;
  * https://github.com/car2go/openAPI
  * */
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class ParkingSpots extends RestResponseJson {
+public class Vehicles extends RestResponseJson {
 
   @Override
   @JsonIgnore
   public String getName () throws Exception {
     
-    return "parking_spots";
+    return "vehicles";
   }
   
   @Override
   @JsonIgnore
-  public ParkingSpots getThis () throws Exception {
+  public Vehicles getThis () throws Exception {
     
-    return getThis();
+    return this;
   }
   
   @JsonProperty

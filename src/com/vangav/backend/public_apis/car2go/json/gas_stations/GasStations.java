@@ -59,7 +59,7 @@ public class GasStations extends RestResponseJson {
   @JsonIgnore
   public GasStations getThis () throws Exception {
     
-    return getThis();
+    return this;
   }
   
   @JsonProperty
