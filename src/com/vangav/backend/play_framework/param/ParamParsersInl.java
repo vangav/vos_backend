@@ -31,6 +31,7 @@ package com.vangav.backend.play_framework.param;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 
 import com.vangav.backend.exceptions.CodeException;
@@ -44,6 +45,9 @@ import com.vangav.backend.exceptions.VangavException.ExceptionClass;
  * ParamParsersInl has static inline methods for parsing params
  * */
 public class ParamParsersInl {
+  
+  // disable default instantiation
+  private ParamParsersInl () {}
   
   private static final ArrayList<DateFormat> kDateFormats =
     new ArrayList<DateFormat>() {
@@ -87,5 +91,21 @@ public class ParamParsersInl {
         + dateString
         + "] doesn't follow any of the supported formats.",
       ExceptionClass.FORMATTING);
+  }
+  
+  /**
+   * parseCalendar
+   * @param dateString
+   * @return A Calendar Object reflecting the param's String date
+   * @throws Exception
+   */
+  public static Calendar parseCalendar (String dateString) throws Exception {
+    
+    Date date = parseDate(dateString);
+    
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+    
+    return calendar;
   }
 }

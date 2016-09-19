@@ -144,6 +144,126 @@ public class ArgumentsInl {
   /**
    * checkNotEmpty
    * @param name
+   * @param array
+   * @param exceptionType
+   * @throws Exception if param array is null or empty
+   */
+  public static void checkNotEmpty (
+    String name,
+    short[] array,
+    ExceptionType exceptionType) throws Exception {
+    
+    checkNotNull(name, array, exceptionType);
+    
+    if (array.length == 0) {
+      
+      throw VangavException.exceptionFactory(
+        name
+        + " can't be empty",
+        exceptionType,
+        ExceptionClass.ARGUMENT);
+    }
+  }
+  
+  /**
+   * checkNotEmpty
+   * @param name
+   * @param array
+   * @param exceptionType
+   * @throws Exception if param array is null or empty
+   */
+  public static void checkNotEmpty (
+    String name,
+    int[] array,
+    ExceptionType exceptionType) throws Exception {
+    
+    checkNotNull(name, array, exceptionType);
+    
+    if (array.length == 0) {
+      
+      throw VangavException.exceptionFactory(
+        name
+        + " can't be empty",
+        exceptionType,
+        ExceptionClass.ARGUMENT);
+    }
+  }
+  
+  /**
+   * checkNotEmpty
+   * @param name
+   * @param array
+   * @param exceptionType
+   * @throws Exception if param array is null or empty
+   */
+  public static void checkNotEmpty (
+    String name,
+    long[] array,
+    ExceptionType exceptionType) throws Exception {
+    
+    checkNotNull(name, array, exceptionType);
+    
+    if (array.length == 0) {
+      
+      throw VangavException.exceptionFactory(
+        name
+        + " can't be empty",
+        exceptionType,
+        ExceptionClass.ARGUMENT);
+    }
+  }
+  
+  /**
+   * checkNotEmpty
+   * @param name
+   * @param array
+   * @param exceptionType
+   * @throws Exception if param array is null or empty
+   */
+  public static void checkNotEmpty (
+    String name,
+    float[] array,
+    ExceptionType exceptionType) throws Exception {
+    
+    checkNotNull(name, array, exceptionType);
+    
+    if (array.length == 0) {
+      
+      throw VangavException.exceptionFactory(
+        name
+        + " can't be empty",
+        exceptionType,
+        ExceptionClass.ARGUMENT);
+    }
+  }
+  
+  /**
+   * checkNotEmpty
+   * @param name
+   * @param array
+   * @param exceptionType
+   * @throws Exception if param array is null or empty
+   */
+  public static void checkNotEmpty (
+    String name,
+    double[] array,
+    ExceptionType exceptionType) throws Exception {
+    
+    checkNotNull(name, array, exceptionType);
+    
+    if (array.length == 0) {
+      
+      throw VangavException.exceptionFactory(
+        name
+        + " can't be empty",
+        exceptionType,
+        ExceptionClass.ARGUMENT);
+    }
+  }
+  
+  /**
+   * checkNotEmpty
+   * @param name
    * @param collection
    * @param exceptionType
    * @throws Exception if param collection is null or empty

@@ -44,6 +44,9 @@ import com.vangav.backend.play_framework.request.RequestProperties;
  * */
 public class ParamValidatorInl {
   
+  // disable default instantiation
+  private ParamValidatorInl () {}
+  
   /**
    * validate
    * validates an array of parameters

@@ -37,39 +37,45 @@ import java.util.Date;
  * fb.com/mustapha.abdallah
  */
 /**
- * DateOperationsInl has inine static methods for java.util.Date
+ * CalendarOperationsInl has inline static methods for java.util.Calendar
  * */
-public class DateOperationsInl {
-  
+public class CalendarOperationsInl {
+
   // disable default instantiation
-  private DateOperationsInl () {}
+  private CalendarOperationsInl () {}
   
   /**
-   * getDateFromCalendar
-   * @param calendar
-   * @return a Date Object reflecting param calendar
+   * getCalendarFromDate
+   * @param date
+   * @return a Calendar Object reflecting param date
    * @throws Exception
    */
-  public static Date getDateFromCalendar (Calendar calendar) throws Exception {
+  public static Calendar getCalendarFromDate (Date date) throws Exception {
     
-    return calendar.getTime();
+    Calendar calendar = Calendar.getInstance();
+    calendar.setTime(date);
+    
+    return calendar;
   }
-
+  
   /**
-   * getDatesFromTo
-   * @param fromDate
-   * @param toDate
-   * @return a list of dates from param fromDate till param toDate inclusive
-   *           e.g.: fromDate = 29/09/2016, toDate 03/10/2016 will produce the
-   *           following result list
+   * getCalendarsFromTo
+   * @param fromCalendar
+   * @param toCalendar
+   * @return a list of calendars from param fromCalendar till param toCalendar
+   *           inclusive, e.g.: fromCalendar = 29/09/2016,
+   *           toCalendar 03/10/2016 will produce the following result list
    *           <29/09/2016, 30/09/2016, 01/10/2016, 02/10/2016, 03/10/2016>
    * @throws Exception
    */
-  public static ArrayList<Date> getDatesFromTo (
-    Date fromDate,
-    Date toDate) throws Exception {
+  public static ArrayList<Calendar> getCalendarsFromTo (
+    Calendar fromCalendar,
+    Calendar toCalendar) throws Exception {
     
-    ArrayList<Date> dates = new ArrayList<Date>();
+    Date fromDate = fromCalendar.getTime();
+    Date toDate = toCalendar.getTime();
+    
+    ArrayList<Calendar> calendars = new ArrayList<Calendar>();
     
     // one day in milliseconds
     long interval = 24 * 1000 * 60 * 60;
@@ -79,10 +85,10 @@ public class DateOperationsInl {
     
     while (currTime <= toTime) {
     
-      dates.add(new Date(currTime) );
+      calendars.add(getCalendarFromDate(new Date(currTime) ) );
       currTime += interval;
     }
     
-    return dates;
+    return calendars;
   }
 }
