@@ -28,7 +28,8 @@
 
 package com.vangav.backend.metrics.time;
 
-import java.util.Calendar;
+import com.vangav.backend.exceptions.VangavException.ExceptionType;
+import com.vangav.backend.exceptions.handlers.ArgumentsInl;
 
 /**
  * @author mustapha
@@ -40,35 +41,8 @@ import java.util.Calendar;
  * */
 public class TimeOperationsInl {
   
-  /**
-   * getCurrentCalendar
-   * gets a Calendar object that corresponds to the current time/date
-   * @return new Calendar Object representing the current time/date
-   * @throws Exception
-   */
-  public static Calendar getCurrentCalendar (
-    ) throws Exception {
-    
-    return unixTimeToCalendar(
-      System.currentTimeMillis() );
-  }
-  
-  /**
-   * unixTimeToCalendar
-   * converts a unix time to a Calendar
-   * @param time: unix time
-   * @return new Calendar Object reflecting the passed unix time
-   * @throws Exception
-   */
-  public static Calendar unixTimeToCalendar (
-    final long time) throws Exception {
-    
-    Calendar calendar = Calendar.getInstance();
-    
-    calendar.setTimeInMillis(time);
-    
-    return calendar;
-  }
+  // disable default instantiation
+  private TimeOperationsInl () {}
   
   /**
    * getElapsedUnixTime
@@ -82,6 +56,11 @@ public class TimeOperationsInl {
   public static long getElapsedUnixTime (
     final long time,
     TimeUnitType unit) throws Exception {
+    
+    ArgumentsInl.checkNotNull(
+      "Time Unit Type",
+      unit,
+      ExceptionType.CODE_EXCEPTION);
     
     long diff;
     

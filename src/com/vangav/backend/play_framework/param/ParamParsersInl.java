@@ -36,6 +36,8 @@ import java.util.Date;
 
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
+import com.vangav.backend.exceptions.VangavException.ExceptionType;
+import com.vangav.backend.exceptions.handlers.ArgumentsInl;
 
 /**
  * @author mustapha
@@ -75,6 +77,11 @@ public class ParamParsersInl {
    */
   public static Date parseDate (String dateString) throws Exception {
     
+    ArgumentsInl.checkNotEmpty(
+      "Date String",
+      dateString,
+      ExceptionType.CODE_EXCEPTION);
+    
     for (DateFormat dateFormat : kDateFormats) {
      
       try {
@@ -100,6 +107,11 @@ public class ParamParsersInl {
    * @throws Exception
    */
   public static Calendar parseCalendar (String dateString) throws Exception {
+    
+    ArgumentsInl.checkNotEmpty(
+      "Date String",
+      dateString,
+      ExceptionType.CODE_EXCEPTION);
     
     Date date = parseDate(dateString);
     

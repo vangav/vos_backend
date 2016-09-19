@@ -34,7 +34,7 @@ import java.util.UUID;
 
 import com.vangav.backend.dispatcher.Dispatcher;
 import com.vangav.backend.exceptions.VangavException;
-import com.vangav.backend.metrics.time.TimeOperationsInl;
+import com.vangav.backend.metrics.time.CalendarAndDateOperationsInl;
 import com.vangav.backend.play_framework.request.response.ResponseBody;
 
 /**
@@ -84,7 +84,8 @@ public class Request {
     String controllerName) throws Exception {
     
     this.startTime = System.currentTimeMillis();
-    this.startCalendar = TimeOperationsInl.unixTimeToCalendar(this.startTime);
+    this.startCalendar =
+      CalendarAndDateOperationsInl.getCalendarFromUnixTime(this.startTime);
     this.endTime = this.startTime;
     this.execTime = 0;
     
