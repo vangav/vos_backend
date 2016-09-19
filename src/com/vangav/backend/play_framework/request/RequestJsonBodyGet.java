@@ -98,7 +98,7 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
     
     try {
     
-      String[] strArr = query.get(key);
+      String[] strArr = this.splitStringParam(query.get(key)[0] );
       short[] shortArr = new short[strArr.length];
       
       for (int i = 0; i < strArr.length; i ++) {
@@ -154,7 +154,7 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
     
     try {
     
-      String[] strArr = query.get(key);
+      String[] strArr = this.splitStringParam(query.get(key)[0] );
       int[] intArr = new int[strArr.length];
       
       for (int i = 0; i < strArr.length; i ++) {
@@ -210,7 +210,7 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
     
     try {
     
-      String[] strArr = query.get(key);
+      String[] strArr = this.splitStringParam(query.get(key)[0] );
       long[] longArr = new long[strArr.length];
       
       for (int i = 0; i < strArr.length; i ++) {
@@ -266,7 +266,7 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
     
     try {
     
-      String[] strArr = query.get(key);
+      String[] strArr = this.splitStringParam(query.get(key)[0] );
       float[] floatArr = new float[strArr.length];
       
       for (int i = 0; i < strArr.length; i ++) {
@@ -322,7 +322,7 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
     
     try {
     
-      String[] strArr = query.get(key);
+      String[] strArr = this.splitStringParam(query.get(key)[0] );
       double[] doubleArr = new double[strArr.length];
       
       for (int i = 0; i < strArr.length; i ++) {
@@ -378,10 +378,30 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
     
     try {
     
-      return query.get(key);
+      return this.splitStringParam(query.get(key)[0] );
     } catch (Exception e) {
       
       return null;
+    }
+  }
+  
+  @JsonIgnore
+  private static final String kArrayParamSeparator = ",";
+  /**
+   * splitStringParam
+   * @param param
+   * @return splited GET array-param
+   * @throws Exception
+   */
+  @JsonIgnore
+  private String[] splitStringParam (String param) throws Exception {
+    
+    if (param == null) {
+      
+      return null;
+    } else {
+      
+      return param.split(kArrayParamSeparator);
     }
   }
   
