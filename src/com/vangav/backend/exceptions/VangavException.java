@@ -196,8 +196,7 @@ public abstract class VangavException extends RuntimeException {
     this.message = message;
     this.exceptionClass = exceptionClass;
     
-    StringBuffer stackTraceBuff =
-      new StringBuffer(this.message + System.lineSeparator() );
+    StringBuffer stackTraceBuff = new StringBuffer();
     
     for (StackTraceElement ste : Thread.currentThread().getStackTrace() ) {
 
@@ -217,8 +216,7 @@ public abstract class VangavException extends RuntimeException {
     this.message = "";
     this.exceptionClass = ExceptionClass.UNKNOWN_TYPE;
     
-    StringBuffer stackTraceBuff =
-      new StringBuffer(this.message + System.lineSeparator() );
+    StringBuffer stackTraceBuff = new StringBuffer();
     
     for (StackTraceElement ste : Thread.currentThread().getStackTrace() ) {
 
