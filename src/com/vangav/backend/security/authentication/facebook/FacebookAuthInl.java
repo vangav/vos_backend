@@ -114,6 +114,12 @@ public class FacebookAuthInl {
         + facebookAppId
         + "]",
         ExceptionClass.AUTHENTICATION);
+    } catch (BadRequestException bre) {
+      
+      throw bre;
+    } catch (CodeException ce) {
+      
+      throw ce;
     } catch (Exception e) {
       
       throw new CodeException(
