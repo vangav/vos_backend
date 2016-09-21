@@ -141,130 +141,150 @@ public class ParamValidatorInl {
     }
 
     switch (type) {
+      
+      case BOOLEAN:
+        validateBoolean(name, value);
+        break;
 
-    case SHORT:
-      validateShort(name, value);
-      break;
-    case INT:
-      validateInt(name, value);
-      break;
-    case LONG:
-      validateLong(name, value);
-      break;
-    case FLOAT:
-      validateFloat(name, value);
-      break;
-    case DOUBLE:
-      validateDouble(name, value);
-      break;
-
-    case LATITUDE:
-      validateLatitude(name, value);
-      break;
-    case LONGITUDE:
-      validateLongitude(name, value);
-      break;
-    case ALTITUDE:
-      validateAltitude(name, value);
-      break;
+      case SHORT:
+        validateShort(name, value);
+        break;
+      case INT:
+        validateInt(name, value);
+        break;
+      case LONG:
+        validateLong(name, value);
+        break;
+      case FLOAT:
+        validateFloat(name, value);
+        break;
+      case DOUBLE:
+        validateDouble(name, value);
+        break;
+  
+      case LATITUDE:
+        validateLatitude(name, value);
+        break;
+      case LONGITUDE:
+        validateLongitude(name, value);
+        break;
+      case ALTITUDE:
+        validateAltitude(name, value);
+        break;
+        
+      case ALPHA_NUMERIC:
+        validateAlphaNumeric(name, value);
+        break;
+      case ALPHA_NUMERIC_SPACE:
+        validateAlphaNumericSpace(name, value);
+        break;
+      case ALPHA_NUMERIC_DASH:
+        validateAlphaNumericDash(name, value);
+        break;
+      case ALPHA_NUMERIC_UNDERSCORE:
+        validateAlphaNumericUnderscore(name, value);
+        break;
+      case ALPHA_NUMERIC_SPACE_DASH:
+        validateAlphaNumericSpaceDash(name, value);
+        break;
+      case ALPHA_NUMERIC_SPACE_UNDERSCORE:
+        validateAlphaNumericSpaceUnderscore(name, value);
+        break;
+      case ALPHA_NUMERIC_DASH_UNDERSCORE:
+        validateAlphaNumericDashUnderscore(name, value);
+        break;
+      case ALPHA_NUMERIC_SPACE_DASH_UNDERSCORE:
+        validateAlphaNumericSpaceDashUnderscore(name, value);
+        break;
+      case NAME:
+        validateName(name, value);
+        break;
+      case USER_NAME:
+        validateUserName(name, value);
+        break;
+      case DATE:
+        validateDate(name, value);
+        break;
+      case UUID:
+        
+        validateUuid(name, value);
+        break;
+      case AUTH_CODE:
+        validateAuthCode(name, value);
+        break;
+      case ACCESS_TOKEN:
+        validateAccessToken(name, value);
+        break;
+      case REFRESH_TOKEN:
+        validateRefreshToken(name, value);
+        break;
+        
+      case EMAIL:
+        validateEmail(name, value);
+        break;
+      case PASSWORD:
+        validatePassword(name, value);
+        break;
+      case PHONE_NUMBER:
+        validatePhoneNumber(name, value);
+        break;
+        
+      case FB_ID:
+        validateFbId(name, value);
+        break;
+      case FB_ACCESS_TOKEN:
+        validateFbAccessToken(name, value);
+        break;
+        
+      case DEVICE_TOKEN:
+        validateDeviceToken(name, value);
+        break;
+      case ANDROID_DEVICE_TOKEN:
+        validateAndroidDeviceToken(name, value);
+        break;
+      case IOS_DEVICE_TOKEN:
+        validateIosDeviceToken(name, value);
+        break;
+        
+      case PHOTO:
+        validatePhoto(name, value);
+        break;
+      case CAPTION:
+        validateCaption(name, value);
+        break;
+      case CHAT_MSG:
+        validateChatMsg(name, value);
+        break;
+        
+      case TRACKING_ID:
+        validateTrackingId(name, value);
+        break;
+        
+      case NO_VALIDATION_TYPE:
+        break;
+        
+      default:
+        throw new BadRequestException(
+          "Invalid param ["
+          + name
+          + "]",
+          ExceptionClass.TYPE);
+    }
+  }
+  
+  /**
+   * validateBoolean
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateBoolean (
+    String name,
+    String value) throws Exception {
+    
+    if ((value.compareTo("true") != 0) && (value.compareTo("false") != 0) ) {
       
-    case ALPHA_NUMERIC:
-      validateAlphaNumeric(name, value);
-      break;
-    case ALPHA_NUMERIC_SPACE:
-      validateAlphaNumericSpace(name, value);
-      break;
-    case ALPHA_NUMERIC_DASH:
-      validateAlphaNumericDash(name, value);
-      break;
-    case ALPHA_NUMERIC_UNDERSCORE:
-      validateAlphaNumericUnderscore(name, value);
-      break;
-    case ALPHA_NUMERIC_SPACE_DASH:
-      validateAlphaNumericSpaceDash(name, value);
-      break;
-    case ALPHA_NUMERIC_SPACE_UNDERSCORE:
-      validateAlphaNumericSpaceUnderscore(name, value);
-      break;
-    case ALPHA_NUMERIC_DASH_UNDERSCORE:
-      validateAlphaNumericDashUnderscore(name, value);
-      break;
-    case ALPHA_NUMERIC_SPACE_DASH_UNDERSCORE:
-      validateAlphaNumericSpaceDashUnderscore(name, value);
-      break;
-    case NAME:
-      validateName(name, value);
-      break;
-    case USER_NAME:
-      validateUserName(name, value);
-      break;
-    case DATE:
-      validateDate(name, value);
-      break;
-    case UUID:
-      
-      validateUuid(name, value);
-      break;
-    case AUTH_CODE:
-      validateAuthCode(name, value);
-      break;
-    case ACCESS_TOKEN:
-      validateAccessToken(name, value);
-      break;
-    case REFRESH_TOKEN:
-      validateRefreshToken(name, value);
-      break;
-      
-    case EMAIL:
-      validateEmail(name, value);
-      break;
-    case PASSWORD:
-      validatePassword(name, value);
-      break;
-    case PHONE_NUMBER:
-      validatePhoneNumber(name, value);
-      break;
-      
-    case FB_ID:
-      validateFbId(name, value);
-      break;
-    case FB_ACCESS_TOKEN:
-      validateFbAccessToken(name, value);
-      break;
-      
-    case DEVICE_TOKEN:
-      validateDeviceToken(name, value);
-      break;
-    case ANDROID_DEVICE_TOKEN:
-      validateAndroidDeviceToken(name, value);
-      break;
-    case IOS_DEVICE_TOKEN:
-      validateIosDeviceToken(name, value);
-      break;
-      
-    case PHOTO:
-      validatePhoto(name, value);
-      break;
-    case CAPTION:
-      validateCaption(name, value);
-      break;
-    case CHAT_MSG:
-      validateChatMsg(name, value);
-      break;
-      
-    case TRACKING_ID:
-      validateTrackingId(name, value);
-      break;
-      
-    case NO_VALIDATION_TYPE:
-      break;
-      
-    default:
-      throw new BadRequestException(
-        "Invalid param ["
-        + name
-        + "]",
-        ExceptionClass.TYPE);
+      throwInvalidParam(name);
     }
   }
   

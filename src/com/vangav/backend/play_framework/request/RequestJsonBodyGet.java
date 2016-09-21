@@ -64,6 +64,62 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
   // add more methods as needed
   
   /**
+   * getBoolean
+   * @param key
+   * @param query
+   * @return boolean value corresponding to param key
+   * @throws Exception
+   */
+  @JsonIgnore
+  final protected boolean getBoolean (
+    String key,
+    Map<String, String[]> query) throws Exception {
+    
+    try {
+      
+      return Boolean.parseBoolean(query.get(key)[0] );
+    } catch (Exception e) {
+      
+      return false;
+    }
+  }
+  
+  /**
+   * getBooleanArray
+   * @param key
+   * @param query
+   * @return boolean array of values corresponding to param key
+   * @throws Exception
+   */
+  @JsonIgnore
+  final protected boolean[] getBooleanArray (
+    String key,
+    Map<String, String[]> query) throws Exception {
+    
+    try {
+    
+      String[] strArr = this.splitStringParam(query.get(key)[0] );
+      boolean[] booleanArr = new boolean[strArr.length];
+      
+      for (int i = 0; i < strArr.length; i ++) {
+        
+        try {
+          
+          booleanArr[i] = Boolean.parseBoolean(strArr[i] );
+        } catch (Exception e) {
+          
+          booleanArr[i] = false;
+        }
+      }
+      
+      return booleanArr;
+    } catch (Exception e) {
+      
+      return null;
+    }
+  }
+  
+  /**
    * getShort
    * @param name
    * @param query
@@ -412,7 +468,10 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
   static {
     
     kPrimitiveTypeToMethodName = new HashMap<String, Pair<String,String> >();
-    
+
+    kPrimitiveTypeToMethodName.put(
+      "boolean",
+      new Pair<String, String>("getBoolean", "getBooleanArray") );
     kPrimitiveTypeToMethodName.put(
       "short",
       new Pair<String, String>("getShort", "getShortArray") );

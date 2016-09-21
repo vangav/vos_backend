@@ -41,6 +41,8 @@ import com.vangav.backend.exceptions.VangavException.ExceptionClass;
  * */
 public enum ParamType {
 
+  BOOLEAN,
+  
   SHORT,
   INT,
   LONG,
@@ -98,6 +100,9 @@ public enum ParamType {
   public String getPrimitiveType () throws Exception {
     
     switch (this) {
+      
+      case BOOLEAN:
+        return "boolean";
       
       case SHORT:
         return "short";
