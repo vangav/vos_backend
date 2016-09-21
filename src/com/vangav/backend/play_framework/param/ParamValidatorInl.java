@@ -157,6 +157,7 @@ public class ParamValidatorInl {
     case DOUBLE:
       validateDouble(name, value);
       break;
+
     case LATITUDE:
       validateLatitude(name, value);
       break;
@@ -166,8 +167,30 @@ public class ParamValidatorInl {
     case ALTITUDE:
       validateAltitude(name, value);
       break;
+      
     case ALPHA_NUMERIC:
-      validateString(name, value);
+      validateAlphaNumeric(name, value);
+      break;
+    case ALPHA_NUMERIC_SPACE:
+      validateAlphaNumericSpace(name, value);
+      break;
+    case ALPHA_NUMERIC_DASH:
+      validateAlphaNumericDash(name, value);
+      break;
+    case ALPHA_NUMERIC_UNDERSCORE:
+      validateAlphaNumericUnderscore(name, value);
+      break;
+    case ALPHA_NUMERIC_SPACE_DASH:
+      validateAlphaNumericSpaceDash(name, value);
+      break;
+    case ALPHA_NUMERIC_SPACE_UNDERSCORE:
+      validateAlphaNumericSpaceUnderscore(name, value);
+      break;
+    case ALPHA_NUMERIC_DASH_UNDERSCORE:
+      validateAlphaNumericDashUnderscore(name, value);
+      break;
+    case ALPHA_NUMERIC_SPACE_DASH_UNDERSCORE:
+      validateAlphaNumericSpaceDashUnderscore(name, value);
       break;
     case NAME:
       validateName(name, value);
@@ -179,6 +202,7 @@ public class ParamValidatorInl {
       validateDate(name, value);
       break;
     case UUID:
+      
       validateUuid(name, value);
       break;
     case AUTH_CODE:
@@ -190,6 +214,7 @@ public class ParamValidatorInl {
     case REFRESH_TOKEN:
       validateRefreshToken(name, value);
       break;
+      
     case EMAIL:
       validateEmail(name, value);
       break;
@@ -199,12 +224,24 @@ public class ParamValidatorInl {
     case PHONE_NUMBER:
       validatePhoneNumber(name, value);
       break;
+      
     case FB_ID:
       validateFbId(name, value);
       break;
     case FB_ACCESS_TOKEN:
       validateFbAccessToken(name, value);
       break;
+      
+    case DEVICE_TOKEN:
+      validateDeviceToken(name, value);
+      break;
+    case ANDROID_DEVICE_TOKEN:
+      validateAndroidDeviceToken(name, value);
+      break;
+    case IOS_DEVICE_TOKEN:
+      validateIosDeviceToken(name, value);
+      break;
+      
     case PHOTO:
       validatePhoto(name, value);
       break;
@@ -214,9 +251,14 @@ public class ParamValidatorInl {
     case CHAT_MSG:
       validateChatMsg(name, value);
       break;
+      
     case TRACKING_ID:
       validateTrackingId(name, value);
       break;
+      
+    case NO_VALIDATION_TYPE:
+      break;
+      
     default:
       throw new BadRequestException(
         "Invalid param ["
@@ -422,12 +464,12 @@ public class ParamValidatorInl {
   private static final String kStringRegex = "^[a-zA-Z0-9]{1,}$";
   private static final Pattern kStringPattern = Pattern.compile(kStringRegex);
   /**
-   * validateString
+   * validateAphaNumeric
    * @param name
    * @param value
    * @throws Exception
    */
-  private static void validateString (
+  private static void validateAlphaNumeric (
     String name,
     String value) throws Exception {
 
@@ -435,6 +477,116 @@ public class ParamValidatorInl {
       
       throwInvalidParam(name);
     }
+  }
+  
+  /**
+   * validateAlphaNumericSpace
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateAlphaNumericSpace (
+    String name,
+    String value) throws Exception {
+    
+    value = value.replaceAll("\\s+","");
+    
+    validateAlphaNumeric(name, value);
+  }
+  
+  /**
+   * validateAlphaNumericDash
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateAlphaNumericDash (
+    String name,
+    String value) throws Exception {
+    
+    value = value.replaceAll("-","");
+    
+    validateAlphaNumeric(name, value);
+  }
+  
+  /**
+   * validateAlphaNumericUnderscore
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateAlphaNumericUnderscore (
+    String name,
+    String value) throws Exception {
+    
+    value = value.replaceAll("_","");
+    
+    validateAlphaNumeric(name, value);
+  }
+  
+  /**
+   * validateAlphaNumericSpaceDash
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateAlphaNumericSpaceDash (
+    String name,
+    String value) throws Exception {
+    
+    value = value.replaceAll("\\s+","");
+    value = value.replaceAll("-","");
+    
+    validateAlphaNumeric(name, value);
+  }
+  
+  /**
+   * validateAlphaNumericSpaceUnderscore
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateAlphaNumericSpaceUnderscore (
+    String name,
+    String value) throws Exception {
+    
+    value = value.replaceAll("\\s+","");
+    value = value.replaceAll("_","");
+    
+    validateAlphaNumeric(name, value);
+  }
+  
+  /**
+   * validateAlphaNumericDashUnderscore
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateAlphaNumericDashUnderscore (
+    String name,
+    String value) throws Exception {
+    
+    value = value.replaceAll("-","");
+    value = value.replaceAll("_","");
+    
+    validateAlphaNumeric(name, value);
+  }
+  
+  /**
+   * validateAlphaNumericSpaceDashUnderscore
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateAlphaNumericSpaceDashUnderscore (
+    String name,
+    String value) throws Exception {
+    
+    value = value.replaceAll("\\s+","");
+    value = value.replaceAll("-","");
+    value = value.replaceAll("_","");
+    
+    validateAlphaNumeric(name, value);
   }
 
 
@@ -703,6 +855,54 @@ public class ParamValidatorInl {
       
       throwInvalidParam(name);
     }
+  }
+  
+  /**
+   * validateDeviceToken
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateDeviceToken (
+    String name,
+    String value) throws Exception {
+    
+    try {
+      
+      validateAndroidDeviceToken(name, value);
+      
+      return;
+    } catch (Exception e) {
+      
+    }
+    
+    validateIosDeviceToken(name, value);
+  }
+  
+  /**
+   * validateAndroidDeviceToken
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateAndroidDeviceToken (
+    String name,
+    String value) throws Exception {
+
+    validateAlphaNumericDash(name, value);
+  }
+  
+  /**
+   * validateIosDeviceToken
+   * @param name
+   * @param value
+   * @throws Exception
+   */
+  private static void validateIosDeviceToken (
+    String name,
+    String value) throws Exception {
+
+    validateAlphaNumericDash(name, value);
   }
 
   // BASE 64 encoded

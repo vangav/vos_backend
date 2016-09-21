@@ -52,6 +52,13 @@ public enum ParamType {
   ALTITUDE,
 
   ALPHA_NUMERIC,
+  ALPHA_NUMERIC_SPACE,
+  ALPHA_NUMERIC_DASH,
+  ALPHA_NUMERIC_UNDERSCORE,
+  ALPHA_NUMERIC_SPACE_DASH,
+  ALPHA_NUMERIC_SPACE_UNDERSCORE,
+  ALPHA_NUMERIC_DASH_UNDERSCORE,
+  ALPHA_NUMERIC_SPACE_DASH_UNDERSCORE,
   NAME,
   USER_NAME,
   DATE,
@@ -67,12 +74,21 @@ public enum ParamType {
 
   FB_ID,
   FB_ACCESS_TOKEN,
+  
+  DEVICE_TOKEN,
+  ANDROID_DEVICE_TOKEN,
+  IOS_DEVICE_TOKEN,
 
   PHOTO,
   CAPTION,
   CHAT_MSG,
 
-  TRACKING_ID;
+  TRACKING_ID,
+  
+  /**
+   * NOTE: USE WITH EXTREME CAUTION
+   * */
+  NO_VALIDATION_TYPE;
   
   /**
    * getPrimitiveType
@@ -93,27 +109,54 @@ public enum ParamType {
         return "float";
       case DOUBLE:
         return "double";
+
       case LATITUDE:
       case LONGITUDE:
       case ALTITUDE:
         return "double";
+
       case ALPHA_NUMERIC:
+      case ALPHA_NUMERIC_SPACE:
+      case ALPHA_NUMERIC_DASH:
+      case ALPHA_NUMERIC_UNDERSCORE:
+      case ALPHA_NUMERIC_SPACE_DASH:
+      case ALPHA_NUMERIC_SPACE_UNDERSCORE:
+      case ALPHA_NUMERIC_DASH_UNDERSCORE:
+      case ALPHA_NUMERIC_SPACE_DASH_UNDERSCORE:
       case NAME:
       case USER_NAME:
       case DATE:
       case UUID:
+        return "String";
+
       case AUTH_CODE:
       case ACCESS_TOKEN:
       case REFRESH_TOKEN:
+        return "String";
+
       case EMAIL:
       case PASSWORD:
       case PHONE_NUMBER:
+        return "String";
+
       case FB_ID:
       case FB_ACCESS_TOKEN:
+        return "String";
+        
+      case DEVICE_TOKEN:
+      case ANDROID_DEVICE_TOKEN:
+      case IOS_DEVICE_TOKEN:
+        return "String";
+
       case PHOTO:
       case CAPTION:
       case CHAT_MSG:
+        return "String";
+
       case TRACKING_ID:
+        return "String";
+        
+      case NO_VALIDATION_TYPE:
         return "String";
 
       default:
