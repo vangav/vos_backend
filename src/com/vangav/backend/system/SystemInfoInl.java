@@ -28,6 +28,7 @@
 
 package com.vangav.backend.system;
 
+import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
@@ -127,9 +128,11 @@ public class SystemInfoInl {
     
     for (int i = 0; i < mac.length; i ++) {
     
-      sb.append(String.format("%02X%s",
-                              mac[i],
-                              (i < mac.length - 1) ? "-" : "") );
+      sb.append(
+        String.format(
+          "%02X%s",
+          mac[i],
+          (i < mac.length - 1) ? "-" : "") );
     }
     
     return sb.toString();
@@ -180,22 +183,133 @@ public class SystemInfoInl {
   }
   
   /**
-   * getTotalMemory
-   * @return total memory available for the JVM
+   * enum ByteMetric lists storage metric types (byte, kilobyte, megabyte, ...)
+   * */
+  public enum ByteMetric {
+    
+    BYTE,
+    KILO_BYTE,
+    MEGA_BYTE,
+    GIGA_BYTE,
+    TERA_BYTE,
+    PETA_BYTE,
+    EXA_BYTE,
+    ZETTA_BYTE,
+    YOTTA_BYTE;
+
+    private static final long kByteMetricConversionFactor = 1024;
+    private long convertFromBytes (long bytes) throws Exception {
+      
+      for (int i = 0; i < this.ordinal(); i ++) {
+        
+        bytes /= kByteMetricConversionFactor;
+      }
+      
+      return bytes;
+    }
+  }
+  
+  /**
+   * getTotalRam
+   * @return total RAM available for the JVM in bytes
    * @throws Exception
    */
-  public static long getTotalMemory () throws Exception {
+  public static long getTotalRam () throws Exception {
     
     return Runtime.getRuntime().totalMemory();
   }
   
   /**
-   * getFreeMemory
-   * @return free memory available for the JVM
+   * getTotalRam
+   * @param byteMetric
+   * @return total RAM available for the JVM
    * @throws Exception
    */
-  public static long getFreeMemory () throws Exception {
+  public static long getTotalRam (ByteMetric byteMetric) throws Exception {
+    
+    return byteMetric.convertFromBytes(Runtime.getRuntime().totalMemory() );
+  }
+  
+  /**
+   * getFreeRam
+   * @return free RAM available for the JVM in bytes
+   * @throws Exception
+   */
+  public static long getFreeRam () throws Exception {
     
     return Runtime.getRuntime().freeMemory();
+  }
+  
+  /**
+   * getFreeRam
+   * @return free RAM available for the JVM
+   * @throws Exception
+   */
+  public static long getFreeRam (ByteMetric byteMetric) throws Exception {
+    
+    return byteMetric.convertFromBytes(Runtime.getRuntime().freeMemory() );
+  }
+  
+  /**
+   * getTotalDisk
+   * @return total disk space in bytes
+   * @throws Exception
+   */
+  public static long getTotalDisk () throws Exception {
+    
+    return new File("/").getTotalSpace();
+  }
+  
+  /**
+   * getTotalDisk
+   * @param byteMetric
+   * @return total disk space
+   * @throws Exception
+   */
+  public static long getTotalDisk (ByteMetric byteMetric) throws Exception {
+    
+    return byteMetric.convertFromBytes(new File("/").getTotalSpace() );
+  }
+  
+  /**
+   * getFreeDisk
+   * @return free disk space in bytes
+   * @throws Exception
+   */
+  public static long getFreeDisk () throws Exception {
+    
+    return new File("/").getFreeSpace();
+  }
+  
+  /**
+   * getFreeDisk
+   * @param byteMetric
+   * @return free disk space
+   * @throws Exception
+   */
+  public static long getFreeDisk (ByteMetric byteMetric) throws Exception {
+    
+    return byteMetric.convertFromBytes(new File("/").getFreeSpace() );
+  }
+  
+  /**
+   * getUsableDisk
+   * @return usable disk space in bytes
+   * @throws Exception
+   */
+  public static long getUsableDisk () throws Exception {
+    
+    return new File("/").getUsableSpace();
+  }
+  
+  /**
+   * getUsableDisk
+   * @param byteMetric
+   * @return usable disk space
+   * @throws Exception
+   */
+  public static long getUsableDisk (ByteMetric byteMetric) throws Exception {
+    
+    return byteMetric.convertFromBytes(new File("/").getUsableSpace() );
   }
 }
