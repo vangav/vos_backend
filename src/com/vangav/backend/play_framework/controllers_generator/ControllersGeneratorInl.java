@@ -1053,9 +1053,7 @@ public class ControllersGeneratorInl {
           "controllers",
           nameLowerUnder) ) );
     
-    if (controllerJson.type.compareToIgnoreCase("GET") == 0 &&
-        controllerJson.request_params != null &&
-        controllerJson.request_params.length > 0) {
+    if (controllerJson.type.compareToIgnoreCase("GET") == 0) {
       
       stringBuffer.append(kRequestGetFirstImportFormat);
     }
@@ -1150,10 +1148,10 @@ public class ControllersGeneratorInl {
           tempStringBuffer.toString() ) );
     }
     
+    StringBuffer tempStringBuffer = new StringBuffer();
+    
     if (controllerJson.request_params != null &&
         controllerJson.request_params.length > 0) {
-      
-      StringBuffer tempStringBuffer = new StringBuffer();
       
       for (RequestParamJson requestParam : controllerJson.request_params) {
         
@@ -1167,14 +1165,14 @@ public class ControllersGeneratorInl {
             requestParam.type,
             requestParam.optionality) );
       }
-      
-      stringBuffer.append(
-        String.format(
-          kRequestValidateMethodFormat,
-          tempStringBuffer.toString() ) );
-      
-      stringBuffer.append(kRequestClassEndFormat);
     }
+    
+    stringBuffer.append(
+      String.format(
+        kRequestValidateMethodFormat,
+        tempStringBuffer.toString() ) );
+    
+    stringBuffer.append(kRequestClassEndFormat);
     
     
     String requestClass = stringBuffer.toString();
