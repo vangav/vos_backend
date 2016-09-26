@@ -63,7 +63,7 @@ public abstract class RestResponseJson {
    * @throws Exception
    */
   @JsonIgnore
-  final protected RestResponseJson fromJsonString (
+  final public RestResponseJson fromJsonString (
     String json) throws Exception {
     
     ObjectMapper objectMapper = new ObjectMapper();
@@ -79,7 +79,7 @@ public abstract class RestResponseJson {
    * @throws Exception
    */
   @JsonIgnore
-  final protected String getAsString () throws Exception {
+  final public String getAsString () throws Exception {
     
     ObjectMapper objectMapper = new ObjectMapper();
     
