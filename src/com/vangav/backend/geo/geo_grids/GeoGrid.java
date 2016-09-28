@@ -28,6 +28,8 @@
 
 package com.vangav.backend.geo.geo_grids;
 
+import java.util.ArrayList;
+
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
 import com.vangav.backend.exceptions.VangavException.ExceptionType;
@@ -377,6 +379,148 @@ public class GeoGrid {
       }
       
       resultJ = 0;
+    }
+    
+    return result;
+  }
+  
+  /**
+   * getSurroundingGridsLevels
+   * @param startLevel
+   * @param endLevel
+   * @param includeOutOfRangeGrids
+   * @return uses getSurroundingGridsLevel method to get all levels inclusive
+   *           between param startLevel and param endLevel
+   * @throws Exception
+   */
+  public ArrayList<ArrayList<GeoGrid> > getSurroundingGridsLevels (
+    int startLevel,
+    int endLevel,
+    boolean includeOutOfRangeGrids) throws Exception {
+    
+    ArgumentsInl.checkIntGreaterThanOrEqual(
+      "surrounding GeoGrids start level",
+      startLevel,
+      0,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArgumentsInl.checkIntGreaterThanOrEqual(
+      "surrounding GeoGrids end level",
+      endLevel,
+      startLevel,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<ArrayList<GeoGrid> > result =
+      new ArrayList<ArrayList<GeoGrid> >();
+    
+    for (int i = startLevel; i <= endLevel; i ++) {
+      
+      result.add(this.getSurroundingGridsLevel(i, includeOutOfRangeGrids) );
+    }
+    
+    return result;
+  }
+  
+  /**
+   * getSurroundingGridsLevel
+   * @param level
+   * @param includeOutOfRangeGrids, if true adds invalid grids in place of out
+   *          of range grids, if false the return result doesn't include those
+   *          out of range grids
+   * @return a list of the GroGrids on param level, for example the
+   *           following grid system where this grid id = 13:
+   *           1   2   3   4   5
+   *           6   7   8   9  10
+   *          11  12  13  14  15
+   *          16  17  18  19  20
+   *          21  22  23  24  25
+   *          would return:
+   *          level = 0:
+   *            13
+   *          level = 1:
+   *            7, 8, 9, 12, 14, 17, 18, 19
+   *          level = 2:
+   *            1, 2, 3, 4, 5, 6, 10, 11, 15, 16, 20, 21, 22, 23, 24, 25
+   * @throws Exception
+   */
+  public ArrayList<GeoGrid> getSurroundingGridsLevel (
+    int level,
+    boolean includeOutOfRangeGrids) throws Exception {
+    
+    ArgumentsInl.checkIntGreaterThanOrEqual(
+      "surrounding GeoGrids level",
+      level,
+      0,
+      ExceptionType.CODE_EXCEPTION);
+    
+    long startI = (long)(this.geoGridId.getId() -
+                         (this.geoGridsConfig.getGridsHorizontalCount() *
+                          level) );
+    long endI = (long)(this.geoGridId.getId() +
+                       (this.geoGridsConfig.getGridsHorizontalCount() *
+                        level) );
+    long iIncrement = (long)(this.geoGridsConfig.getGridsHorizontalCount() );
+    
+    ArrayList<GeoGrid> result = new ArrayList<GeoGrid>();
+    
+    GeoGrid currGeoGrid;
+    
+    for (long i = startI; i <= endI; i += iIncrement) {
+      
+      // top or bottom row?
+      if (i == startI || i == endI) {
+        
+        // get the whole row
+        for (long j = (long)(level * -1L); j <= level; j ++) {
+          
+          currGeoGrid =
+            new GeoGrid(this.geoGridsConfig, new GeoGridId(i + j) );
+          
+          // this grid? add it
+          if (this.equal(currGeoGrid) == true) {
+            
+            result.add(currGeoGrid);
+          }
+          // within the range of this grid config? add it
+          else if (this.geoGridsConfig.withinRange(
+                       currGeoGrid.centerGeoCoordinates) == true) {
+            
+            result.add(currGeoGrid);
+          }
+          // out of range grid?
+          else if (includeOutOfRangeGrids == true) {
+            
+            result.add(new GeoGrid() );
+          }
+        }
+      }
+      // middle rows?
+      else {
+        
+        // only get the first and last grids in this row
+        for (long j = (long)(level * -1L); j <= level; j += (level * 2) ) {
+          
+          currGeoGrid =
+            new GeoGrid(this.geoGridsConfig, new GeoGridId(i + j) );
+          
+          // this grid? add it
+          if (this.equal(currGeoGrid) == true) {
+            
+            result.add(currGeoGrid);
+          }
+          // within the range of this grid config? add it
+          else if (this.geoGridsConfig.withinRange(
+                       currGeoGrid.centerGeoCoordinates) == true) {
+            
+            result.add(currGeoGrid);
+          }
+          // out of range grid?
+          else if (includeOutOfRangeGrids == true) {
+            
+            result.add(new GeoGrid() );
+          }
+        }
+      }
     }
     
     return result;
