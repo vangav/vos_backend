@@ -250,11 +250,11 @@ public class GeoGridsConfig {
         ExceptionClass.ARGUMENT);
     }
     
-    if (this.gridDimension.smallerThan(this.mapWidth) ||
-        this.gridDimension.smallerThan(this.mapLength) ) {
+    if (this.gridDimension.greaterThan(this.mapWidth) ||
+        this.gridDimension.greaterThan(this.mapLength) ) {
       
       throw new CodeException(
-        "Grid dimension can't be smaller than map width or map length. "
+        "Grid dimension can't be greater than map width or map length. "
         + "Grid dimension ["
         + this.gridDimension.toString()
         + "]. Map width ["
