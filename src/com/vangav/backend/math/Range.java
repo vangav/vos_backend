@@ -65,7 +65,7 @@ public class Range {
    */
   public Range (Number min, Number max) throws Exception {
     
-    if (min == null || this.max == null) {
+    if (min == null || max == null) {
       
       this.min = min;
       this.max = max;
