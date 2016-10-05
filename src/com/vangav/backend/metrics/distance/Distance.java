@@ -53,15 +53,6 @@ public class Distance {
   public Distance (
     double value,
     DistanceUnitType unit) {
-    
-    if (value < 0.0) {
-      
-      throw new CodeException(
-        "Distance value ["
-        + value
-        + "] can't be negative",
-        ExceptionClass.INVALID);
-    }
    
     this.value = value;
     this.unit = unit;
@@ -72,15 +63,6 @@ public class Distance {
    * @param value
    */
   public void setValue (double value) {
-    
-    if (value < 0.0) {
-      
-      throw new CodeException(
-        "Distance value ["
-        + value
-        + "] can't be negative",
-        ExceptionClass.INVALID);
-    }
     
     this.value = value;
   }
