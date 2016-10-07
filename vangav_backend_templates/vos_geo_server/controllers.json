@@ -1,0 +1,110 @@
+{
+  "java_package": "com.vangav",
+  "check_source": false,
+  "throttle": false,
+  "validate_param": true,
+  "authenticate": false,
+  "after_response": false,
+  "after_processing": false,
+  "default_operations": false,
+  "notifications": false,
+  "analysis": false,
+  "logging": false,
+  
+  "controllers": [
+
+    # ReverseGeoCode
+    {
+      "is_preset": false,
+      "name": "ReverseGeoCode",
+      "type": "GET",
+      "request_params": [
+        {
+          "name": "latitude",
+          "type": "LATITUDE",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        },
+        {
+          "name": "longitude",
+          "type": "LONGITUDE",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        }
+      ],
+      "response_type": "JSON",
+      "response_params": [
+        {
+          "name": "latitude",
+          "type": "double",
+          "is_array": false
+        },
+        {
+          "name": "longitude",
+          "type": "double",
+          "is_array": false
+        },
+        {
+          "name": "geo_hash",
+          "type": "String",
+          "is_array": false
+        },
+        {
+          "name": "city",
+          "type": "String",
+          "is_array": false
+        },
+        {
+          "name": "major_city",
+          "type": "String",
+          "is_array": false
+        },
+        {
+          "name": "country_code",
+          "type": "String",
+          "is_array": false
+        },
+        {
+          "name": "country",
+          "type": "String",
+          "is_array": false
+        },
+        {
+          "name": "continent_code",
+          "type": "String",
+          "is_array": false
+        },
+        {
+          "name": "continent",
+          "type": "String",
+          "is_array": false
+        }
+      ]
+    },
+
+    # TopContinents
+    {
+      "is_preset": false,
+      "name": "TopContinents",
+      "type": "GET",
+      "request_params": [
+      ],
+      "response_type": "JSON",
+      "response_params": [
+      ]
+    },
+
+    # TopCountries
+    {
+      "is_preset": false,
+      "name": "TopCountries",
+      "type": "GET",
+      "request_params": [
+      ],
+      "response_type": "JSON",
+      "response_params": [
+      ]
+    }
+
+  ]
+}

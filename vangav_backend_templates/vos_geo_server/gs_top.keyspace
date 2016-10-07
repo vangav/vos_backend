@@ -1,0 +1,127 @@
+{
+  "description": "gs_top is the keysapce for all the tables keeping track of the most queried continents, countries and major cities",
+  "name": "gs_top",
+  "replications": [
+    {
+      "description": "used for dev environment",
+      "name": "dev",
+      "replication": "'class': 'SimpleStrategy', 'replication_factor' : 1"
+    }
+  ],
+  "tables": [
+
+    # name_index
+    {
+      "description": "This table keeps track of all the queried continents and countries. index_key values are continents and countries.",
+      "name": "name_index",
+      "columns": [
+        {
+          "name": "index_key",
+          "type": "varchar"
+        },
+        {
+          "name": "index_values",
+          "type": "set<varchar>"
+        }
+      ],
+      "partition_keys": [
+        "index_key"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "used to init the table's index_keys upon first run",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO gs_top.name_index (index_key) VALUES (:index_key);"
+        },
+        {
+          "description": "updates the index_values for an index_key",
+          "name": "update",
+          "prepared_statement": "UPDATE gs_top.name_index SET index_values = index_values + :index_values WHERE index_key = :index_key;"
+        },
+        {
+          "description": "selects an index_key's index_values",
+          "name": "select",
+          "prepared_statement": "SELECT index_values FROM gs_top.name_index WHERE index_key = :index_key;"
+        }
+      ]
+    },
+    
+    # continents
+    {
+      "description": "this table keeps track of how many times each continent was queried",
+      "name": "continents",
+      "columns": [
+        {
+          "name": "continent",
+          "type": "varchar"
+        },
+        {
+          "name": "counter_value",
+          "type": "counter"
+        }
+      ],
+      "partition_keys": [
+        "continent"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "updates the counter_value of a continent every time it gets queried",
+          "name": "update_counter_value",
+          "prepared_statement": "UPDATE gs_top.continents SET counter_value = counter_value + 1 WHERE continent = :continent;"
+        },
+        {
+          "description": "selects a continent's counter_value",
+          "name": "select_counter_value",
+          "prepared_statement": "SELECT counter_value FROM gs_top.continents WHERE continent = :continent;"
+        }
+      ]
+    },
+
+    # countries
+    {
+      "description": "this table keeps track of how many times each country was queried",
+      "name": "countries",
+      "columns": [
+        {
+          "name": "country",
+          "type": "varchar"
+        },
+        {
+          "name": "counter_value",
+          "type": "counter"
+        }
+      ],
+      "partition_keys": [
+        "country"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "updates the counter_value of a country every time it gets queried",
+          "name": "update_counter_value",
+          "prepared_statement": "UPDATE gs_top.countries SET counter_value = counter_value + 1 WHERE country = :country;"
+        },
+        {
+          "description": "selects a country's counter_value",
+          "name": "select_counter_value",
+          "prepared_statement": "SELECT counter_value FROM gs_top.countries WHERE country = :country;"
+        }
+      ]
+    }
+
+  ]
+}
