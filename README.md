@@ -4,10 +4,6 @@
 [vangav.com](http://www.vangav.com/)
 
 Vangav Backend is an open source license-free backend.
-It relies on:
-- [play framework](http://www.playframework.com) for web framework
-- [Apache Cassandra](http://www.cassandra.apache.org/) for database
-- [datastax](http://www.datastax.com/) for JAVA cassandra driver
 
 When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes car of adding the majority of the code a service's need including while maintaining the highest performance and design quality we know how to do.
 
@@ -44,6 +40,12 @@ Third party communities for Vangav Backend
 - play framework
 - cassandra
 - datastax
+
+# Dependencies
+
+- [play framework](http://www.playframework.com) for web framework
+- [Apache Cassandra](http://www.cassandra.apache.org/) for database
+- [datastax](http://www.datastax.com/) for JAVA cassandra driver
 
 
 Have fun!
