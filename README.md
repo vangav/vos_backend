@@ -4,7 +4,10 @@
 [vangav.com](http://www.vangav.com/)
 
 Vangav Backend is an open source license-free backend.
-- **90+% less code:** Instead of writing so much code, Vangav Backend has built-in service code generator. Just write a minimal JSON definition of a new service's entry points (controllers) and database's tables/queries. Then using one command line `java -jar backend_generator.jar new my_new_service_name` Vangav Backend takes care of generating 90+% of the code that needs to be writen for that new service.
+- **90+% less code:** Instead of writing so much code, Vangav Backend has built-in service code generator. Just write a minimal JSON definition of a new service's entry points (controllers) and database's tables/queries. Then using one command line `java -jar backend_generator.jar new my_new_service_name` Vangav Backend takes care of generating 90+% of the code needed for that new service.
+- **10-% of hello-world-logic:** The generated service adds TODOs where the user should add the service's logic. Usually few method calls with few if-conditions and/or loops.
+- **eclipse-ready:** The generated service's JAVA project is ready for import in eclipse.
+- **post-generation-config:** 
 
 When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes car of adding the majority of the code a service's need including while maintaining the highest performance and design quality we know how to do.
 
@@ -32,9 +35,9 @@ When using Vangav Backend, one doesn't start by writing code. Instead the servic
 
 # Community
 
-[Facebook Group: Vangav Open Source - Backend](fb.com/groups/575834775932682/)
+[Facebook Group: Vangav Open Source - Backend](http://www.fb.com/groups/575834775932682/)
 
-[Facebook Page: Vangav](fb.com/vangav.f)
+[Facebook Page: Vangav](http://www.fb.com/vangav.f)
 
 
 Third party communities for Vangav Backend
