@@ -85,10 +85,10 @@ When using Vangav Backend, one doesn't start by writing code. Instead the servic
 1. open an internet browser page and type **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`** - this returns an empty response
 
 ### Writing the service's logic code
-1. open eclipse and **import** vos_geo_server project
-2. double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
-3. under package **com.vangav.vos_geo_server** add a new package **common**
-4. in the created package in (3) add a new class **InitIndexInl** with the following implementation:
++ open eclipse and **import** vos_geo_server project
++ double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
++ under package **com.vangav.vos_geo_server** add a new package **common**
++ in the created package in (3) add a new class **InitIndexInl** with the following implementation:
 ```java
 package com.vangav.vos_geo_server.common;
 
@@ -126,7 +126,7 @@ public class InitIndexInl {
   }
 }
 ```
-5. in **default_package/Global.java** after the following line
++ in **default_package/Global.java** after the following line
 ```java
 Countries.loadTable();
 ```
@@ -135,7 +135,7 @@ add the following lines
 ReverseGeoCoding.load();
 InitIndexInl.initIndex();
 ```
-6. open class **HandlerReverseGeoCode.java**, method **processRequest** should be as follows
++ open class **HandlerReverseGeoCode.java**, method **processRequest** should be as follows
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
@@ -171,7 +171,7 @@ InitIndexInl.initIndex();
       reverseGeoCode.getContinent() );
   }
 ```
-7. then add the following method in class **HandlerReverseGeoCode.java**
++ then add the following method in class **HandlerReverseGeoCode.java**
 ```java
   @Override
   protected void afterProcessing (
