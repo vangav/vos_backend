@@ -28,7 +28,7 @@ Vangav Backend is an open source license-free backend.
 
 When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes care of adding the majority of the code a service needs, while maintaining the highest performance and design quality we know how to do.
 
-# Content
+# Contents
 
 + [apache-cassandra-2.1.2](https://github.com/vangav/vos_backend/tree/master/apache-cassandra-2.1.2) is the cassandra's version used by Vangav Backend. Services generated using Vangav Backend automatically use this cassandra on dev mode. For prod mode refer to the "Deployement" section below.
 + [data](https://github.com/vangav/vos_backend/tree/master/data) hold's the data files included with Vangav Backend for optional use like the data for reverse geo coding.
@@ -43,11 +43,16 @@ When using Vangav Backend, one doesn't start by writing code. Instead the servic
 
 # System Requirements
 
-- unix operating systems (e.g.: mac os, ubuntu, etc ...)
++ unix operating system (e.g.: mac os, ubuntu, etc ...)
++ JAVA 8
++ python 2.6 (only for using cassandra)
 
-- JAVA 8
+# Prerequisites
 
-# Quick Start
++ Basic JAVA
++ Basic Cassandra/CQL (optional for using cassandra)
+
+# Quick Start 
 
 1. create a workspace directory (e.g.: my_services)
 
