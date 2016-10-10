@@ -52,21 +52,30 @@ When using Vangav Backend, one doesn't start by writing code. Instead the servic
 + Basic JAVA
 + Basic Cassandra/CQL (optional for using cassandra)
 
-# Quick Start 
+# Quick Start Example (vos_geo_server)
 
-1. create a workspace directory (e.g.: my_services)
+### Init
+1. create a workspace directory "**my_services**" - this is the directory to contain both of vos_backend and all the services generated using it
+2. download this (**vos_backend.zip**) project inside the workspace directory and unzip it
+3. **rename** downloaded vos_backend-master to vos_backend
+### Generate a new service
+4. create a new directory "**my_services/vos_geo_server**"
+5. **copy** **controllers.json** and **gs_top.keyspace** from vos_backend/vangav_backend_templates/vos_geo_server/ to the directory vos_geo_server created in (4)
+6. open a terminal session and **cd** to my_services/vos_backend/tools/bin
+7. execute the command **`java -jar backend_generator.jar new vos_geo_server`**
+8. enter **`Y`** for using the config directory
+9. enter **`Y`** to generate an eclipse-compatible project
+10. enter **`N`** for generating a worker service
+### Init the service's cassandra database
+11. **cd** to my_services/vos_geo_server/cassandra/cql/
+12. execute the command **`./_start_cassandra.sh`** - to start cassandra
+13. **cd** to my_services/vos_geo_server/cassandra/cql/drop_and_create/
+14. execute the command **`./_execute_cql.sh gs_top_dev.cql`**
+### 
 
-2. download this (vos_backend.zip) project inside the workspace and unzip it
-
-3. rename downloaded vos_backend-master to vos_backend
-
-4. optional - in the workspace directory add a new directory (e.g.: my_new_service) and put the new servie's config files inside that directory
-
-5. from the terminal cd to vos_backend/tools_bin
-
-6. type > java -jar backend_generator.jar new my_new_service
-
-7. in case of using the optional config files for controllers, the generated backend will have a Handler class for each controller where the controller's logic should be implemented
+11. cd to my_services/vos_geo_server
+12. execute the command **`./_run.sh`**
+13. open an internet browser page and type 
 
 # Community
 
