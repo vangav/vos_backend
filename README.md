@@ -10,7 +10,7 @@ Vangav Backend is an open source license-free backend.
 - **post-generation-config:** Modify the service's database config (add/remove/edit) then run one command line `java -jar cassandra_keyspaces_updater.jar`.
 - **built-in dispatcher/worker:** With dispatchable queries and push notifications.
 - **built-in utilities:**
-..* compression algorithms
+...- compression algorithms
 ..* content formatting/checking/generation (CQL, JAVA, Phriction, ...)
 ..* data structures and algorithms
 ..* exceptions
