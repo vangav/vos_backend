@@ -126,6 +126,86 @@ public class InitIndexInl {
   }
 }
 ```
+5. in **default_package/Global.java** after the following line
+```java
+Countries.loadTable();
+```
+add the following lines
+```java
+ReverseGeoCoding.load();
+InitIndexInl.initIndex();
+```
+6. open class **HandlerReverseGeoCode.java**, method **processRequest** should be as follows
+```java
+  @Override
+  protected void processRequest (final Request request) throws Exception {
+
+    // use the following request Object to process the request and set
+    //   the response to be returned
+    RequestReverseGeoCode requestReverseGeoCode =
+      (RequestReverseGeoCode)request.getRequestJsonBody();
+    
+    // get geo hash
+    String geoHash =
+      GeoHash.geoHashStringWithCharacterPrecision(
+        requestReverseGeoCode.latitude,
+        requestReverseGeoCode.longitude,
+        12);
+    
+    // get reverse geo code
+    ReverseGeoCode reverseGeoCode =
+      ReverseGeoCoding.i().getReverseGeoCode(
+        requestReverseGeoCode.latitude,
+        requestReverseGeoCode.longitude);
+    
+    // set response
+    ((ResponseReverseGeoCode)request.getResponseBody() ).set(
+      requestReverseGeoCode.latitude,
+      requestReverseGeoCode.longitude,
+      geoHash,
+      reverseGeoCode.getCity(),
+      reverseGeoCode.getMajorCity(),
+      reverseGeoCode.getCountryCode(),
+      reverseGeoCode.getCountry(),
+      reverseGeoCode.getContinentCode(),
+      reverseGeoCode.getContinent() );
+  }
+```
+7. then add the following method in class **HandlerReverseGeoCode.java**
+```java
+  @Override
+  protected void afterProcessing (
+    final Request request) throws Exception {
+
+    // get request Object
+    RequestReverseGeoCode requestReverseGeoCode =
+      (RequestReverseGeoCode)request.getRequestJsonBody();
+    
+    // get reverse geo code
+    ReverseGeoCode reverseGeoCode =
+      ReverseGeoCoding.i().getReverseGeoCode(
+        requestReverseGeoCode.latitude,
+        requestReverseGeoCode.longitude);
+    
+    // update continents index
+    NameIndex.i().executeAsyncUpdate(
+      new HashSet<String>(Arrays.asList(reverseGeoCode.getContinent() ) ),
+      InitIndexInl.kContinentsIndexKey);
+    
+    // update countries index
+    NameIndex.i().executeAsyncUpdate(
+      new HashSet<String>(Arrays.asList(reverseGeoCode.getCountry() ) ),
+      InitIndexInl.kCountriesIndexKey);
+    
+    // update continents counter's value
+    Continents.i().executeAsyncUpdateCounterValue(
+      reverseGeoCode.getContinent() );
+    
+    // update countries counter's value
+    Countries.i().executeAsyncUpdateCounterValue(
+      reverseGeoCode.getCountry() );
+  }
+```
 
 # Community
 
