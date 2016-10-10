@@ -60,25 +60,29 @@ When using Vangav Backend, one doesn't start by writing code. Instead the servic
 3. **rename** downloaded vos_backend-master to vos_backend
 
 ### Generate a new service
-4. create a new directory "**my_services/vos_geo_server**"
-5. **copy** **controllers.json** and **gs_top.keyspace** from vos_backend/vangav_backend_templates/vos_geo_server/ to the directory vos_geo_server created in (4)
-6. open a terminal session and **cd** to my_services/vos_backend/tools/bin
-7. execute the command **`java -jar backend_generator.jar new vos_geo_server`**
-8. enter **`Y`** for using the config directory
-9. enter **`Y`** to generate an eclipse-compatible project
-10. enter **`N`** for generating a worker service
+1. create a new directory "**my_services/vos_geo_server**"
+2. **copy** **controllers.json** and **gs_top.keyspace** from vos_backend/vangav_backend_templates/vos_geo_server/ to the directory vos_geo_server created in (1)
+3. open a terminal session and **cd** to my_services/vos_backend/tools/bin
+4. execute the command **`java -jar backend_generator.jar new vos_geo_server`**
+5. enter **`Y`** for using the config directory
+6. enter **`Y`** to generate an eclipse-compatible project
+7. enter **`N`** for generating a worker service
 
 ### Init the service's cassandra database
-11. **cd** to my_services/vos_geo_server/cassandra/cql/
-12. execute the command **`./_start_cassandra.sh`** - to start cassandra
-13. **cd** to my_services/vos_geo_server/cassandra/cql/drop_and_create/
-14. execute the command **`./_execute_cql.sh gs_top_dev.cql`**
+1. **cd** to my_services/vos_geo_server/cassandra/cql/
+2. execute the command **`./_start_cassandra.sh`** - to start cassandra
+3. **cd** to my_services/vos_geo_server/cassandra/cql/drop_and_create/
+4. execute the command **`./_execute_cql.sh gs_top_dev.cql`**
 
 ### Init service's data
+1. **copy** the contents of the directory my_services/vos_backend/data/geo/reverse_geo_coding/ to my_services/vos_geo_server/conf/data/geo/reverse_geo_coding/
 
-11. cd to my_services/vos_geo_server
-12. execute the command **`./_run.sh`**
-13. open an internet browser page and type 
+### Start the service
+1. **cd** to my_services/vos_geo_server
+2. execute the command **`./_run.sh`**
+
+### Preliminary testing
+1. open an internet browser page and type **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`**
 
 # Community
 
