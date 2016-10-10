@@ -3,7 +3,7 @@
 
 [vangav.com](http://www.vangav.com/)
 
-Vangav Backend is an open source license-free backend.
+Vangav Backend is an open source license-free backend. vos stands for (vangav open source)
 + **90+% less code:** Instead of writing so much code, Vangav Backend has built-in service code generator. Just write a minimal JSON definition of a new service's entry points (controllers) and database's tables/queries. Then using one command line `java -jar backend_generator.jar new my_new_service_name` Vangav Backend takes care of generating 90+% of the code needed for that new service.
 + **10-% of hello-world-logic:** The generated service adds TODOs where the user should add the service's logic. Usually few method calls with few if-conditions and/or loops.
 + **eclipse-ready:** The generated service's JAVA project is ready for import in eclipse.
@@ -82,7 +82,50 @@ When using Vangav Backend, one doesn't start by writing code. Instead the servic
 2. execute the command **`./_run.sh`**
 
 ### Preliminary testing
-1. open an internet browser page and type **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`**
+1. open an internet browser page and type **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`** - this returns an empty response
+
+### Writing the service's logic code
+1. open eclipse and **import** vos_geo_server project
+2. double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
+3. under package **com.vangav.vos_geo_server** add a new package **common**
+4. in the created package in (3) add a new class **InitIndexInl** with the following implementation:
+```java
+package com.vangav.vos_geo_server.common;
+
+import com.datastax.driver.core.ResultSet;
+import com.vangav.vos_geo_server.cassandra_keyspaces.gs_top.NameIndex;
+
+/**
+ * InitIndexInl has inline static method to init Cassandra's gs_top.index
+ *   table by inserting index_key values (continents and countries)
+ * */
+public class InitIndexInl {
+
+  public static final String kContinentsIndexKey = "continents";
+  public static final String kCountriesIndexKey = "countries";
+  /**
+   * initIndex
+   * does first-run initialization for gs_top.index table
+   * @throws Exception
+   */
+  public static void initIndex () throws Exception {
+    
+    ResultSet resultSet = NameIndex.i().executeSyncSelect(kContinentsIndexKey);
+    
+    if (resultSet.isExhausted() == true) {
+      
+      NameIndex.i().executeSyncInsert(kContinentsIndexKey);
+    }
+    
+    resultSet = NameIndex.i().executeSyncSelect(kCountriesIndexKey);
+    
+    if (resultSet.isExhausted() == true) {
+      
+      NameIndex.i().executeSyncInsert(kCountriesIndexKey);
+    }
+  }
+}
+```
 
 # Community
 
