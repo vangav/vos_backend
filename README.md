@@ -366,6 +366,8 @@ open an internet browser page and type any of
 + **`http://localhost:9000/top_continents`**
 + **`http://localhost:9000/top_countries`**
 
+**Voila, few minutes, few lines of code and the geo server's backend is up and running. That's Vangav Backend.**
+
 # Community
 
 [Facebook Group: Vangav Open Source - Backend](http://www.fb.com/groups/575834775932682/)
