@@ -10,23 +10,23 @@ Vangav Backend is an open source license-free backend.
 + **post-generation-config:** Modify the service's database config (add/remove/edit) then run one command line `java -jar cassandra_keyspaces_updater.jar`.
 + **built-in dispatcher/worker:** With dispatchable queries and push notifications.
 + **key built-in utilities:**
-  + compression algorithms
-  + content formatting/checking/generation (CQL, JAVA, Phriction, ...)
-  + data structures and algorithms
-  + exceptions
-  + file-operations
-  + geo (geo grids, lite reverse geo coding and geo hashing)
-  + IDs (sequential ids, twitter snow flake and uuid operations)
-  + math/geometry
-  + metrics (distance/time)
-  + **email clients** (JAVA and mailgun), **REST client** (sync/async)
-  + **public apis** (Facebook Graph API and car2go public API)
-  + **push notifications** (android and ios)
-  + **authentication** (Facebook, Google, OAuth2 and transaction tokens) **cryptography** (asymmetric, password hashing and two-way encryption)
-  + build-in configurable threadpools and latch threads
+  + [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression) algorithms
+  + [content](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content) formatting/checking/generation (CQL, JAVA, Phriction, ...)
+  + [data structures and algorithms](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/data_structures_and_algorithms)
+  + [exceptions](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/exceptions)
+  + [file-operations](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/files)
+  + [geo](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo) (geo grids, lite reverse geo coding and geo hashing)
+  + [IDs](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/ids) (sequential ids, twitter snow flake and uuid operations)
+  + [math/geometry](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)
+  + [metrics](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/metrics) (distance/time)
+  + **[email clients](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)** (JAVA and mailgun), **[REST client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)** (sync/async)
+  + **[public apis](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis)** (Facebook Graph API and car2go public API)
+  + **[push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications)** (android and ios)
+  + **[authentication](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** (Facebook, Google, OAuth2 and transaction tokens) **[cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** (asymmetric, password hashing and two-way encryption)
+  + build-in configurable [threadpools](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/thread_pool) and latch threads
   + **Vangav M** deeply integrated
 
-When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes car of adding the majority of the code a service's need including while maintaining the highest performance and design quality we know how to do.
+When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes care of adding the majority of the code a service needs, while maintaining the highest performance and design quality we know how to do.
 
 # Prerequisites
 
