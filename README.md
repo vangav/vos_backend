@@ -54,6 +54,8 @@ When using Vangav Backend, one doesn't start by writing code. Instead the servic
 
 # Quick Start Example (vos_geo_server)
 
+vos_geo_server is a service that takes a latitude/longitude request and returns the reverse geo code (continent, country, major city, city). It also keeps track of queried continents/countries to also provide lists of sorted top queried continents/countries.
+
 ### Init
 1. create a workspace directory "**my_services**" - this is the directory to contain both of vos_backend and all the services generated using it
 2. download this (**vos_backend.zip**) project inside the workspace directory and unzip it
