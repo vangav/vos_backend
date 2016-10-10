@@ -4,27 +4,27 @@
 [vangav.com](http://www.vangav.com/)
 
 Vangav Backend is an open source license-free backend.
-- **90+% less code:** Instead of writing so much code, Vangav Backend has built-in service code generator. Just write a minimal JSON definition of a new service's entry points (controllers) and database's tables/queries. Then using one command line `java -jar backend_generator.jar new my_new_service_name` Vangav Backend takes care of generating 90+% of the code needed for that new service.
-- **10-% of hello-world-logic:** The generated service adds TODOs where the user should add the service's logic. Usually few method calls with few if-conditions and/or loops.
-- **eclipse-ready:** The generated service's JAVA project is ready for import in eclipse.
-- **post-generation-config:** Modify the service's database config (add/remove/edit) then run one command line `java -jar cassandra_keyspaces_updater.jar`.
-- **built-in dispatcher/worker:** With dispatchable queries and push notifications.
-- **built-in utilities:**
-⋅⋅* compression algorithms.
-..* content formatting/checking/generation (CQL, JAVA, Phriction, ...)
-..* data structures and algorithms
-..* exceptions
-..* file-operations
-..* geo (geo grids, lite reverse geo coding and geo hashing)
-..* IDs (sequential ids, twitter snow flake and uuid operations)
-..* math/geometry
-..* metrics (distance/time)
-..* **email clients** (JAVA and mailgun), **REST client** (sync/async)
-..* **public apis** (Facebook Graph API and car2go public API)
-..* **push notifications** (android and ios)
-..* **authentication** (Facebook, Google, OAuth2 and transaction tokens) **cryptography** (asymmetric, password hashing and two-way encryption)
-..* build-in configurable threadpools and latch threads
-..* **Vangav M** deeply integrated
++ **90+% less code:** Instead of writing so much code, Vangav Backend has built-in service code generator. Just write a minimal JSON definition of a new service's entry points (controllers) and database's tables/queries. Then using one command line `java -jar backend_generator.jar new my_new_service_name` Vangav Backend takes care of generating 90+% of the code needed for that new service.
++ **10-% of hello-world-logic:** The generated service adds TODOs where the user should add the service's logic. Usually few method calls with few if-conditions and/or loops.
++ **eclipse-ready:** The generated service's JAVA project is ready for import in eclipse.
++ **post-generation-config:** Modify the service's database config (add/remove/edit) then run one command line `java -jar cassandra_keyspaces_updater.jar`.
++ **built-in dispatcher/worker:** With dispatchable queries and push notifications.
++ **built-in utilities:**
+⋅⋅+ compression algorithms
+..+ content formatting/checking/generation (CQL, JAVA, Phriction, ...)
+..+ data structures and algorithms
+..+ exceptions
+..+ file-operations
+..+ geo (geo grids, lite reverse geo coding and geo hashing)
+..+ IDs (sequential ids, twitter snow flake and uuid operations)
+..+ math/geometry
+..+ metrics (distance/time)
+..+ **email clients** (JAVA and mailgun), **REST client** (sync/async)
+..+ **public apis** (Facebook Graph API and car2go public API)
+..+ **push notifications** (android and ios)
+..+ **authentication** (Facebook, Google, OAuth2 and transaction tokens) **cryptography** (asymmetric, password hashing and two-way encryption)
+..+ build-in configurable threadpools and latch threads
+..+ **Vangav M** deeply integrated
 
 When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes car of adding the majority of the code a service's need including while maintaining the highest performance and design quality we know how to do.
 
