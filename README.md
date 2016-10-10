@@ -11,7 +11,7 @@ Vangav Backend is an open source license-free backend.
 + **built-in dispatcher/worker:** With dispatchable queries and push notifications.
 + **key built-in utilities:**
 
-⋅⋅⋅+ compression algorithms
+⋅⋅⋅ compression algorithms
 
 ⋅⋅+ content formatting/checking/generation (CQL, JAVA, Phriction, ...)
 ⋅⋅+ data structures and algorithms
