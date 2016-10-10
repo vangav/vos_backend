@@ -206,6 +206,165 @@ InitIndexInl.initIndex();
       reverseGeoCode.getCountry() );
   }
 ```
++ under package **top_continents** add class **ResponseTopContinent.java** with the following code
+```java
+package com.vangav.vos_geo_server.controllers.top_continents;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+/**
+ * ResponseTopContinent represents the response's top-continent
+ * */
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ResponseTopContinent {
+  
+  /**
+   * Constructor ResponseTopContinent
+   * @param continentName
+   * @param continentCount
+   * @return new ResponseTopContinent Object
+   * @throws Exception
+   */
+  @JsonIgnore
+  public ResponseTopContinent (
+    String continentName,
+    long continentCount) throws Exception {
+    
+    this.continent_name = continentName;
+    this.continent_count = continentCount;
+  }
+
+  @JsonProperty
+  public String continent_name;
+  @JsonProperty
+  public long continent_count;
+}
+```
++ modify class **ResponseTopContinents.java** to be as follows:
+```java
+package com.vangav.vos_geo_server.controllers.top_continents;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.vangav.backend.play_framework.request.response.ResponseBodyJson;
+
+/**
+ * ResponseTopContinents represents the response's structure
+ * */
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class ResponseTopContinents extends ResponseBodyJson {
+
+  @Override
+  @JsonIgnore
+  protected String getName () throws Exception {
+
+    return "TopContinents";
+  }
+
+  @Override
+  @JsonIgnore
+  protected ResponseTopContinents getThis () throws Exception {
+
+    return this;
+  }
+
+  @JsonProperty
+  public ResponseTopContinent[] top_continents;
+  
+  @JsonIgnore
+  public void set (ResponseTopContinent[] top_continents) {
+    
+    this.top_continents = top_continents;
+  }
+}
+```
++ in class **HandlerTopContinents.java** method **processRequest** should be as follows:
+```java
+  @Override
+  protected void processRequest (final Request request) throws Exception {
+    
+    // select continents from gs_top.index
+    ResultSet resultSet =
+      NameIndex.i().executeSyncSelect(InitIndexInl.kContinentsIndexKey);
+    
+    // no continents queried before?
+    if (resultSet.isExhausted() == true) {
+      
+      ((ResponseTopContinents)request.getResponseBody() ).set(
+        new ResponseTopContinent[0] );
+      
+      return;
+    }
+    
+    // extract continents index
+    Set<String> continentsIndex =
+      resultSet.one().getSet(
+        NameIndex.kIndexValuesColumnName,
+        String.class);
+    
+    // init top continents
+    ArrayList<Pair<String, Long> > topContinents =
+      new ArrayList<Pair<String, Long> >();
+    
+    // for each continent
+    for (String continent : continentsIndex) {
+      
+      // select continent's counter-value
+      resultSet = Continents.i().executeSyncSelectCounterValue(continent);
+      
+      // no data? skip
+      if (resultSet.isExhausted() == true) {
+        
+        continue;
+      }
+      
+      // store continent name-counter pair
+      topContinents.add(
+        new Pair<String, Long>(
+          continent,
+          resultSet.one().getLong(Continents.kCounterValueColumnName) ) );
+    }
+    
+    // sort results ascending
+    Collections.sort(topContinents, new Comparator<Pair<String, Long> > () {
+
+      @Override
+      public int compare (Pair<String, Long> x, Pair<String, Long> y) {
+
+        return Long.compare(x.getSecond(), y.getSecond() );
+      }
+    } );
+    
+    // reverse sorted results to put them in a descending order
+    Collections.reverse(topContinents);
+    
+    // fill response array
+    
+    ResponseTopContinent[] responseArray =
+      new ResponseTopContinent[topContinents.size() ];
+    
+    for (int i = 0; i < topContinents.size(); i ++) {
+      
+      responseArray[i] =
+        new ResponseTopContinent(
+          topContinents.get(i).getFirst(),
+          topContinents.get(i).getSecond() );
+    }
+    
+    // set response
+    ((ResponseTopContinents)request.getResponseBody() ).set(responseArray);
+  }
+```
++ repeat the last 3 steps for countries
+
+### Try it out
+open an internet browser page and type any of
++ **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`** - play around with the latitude and longitude values
++ **`http://localhost:9000/top_continents`**
++ **`http://localhost:9000/top_countries`**
 
 # Community
 
