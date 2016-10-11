@@ -3,7 +3,7 @@
 
 [vangav.com](http://www.vangav.com/)
 
-Vangav Backend is an open source license-free backend. vos stands for (vangav open source)
+Vangav Backend is an open source (license-free) backend. vos stands for (vangav open source).
 + **90+% less code:** Instead of writing so much code, Vangav Backend has built-in service code generator. Just write a minimal JSON definition of a new service's entry points (controllers) and database's tables/queries. Then using one command line `java -jar backend_generator.jar new my_new_service_name` Vangav Backend takes care of generating 90+% of the code needed for that new service.
 + **10-% of hello-world-logic:** The generated service adds TODOs where the user should add the service's logic. Usually few method calls with few if-conditions and/or loops.
 + **eclipse-ready:** The generated service's JAVA project is ready for import in eclipse.
@@ -388,5 +388,8 @@ Third party communities for Vangav Backend
 - [Apache Cassandra](http://www.cassandra.apache.org/) for database
 - [datastax](http://www.datastax.com/) for JAVA cassandra driver
 
+# Hassle-Free
+
+Vangav Backend is license-free because we know that starting a startup or developing a new service is already mission-impossible. You already got more than enough to worry about, Vangav Backend doesn't want to be one of those things you worry about. Keep going, never give up.
 
 Have fun!
