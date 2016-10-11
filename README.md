@@ -3,7 +3,12 @@
 
 [vangav.com](http://www.vangav.com/)
 
-Vangav Backend is an open source (license-free) backend. vos stands for (vangav open source).
+Vangav Backend is an open source (license-free) backend. vos (in vos_backend) stands for (vangav open source).
+
+Vangav Backend can be used to generate REST services. When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes care of adding the majority of the code a service needs, while maintaining the highest performance and design quality we know how to do.
+
+Vangav Backend's can also be used as a commons library, so to utilize it built-in utilities (listed below) for any project.
+
 + **90+% less code:** Instead of writing so much code, Vangav Backend has built-in service code generator. Just write a minimal JSON definition of a new service's entry points (controllers) and database's tables/queries. Then using one command line `java -jar backend_generator.jar new my_new_service_name` Vangav Backend takes care of generating 90+% of the code needed for that new service.
 + **10-% of hello-world-logic:** The generated service adds TODOs where the user should add the service's logic. Usually few method calls with few if-conditions and/or loops.
 + **eclipse-ready:** The generated service's JAVA project is ready for import in eclipse.
@@ -25,8 +30,6 @@ Vangav Backend is an open source (license-free) backend. vos stands for (vangav 
   + **[authentication](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** (Facebook, Google, OAuth2 and transaction tokens) **[cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** (asymmetric, password hashing and two-way encryption)
   + build-in configurable [threadpools](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/thread_pool) and latch threads
   + **Vangav M** deeply integrated
-
-When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes care of adding the majority of the code a service needs, while maintaining the highest performance and design quality we know how to do.
 
 # Contents
 
@@ -50,6 +53,7 @@ When using Vangav Backend, one doesn't start by writing code. Instead the servic
 # Prerequisites
 
 + Basic JAVA
++ Basic Play Framework (optional for using Vangav Backend to build services)
 + Basic Cassandra/CQL (optional for using cassandra)
 
 # Quick Start Example (vos_geo_server)
@@ -381,11 +385,12 @@ Third party communities for Vangav Backend
 - cassandra
 - datastax
 
-> Tag your question online (e.g.: stack overflow, etc ...) with #vangav_backend to easier find questions/answers online.
+> Tag your question online (e.g.: stack overflow, etc ...) with **#vangav_backend** to easier find questions/answers online.
 
 # Dependencies
 
 > These dependencies are already included in Vangav Backend. That's just FYI.
+
 - [play framework](http://www.playframework.com) for web framework
 - [Apache Cassandra](http://www.cassandra.apache.org/) for database
 - [datastax](http://www.datastax.com/) for JAVA cassandra driver
