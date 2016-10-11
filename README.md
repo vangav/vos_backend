@@ -390,6 +390,7 @@ Third party communities for Vangav Backend
 
 # Hassle-Free
 
-Vangav Backend is license-free because we know that starting a startup or developing a new service is already mission-impossible. You already got more than enough to worry about, Vangav Backend doesn't want to be one of those things you worry about. Keep going, never give up.
+Vangav Backend is license-free because we know that starting a startup or developing a new service is already mission-impossible. You already got more than enough to worry about, Vangav Backend doesn't want to be one of those things you worry about.
+> "Keep going, never give up".
 
 Have fun!
