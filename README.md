@@ -368,7 +368,7 @@ open an internet browser page and type any of
 + **`http://localhost:9000/top_continents`**
 + **`http://localhost:9000/top_countries`**
 
-**Voila, few minutes, few lines of code and the geo server's backend is up and running. That's Vangav Backend.**
+> **Voila, few minutes, few lines of code and the geo server's backend is up and running. That's Vangav Backend.**
 
 # Community
 
@@ -376,14 +376,16 @@ open an internet browser page and type any of
 
 [Facebook Page: Vangav](http://www.fb.com/vangav.f)
 
-
 Third party communities for Vangav Backend
 - play framework
 - cassandra
 - datastax
 
+> Tag your question online (e.g.: stack overflow, etc ...) with #vangav_backend to easier find questions/answers online.
+
 # Dependencies
 
+> These dependencies are already included in Vangav Backend. That's just FYI.
 - [play framework](http://www.playframework.com) for web framework
 - [Apache Cassandra](http://www.cassandra.apache.org/) for database
 - [datastax](http://www.datastax.com/) for JAVA cassandra driver
