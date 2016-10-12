@@ -62,6 +62,8 @@ Vangav Backend is an open source (license-free) backend. vos (in vos_backend) st
 
 vos_geo_server is a service that takes a latitude/longitude request and returns the reverse geo code (continent, country, major city, city). It also keeps track of queried continents/countries to also provide lists of sorted top queried continents/countries.
 
+> Check out a finished version of this service at **https://github.com/vangav/vos_geo_server**
+
 ### Init
 1. create a workspace directory "**my_services**" - this is the directory to contain both of vos_backend and all the services generated using it
 2. download this (**vos_backend.zip**) project inside the workspace directory and unzip it
@@ -91,6 +93,9 @@ vos_geo_server is a service that takes a latitude/longitude request and returns 
 
 ### Preliminary testing
 1. open an internet browser page and type **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`** - this returns an empty response
+
+### Stop the service
+1. in the terminal session where you started the service press **`control + d`**
 
 ### Writing the service's logic code
 + open eclipse and **import** vos_geo_server project
@@ -369,16 +374,25 @@ public class ResponseTopContinents extends ResponseBodyJson {
 + repeat the last 3 steps for countries
 
 ### Try it out
-open an internet browser page and type any of
-+ **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`** - play around with the latitude and longitude values
-+ **`http://localhost:9000/top_continents`**
-+ **`http://localhost:9000/top_countries`**
++ start the service as explained above then open an internet browser page and type any of
+  + **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`** - play around with the latitude and longitude values
+  + **`http://localhost:9000/top_continents`**
+  + **`http://localhost:9000/top_countries`**
++ stop the service as explained above
 
 > **Voila, few minutes, few lines of code and the geo server's backend is up and running. That's Vangav Backend.**
 
 # Generated REST Service Structure
 
+> This section uses the vos_geo_server example, yet it's the same structure for all REST services generated using Vangav Backend.
 
+### Scripts
+
++ [_run.sh](https://github.com/vangav/vos_geo_server/blob/master/_run.sh) runs the service in dev mode.
++ [_clean.sh](https://github.com/vangav/vos_geo_server/blob/master/_clean.sh) cleans the service's build.
++ [_compile.sh](https://github.com/vangav/vos_geo_server/blob/master/_compile.sh) compiles the service.
++ [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) run the service in debug mode. Debugging the code can happen in eclipse as explained later.
++ [_dist.sh](https://github.com/vangav/vos_geo_server/blob/master/_dist.sh) generates a production executable for the service to deploy it on the production server(s).
 
 # REST Service Config Structure
 
