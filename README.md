@@ -7,9 +7,9 @@
 
 Vangav Backend is an open source (license-free) backend. vos (in vos_backend) stands for (vangav open source).
 
-Vangav Backend can be used to generate REST services. When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes care of adding the majority of the code a service needs, while maintaining the highest performance and design quality we know how to do.
+**As a REST service generator.** Vangav Backend can be used to generate REST services. When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes care of adding the majority of the code a service needs, while maintaining the highest performance and design quality we know how to do.
 
-Vangav Backend's can also be used as a commons library, so to utilize it built-in utilities (listed below) for any project.
+**As a commons lib.** Vangav Backend's can also be used as a commons library, so to utilize it built-in utilities (listed below) for any project.
 
 + **90+% less code:** Instead of writing so much code, Vangav Backend has built-in service code generator. Just write a minimal JSON definition of a new service's entry points (controllers) and database's tables/queries. Then using one command line `java -jar backend_generator.jar new my_new_service_name` Vangav Backend takes care of generating 90+% of the code needed for that new service.
 + **10-% of hello-world-logic:** The generated service adds TODOs where the user should add the service's logic. Usually few method calls with few if-conditions and/or loops.
@@ -31,7 +31,7 @@ Vangav Backend's can also be used as a commons library, so to utilize it built-i
   + **[push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications)** (android and ios)
   + **[authentication](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** (Facebook, Google, OAuth2 and transaction tokens) **[cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** (asymmetric, password hashing and two-way encryption)
   + build-in configurable [threadpools](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/thread_pool) and latch threads
-  + **Vangav M** deeply integrated
+  + **[Vangav M](http://www.vangav.com/)** deeply integrated
 
 # Contents
 
@@ -375,6 +375,58 @@ open an internet browser page and type any of
 + **`http://localhost:9000/top_countries`**
 
 > **Voila, few minutes, few lines of code and the geo server's backend is up and running. That's Vangav Backend.**
+
+# Generated REST Service Structure
+
+
+
+# REST Service Config Structure
+
+When using Vangav Backend to generate a REST service, adding config files is optional but highly recommended as it saves the majority of the cost needed to implement the REST service. Config consists of one mandatory **controllers.json** file and zero-to-many database config files **keyspace_name.keyspace** (one file per database keyspace).
+
+## controllers.json structure
+
+Template:
+
+```json
+{
+  "java_package": "",
+  "check_source": false,
+  "throttle": false,
+  "validate_param": true,
+  "authenticate": true,
+  "after_response": true,
+  "after_processing": true,
+  "default_operations": false,
+  "notifications": true,
+  "analysis": false,
+  "logging": false,
+
+  "controllers": [
+    {
+      "is_preset": false,
+      "name": "",
+      "type": "POST",
+      "request_params": [
+        {
+          "name": "",
+          "type": "",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        }
+      ],
+      "response_type": "JSON",
+      "response_params": [
+        {
+          "name": "",
+          "type": "",
+          "is_array": false
+        }
+      ]
+    }
+  ]
+}
+```
 
 # Community
 
