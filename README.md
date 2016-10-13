@@ -410,10 +410,10 @@ The conf directory contains all the configuration files needed by the service du
   + [facebook_graph_api_edge_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/facebook_graph_api_edge_properties.prop) contains the properties that controls how to fetch Facebook Graph API's edges. In the current state of Vangav Backend, requesting an edges fetches one page only; however all the tools needed to fetch more pages are provided and can be used externally.
   + [java_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/java_email_properties.prop) contains the properties needed to use the JAVA email utility.
   + [mail_gun_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/mail_gun_email_properties.prop) contains the properties needed to use the mailgun email utility.
-  + []()
-  + []()
-  + []()
-  + []()
+  + [param_validator_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/param_validator_properties.prop) contains properties that controls how some of a request's params get validated.
+  + [request_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/request_properties.prop). For each request a Vangav Backend Service receives, there are sequential steps that the request's processing can go through. Those steps can be switched on/off from this properties file.
+  + [response_error_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/response_error_properties.prop). In case there's a BAD_REQUEST or an INTERNAL_SERVER_ERROR, Vangav Backend's Services return a JSON response containing the problem's details. This properties file controls which item(s) of the problem's details gets sent to the client making the failed request.
+  + [thread_pool_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/thread_pool_properties.prop)
 
 # REST Service Config Structure
 
