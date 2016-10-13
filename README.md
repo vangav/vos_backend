@@ -101,7 +101,7 @@ vos_geo_server is a service that takes a latitude/longitude request and returns 
 + open eclipse and **import** vos_geo_server project
 + double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
 + under package **com.vangav.vos_geo_server** add a new package **common**
-+ in the created package in (3) add a new class **InitIndexInl** with the following implementation:
++ in the created package in the previous step add a new class **InitIndexInl** with the following implementation:
 ```java
 package com.vangav.vos_geo_server.common;
 
@@ -388,11 +388,32 @@ public class ResponseTopContinents extends ResponseBodyJson {
 
 ### Scripts
 
+The following scripts are generated for every Vangav Backend Service.
+
 + [_run.sh](https://github.com/vangav/vos_geo_server/blob/master/_run.sh) runs the service in dev mode.
 + [_clean.sh](https://github.com/vangav/vos_geo_server/blob/master/_clean.sh) cleans the service's build.
 + [_compile.sh](https://github.com/vangav/vos_geo_server/blob/master/_compile.sh) compiles the service.
 + [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) run the service in debug mode. Debugging the code can happen in eclipse as explained later.
 + [_dist.sh](https://github.com/vangav/vos_geo_server/blob/master/_dist.sh) generates a production executable for the service to deploy it on the production server(s).
+
+### [Conf](https://github.com/vangav/vos_geo_server/tree/master/conf)
+
+The conf directory contains all the configuration files needed by the service during run-time.
+
++ [routes](https://github.com/vangav/vos_geo_server/blob/master/conf/routes) and [application.conf](https://github.com/vangav/vos_geo_server/blob/master/conf/application.conf) are used by play framework to define the servie's entry points and the service's configuration respectively.
+
++ [prop](https://github.com/vangav/vos_backend/tree/master/prop) contains all the service's properties files, some of these files gets added (and set) for a Vangav Backend generated service. Add more properties files as needed by copying them from Vangav Backend to your service then optionally set its properties' values.
+  + [android_notification_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/android_notification_properties.prop) contains the properties needed to use the Android push notifications utility.
+  + [apple_notification_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/apple_notification_properties.prop) contains the properties needed to use the iOS push notifications utility.
+  + [cassandra_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/cassandra_properties.prop) contains the properties needed to use Cassandra. Like Cassandra's deployment topology, retries, consistency levels, etc...
+  + [dispatcher_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/dispatcher_properties.prop) defines the worker-services deployment topology in order to use the service's dispatcher.
+  + [facebook_graph_api_edge_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/facebook_graph_api_edge_properties.prop) contains the properties that controls how to fetch Facebook Graph API's edges. In the current state of Vangav Backend, requesting an edges fetches one page only; however all the tools needed to fetch more pages are provided and can be used externally.
+  + [java_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/java_email_properties.prop) contains the properties needed to use the JAVA email utility.
+  + [mail_gun_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/mail_gun_email_properties.prop) contains the properties needed to use the mailgun email utility.
+  + []()
+  + []()
+  + []()
+  + []()
 
 # REST Service Config Structure
 
