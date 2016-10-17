@@ -488,7 +488,17 @@ The conf directory contains all the configuration files needed by the service du
   
 ### [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater)
 
-+ During
++ During the development of a new service as the database evolves, it's becomes complicated and expensive to continuously update all of:
+  + JAVA clients
+  + CQL scripts
+  + phriction-wiki
++ To solve this problem [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater) is provided and can be used as follows:
+  1. open a terminal and **cd** to [vos_geo_server/generator_config/](https://github.com/vangav/vos_geo_server/tree/master/generator_config)
+  2. add/remove/edit .keyspace files as needed
+  3. **cd** to [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater)
+  4. execute the command **`java -jar cassandra_keyspaces_updater.jar	`**
+  5. confirm by entering **`Y`**
++ Check out [cassandra_updater_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/cassandra_updater/cassandra_updater_properties.prop) and only edit it if needed (usually never needed).
 
 # REST Service Config Structure
 
