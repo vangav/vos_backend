@@ -443,7 +443,7 @@ public class ResponseTopContinents extends ResponseBodyJson {
 
 > This section uses the vos_geo_server example, yet it's the same structure for all REST services generated using Vangav Backend.
 
-### Scripts
+### [scripts](https://github.com/vangav/vos_geo_server)
 
 The following scripts are generated for every Vangav Backend Service.
 
@@ -453,7 +453,7 @@ The following scripts are generated for every Vangav Backend Service.
 + [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) run the service in debug mode. Debugging the code can happen in eclipse as explained later.
 + [_dist.sh](https://github.com/vangav/vos_geo_server/blob/master/_dist.sh) generates a production executable for the service to deploy it on the production server(s).
 
-### [Conf](https://github.com/vangav/vos_geo_server/tree/master/conf)
+### [conf](https://github.com/vangav/vos_geo_server/tree/master/conf)
 
 The conf directory contains all the configuration files needed by the service during run-time.
 
@@ -470,7 +470,25 @@ The conf directory contains all the configuration files needed by the service du
   + [param_validator_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/param_validator_properties.prop) contains properties that controls how some of a request's params get validated.
   + [request_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/request_properties.prop). For each request a Vangav Backend Service receives, there are sequential steps that the request's processing can go through. Those steps can be switched on/off from this properties file.
   + [response_error_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/response_error_properties.prop). In case there's a BAD_REQUEST or an INTERNAL_SERVER_ERROR, Vangav Backend's Services return a JSON response containing the problem's details. This properties file controls which item(s) of the problem's details gets sent to the client making the failed request.
-  + [thread_pool_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/thread_pool_properties.prop)
+  + [thread_pool_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/thread_pool_properties.prop) can define the size of each thread pool used by Vangav Backend. Properties of this file are disabled by default as Vangav Backend **dynamically** sets values for this properties file depending on the machine on which the service is running on. The values being dynamically set are to the best of our knowledge optimal based on testing and on what LinkedIn does on their own backend. This properties file is provided to give users the option to set their own values.
+  
+### [cassandra/phriction](https://github.com/vangav/vos_geo_server/tree/master/cassandra/phriction)
+
++ phriction is the wiki tool of [phabricator](https://secure.phabricator.com/book/phabricator/article/installation_guide/)
++ this directory has a `keyspace_name.phriction` file per database's keyspace hace a phriction-styled documentation of the keyspace, paste the contents of these files into a phriction's page to have an up-to-date wiki for your database.
+
+### [cassandra/cql](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql)
+
++ CQL (Cassandra Query Language) is the equivalent of SQL for Cassandra.
++ Scripts [_start_cassandra.sh](https://github.com/vangav/vos_geo_server/blob/master/cassandra/cql/_start_cassandra.sh) and [_cassandra_status.sh](https://github.com/vangav/vos_geo_server/blob/master/cassandra/cql/_cassandra_status.sh) are used to start Cassandra and check its status respectively.
++ In order to init/update/delete the database the scripts in each of the following directories are used. Cassandra has to be already running to be able to run these scripts. The **`_execute_cql.sh`** script in each of those directories takes the .cql file as an argument to execute it.
+  + [create_if_doesnot_exist](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/create_if_doesnot_exist) has script(s) per-keyspace to create the keyspace and its table(s) if they don't already exsist. Used primarily to update Cassandra on keyspace/table levels.
+  + [drop](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/drop) has script(s) per-keyspace to drop a keyspace and its tables. Used primarily to clear a dev machine after testing.
+  + [drop_and_create](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/drop_and_create) has script(s) per-keyspace to drop (if already exsists) and create the keyspace and its table(s). Used primarily to initialize the keyspaces and their tables, beware that it overwrites any keyspaces with the same name.
+  
+### [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater)
+
++ During
 
 # REST Service Config Structure
 
