@@ -113,7 +113,7 @@ vos_calculate_sum is a service that takes two floats (a and b) request and retur
 ### Stop the service
 1. in the terminal session where you started the service press **`control + d`**
 
-> **Voila, few minutes, few lines of code and the calculate_sum's backend is up and running. That's Vangav Backend.**
+> **Voila, it took a simple json file [controllers.json](https://github.com/vangav/vos_calculate_sum/blob/master/generator_config/controllers.json), one command line, few lines of code and the calculate_sum's backend is up and running in just few minutes. That's Vangav Backend.**
 
 # Intermediate Example (vos_geo_server)
 
