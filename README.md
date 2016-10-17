@@ -521,6 +521,24 @@ The conf directory contains all the configuration files needed by the service du
 + [Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java) extends play framework's GlobalSettings to override some functionalities like `beforeStart`, `onStart`, `onStop`, etc ...
   + `beforeStart` is used by Vangav Backend to load properties, connect to cassandra and prepare cassandra's perpared statements.
   + `onStop` is used by Vangav Backend to shutdown the thread pools and disconnect from cassandra
++ [views](https://github.com/vangav/vos_geo_server/tree/master/app/views) is created by play framework to keep the service's html pages
++ [controllers](https://github.com/vangav/vos_geo_server/tree/master/app/controllers) is created by play framework. Not used by Vangav Backend and to be left as is.
+
+### [app/com/vangav/vos_geo_server/cassandra_keyspaces/](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/cassandra_keyspaces)
+
++ This directory contains all the generated database clients for cassandra's tables, where each keyspace is represented by a directory and each keyspace's table is represented by a class.
+
++ Each table's class like [Continents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java) has the following structure:
+  + Lines [41-72]: starts with a block comment listing the table's structure and prepared statements
+  + Lines [73-173]: is used by Vangav Backend to initialize the table and prepare its prepared statements
+  + Then for each of the table's prepared statements the following five methods are provided
+    + **`getQuery`** returns the raw Query Object to use it however you like.
+    + **`getQueryDispatchable`** returns a dispatchable version of the query to be added to the service's worker dispatcher. e.g.: `request.getDispatcher().addDispatchMessage(getQueryDispatchable() );`.
+    + **`getBoundStatement`** returns a the query's BoundStatement. Usually used for:
+      1. Add it to a BatchStatement
+      2. Execute multiple BoundStatements synchronously since it's faster than executing those statements sequentially. Since internally all these statements get executed asynchronously.
+    + **`executeAsync`** executes the query asynchronously and returns a ResultSetFuture Object which holds the future result of executing the query.
+    + **`executeSync`** is a blocking method that executes the query synchronously then returns a ResultSet Object containing the result of executing the query.
 
 # REST Service Config Structure
 
