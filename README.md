@@ -58,6 +58,11 @@ Vangav Backend is an open source (license-free) backend. vos (in vos_backend) st
 + Basic Play Framework (optional for using Vangav Backend to build services)
 + Basic Cassandra/CQL (optional for using cassandra)
 
+# Using Vangav Backend as a commons lib
+
++ Download **vos_backend.jar** from https://github.com/vangav/vos_backend/tree/master/dist and add it to your project's dependencies.
++ For some of the built-in utilities (e.g.: [email clients](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks), [push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications), etc ...) more libraries need to be added to your project's dependencies; those libraries can be found at https://github.com/vangav/vos_backend/tree/master/lib
+
 # Quick Start Example (vos_calculate_sum)
 
 vos_calculate_sum is a service that takes two floats (a and b) request and returns a double (c) response representing the summation of a and b.
