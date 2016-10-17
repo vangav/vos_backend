@@ -1,0 +1,46 @@
+{
+  "java_package": "com.vangav",
+  "check_source": false,
+  "throttle": false,
+  "validate_param": true,
+  "authenticate": false,
+  "after_response": false,
+  "after_processing": false,
+  "default_operations": false,
+  "notifications": false,
+  "analysis": false,
+  "logging": false,
+  
+  "controllers": [
+
+    # CalculateSum
+    {
+      "is_preset": false,
+      "name": "CalculateSum",
+      "type": "GET",
+      "request_params": [
+        {
+          "name": "a",
+          "type": "FLOAT",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        },
+        {
+          "name": "b",
+          "type": "FLOAT",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        }
+      ],
+      "response_type": "JSON",
+      "response_params": [
+        {
+          "name": "c",
+          "type": "double",
+          "is_array": false
+        }
+      ]
+    }
+
+  ]
+}
