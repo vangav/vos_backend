@@ -58,7 +58,59 @@ Vangav Backend is an open source (license-free) backend. vos (in vos_backend) st
 + Basic Play Framework (optional for using Vangav Backend to build services)
 + Basic Cassandra/CQL (optional for using cassandra)
 
-# Quick Start Example (vos_geo_server)
+# Quick Start Example (vos_calculate_sum)
+
+vos_calculate_sum is a service that takes two floats (a and b) request and returns a double (c) response representing the summation of a and b.
+
+> Check out a finished version of this service at **https://github.com/vangav/vos_calculate_sum**
+
+### Init
+1. create a workspace directory "**my_services**" - this is the directory to contain both of vos_backend and all the services generated using it
+2. download this (**vos_backend.zip**) project inside the workspace directory and unzip it
+3. **rename** downloaded vos_backend-master to vos_backend
+
+### Generate a new service
+1. create a new directory "**my_services/vos_calculate_sum**"
+2. **copy** **controllers.json** from vos_backend/vangav_backend_templates/vos_calculate_sum/ to the directory vos_calculate_sum created in (1)
+3. open a terminal session and **cd** to my_services/vos_backend/tools/bin
+4. execute the command **`java -jar backend_generator.jar new vos_calculate_sum`**
+5. enter **`Y`** for using the config directory
+6. enter **`Y`** to generate an eclipse-compatible project
+7. enter **`N`** for generating a worker service
+
+### Writing the service's logic code
++ open eclipse and **import** vos_calculate_sum project
++ double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
++ open class **HandlerCalculateSum.java** under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method **processRequest** should be as follows
+```java
+  @Override
+  protected void processRequest (final Request request) throws Exception {
+
+    // use the following request Object to process the request and set
+    //   the response to be returned
+    RequestCalculateSum requestCalculateSum =
+      (RequestCalculateSum)request.getRequestJsonBody();
+    
+    // set response's value
+    ((ResponseCalculateSum)request.getResponseBody() ).set(
+      requestCalculateSum.a + requestCalculateSum.b);
+  }
+```
+
+### Start the service
+1. **cd** to my_services/vos_calculate_sum
+2. execute the command **`./_run.sh`**
+
+### Try it out
+1. open an internet browser page and type **`http://localhost:9000/calculate_sum?a=1.2&b=2.3`** - this returns 3.5
+2. play with `a` and `b` values in the request string in (1)
+
+### Stop the service
+1. in the terminal session where you started the service press **`control + d`**
+
+> **Voila, few minutes, few lines of code and the calculate_sum's backend is up and running. That's Vangav Backend.**
+
+# Intermediate Example (vos_geo_server)
 
 vos_geo_server is a service that takes a latitude/longitude request and returns the reverse geo code (continent, country, major city, city). It also keeps track of queried continents/countries to also provide lists of sorted top queried continents/countries.
 
