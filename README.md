@@ -437,7 +437,7 @@ public class ResponseTopContinents extends ResponseBodyJson {
   + **`http://localhost:9000/top_countries`**
 + stop the service as explained above
 
-> **Voila, few minutes, few lines of code and the geo server's backend is up and running. That's Vangav Backend.**
+> **Voila, few minutes, few lines of code and the geo server's backend is up and running.**
 
 # Generated REST Service Structure
 
@@ -499,6 +499,28 @@ The conf directory contains all the configuration files needed by the service du
   4. execute the command **`java -jar cassandra_keyspaces_updater.jar	`**
   5. confirm by entering **`Y`**
 + Check out [cassandra_updater_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/cassandra_updater/cassandra_updater_properties.prop) and only edit it if needed (usually never needed).
+
+### [lib](https://github.com/vangav/vos_geo_server/tree/master/lib)
+
++ lib contains the jar files on which a Vangav Backend's service depends. Initially Vangav Backend's generators adds all the jars initially needed for the service to work properly.
++ For some of the built-in utilities (e.g.: [email clients](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks), [push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications), etc ...) more libraries need to be added to your project's dependencies; those libraries can be found at https://github.com/vangav/vos_backend/tree/master/lib
+
+### [generator_config](https://github.com/vangav/vos_geo_server/tree/master/generator_config)
+
++ generator_config includes the files used to generate this Vangav Backend Service
++ as explained above, cassandra_updater relies on the .keyspace files to update the service's database
++ controllers.json file is currently just for reference
+
+### [public](https://github.com/vangav/vos_geo_server/tree/master/public)
+
++ public directory keeps the public files (images, java scripts and style sheets) needed for web pages (if any) provided by the service
+
+### [app](https://github.com/vangav/vos_geo_server/tree/master/app)
+
++ app is the directory containing all the services source code
++ [Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java) extends play framework's GlobalSettings to override some functionalities like `beforeStart`, `onStart`, `onStop`, etc ...
+  + `beforeStart` is used by Vangav Backend to load properties, connect to cassandra and prepare cassandra's perpared statements.
+  + `onStop` is used by Vangav Backend to shutdown the thread pools and disconnect from cassandra
 
 # REST Service Config Structure
 
