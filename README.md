@@ -519,8 +519,8 @@ The conf directory contains all the configuration files needed by the service du
 
 + app is the directory containing all the services source code
 + [Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java) extends play framework's GlobalSettings to override some functionalities like `beforeStart`, `onStart`, `onStop`, etc ...
-  + `beforeStart` is used by Vangav Backend to load properties, connect to cassandra and prepare cassandra's perpared statements.
-  + `onStop` is used by Vangav Backend to shutdown the thread pools and disconnect from cassandra
+  + [`beforeStart`](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L57) is used by Vangav Backend to load properties, connect to cassandra and prepare cassandra's perpared statements.
+  + [`onStop`](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L108) is used by Vangav Backend to shutdown the thread pools and disconnect from cassandra
 + [views](https://github.com/vangav/vos_geo_server/tree/master/app/views) is created by play framework to keep the service's html pages
 + [controllers](https://github.com/vangav/vos_geo_server/tree/master/app/controllers) is created by play framework. Not used by Vangav Backend and to be left as is.
 
@@ -529,34 +529,34 @@ The conf directory contains all the configuration files needed by the service du
 + This directory contains all the generated database clients for cassandra's tables, where each keyspace is represented by a directory and each keyspace's table is represented by a class.
 
 + Each table's class like [Continents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java) has the following structure:
-  + Lines [41-72]: starts with a block comment listing the table's structure and prepared statements
-  + Lines [73-173]: is used by Vangav Backend to initialize the table and prepare its prepared statements
-  + Then for each of the table's prepared statements the following five methods are provided
-    + **`getQuery`** returns the raw Query Object to use it however you like.
-    + **`getQueryDispatchable`** returns a dispatchable version of the query to be added to the service's worker dispatcher. e.g.: `request.getDispatcher().addDispatchMessage(getQueryDispatchable() );`.
-    + **`getBoundStatement`** returns a the query's BoundStatement. Usually used for:
+  + [Lines (41-72)](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L41): starts with a block comment listing the table's structure and prepared statements
+  + [Lines (73-173)](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L73): is used by Vangav Backend to initialize the table and prepare its prepared statements
+  + [Then](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L175) for each of the table's prepared statements the following five methods are provided
+    + [**`getQuery`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L188) returns the raw Query Object to use it however you like.
+    + [**`getQueryDispatchable`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L202) returns a dispatchable version of the query to be added to the service's worker dispatcher. e.g.: `request.getDispatcher().addDispatchMessage(getQueryDispatchable() );`.
+    + [**`getBoundStatement`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L219) returns a the query's BoundStatement. Usually used for:
       1. Add it to a BatchStatement
       2. Execute multiple BoundStatements synchronously since it's faster than executing those statements sequentially. Since internally all these statements get executed asynchronously.
-    + **`executeAsync`** executes the query asynchronously and returns a ResultSetFuture Object which holds the future result of executing the query.
-    + **`executeSync`** is a blocking method that executes the query synchronously then returns a ResultSet Object containing the result of executing the query.
+    + [**`executeAsync`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L234) executes the query asynchronously and returns a ResultSetFuture Object which holds the future result of executing the query.
+    + [**`executeSync`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L250) is a blocking method that executes the query synchronously then returns a ResultSet Object containing the result of executing the query.
     
 ### [app/com/vangav/vos_geo_server/controllers/](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/controllers)
 
 + This directory contains all the generated controllers (entry points) as defined in the project's config [controllers.json](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json)
 
 + [CommonPlayHandler.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java) is the parent class for all the controllers' handlers. A controller's handler is the class the implements the controller's request-to-response logic. In Vagav Backend processing a request goes through sequential-optional steps. To enable one or more of these steps, they must be set to true in [request_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/conf/prop/request_properties.prop) as explained above. This class provides the ability to implement/override those sequential-optional steps as follows:
-  + `checkSource` is used to check the requests source. e.g.: if the service only accepts requests from mobile clients, a set of mac addresses, etc ...
-  + `throttle` is used to detect and prevent spammy behavior.
-  + `authenticateRequest` is used to authenticate a request. e.g.: using the build-in OAuth2, Facebook Login, Google Login, etc ...
-  + `afterProcessing`: override this method per-controller-handler to do further processing after a request's response is sent back to the client. e.g.: use it for a blocking operation like push notifications which doesn't impact the service's core functionality in case of failure and shouldn't delay sending back the request's response.
+  + [`checkSource`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L43) is used to check the requests source. e.g.: if the service only accepts requests from mobile clients, a set of mac addresses, etc ...
+  + [`throttle`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L50) is used to detect and prevent spammy behavior.
+  + [`authenticateRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L57) is used to authenticate a request. e.g.: using the build-in OAuth2, Facebook Login, Google Login, etc ...
+  + [`afterProcessing`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L64): override this method per-controller-handler to do further processing after a request's response is sent back to the client. e.g.: use it for a blocking operation like push notifications which doesn't impact the service's core functionality in case of failure and shouldn't delay sending back the request's response.
   + `dispatch....`: methods starting with dispatch are processed after a request's response is returned and it's encouraged to dispatch the operations of these method to the service's worker.
-  + `dispatchDefaultOperations`: implement this method to override a service-wide after-response operation for all of the service's controllers. e.g.: update user's last-active-time.
-  + `dispatchPushNotifications`: override this method per-controller to dispatch/process push notifications.
-  + `dispatchAnalysis`: override this method per-controller to dispatch/process analysis.
-  + `dispatchDefaultAnalysis`: implement to dispatch service-wide analysis for all controllers. e.g.: to keep track of request-to-response time.
-  + `dispatchLogging`: override this method per-controller to dispatch/process logging.
-  + `dispatchDefaultLogging`: implement to dispatch service-wide logging for all controllers. e.g.: log request/response/status-code.
-  + `absorbUnhandledExceptions`: if Vangav Backend fails to handle an exception, it forwards the exception to this method to be absorbed and dealt with as needed. e.g.: send a notification email.
+  + [`dispatchDefaultOperations`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L71): implement this method to override a service-wide after-response operation for all of the service's controllers. e.g.: update user's last-active-time.
+  + [`dispatchPushNotifications`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L78): override this method per-controller to dispatch/process push notifications.
+  + [`dispatchAnalysis`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L85): override this method per-controller to dispatch/process analysis.
+  + [`dispatchDefaultAnalysis`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L92): implement to dispatch service-wide analysis for all controllers. e.g.: to keep track of request-to-response time.
+  + [`dispatchLogging`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L99): override this method per-controller to dispatch/process logging.
+  + [`dispatchDefaultLogging`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L106): implement to dispatch service-wide logging for all controllers. e.g.: log request/response/status-code.
+  + [`absorbUnhandledExceptions`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L117): if Vangav Backend fails to handle an exception, it forwards the exception to this method to be absorbed and dealt with as needed. e.g.: send a notification email.
 
 # REST Service Config Structure
 
