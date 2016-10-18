@@ -7,7 +7,7 @@
 
 Vangav Backend is an open source (license-free) backend. vos (in vos_backend) stands for (vangav open source).
 
-**As a REST service generator.** Vangav Backend can be used to generate REST services. When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes care of adding the majority of the code a service needs, while maintaining the highest performance and design quality we know how to do.
+**As a REST service generator.** Vangav Backend can be used to generate REST services. When using Vangav Backend, one doesn't start by writing code. Instead the service's entry points (controllers) and databse tables/queries are defined in minimal json files and Vangav Backend's generators takes care of adding the majority of the code a service needs, while maintaining the highest performance and design quality we know how to do. Generated REST service also include Vangav Backend as a commons lib.
 
 **As a commons lib.** Vangav Backend's can also be used as a commons library, so to utilize it built-in utilities (listed below) for any project.
 
@@ -71,7 +71,7 @@ vos_calculate_sum is a service that takes two floats (a and b) request and retur
 
 ### Init
 1. create a workspace directory "**my_services**" - this is the directory to contain both of vos_backend and all the services generated using it
-2. download this (**vos_backend.zip**) project inside the workspace directory and unzip it
+2. download this (**vos_backend.zip**) project inside the workspace directory created in (1) and unzip it
 3. **rename** downloaded vos_backend-master to vos_backend
 
 ### Generate a new service
@@ -84,9 +84,9 @@ vos_calculate_sum is a service that takes two floats (a and b) request and retur
 7. enter **`N`** for generating a worker service
 
 ### Writing the service's logic code
-+ open eclipse and **import** vos_calculate_sum project
-+ double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
-+ open class **HandlerCalculateSum.java** under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method **processRequest** should be as follows
++ Open eclipse and **import** vos_calculate_sum project. File > import > General > Existing Projects into Workspace > Next > set "Select root directory" to my_services > under Projects make sure that vos_calculate_sum is selected > Finish.
++ Double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
++ Open class **[HandlerCalculateSum.java](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java)** under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method **[`processRequest`](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L67)** should be as follows
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
@@ -155,10 +155,10 @@ vos_geo_server is a service that takes a latitude/longitude request and returns 
 1. in the terminal session where you started the service press **`control + d`**
 
 ### Writing the service's logic code
-+ open eclipse and **import** vos_geo_server project
-+ double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
-+ under package **com.vangav.vos_geo_server** add a new package **common**
-+ in the created package in the previous step add a new class **InitIndexInl** with the following implementation:
++ Open eclipse and **import** vos_geo_server project. File > import > General > Existing Projects into Workspace > Next > set "Select root directory" to my_services > under Projects make sure that vos_geo_server is selected > Finish.
++ Double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
++ Under package **com.vangav.vos_geo_server** add a new package **[common](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/common)**
++ In the created package in the previous step add a new class **[InitIndexInl](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/common/InitIndexInl.java)** with the following implementation:
 ```java
 package com.vangav.vos_geo_server.common;
 
@@ -196,16 +196,16 @@ public class InitIndexInl {
   }
 }
 ```
-+ in **default_package/Global.java** after the following line
++ in **[default_package/Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java)** after the [following line](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L75)
 ```java
 Countries.loadTable();
 ```
-add the following lines
+add the [following lines](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L79)
 ```java
 ReverseGeoCoding.load();
 InitIndexInl.initIndex();
 ```
-+ open class **HandlerReverseGeoCode.java**, method **processRequest** should be as follows
++ open class **[HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java)**, method **[`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L77)** should be as follows
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
@@ -241,7 +241,7 @@ InitIndexInl.initIndex();
       reverseGeoCode.getContinent() );
   }
 ```
-+ then add the following method in class **HandlerReverseGeoCode.java**
++ then add the following [`method`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L111) in class **[HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java)**
 ```java
   @Override
   protected void afterProcessing (
