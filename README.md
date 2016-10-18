@@ -107,7 +107,7 @@ vos_calculate_sum is a service that takes two floats (a and b) request and retur
 2. execute the command **`./_run.sh`**
 
 ### Try it out
-1. open an internet browser page and type **`http://localhost:9000/calculate_sum?a=1.2&b=2.3`** - this returns 3.5
+1. open an internet browser page and type **[`http://localhost:9000/calculate_sum?a=1.2&b=2.3`](http://localhost:9000/calculate_sum?a=1.2&b=2.3)** - this returns 3.5
 2. play with `a` and `b` values in the request string in (1)
 
 ### Stop the service
