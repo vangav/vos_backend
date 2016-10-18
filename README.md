@@ -574,11 +574,11 @@ The conf directory contains all the configuration files needed by the service du
 
 # REST Service Config Structure
 
-When using Vangav Backend to generate a REST service, adding config files is optional but highly recommended as it saves the majority of the cost needed to implement the REST service. Config consists of one mandatory **controllers.json** file and zero-to-many database config files **keyspace_name.keyspace** (one file per database keyspace).
+When using Vangav Backend to generate a REST service, adding config files is optional but highly recommended as it saves the majority of the cost needed to implement the REST service. Config consists of one mandatory **[controllers.json](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json)** file and zero-to-many database config files **[keyspace_name.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace)** (one file per database keyspace).
 
-## controllers.json structure
+## [controllers.json](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json) structure
 
-Template:
++ Here's an empty template for controllers.json
 
 ```json
 {
@@ -619,6 +619,23 @@ Template:
   ]
 }
 ```
+
++ It starts with [`java_package`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L2) where the root java package for your service's code should be defined. e.g.: com.vangav
+
++ Followed by a set of booleans defining the which steps should request-processing goes through. Implementation of each of these functionalities goes in per-code-ref in the following tables, checking on whether to process each step or not happens in [ParentPlayHandler.java](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java) and these boolean values can be altered anytime from [request_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/request_properties.prop).
+
+| boolean | code ref | definition |
+| ------- | -------- | ---------- |
+| [`check_source`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L3) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L43) | is used to turn on/off checking requests source. e.g.: if the service only accepts requests from mobile clients, a set of mac addresses, etc ... |
+| [`throttle`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L4) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L50) | is used to switch on/off the detection and prevention of spammy behavior |
+| [`validate_param`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L5) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L57) | is used to switch on/off validating requests' parameters. invalid mandatory params result in a 400 BAD_REQUEST while invalid optional params gets tracked and can be checked using [`isValidParam`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java#L203)|
+| [`authenticate`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L6) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L64) | is used to switch on/off authenticating a request. e.g.: using the build-in OAuth2, Facebook Login, Google Login, etc ... |
+| [`after_response`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L7) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L71) | is used as a service-wide on/off switch for all post-response processing (i.e.: all of the next switches are dismissed if this switch is off (false) ) |
+| [`after_processing`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L8) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L78) |  is used to switch on/off after processing. Override this method per-controller-handler to do further processing after a request's response is sent back to the client. e.g.: use it for a blocking operation like push notifications which doesn't impact the service's core functionality in case of failure and shouldn't delay sending back the request's response |
+| [`default_operations`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L9) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L85) |   is used to switch on/off default operations. Implement this method to override a service-wide after-response operation for all of the service's controllers. e.g.: update user's last-active-time |
+| [`notifications`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L10) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L92) | is used to switch on/off sending push notifications |
+| [`analysis`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L11) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L99) | is used to switch on/off doing analysis |
+| [`logging`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L12) | [`ref`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L106) | is used to switch on/off doing loggin |
 
 # Community
 
