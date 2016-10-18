@@ -276,7 +276,7 @@ InitIndexInl.initIndex();
       reverseGeoCode.getCountry() );
   }
 ```
-+ under package **top_continents** add class **ResponseTopContinent.java** with the following code
++ under package **[top_continents](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/controllers/top_continents)** add class **[ResponseTopContinent](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/response_json/ResponseTopContinent.java).java** with the following code
 ```java
 package com.vangav.vos_geo_server.controllers.top_continents;
 
@@ -312,7 +312,7 @@ public class ResponseTopContinent {
   public long continent_count;
 }
 ```
-+ modify class **ResponseTopContinents.java** to be as follows:
++ modify class **[ResponseTopContinents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/ResponseTopContinents.java)** to be as follows:
 ```java
 package com.vangav.vos_geo_server.controllers.top_continents;
 
@@ -351,7 +351,7 @@ public class ResponseTopContinents extends ResponseBodyJson {
   }
 }
 ```
-+ in class **HandlerTopContinents.java** method **processRequest** should be as follows:
++ in class **[HandlerTopContinents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java)** method **[`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java#L78)** should be as follows:
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
