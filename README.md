@@ -1,4 +1,4 @@
-# [Vangav Backend](http://www.vangav.com/){:target="_blank"}
+# [Vangav Backend](http://www.vangav.com/)
 ### [back-the-end]
 
 [vangav.com](http://www.vangav.com/)
