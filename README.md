@@ -576,6 +576,8 @@ The conf directory contains all the configuration files needed by the service du
 
 When using Vangav Backend to generate a REST service, adding config files is optional but highly recommended as it saves the majority of the cost needed to implement the REST service. Config consists of one mandatory **[controllers.json](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json)** file and zero-to-many database config files **[keyspace_name.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace)** (one file per database keyspace).
 
++ All config files have a **JSON** structure, however in Vangav Backend JSON supports inline comments. A comment line is any lines starting with zero or more spaces followed by a #. **[Comment Example](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L16)**
+
 ### [controllers.json](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json) structure
 
 + Here's an empty template for controllers.json
@@ -691,6 +693,51 @@ When using Vangav Backend to generate a REST service, adding config files is opt
   | [NO_VALIDATION_TYPE](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java#L93) |  | always valid - use with caution :)) |
   
   + Each element in [`response_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L36) has [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L38) (recomended to be lowerCamelCase), [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L39) which defines the primitive type of a response param as one of (`short`, `int`, `long`, `float`, `double`, `String`), [`is_array`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L40) to define if this is an array param or not.
+  
+### [gs_top.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace) structure
+
++ Here's an empty template for gs_top.keyspace
+
+```json
+{
+  "description": "",
+  "name": "",
+  "replications": [
+    {
+      "description": "used for dev environment",
+      "name": "dev",
+      "replication": "'class': 'SimpleStrategy', 'replication_factor' : 1"
+    }
+  ],
+  "tables": [
+    {
+      "description": "",
+      "name": "",
+      "columns": [
+        {
+          "name": "",
+          "type": ""
+        }
+      ],
+      "partition_keys": [
+        ""
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "",
+          "name": "",
+          "prepared_statement": ""
+        }
+      ]
+    }
+  ]
+}
+```
 
 # Community
 
