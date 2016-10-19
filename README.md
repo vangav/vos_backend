@@ -796,7 +796,30 @@ When using Vangav Backend to generate a REST service, adding config files is opt
       + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L38): used to identify a query per-table and becomes part of the methods' names for this query ([`getQueryInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L212), [`getQueryDispatchableInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L226), [`getBoundStatementInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L243), [`executeAsyncInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L258), [`executeSyncInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L274)).
       + [`prepared_statement`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L39): is the actual query's prepared statement. When writing a prepared statement beware to:
         + write keyspace_name.table_name in the query and not only the table_name
-        + define the statements variables using :variable_name instead of ?
+        + define the statements variables using `:variable_name` instead of `?`
+        
+# [Request](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java) structure
+
++ Request is the primary Object to be dealt with to implement the logic of a generated Vangav Backend REST Service in controllers' Handler classes like in [vos_calculate_sum](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L67) and [vos_geo_server](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L77). Here's an index for the public methods provided by [Request](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java) class:
+
+| method | explanation |
+| ------ | ----------- |
+| [`long getStartTime ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L111) | Returns the unix time stamp (milliseconds since epoch) when processing this request started. |
+| [`Calendar getStartCalendar ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L120) | Returns a Calendar Object reflecting when processing this request started. |
+| [`void endRequest ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L131) | *Call this method only if you are sure you need it.* This method gets automatically called upon sending back the request's response which sets the request's [`endTime`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L54) and [`execTime`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L55). |
+| [`long getEndTime ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L141) | Returns the unix time stamp when the request's response was sent. Usually only useful to call in after-response methods such as [`afterProcessing`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L64). |
+| [`int getExecTime ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L150) | Returns the number of milliseconds it took from receiving the request till sending back the response. |
+| [`UUID getRequestId ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L155) | Each request gets a UUID. Can be used in many ways (e.g.: logging, tracing exceptions, etc ...). |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
 
 # Community
 
