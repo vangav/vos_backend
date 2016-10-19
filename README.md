@@ -739,6 +739,16 @@ When using Vangav Backend to generate a REST service, adding config files is opt
 }
 ```
 
++ Each keyspace_name.keyspace config file is structured as follows:
+  + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L2): descripes the purpose of this keyspace. Shows in generated Java clients comment blocks and generated phriction-wiki.
+  + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L3): keyspace's name.
+  + [`replications`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L4): is an array of replication methods for this keyspace (e.g.: one replication method for dev with one replica and another for prod with two replicas). CQL scripts (create, drop, ...) are generated per-keyspace per-replication-method. Each replication element is structured as follows:
+    + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L6): descripts the purpose of this replication method (e.g.: for dev, for prod, etc ...).
+    + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L7): to identify a replication method and becomes part of the CQL script's file name.
+    + [`replication`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L8): a valid Cassandra replication method (use ' instead of " to avoid confusion with JSON's ").
+  + [`tables`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L11): is an array of the keyspace's tables. Each table element is structured as follows:
+    + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L15): 
+
 # Community
 
 [Facebook Group: Vangav Open Source - Backend](http://www.fb.com/groups/575834775932682/)
