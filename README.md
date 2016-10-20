@@ -799,7 +799,7 @@ When using Vangav Backend to generate a REST service, adding config files is opt
         + write keyspace_name.table_name in the query and not only the table_name
         + define the statements variables using `:variable_name` instead of `?`
         
-# [Request](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java) structure
+# [Request](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java) Structure
 
 + Request is the primary Object to be dealt with to implement the logic of a generated Vangav Backend REST Service in controllers' Handler classes like in [vos_calculate_sum](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L67) and [vos_geo_server](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L77). Here's an index for the public methods provided by [Request](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java) class:
 
@@ -821,6 +821,14 @@ When using Vangav Backend to generate a REST service, adding config files is opt
 | [`getState`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L258) | Invoking this method in any after-response method returns the request's state ([`OK`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestState.java#L40), [`BAD_REQUEST`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestState.java#L41), [`INTERNAL_SERVER_ERROR`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestState.java#L42)). Can be used for logging, analysis, etc ... |
 | [`getVangavExceptions`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L280) [`getTheLastVangavException`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L292) [`getExceptions`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L318) [`getTheLastException`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L329) [`getAllExceptionsAsString`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L345) | Are used to log/analyze/report problems. Usually combined with other methods like `getRequestId`, `getUserId`, `getState`, etc ... to track problems as they occur. |
 | [`addVangavException`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L269) [`addException`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L308) | Any thrown Exception gets automatically added to the request's exceptions through these methods, however calling these methods can be useful for caught non-fatal exceptions thrown by the service's logic written by you. Any exception thrown by Vangav Backend gets added to the request's exceptions automatically. |
+
+# Error Response
+
++ Normally a Vangav Backend will return the expected response (JSON, HTML or FILE) as defined per-controller with a status code of 200 (HTTP_OK).
++ Other than 200 (HTTP_OK), Vangav Backend may also return 400 (HTTP_BAD_REQUEST) and 500 (HTTP_INTERNAL_SERVER_ERROR).
+  + 400 (HTTP_BAD_REQUEST) in case the problem came from the client's request. e.g.: expired access token, wrong login, missing/invalid mandatory request param, etc ...
+  + 500 (HTTP_INTERNAL_SERVER_ERROR) in case of a problem within the service itself. e.g.: database unreachable, a utility method invoked using bad arguments, etc ...
++ 
 
 # Community
 
