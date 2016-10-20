@@ -164,7 +164,7 @@ vos_geo_server is a service that takes a latitude/longitude request and returns 
 2. execute the command **`./_run.sh`**
 
 ### Preliminary testing
-1. open an internet browser page and type **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`** - this returns an empty response
+1. open an internet browser page and type **[`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`](http://localhost:9000/reverse_geo_code?latitude=49&longitude=11)** - this returns an empty response
 
 ### Stop the service
 1. in the terminal session where you started the service press **`control + d`**
@@ -447,9 +447,9 @@ public class ResponseTopContinents extends ResponseBodyJson {
 
 ### Try it out
 + start the service as explained above then open an internet browser page and type any of
-  + **`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`** - play around with the latitude and longitude values
-  + **`http://localhost:9000/top_continents`**
-  + **`http://localhost:9000/top_countries`**
+  + **[`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`](http://localhost:9000/reverse_geo_code?latitude=49&longitude=11)** - play around with the latitude and longitude values
+  + **[`http://localhost:9000/top_continents`](http://localhost:9000/top_continents)**
+  + **[`http://localhost:9000/top_countries`](http://localhost:9000/top_countries)**
 + stop the service as explained above
 
 > **Voila, few minutes, few lines of code and the geo server's backend is up and running.**
@@ -815,6 +815,11 @@ When using Vangav Backend to generate a REST service, adding config files is opt
 | [`getRequestJsonBody`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L173) | Returns a [RequestJsonBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java) Object (cast it to controller's Request Object) offering [`getUserId`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java#L84) which should be overriden per-controller's request in case the request has a user-uuid as one of its params and [`isValidParam`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java#L203) which is used to check if an optional param is valid or not. |
 | [`getResponseBody`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L182) | Returns a [ResponseBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBody.java) Object (cast it to controller's Response Object). Used to set response's params at the end of each controller-handler's [`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L98) method. |
 | [`getDispatcher`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L191) | Returns a [Dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java) Object offering [`addDispatchMessage`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java#L172) used to enqueue dispatch messages any time during the request processing (before and after response) and those messages get dispatched automatically at the end of processing a request. To use this functionality a service has to have a worker service too (just enter **`Y`** during service generation when asked to add add a worker service. Then make sure to run this worker service as well as the main service. |
+| [`getControllerName`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L200) | Returns the controller's name. Can be used for logging, analysis, etc ... |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
+| [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
 | [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
 | [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
 | [`a`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L) | z |
