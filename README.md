@@ -846,23 +846,23 @@ When using Vangav Backend to generate a REST service, adding config files is opt
 + An example for throwing a bad request exception can be found [here](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamValidatorInl.java#L1010)
 
 ```java
-    throw new BadRequestException(
-      "Invalid param ["
-      + name
-      + "]",
-      ExceptionClass.INVALID);
+throw new BadRequestException(
+  "Invalid param ["
+    + name
+    + "]",
+  ExceptionClass.INVALID);
 ```
 
 + An example for throwing a code exception can be found [here](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java#L105)
 
 ```java
-        throw new CodeException(
-          "propterty ["
-            + DispatcherProperties.kWorkersTopology
-            + "] isn't defined in properties file ["
-            + DispatcherProperties.i().getName()
-            + "]",
-          ExceptionClass.PROPERTIES);
+throw new CodeException(
+  "propterty ["
+    + DispatcherProperties.kWorkersTopology
+    + "] isn't defined in properties file ["
+    + DispatcherProperties.i().getName()
+    + "]",
+  ExceptionClass.PROPERTIES);
 ```
 
 # Community
