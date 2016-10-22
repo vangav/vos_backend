@@ -22,7 +22,7 @@ vos_geo_server is a service that takes a latitude/longitude request and returns 
 1. **cd** to my_services/vos_geo_server/cassandra/cql/
 2. execute the command **`./_start_cassandra.sh`** - to start cassandra
 3. **cd** to my_services/vos_geo_server/cassandra/cql/drop_and_create/
-4. execute the command **`./_execute_cql.sh gs_top_dev.cql`**
+4. execute the command **`./_execute_cql.sh gs_top_dev.cql`** to initialize the service's database tables.
 
 ### Init service's data
 1. **copy** the contents of the directory my_services/vos_backend/data/geo/reverse_geo_coding/ to my_services/vos_geo_server/conf/data/geo/reverse_geo_coding/
