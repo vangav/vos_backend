@@ -10,13 +10,13 @@ Use Vangav Backend to generate backends for services like:
 + Transportation
 + etc ... (any stateless service)
 
-Vangav Backend generates services:
-+ lightweight
+Vangav Backend generates services that are:
++ light-weight
 + stateless
 + highly-scalable
 + robust
 + SOA-ready
-+ built-in dispatcher-worker
++ with a built-in dispatcher and a worker service
 + eclipse-ready
 + based on [Play Framework](https://www.playframework.com/documentation/2.2.6/Home) (JAVA) and [Cassandra](https://archive.apache.org/dist/cassandra/2.1.2/)
 + Loaded with utilities like:
@@ -117,3 +117,13 @@ Vangav Backend is license-free because we know that starting a startup or develo
 > "Keep going, never give up".
 
 Have fun!
+
+
+# Next
+
+1. [Project Contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
+2. [Intermediate Example (vos_geo_server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
+3. [Generated REST Service Structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
+4. [Generated REST Service Config Structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
+5. [Request Structure](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
+6. [Error Response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
