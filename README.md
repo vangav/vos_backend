@@ -38,7 +38,7 @@ Alternatively one can use Vangav Backend as a commons lib for any JAVA project u
 
 + unix operating system (e.g.: mac os, ubuntu, etc ...)
 + JAVA 8
-+ [python 2.6](https://pypi.python.org/pypi/cassandra-driver/2.1.2) (only for using cassandra)
++ [python](https://pypi.python.org/pypi/cassandra-driver/2.1.2) (only for using cassandra)
 
 # Prerequisites
 
