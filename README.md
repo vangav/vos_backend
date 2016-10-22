@@ -32,7 +32,7 @@ Vangav Backend generates services that are:
   + [Vangav M](http://www.vangav.com/)
 + Vangav Backend generates most of the code needed, you just connect the logic dots by putting in few lines of method calls.
 
-Alternatively one can use Vangav Backend as a commons lib for any JAVA project using the main jar [vos_backend.jar](https://github.com/vangav/vos_backend/tree/master/dist). [lib](https://github.com/vangav/vos_backend/tree/master/lib) contains more jars that are needed for using some of those utilities.
+Alternatively one can use Vangav Backend as a commons lib for any JAVA project using the main jar [vos_backend.jar](https://github.com/vangav/vos_backend/tree/master/dist). And [lib](https://github.com/vangav/vos_backend/tree/master/lib) contains more jars that are needed for using some of those utilities.
 
 # System Requirements
 
