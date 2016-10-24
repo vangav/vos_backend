@@ -55,9 +55,14 @@ The conf directory contains all the configuration files needed by the service du
   1. open a terminal and **cd** to [vos_geo_server/generator_config/](https://github.com/vangav/vos_geo_server/tree/master/generator_config)
   2. add/remove/edit .keyspace files as needed
   3. **cd** to [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater)
-  4. execute the command **`java -jar cassandra_keyspaces_updater.jar	`**
+  4. execute the command **`java -jar cassandra_keyspaces_updater.jar`**
   5. confirm by entering **`Y`**
 + Check out [cassandra_updater_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/cassandra_updater/cassandra_updater_properties.prop) and only edit it if needed (usually never needed).
++ More steps are sometimes needed depending on the changes done to the database configuration:
+  + Deleting a table(s)/keyspace(s). Either run the CQL drop script before executing `cassandra_keyspaces_updater.jar` (deletes all the data, good only for dev mode where reseting the data doesn't do any harm), or manually run the drop commands on these table(s)/keyspace(s) from CQL. If drop is used, then execute the `create_if_doesnot_exist` CQL scripts after executing `cassandra_keyspaces_updater.jar`.
+  + Adding table(s)/keyspace(s). Just execute the `create_if_doesnot_exist` CQL scripts after executing `cassandra_keyspaces_updater.jar`.
+  + Editing table's columns. Either execute the `drop_and_create` CQL scripts (deletes all the data, good only for dev mode where reseting the data doesn't do any harm), or manually run the CQL commands to specifically do these edits.
+  + Adding/removing/editing queries/description. No CQL needed, just execute `cassandra_keyspaces_updater.jar`.
 
 ### [lib](https://github.com/vangav/vos_geo_server/tree/master/lib)
 
@@ -122,6 +127,8 @@ The conf directory contains all the configuration files needed by the service du
   + [RequestReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/RequestReverseGeoCode.java) represents the controller's request. This class's parent class provides the method [`isValidParam`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java#L203) to check if an OPTIONAL param is valid or not.
   + [ResponseReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/ResponseReverseGeoCode.java) represents the controller's response. Each response class provides a [`set`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/ResponseReverseGeoCode.java#L79) method to set the response's content at the [end](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L98) of the handler's processRequest method.
   + [HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java) is the class where a controller's request-to-response logic should be implemented. Generated services include TODO comments where the request-to-response logic should be implemented to make it easier to find :) [`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L77) method is the main part where the controller's logic should be implemented, ending with calling the response's set method as explained above. Optionally override more methods from [CommonPlayHandler.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java) as explained above.
+  
++ In order to add a new controller, just copy an exsisting one and modify it. Then add it to the [routes](https://github.com/vangav/vos_geo_server/blob/master/conf/routes) file.
   
 ### [vangav_m](https://github.com/vangav/vos_geo_server/tree/master/vangav_m)
 
