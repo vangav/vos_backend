@@ -602,4 +602,18 @@ public abstract class ParentPlayHandler {
       }
     }
   }
+  
+  @Override
+  public String toString () {
+    
+    return
+      "Controller's Handler:"
+      + "\nname("
+      + this.getName()
+      + ")\nrequest("
+      + this.getRequestJson().toString()
+      + ")\nresponse("
+      + this.getResponseBody().toString()
+      + ")";
+  }
 }
