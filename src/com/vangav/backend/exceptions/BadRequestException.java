@@ -48,7 +48,7 @@ public class BadRequestException extends VangavException {
   @Override
   public ExceptionType getExceptionType () {
     
-    return ExceptionType.CODE_EXCEPTION;
+    return ExceptionType.BAD_REQUEST_EXCEPTION;
   }
   
   /**

@@ -374,7 +374,12 @@ public class ParamValidatorInl {
 
       float floatValue = Float.valueOf(value);
       
-      if (Float.isNaN(floatValue) ) {
+      if (Float.isNaN(floatValue) == true) {
+        
+        throwInvalidParam(name);
+      }
+      
+      if (Float.isInfinite(floatValue) == true) {
         
         throwInvalidParam(name);
       }
@@ -398,7 +403,12 @@ public class ParamValidatorInl {
 
       double doubleValue = Double.valueOf(value);
       
-      if (Double.isNaN(doubleValue) ) {
+      if (Double.isNaN(doubleValue) == true) {
+        
+        throwInvalidParam(name);
+      }
+      
+      if (Double.isInfinite(doubleValue) == true) {
         
         throwInvalidParam(name);
       }
@@ -419,6 +429,8 @@ public class ParamValidatorInl {
     String value) throws Exception {
     
     try {
+      
+      validateDouble(name, value);
       
       double doubleValue = Double.valueOf(value);
       
@@ -444,6 +456,8 @@ public class ParamValidatorInl {
     
     try {
       
+      validateDouble(name, value);
+      
       double doubleValue = Double.valueOf(value);
       
       if (doubleValue > 180.0 || doubleValue < -180.0) {
@@ -468,12 +482,7 @@ public class ParamValidatorInl {
     
     try {
       
-      double doubleValue = Double.valueOf(value);
-      
-      if (Double.isNaN(doubleValue) ) {
-        
-        throwInvalidParam(name);
-      }
+      validateDouble(name, value);
     } catch (Exception e) {
       
       throwInvalidParam(name);
