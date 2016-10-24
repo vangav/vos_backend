@@ -10,13 +10,13 @@ vos_geo_server is a service that takes a latitude/longitude request and returns 
 3. **rename** downloaded vos_backend-master to vos_backend
 
 ### Generate a new service
-1. create a new directory "**my_services/vos_geo_server**"
-2. **copy** **controllers.json** and **gs_top.keyspace** from vos_backend/vangav_backend_templates/vos_geo_server/ to the directory vos_geo_server created in (1)
-3. open a terminal session and **cd** to my_services/vos_backend/tools_bin
-4. execute the command **`java -jar backend_generator.jar new vos_geo_server`**
-5. enter **`Y`** for using the config directory
-6. enter **`Y`** to generate an eclipse-compatible project
-7. enter **`N`** for generating a worker service
+1. Create a new directory "**my_services/vos_geo_server**".
+2. **Copy** **controllers.json** and **gs_top.keyspace** from vos_backend/vangav_backend_templates/vos_geo_server/ to the directory vos_geo_server created in (1).
+3. Open a terminal session and **cd** to my_services/vos_backend/tools_bin.
+4. Execute the command **`java -jar backend_generator.jar new vos_geo_server`** to generate the Vangav Backend Service.
+5. Enter **`Y`** for using the config directory.
+6. Enter **`Y`** to generate an eclipse-compatible project.
+7. Enter **`N`** for generating a worker service. Using workers is explained in a separate section.
 
 ### Init the service's cassandra database
 1. **cd** to my_services/vos_geo_server/cassandra/cql/

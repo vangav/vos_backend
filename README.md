@@ -38,7 +38,9 @@ Alternatively one can use Vangav Backend as a commons lib for any JAVA project u
 
 + unix operating system (e.g.: mac os, ubuntu, etc ...)
 + JAVA 8
-+ [python](https://pypi.python.org/pypi/cassandra-driver/2.1.2) (only for using cassandra)
++ python 2.7.10 (only for using cassandra)
+  + to check python version type in the following command in a terminal session `python -V` and the output should be `Python 2.7.10`
+  + then to install cassandra's python driver type the following command in a terminal session `pip install cassandra-driver==2.1.2`
 
 # Prerequisites
 
@@ -58,18 +60,18 @@ vos_calculate_sum is a service that takes two floats (a and b) request and retur
 3. **rename** downloaded vos_backend-master to vos_backend
 
 ### Generate a new service
-1. create a new directory "**my_services/vos_calculate_sum**"
-2. **copy** **controllers.json** from vos_backend/vangav_backend_templates/vos_calculate_sum/ to the directory vos_calculate_sum created in (1)
-3. open a terminal session and **cd** to my_services/vos_backend/tools_bin
-4. execute the command **`java -jar backend_generator.jar new vos_calculate_sum`**
-5. enter **`Y`** for using the config directory
-6. enter **`Y`** to generate an eclipse-compatible project
-7. enter **`N`** for generating a worker service
+1. Create a new directory "**my_services/vos_calculate_sum**".
+2. **Copy** **controllers.json** from vos_backend/vangav_backend_templates/vos_calculate_sum/ to the directory vos_calculate_sum created in (1).
+3. Open a terminal session and **cd** to my_services/vos_backend/tools_bin.
+4. Execute the command **`java -jar backend_generator.jar new vos_calculate_sum`** to generate the Vangav Backend Service.
+5. Enter **`Y`** for using the config directory in order to use **controllers.json** for generating the new service.
+6. Enter **`Y`** to generate an eclipse-compatible project.
+7. Enter **`N`** for generating a worker service. Using workers is explained in a separate section.
 
 ### Writing the service's logic code
 + Open eclipse and **import** vos_calculate_sum project. File > import > General > Existing Projects into Workspace > Next > set "Select root directory" to my_services > under Projects make sure that vos_calculate_sum is selected > Finish.
-+ Double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8
-+ Open class **[HandlerCalculateSum.java](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java)** under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method **[`processRequest`](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L67)** should be as follows
++ Double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8.
++ Open class **[HandlerCalculateSum.java](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java)** under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method **[`processRequest`](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L67)** should be as follows in order to complete the request-to-response logic.
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
@@ -92,6 +94,7 @@ vos_calculate_sum is a service that takes two floats (a and b) request and retur
 ### Try it out
 1. open an internet browser page and type **[`http://localhost:9000/calculate_sum?a=1.2&b=2.3`](http://localhost:9000/calculate_sum?a=1.2&b=2.3)** - this returns 3.5
 2. play with `a` and `b` values in the request string in (1)
+3. try issuing an invalid request (e.g.: set `a` to "xyz", don't set `b`, ...) to get a sense of how the default error response looks like. [Error responses](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md) are explained in depth in a separate section.
 
 ### Stop the service
 1. in the terminal session where you started the service press **`control + d`**
