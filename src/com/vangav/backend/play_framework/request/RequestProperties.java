@@ -93,34 +93,34 @@ public class RequestProperties extends PropertiesFile {
     
     kProperties.put(
       kCheckSource,
-      "false");
+      "true");
     kProperties.put(
       kThrottle,
-      "false");
+      "true");
     kProperties.put(
       kValidateParam,
       "true");
     kProperties.put(
       kAuthenticate,
-      "false");
+      "true");
     kProperties.put(
       kAfterResponse,
-      "false");
+      "true");
     kProperties.put(
       kAfterProcessing,
-      "false");
+      "true");
     kProperties.put(
       kDefaultOperations,
-      "false");
+      "true");
     kProperties.put(
       kPushNotifications,
-      "false");
+      "true");
     kProperties.put(
       kAnalysis,
-      "false");
+      "true");
     kProperties.put(
       kLogging,
-      "false");
+      "true");
   }
   
   @Override

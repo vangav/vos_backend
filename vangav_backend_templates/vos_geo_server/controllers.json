@@ -1,15 +1,15 @@
 {
   "java_package": "com.vangav",
-  "check_source": false,
-  "throttle": false,
+  "check_source": true,
+  "throttle": true,
   "validate_param": true,
-  "authenticate": false,
-  "after_response": false,
-  "after_processing": false,
-  "default_operations": false,
-  "notifications": false,
-  "analysis": false,
-  "logging": false,
+  "authenticate": true,
+  "after_response": true,
+  "after_processing": true,
+  "default_operations": true,
+  "notifications": true,
+  "analysis": true,
+  "logging": true,
   
   "controllers": [
 
