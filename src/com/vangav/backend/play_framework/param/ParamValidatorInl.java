@@ -103,11 +103,11 @@ public class ParamValidatorInl {
     try {
       
       validateParam(name, String.valueOf(value), type);
-    } catch (Exception e) {
+    } catch (BadRequestException bre) {
       
       if (optionality == ParamOptionality.MANDATORY) {
         
-        throw e;
+        throw bre;
       } else {
         
         return false;
