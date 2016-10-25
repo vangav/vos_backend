@@ -32,5 +32,5 @@
       new AppleNotificationDispatchable(appleNotification) );
   ```
   + Add as many dispatch messages as needed to the request's dispatcher and all these messages gets automatically dispatched to the worker(s) at the end of the request's processing.
-4. Make sure to start the worker service (using its `_run.sh` script) before running the primary service.
+4. Make sure to start the worker service (using its `_run.sh` script) before starting the primary service.
 5. Yes, you don't need to write a single line of code in the worker - it just works :)). Just double check that every thing is correct in its properties files.
