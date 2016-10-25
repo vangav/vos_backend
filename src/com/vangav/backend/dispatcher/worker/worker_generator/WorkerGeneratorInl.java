@@ -588,8 +588,8 @@ public class WorkerGeneratorInl {
     FileWriterInl.writeTextFile(
       "#!/bin/bash\n\n"
           + "# used to make the project eclipse-ready\n"
-          + "  # (useful when cloning the project from a repo,"
-          + "  # or when entering N for making the project"
+          + "  # (useful when cloning the project from a repo,\n"
+          + "  # or when entering N for making the project\n"
           + "  #   eclipse-ready on generation)\n\n"
         + "../vos_backend/play-2.2.6/play eclipse\n",
       "../../"
