@@ -130,3 +130,4 @@ Have fun!
 4. [Generated REST Service Config Structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
 5. [Request Structure](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
 6. [Error Response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
+7. [Using Dispatcher - Worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
