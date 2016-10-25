@@ -583,5 +583,22 @@ public class WorkerGeneratorInl {
       "chmod +x ../../"
       + projectName
       + "/_dist.sh");
+    
+    // eclipsify
+    FileWriterInl.writeTextFile(
+      "#!/bin/bash\n\n"
+          + "# used to make the project eclipse-ready\n"
+          + "  # (useful when cloning the project from a repo,"
+          + "  # or when entering N for making the project"
+          + "  #   eclipse-ready on generation)\n\n"
+        + "../vos_backend/play-2.2.6/play eclipse\n",
+      "../../"
+        + projectName
+        + "/_eclipsify.sh",
+      false);
+    CommandLineInl.executeCommand(
+      "chmod +x ../../"
+      + projectName
+      + "/_eclipsify.sh");
   }
 }
