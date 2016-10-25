@@ -16,8 +16,8 @@
 ### How To
 
 1. When generating a new service using Vangav Backend (e.g.: [vos_calculate_sum](https://github.com/vangav/vos_backend#generate-a-new-service)), the last step says `Generate worker [vos_calculate_sum_worker] for new project [vos_calculate_sum] ?: [Y/N]`. Enter **`Y`** to generate a worker service. Vangav Backend workers has built-in support for Cassandra operations and push notifications:
-  + Cassandra operations are added to the generated worker if the new service's config had one of more keyspace_name.keyspace config files.
-  + Push notifications are added to the generated worker if the new service's config has [notifications](https://github.com/vangav/vos_calculate_sum/blob/master/generator_config/controllers.json#L10) set to `true` in the controllers.json config file.
+  + Cassandra operations are added to the generated worker **if the new service's config had one of more keyspace_name.keyspace config files**.
+  + Push notifications are added to the generated worker **if the new service's config has [notifications](https://github.com/vangav/vos_calculate_sum/blob/master/generator_config/controllers.json#L10) set to `true` in the controllers.json config file**.
 2. In the primary-backend-instance, set [`workers_topology`](https://github.com/vangav/vos_backend/blob/master/prop/dispatcher_properties.prop#L9) to the IP(s)/Port(s) of the worker(s).
 3. At any point during request-processing (before-or-after response) you can enqueue a [DispatchMessage](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/DispatchMessage.java) into the request's [Dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L191):
   + Adding a [QueryDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces/dispatch_message/QueryDispatchable.java) example (vos_geo_server [UpdateCounterValue](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L202)):
