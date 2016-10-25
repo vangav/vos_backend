@@ -65,6 +65,38 @@ public class ParamValidatorInl {
     ParamType type,
     ParamOptionality optionality) throws Exception {
     
+    // should validate param?
+    if (RequestProperties.i().getBooleanProperty(
+          RequestProperties.kValidateParam) == false) {
+      
+      return true;
+    }
+    
+    // null array? -> invalid
+    if (values == null) {
+      
+      if (optionality == ParamOptionality.MANDATORY) {
+        
+        throwInvalidParam(name);
+      } else {
+        
+        return false;
+      }
+    }
+    
+    // empty array? -> invalid
+    if (values.length == 0) {
+      
+      if (optionality == ParamOptionality.MANDATORY) {
+        
+        throwInvalidParam(name);
+      } else {
+        
+        return false;
+      }
+    }
+    
+    // validate each value in the array
     for (Object value : values) {
       
       if (validate(name, value, type, optionality) == false) {
