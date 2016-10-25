@@ -131,3 +131,5 @@ Have fun!
 5. [Request Structure](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
 6. [Error Response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
 7. [Using Dispatcher - Worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
+8. [Debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
+9. [Deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)

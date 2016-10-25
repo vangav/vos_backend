@@ -11,6 +11,7 @@ The following scripts are generated for every Vangav Backend Service.
 + [_compile.sh](https://github.com/vangav/vos_geo_server/blob/master/_compile.sh) compiles the service.
 + [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) run the service in debug mode. Debugging the code can happen in eclipse as explained later.
 + [_dist.sh](https://github.com/vangav/vos_geo_server/blob/master/_dist.sh) generates a production executable for the service to deploy it on the production server(s).
++ [_eclipsify.sh](https://github.com/vangav/vos_geo_server/blob/master/_eclipsify.sh) makes the service eclipse-ready.
 
 ### [conf](https://github.com/vangav/vos_geo_server/tree/master/conf)
 
