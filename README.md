@@ -1,4 +1,4 @@
-# [Vangav Backend](http://www.vangav.com/)
+# Vangav Backend
 
 Use Vangav Backend to generate backends for services like:
 + Social
