@@ -1,7 +1,5 @@
 # [Vangav Backend](http://www.vangav.com/)
 
-Open source, license-free.
-
 Use Vangav Backend to generate backends for services like:
 + Social
 + Media sharing
@@ -116,7 +114,7 @@ Third party communities for Vangav Backend
 
 # Hassle-Free
 
-Vangav Backend is license-free because we know that starting a startup or developing a new service is already mission-impossible. You already got more than enough to worry about, Vangav Backend doesn't want to be one of those things you worry about.
+Vangav Backend is open source (free) because we know that starting a startup or developing a new service is already mission-impossible. You already got more than enough to worry about, Vangav Backend doesn't want to be one of those things you worry about.
 > "Keep going, never give up".
 
 Have fun!
