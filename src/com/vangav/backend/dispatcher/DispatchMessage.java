@@ -36,6 +36,8 @@ import com.fasterxml.jackson.annotation.JsonSubTypes.Type;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vangav.backend.cassandra.keyspaces.dispatch_message.QueryDispatchable;
+import com.vangav.backend.networks.email.java_email.dispatch_message.JavaEmailDispatchable;
+import com.vangav.backend.networks.email.mail_gun_email.dispatch_message.MailGunEmailDispatchable;
 import com.vangav.backend.push_notifications.android.dispatch_message.AndroidNotificationDispatchable;
 import com.vangav.backend.push_notifications.apple.dispatch_message.AppleNotificationDispatchable;
 
@@ -58,7 +60,9 @@ import com.vangav.backend.push_notifications.apple.dispatch_message.AppleNotific
 @JsonSubTypes({
   @Type(value = QueryDispatchable.class, name = "cassandra_query"),
   @Type(value = AndroidNotificationDispatchable.class, name = "android_notification"),
-  @Type(value = AppleNotificationDispatchable.class, name = "apple_notification") } )
+  @Type(value = AppleNotificationDispatchable.class, name = "apple_notification"),
+  @Type(value = JavaEmailDispatchable.class, name = "java_email"),
+  @Type(value = MailGunEmailDispatchable.class, name = "mail_gun_email") } )
 public abstract class DispatchMessage {
   
   @JsonProperty
