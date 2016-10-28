@@ -40,7 +40,7 @@ import java.util.Map;
  * GetQuery represents GET REST call's query
  *   (e.g.: id=123&name=john)
  * */
-public class RestRequestGetQuery {
+public class RestRequestGetQuery extends RestRequest {
 
   private Map<String, String> params;
   

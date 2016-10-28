@@ -38,7 +38,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * RestRequestPostJson is the parent class for a REST request's POST JSON
  * */
-public abstract class RestRequestPostJson {
+public abstract class RestRequestPostJson extends RestRequest {
   
   /**
    * getName

@@ -35,6 +35,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Map;
 import java.util.concurrent.CountDownLatch;
 
 import com.vangav.backend.networks.DownloadInl;
@@ -72,6 +73,7 @@ public class RestAsync extends LatchThread {
   private final RestCallType restCallType;
   private final RestCallResponseType restCallResponseType;
   private final String requestString;
+  private final Map<String, String> requestHeaders;
   
   private String url;
   
@@ -108,6 +110,14 @@ public class RestAsync extends LatchThread {
     this.restCallResponseType = RestCallResponseType.JSON;
     this.requestString = restRequestPostJson.getAsString();
     
+    if (restRequestPostJson.hasHeaders() == true) {
+      
+      this.requestHeaders = restRequestPostJson.getHeaders();
+    } else {
+      
+      this.requestHeaders = null;
+    }
+    
     this.url = url;
     
     this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
@@ -143,6 +153,14 @@ public class RestAsync extends LatchThread {
     this.restCallResponseType = RestCallResponseType.JSON;
     this.requestString = restRequestGetQuery.getQuery();
     
+    if (restRequestGetQuery.hasHeaders() == true) {
+      
+      this.requestHeaders = restRequestGetQuery.getHeaders();
+    } else {
+      
+      this.requestHeaders = null;
+    }
+    
     this.url = url + "?" + this.requestString;
     
     this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
@@ -175,6 +193,8 @@ public class RestAsync extends LatchThread {
     this.restCallResponseType = RestCallResponseType.JSON;
     this.requestString = "";
     
+    this.requestHeaders = null;
+    
     this.url = url;
     
     this.restResponseHttpStatusCode = kInvalidRestResponseStatus;
@@ -204,6 +224,8 @@ public class RestAsync extends LatchThread {
     this.restCallType = RestCallType.GET;
     this.restCallResponseType = RestCallResponseType.DOWNLOAD;
     this.requestString = "";
+    
+    this.requestHeaders = null;
     
     this.url = url;
     
@@ -332,19 +354,35 @@ public class RestAsync extends LatchThread {
   private void executeJsonResponse () throws Exception {
 
     // initiate connection
-    URLConnection urlConnection = new URL(url).openConnection();
-    urlConnection.setRequestProperty(
-      "Accept-Charset",
-      "UTF-8");
+    URLConnection urlConnection = new URL(this.url).openConnection();
+    
+    if (this.requestHeaders == null) {
+      
+      urlConnection.setRequestProperty(
+        "Accept-Charset",
+        "UTF-8");
+    } else {
+      
+      for (String key : this.requestHeaders.keySet() ) {
+        
+        urlConnection.setRequestProperty(
+          key,
+          this.requestHeaders.get(key) );
+      }
+    }
     
     // POST request?
     if (this.restCallType == RestCallType.POST) {
       
       // add POST request JSON content to the request
       urlConnection.setDoOutput(true);
-      urlConnection.setRequestProperty(
-        "Content-Type",
-        "text/json");
+      
+      if (this.requestHeaders == null) {
+      
+        urlConnection.setRequestProperty(
+          "Content-Type",
+          "text/json");
+      }
       
       // send request and close output stream
       OutputStream outputStream = urlConnection.getOutputStream();

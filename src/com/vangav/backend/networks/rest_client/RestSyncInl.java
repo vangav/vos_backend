@@ -35,6 +35,7 @@ import java.io.OutputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.Map;
 
 import com.vangav.backend.data_structures_and_algorithms.tuple.Pair;
 import com.vangav.backend.files.FileWriterInl;
@@ -70,7 +71,23 @@ public class RestSyncInl {
     String url,
     RestRequestGetQuery getQuery) throws Exception {
     
-    return restCall(url, RestCallType.GET, getQuery.getQuery() );
+    if (getQuery.hasHeaders() == true) {
+    
+      return
+        restCall(
+          url,
+          RestCallType.GET,
+          getQuery.getQuery(),
+          getQuery.getHeaders() );
+    } else {
+    
+      return
+        restCall(
+          url,
+          RestCallType.GET,
+          getQuery.getQuery(),
+          null);
+    }
   }
   
   /**
@@ -85,9 +102,25 @@ public class RestSyncInl {
     String url,
     RestRequestPostJson postJson) throws Exception {
     
-    return restCall(url, RestCallType.POST, postJson.getAsString() );
+    if (postJson.hasHeaders() == true) {
+    
+      return
+        restCall(
+          url,
+          RestCallType.POST,
+          postJson.getAsString(),
+          postJson.getHeaders() );
+    } else {
+    
+      return
+        restCall(
+          url,
+          RestCallType.POST,
+          postJson.getAsString(),
+          null);
+    }
   }
-
+  
   /**
    * @param url
    * @param type
@@ -100,22 +133,55 @@ public class RestSyncInl {
     RestCallType type,
     String request) throws Exception {
     
+    return restCall(url, type, request, null);
+  }
+
+  /**
+   * @param url
+   * @param type
+   * @param request
+   * @param requestHeaders
+   * @return URLConnection Object containing the request's response
+   * @throws Exception
+   */
+  public static URLConnection restCall (
+    String url,
+    RestCallType type,
+    String request,
+    Map<String, String> requestHeaders) throws Exception {
+    
     if (type == RestCallType.GET) {
       
       url = url + "?" + request;
     }
 
     URLConnection urlConnection = new URL(url).openConnection();
-    urlConnection.setRequestProperty(
-      "Accept-Charset",
-      "UTF-8");
+    
+    if (requestHeaders == null) {
+    
+      urlConnection.setRequestProperty(
+        "Accept-Charset",
+        "UTF-8");
+    } else {
+      
+      for (String key : requestHeaders.keySet() ) {
+        
+        urlConnection.setRequestProperty(
+          key,
+          requestHeaders.get(key) );
+      }
+    }
     
     if (type == RestCallType.POST) {
       
       urlConnection.setDoOutput(true);
-      urlConnection.setRequestProperty(
-        "Content-Type",
-        "text/json");
+      
+      if (requestHeaders == null) {
+      
+        urlConnection.setRequestProperty(
+          "Content-Type",
+          "text/json");
+      }
       
       OutputStream outputStream = urlConnection.getOutputStream();
       outputStream.write(request.getBytes("UTF-8") );
