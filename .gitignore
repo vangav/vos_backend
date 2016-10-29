@@ -24,3 +24,4 @@ hs_err_pid*
 # vos_backend
 apache-cassandra-2.1.2/data/
 apache-cassandra-2.1.2/logs/
+/bin
