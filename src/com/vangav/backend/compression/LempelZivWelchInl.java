@@ -144,6 +144,8 @@ public class LempelZivWelchInl {
       } else {
        
         throw new CodeException(
+          22,
+          1,
           "invalid compression ["
           + toDecompress.toString()
           + "]",

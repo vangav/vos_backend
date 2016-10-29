@@ -97,6 +97,8 @@ public class StringVerifierInl {
       }
       
       throw new CodeException(
+        23,
+        8,
         "Invalid ["
         + name
         + "] value [NULL] must be one of the valid values --> "
@@ -127,6 +129,8 @@ public class StringVerifierInl {
     }
     
     throw new CodeException(
+      23,
+      9,
       "Invalid ["
       + name
       + "] value ["
@@ -169,6 +173,8 @@ public class StringVerifierInl {
     }
     
     throw new CodeException(
+      23,
+      10,
       "Invalid ["
       + name
       + "] value ["

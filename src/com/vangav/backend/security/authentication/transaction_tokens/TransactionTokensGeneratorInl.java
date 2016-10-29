@@ -237,6 +237,8 @@ public class TransactionTokensGeneratorInl {
       
       default:
         throw new CodeException(
+          181,
+          10,
           "Unhandled TokenType ["
           + tokenType.toString()
           + "]",

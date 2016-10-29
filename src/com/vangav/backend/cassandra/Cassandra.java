@@ -490,6 +490,8 @@ public class Cassandra {
     }
     
     throw new CodeException(
+      21,
+      1,
       "Couldn't prepare prepared statement ["
       + preparedStatement
       + "]",
@@ -580,6 +582,8 @@ public class Cassandra {
     }
     
     throw new CodeException(
+      21,
+      2,
       "Couldn't execute query statement ["
       + query.toString()
       + "]",

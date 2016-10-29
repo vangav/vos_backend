@@ -132,6 +132,8 @@ public class AppleNotificationSender {
     } else {
       
       throw new CodeException(
+        154,
+        2,
         "invalid ClientType value ["
         + clientType.toString()
         + "], set it to one of the valid enum values",
@@ -155,6 +157,8 @@ public class AppleNotificationSender {
       if (AppleNotificationProperties.i().isDefined() == false) {
         
         throw new CodeException(
+          154,
+          3,
           "values in ["
           + AppleNotificationProperties.i().getName()
           + ".prop] aren't defined, either define them or use the normal "

@@ -96,6 +96,8 @@ public class Range {
     if (max.doubleValue() < min.doubleValue() ) {
       
       throw new CodeException(
+        121,
+        2,
         "max can't be smaller than min. values: min ["
         + min.doubleValue()
         + "] max ["

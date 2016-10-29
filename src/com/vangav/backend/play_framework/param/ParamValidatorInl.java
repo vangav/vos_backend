@@ -316,6 +316,8 @@ public class ParamValidatorInl {
         
       default:
         throw new BadRequestException(
+          151,
+          6,
           "Invalid param ["
           + name
           + "]",
@@ -1070,6 +1072,8 @@ public class ParamValidatorInl {
   private static void throwInvalidParam (String name) throws Exception {
 
     throw new BadRequestException(
+      151,
+      7,
       "Invalid param ["
       + name
       + "]",

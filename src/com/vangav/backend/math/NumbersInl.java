@@ -179,6 +179,8 @@ public class NumbersInl {
     if (valueStr.length() > stringLength) {
       
       throw new CodeException(
+        121,
+        1,
         "value ["
         + value
         + "] length is greater than stringLength ["

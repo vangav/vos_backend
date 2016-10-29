@@ -136,6 +136,8 @@ public class SequentialIds {
     if (this.counter == (kMaxCounter - 1L) ) {
       
       throw new CodeException(
+        81,
+        1,
         "trying to generate more than 100 million new IDs during one second",
         ExceptionClass.THROTTLING);
     }

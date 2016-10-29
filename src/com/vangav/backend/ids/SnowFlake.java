@@ -121,6 +121,8 @@ public class SnowFlake {
     if (this.machineId > this.maxMachineId || this.machineId < 0) {
 
       throw new CodeException(
+        81,
+        2,
         "machineId > maxMachineId (maximum number of allowed instances is ["
         + this.maxMachineId
         + "] )",
@@ -140,6 +142,8 @@ public class SnowFlake {
     if (timestamp < this.lastTimestamp) {
       
       throw new CodeException(
+        81,
+        3,
         "Clock moved backwards. Can't generate an out of sequence ID for "
         + "time stamp ["
         + (this.lastTimestamp - timestamp)

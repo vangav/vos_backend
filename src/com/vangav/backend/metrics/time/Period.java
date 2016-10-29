@@ -76,6 +76,8 @@ public class Period {
     if (value < 0.0) {
       
       throw new CodeException(
+        122,
+        5,
         "Period value ["
         + value
         + "] can't be negative",
@@ -95,6 +97,8 @@ public class Period {
     if (value < 0.0) {
       
       throw new CodeException(
+        122,
+        6,
         "Period value ["
         + value
         + "] can't be negative",
@@ -288,6 +292,8 @@ public class Period {
     if (value > this.value) {
       
       throw new CodeException(
+        122,
+        7,
         "Period minus operation will lead to a negative Period, that's an "
         + "invalid operation, minus value must be smaller than or equal to "
         + "current value. Current value ["
@@ -315,6 +321,8 @@ public class Period {
     if (convertedPeriod.value > this.value) {
       
       throw new CodeException(
+        122,
+        8,
         "Period minus operation will lead to a negative Period, that's an "
         + "invalid operation, minus value must be smaller than or equal to "
         + "current value. Current value ["

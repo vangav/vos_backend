@@ -404,6 +404,8 @@ public class Image {
     if (this.segments.isEmpty() == true) {
       
       throw new CodeException (
+        82,
+        1,
         "Image ["
         + this.imagePath
         + "] isn't segmented, segment image before applying features",

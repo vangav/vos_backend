@@ -131,3 +131,4 @@ Have fun!
 7. [Using Dispatcher - Worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
 8. [Debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
 9. [Deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
+10. [Error Codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)

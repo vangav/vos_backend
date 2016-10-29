@@ -136,6 +136,8 @@ public class Car2GoApi {
           return "vehicles";
         default:
           throw new CodeException(
+            153,
+            1,
             "Invalid EdgeType ["
               + this.toString()
               + "]",
@@ -162,6 +164,8 @@ public class Car2GoApi {
           return new Vehicles();
         default:
           throw new CodeException(
+            153,
+            2,
             "Invalid EdgeType ["
               + this.toString()
               + "]",
@@ -246,6 +250,8 @@ public class Car2GoApi {
     if (this.futureResponses.containsKey(requestTrackingUuid) == false) {
 
       throw new CodeException(
+        153,
+        3,
         "Invalid request tracking id ["
         + requestTrackingUuid
         + "]",
@@ -376,6 +382,8 @@ public class Car2GoApi {
     }
 
     throw new CodeException(
+      153,
+      4,
       "Unhandled RequestType ["
         + requestType.toString()
         + "]",

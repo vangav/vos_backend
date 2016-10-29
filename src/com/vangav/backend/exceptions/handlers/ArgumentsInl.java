@@ -79,6 +79,8 @@ public class ArgumentsInl {
     if (object.getClass().equals(type) == false) {
       
       throw VangavException.exceptionFactory(
+        41,
+        1,
         "Wrong class type ["
         + object.getClass().getName()
         + "] expecting ["
@@ -105,6 +107,8 @@ public class ArgumentsInl {
     if (object == null) {
       
       throw VangavException.exceptionFactory(
+        41,
+        2,
         name
         + " can't be null",
         exceptionType,
@@ -129,6 +133,8 @@ public class ArgumentsInl {
     if (string.length() == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        3,
         name
         + " can't be empty",
         exceptionType,
@@ -153,6 +159,8 @@ public class ArgumentsInl {
     if (array.length == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        4,
         name
         + " can't be empty",
         exceptionType,
@@ -177,6 +185,8 @@ public class ArgumentsInl {
     if (array.length == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        5,
         name
         + " can't be empty",
         exceptionType,
@@ -201,6 +211,8 @@ public class ArgumentsInl {
     if (array.length == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        6,
         name
         + " can't be empty",
         exceptionType,
@@ -225,6 +237,8 @@ public class ArgumentsInl {
     if (array.length == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        7,
         name
         + " can't be empty",
         exceptionType,
@@ -249,6 +263,8 @@ public class ArgumentsInl {
     if (array.length == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        8,
         name
         + " can't be empty",
         exceptionType,
@@ -273,6 +289,8 @@ public class ArgumentsInl {
     if (array.length == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        9,
         name
         + " can't be empty",
         exceptionType,
@@ -297,6 +315,8 @@ public class ArgumentsInl {
     if (collection.size() == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        10,
         name
         + " can't be empty",
         exceptionType,
@@ -321,6 +341,8 @@ public class ArgumentsInl {
     if (map.size() == 0) {
       
       throw VangavException.exceptionFactory(
+        41,
+        11,
         name
         + " can't be empty",
         exceptionType,
@@ -348,6 +370,8 @@ public class ArgumentsInl {
     if (value < min || value > max) {
       
       throw VangavException.exceptionFactory(
+        41,
+        12,
         name
         + " value ["
         + value
@@ -379,6 +403,8 @@ public class ArgumentsInl {
     if (value < minLimit) {
       
       throw VangavException.exceptionFactory(
+        41,
+        13,
         name
         + " value ["
         + value
@@ -408,6 +434,8 @@ public class ArgumentsInl {
     if (value < minLimit) {
       
       throw VangavException.exceptionFactory(
+        41,
+        14,
         name
         + " value ["
         + value
@@ -435,6 +463,8 @@ public class ArgumentsInl {
     if (Double.isNaN(value) || Double.isInfinite(value) ) {
      
       throw VangavException.exceptionFactory(
+        41,
+        15,
         name
         + " double ["
         + value
@@ -476,6 +506,8 @@ public class ArgumentsInl {
     } catch (Exception e) {
       
       throw VangavException.exceptionFactory(
+        41,
+        16,
         name
         + " Invalid IP V4 ["
         + ip

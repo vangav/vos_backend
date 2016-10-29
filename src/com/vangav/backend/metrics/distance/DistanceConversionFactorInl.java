@@ -85,6 +85,8 @@ public class DistanceConversionFactorInl {
     } catch (Exception e) {
       
       throw new CodeException(
+        122,
+        3,
         "invalid DistanceUnitType",
         ExceptionClass.TYPE);
     }
@@ -92,6 +94,8 @@ public class DistanceConversionFactorInl {
     if (Double.isNaN(conversionFactor) == true) {
       
       throw new CodeException(
+        122,
+        4,
         "invalid DistanceUnitType",
         ExceptionClass.TYPE);
     }

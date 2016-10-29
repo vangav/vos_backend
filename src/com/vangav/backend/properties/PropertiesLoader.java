@@ -173,6 +173,8 @@ public class PropertiesLoader {
     if (defaultValue == null) {
       
       throw new CodeException(
+        152,
+        1,
         "Invalid property, properties file ["
         + fileName
         + "] doesn't have property ["

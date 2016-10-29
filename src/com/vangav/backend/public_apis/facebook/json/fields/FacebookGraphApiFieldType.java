@@ -195,6 +195,8 @@ public enum FacebookGraphApiFieldType {
 
       default:
         throw new CodeException(
+          153,
+          18,
           "Unhandled type ["
             + this.toString()
             + "]",

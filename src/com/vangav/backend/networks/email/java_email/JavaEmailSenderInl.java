@@ -136,6 +136,8 @@ public class JavaEmailSenderInl {
     } else {
       
       throw new CodeException(
+        131,
+        1,
         "Unknown SslType ["
           + javaEmail.getSslType().toString()
           + "] exepcting WITH_SSL or WITHOUT_SSL",

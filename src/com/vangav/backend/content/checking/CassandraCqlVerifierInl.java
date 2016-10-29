@@ -88,6 +88,8 @@ public class CassandraCqlVerifierInl {
     if (name.length() > 32) {
       
       throw new CodeException(
+        23,
+        1,
         "a name in Cassandra CQL must have at least one char and not more than"
         + "32 chars, current name["
         + name
@@ -104,6 +106,8 @@ public class CassandraCqlVerifierInl {
           CharVerifierInl.CharType.UNDER_SCORE) == false) {
       
       throw new CodeException(
+        23,
+        2,
         "a name in Cassandra CQL must start with a lower case letter, "
         + "an upper case letter or an under score; invalid name ["
         + name
@@ -123,6 +127,8 @@ public class CassandraCqlVerifierInl {
             CharVerifierInl.CharType.DIGIT) == false) {
         
         throw new CodeException(
+          23,
+          3,
           "a name in Cassandra CQL can only contain a lower case letter, "
           + "an upper case letter, an under score or a digit; invalid name ["
           + name

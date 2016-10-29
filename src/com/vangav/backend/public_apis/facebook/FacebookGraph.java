@@ -191,6 +191,8 @@ public class FacebookGraph {
     if (restAsync.gotMatchingJsonResponse() == false) {
       
       throw new BadRequestException(
+        153,
+        6,
         "Wrong facebook access token ["
           + this.accessToken
           + "], response's HTTP Status Code ["
@@ -205,6 +207,8 @@ public class FacebookGraph {
     if (restAsync.isResponseStatusSuccess() == false) {
       
       throw new BadRequestException(
+        153,
+        7,
         "Got a 400 BAD_REQUEST Http Status Code response from Facebook "
           + "Graph API for access token ["
           + this.accessToken
@@ -297,6 +301,8 @@ public class FacebookGraph {
           requestTrackingUuid) == false) {
       
       throw new CodeException(
+        153,
+        8,
         "Invalid request tracking id ["
         + requestTrackingUuid
         + "]",
@@ -312,6 +318,8 @@ public class FacebookGraph {
     } else {
       
       throw new BadRequestException(
+        153,
+        9,
         "Couldn't get profile picture for user wit facebook user id ["
           + this.userId
           + "] and fb_access_token ["
@@ -360,6 +368,8 @@ public class FacebookGraph {
       } else {
         
         throw new BadRequestException(
+          153,
+          10,
           "Couldn't get profile picture for user wit facebook user id ["
             + this.userId
             + "]",
@@ -377,6 +387,8 @@ public class FacebookGraph {
     }
     
     throw new CodeException(
+      153,
+      11,
       "Unhandled RequestType ["
         + requestType.toString()
         + "]",
@@ -445,6 +457,8 @@ public class FacebookGraph {
           requestTrackingUuid) == false) {
 
       throw new CodeException(
+        153,
+        12,
         "Invalid request tracking id ["
         + requestTrackingUuid
         + "]",
@@ -571,6 +585,8 @@ public class FacebookGraph {
     }
 
     throw new CodeException(
+      153,
+      13,
       "Unhandled RequestType ["
         + requestType.toString()
         + "]",
@@ -667,6 +683,8 @@ public class FacebookGraph {
           requestTrackingUuid) == false) {
 
       throw new CodeException(
+        153,
+        14,
         "Invalid request tracking id ["
         + requestTrackingUuid
         + "]",
@@ -843,6 +861,8 @@ public class FacebookGraph {
     }
 
     throw new CodeException(
+      153,
+      15,
       "Unhandled RequestType ["
         + requestType.toString()
         + "]",
@@ -945,6 +965,8 @@ public class FacebookGraph {
           requestTrackingUuid) == false) {
 
       throw new CodeException(
+        153,
+        16,
         "Invalid request tracking id ["
         + requestTrackingUuid
         + "]",
@@ -1127,6 +1149,8 @@ public class FacebookGraph {
     }
 
     throw new CodeException(
+      153,
+      17,
       "Unhandled RequestType ["
         + requestType.toString()
         + "]",

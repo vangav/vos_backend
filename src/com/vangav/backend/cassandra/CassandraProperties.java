@@ -164,6 +164,8 @@ public class CassandraProperties extends PropertiesFile {
       if (cassandraNodesNames == null || cassandraNodesNames.length == 0) {
         
         throw new CodeException(
+          21,
+          3,
           "Invalid multi deployment topology ["
           + multiDeploymentTopology
           + "] in properties file ["
@@ -196,6 +198,8 @@ public class CassandraProperties extends PropertiesFile {
     } else {
       
       throw new CodeException(
+        21,
+        4,
         "Invalid ["
         + kDeploymentMode
         + " = "

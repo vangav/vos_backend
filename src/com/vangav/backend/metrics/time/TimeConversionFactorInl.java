@@ -85,6 +85,8 @@ public class TimeConversionFactorInl {
     } catch (Exception e) {
       
       throw new CodeException(
+        122,
+        9,
         "invalid TimeUnitType",
         ExceptionClass.TYPE);
     }
@@ -92,6 +94,8 @@ public class TimeConversionFactorInl {
     if (Double.isNaN(conversionFactor) == true) {
       
       throw new CodeException(
+        122,
+        10,
         "invalid TimeUnitType",
         ExceptionClass.TYPE);
     }

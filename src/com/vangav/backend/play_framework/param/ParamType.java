@@ -185,6 +185,8 @@ public enum ParamType {
 
       default:
         throw new CodeException(
+          151,
+          5,
           "Unhandled type ["
             + this.toString()
             + "]",

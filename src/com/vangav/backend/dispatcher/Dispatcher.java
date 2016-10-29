@@ -122,6 +122,8 @@ public class Dispatcher {
       } catch (Exception e) {
 
         throw new CodeException(
+          32,
+          1,
           "propterty ["
             + DispatcherProperties.kWorkersTopology
             + "] isn't defined in properties file ["

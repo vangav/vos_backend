@@ -99,6 +99,8 @@ public class FacebookAuthInl {
           HttpURLConnection.HTTP_OK) {
         
         throw new CodeException(
+          181,
+          1,
           "Error while communicating with facebook, fb_access_token ["
           + facebookAccessToken
           + "]",
@@ -115,6 +117,8 @@ public class FacebookAuthInl {
       if (responseFacebookAuth.id == null) {
         
         throw new BadRequestException(
+          181,
+          2,
           "Facebook Auth returned null app id",
           ExceptionClass.AUTHENTICATION);
       }
@@ -127,6 +131,8 @@ public class FacebookAuthInl {
       
       // wrong app id
       throw new CodeException(
+        181,
+        3,
         "Facebook Auth [wrong app id], got ["
         + responseFacebookAuth.id
         + "] and expected ["
@@ -142,6 +148,8 @@ public class FacebookAuthInl {
     } catch (Exception e) {
       
       throw new CodeException(
+        181,
+        4,
         "Error while communicating with facebook, fb_access_token ["
         + facebookAccessToken
         + "]",

@@ -118,6 +118,8 @@ public class CassandraVerifierInl {
       if (keyspacesNames.contains(currKeyspaceJson.name) == true) {
         
         throw new CodeException(
+          21,
+          5,
           "Can't have more than one keyspace with the same name ["
           + currKeyspaceJson.name
           + "]",
@@ -131,6 +133,8 @@ public class CassandraVerifierInl {
           currKeyspaceJson.replications.length <= 0) {
         
         throw new CodeException(
+          21,
+          6,
           "Keyspace ["
           + currKeyspaceJson.name
           + "] must have at least one replication",
@@ -151,6 +155,8 @@ public class CassandraVerifierInl {
           if (keyspaceTablesNames.contains(tableJson.name) == true) {
             
             throw new CodeException(
+              21,
+              7,
               "Can't have more than one table with the same name ["
               + tableJson.name
               + "], from keyspace ["
@@ -200,6 +206,8 @@ public class CassandraVerifierInl {
       if (columns.containsKey(columnJson.name) == true) {
         
         throw new CodeException(
+          21,
+          8,
           "keyspace ["
           + keyspaceName
           + "] table ["
@@ -229,6 +237,8 @@ public class CassandraVerifierInl {
       if (columns.containsKey(partitionKey) == false) {
         
         throw new CodeException(
+          21,
+          9,
           "keyspace ["
           + keyspaceName
           + "] table ["
@@ -243,6 +253,8 @@ public class CassandraVerifierInl {
       if (columns.get(partitionKey) > 0) {
         
         throw new CodeException(
+          21,
+          10,
           "keyspace ["
           + keyspaceName
           + "] table ["
@@ -267,6 +279,8 @@ public class CassandraVerifierInl {
         if (columns.containsKey(secondaryKey) == false) {
           
           throw new CodeException(
+            21,
+            11,
             "keyspace ["
             + keyspaceName
             + "] table ["
@@ -281,6 +295,8 @@ public class CassandraVerifierInl {
         if (columns.get(secondaryKey) > 0) {
           
           throw new CodeException(
+            21,
+            12,
             "keyspace ["
             + keyspaceName
             + "] table ["
@@ -310,6 +326,8 @@ public class CassandraVerifierInl {
           tableJson.secondary_keys.length == 0) {
         
         throw new CodeException(
+          21,
+          13,
           "keyspace ["
           + keyspaceName
           + "] table ["
@@ -326,6 +344,8 @@ public class CassandraVerifierInl {
         if (secondaryKeys.containsKey(orderByJson.column_name) == false) {
           
           throw new CodeException(
+            21,
+            14,
             "keyspace ["
             + keyspaceName
             + "] table ["
@@ -340,6 +360,8 @@ public class CassandraVerifierInl {
         if (secondaryKeys.get(orderByJson.column_name) > 0) {
           
           throw new CodeException(
+            21,
+            15,
             "keyspace ["
             + keyspaceName
             + "] table ["

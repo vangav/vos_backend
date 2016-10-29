@@ -145,6 +145,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
     if (this.solution_type.compareToIgnoreCase("JAVA_JAR") != 0) {
       
       throw new CodeException(
+        211,
+        1,
         "Invalid vangav solution type ["
         + this.solution_type
         + "], this client handles JAVA solutions only where the solution type "
@@ -182,6 +184,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
                 inputMultiRangeJson.prefix + suffix) == true) {
             
             throw new CodeException(
+              211,
+              2,
               "Duplicate mutli range input, prefix ["
               + inputMultiRangeJson.prefix
               + "] suffix ["
@@ -216,6 +220,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
       if (inputNames.contains(inputJson.name) == true) {
         
         throw new CodeException(
+          211,
+          3,
           "duplicate input name ["
           + inputJson.name
           + "]",
@@ -248,6 +254,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
           ((inputJson.mid - inputJson.min) < kMinMidDelta) ) {
         
         throw new CodeException(
+          211,
+          4,
           "input ["
           + inputJson.name
           + "] min, mid, max ["
@@ -268,6 +276,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
     if (multiRangeInputNames.isEmpty() == false) {
       
       throw new CodeException(
+        211,
+        5,
         "multi range inputs ["
         + Arrays.toString(multiRangeInputNames.toArray() )
         + "] have no corresponding inputs in ["
@@ -289,6 +299,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
         if (inputNames.contains(finiteInput) == false) {
           
           throw new CodeException(
+            211,
+            6,
             "finite input ["
             + finiteInput
             + "] doesn't belong to solution's inputs ["
@@ -323,6 +335,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
                 outputMultiRangeJson.prefix + suffix) == true) {
             
             throw new CodeException(
+              211,
+              7,
               "Duplicate mutli range output, prefix ["
               + outputMultiRangeJson.prefix
               + "] suffix ["
@@ -356,6 +370,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
       if (outputNames.contains(outputJson.name) == true) {
         
         throw new CodeException(
+          211,
+          8,
           "duplicate output name ["
           + outputJson.name
           + "]",
@@ -388,6 +404,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
           ((outputJson.mid - outputJson.min) < kMinMidDelta) ) {
         
         throw new CodeException(
+          211,
+          9,
           "output ["
           + outputJson.name
           + "] min, mid, max ["
@@ -408,6 +426,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
     if (multiRangeOutputNames.isEmpty() == false) {
       
       throw new CodeException(
+        211,
+        10,
         "multi range outputs ["
         + Arrays.toString(multiRangeOutputNames.toArray() )
         + "] have no corresponding outputs in ["
@@ -427,6 +447,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
       if (inputNames.contains(relationJson.input_name) == false) {
         
         throw new CodeException(
+          211,
+          11,
           "relations, input name ["
           + relationJson.input_name
           + "] doesn't belong to solution's inputs ["
@@ -438,6 +460,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
       if (outputNames.contains(relationJson.output_name) == false) {
         
         throw new CodeException(
+          211,
+          12,
           "relations, output name ["
           + relationJson.output_name
           + "] doesn't belong to solution's outputs ["
@@ -463,6 +487,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
       if (relationJson.weight > kMaxWeight) {
         
         throw new CodeException(
+          211,
+          13,
           "relation weight ["
           + relationJson.weight
           + "] can't be greater than ["
@@ -496,6 +522,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
               relativeRelationJson.relative_input) == false) {
           
           throw new CodeException(
+            211,
+            14,
             "relative relation relative_input ["
             + relativeRelationJson.relative_input
             + "] must be one of the solution's inputs ["
@@ -508,6 +536,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
               relativeRelationJson.min_output) == 0) {
           
           throw new CodeException(
+            211,
+            15,
             "a relative relation can't have the same value for both of "
             + "max_output ["
             + relativeRelationJson.max_output
@@ -521,6 +551,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
               relativeRelationJson.max_output) == false) {
           
           throw new CodeException(
+            211,
+            16,
             "relative relation max_output ["
             + relativeRelationJson.max_output
             + "] must be one of the solution's relations' outputs ["
@@ -533,6 +565,8 @@ public class VangavMSolutionJson extends RestRequestPostJson {
               relativeRelationJson.min_output) == false) {
           
           throw new CodeException(
+            211,
+            17,
             "relative relation min_output ["
             + relativeRelationJson.min_output
             + "] must be one of the solution's relations' outputs ["

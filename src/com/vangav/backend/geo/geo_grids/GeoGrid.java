@@ -262,6 +262,8 @@ public class GeoGrid {
     if (this.geoGridsConfig.equal(geoGrid.geoGridsConfig) == false) {
       
       throw new CodeException(
+        61,
+        3,
         "this GeoGrid and param GeoGrid has different configurations, "
         + "can't calculate distance between them",
         ExceptionClass.ARGUMENT);
@@ -284,6 +286,8 @@ public class GeoGrid {
     if (this.geoGridsConfig.equal(geoGrid.geoGridsConfig) == false) {
       
       throw new CodeException(
+        61,
+        4,
         "this GeoGrid and param GeoGrid has different configurations, "
         + "can't calculate distance between them",
         ExceptionClass.ARGUMENT);
@@ -306,6 +310,8 @@ public class GeoGrid {
     if (this.geoGridsConfig.equal(geoGrid.geoGridsConfig) == false) {
       
       throw new CodeException(
+        61,
+        5,
         "this GeoGrid and param GeoGrid has different configurations, "
         + "can't calculate LineSegment between them",
         ExceptionClass.ARGUMENT);
@@ -348,6 +354,8 @@ public class GeoGrid {
     if (this.isValid() == false) {
       
       throw new CodeException(
+        61,
+        6,
         "can't get surrounding grids for an invalid grid",
         ExceptionClass.ARGUMENT);
     }

@@ -104,6 +104,8 @@ public class GoogleAuthInl {
             HttpURLConnection.HTTP_INTERNAL_ERROR) {
           
           throw new CodeException(
+            181,
+            5,
             "Error while communicating with google, google_id_token ["
             + googleIdToken
             + "]",
@@ -111,6 +113,8 @@ public class GoogleAuthInl {
         }
         
         throw new BadRequestException(
+          181,
+          6,
           "invalid google_id_token ["
           + googleIdToken
           + "]",
@@ -127,6 +131,8 @@ public class GoogleAuthInl {
       if (responseGoogleAuth.aud == null) {
         
         throw new BadRequestException(
+          181,
+          7,
           "Google Auth returned null app id",
           ExceptionClass.AUTHENTICATION);
       }
@@ -139,6 +145,8 @@ public class GoogleAuthInl {
       
       // wrong app id
       throw new CodeException(
+        181,
+        8,
         "Google Auth [wrong app id], got ["
         + responseGoogleAuth.aud
         + "] and expected ["
@@ -148,6 +156,8 @@ public class GoogleAuthInl {
     } catch (Exception e) {
       
       throw new CodeException(
+        181,
+        9,
         "Error while communicating with google, google_id_token ["
         + googleIdToken
         + "]",

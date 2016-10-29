@@ -258,6 +258,8 @@ public class GeoGridsConfig {
         this.mapWidth.equalUnit(this.mapLength) == false) {
       
       throw new CodeException(
+        61,
+        7,
         "gridDimension, mapWidth and mapLength must all have the same unit. "
         + "Grid dimension ["
         + this.gridDimension.toString()
@@ -273,6 +275,8 @@ public class GeoGridsConfig {
         this.gridDimension.greaterThan(this.mapLength) ) {
       
       throw new CodeException(
+        61,
+        8,
         "Grid dimension can't be greater than map width or map length. "
         + "Grid dimension ["
         + this.gridDimension.toString()
@@ -287,6 +291,8 @@ public class GeoGridsConfig {
     if (this.latitudeRange.isValid() == false) {
       
       throw new CodeException(
+        61,
+        9,
         "latitude range is invalid",
         ExceptionClass.ARGUMENT);
     }
@@ -294,6 +300,8 @@ public class GeoGridsConfig {
     if (this.longitudeRange.isValid() == false) {
       
       throw new CodeException(
+        61,
+        10,
         "longitude range is invalid",
         ExceptionClass.ARGUMENT);
     }
@@ -301,6 +309,8 @@ public class GeoGridsConfig {
     if (this.latitudeGaps < 1.0) {
       
       throw new CodeException(
+        61,
+        11,
         "Latitdue gaps ["
         + this.latitudeGaps
         + "] can't be smaller than 1",
@@ -310,6 +320,8 @@ public class GeoGridsConfig {
     if (this.longitudeGaps < 1.0) {
       
       throw new CodeException(
+        61,
+        12,
         "Longitude gaps ["
         + this.longitudeGaps
         + "] can't be smaller than 1",

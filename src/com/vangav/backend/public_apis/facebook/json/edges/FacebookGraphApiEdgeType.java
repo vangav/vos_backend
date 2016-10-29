@@ -144,6 +144,8 @@ public enum FacebookGraphApiEdgeType {
 
       default:
         throw new CodeException(
+          153,
+          19,
           "Unhandled type ["
             + this.toString()
             + "]",

@@ -75,6 +75,8 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
     String json) throws Exception {
     
     throw new CodeException(
+      151,
+      9,
       "this is a POST request method called for what should be a GET request",
       ExceptionClass.UNAUTHORIZED);
   }
@@ -533,6 +535,8 @@ public abstract class RequestJsonBodyGet extends RequestJsonBody {
     if (methodNames == null) {
       
       throw new CodeException(
+        151,
+        10,
         "Unhandled primitive type ["
         + primitiveType
         + "]",

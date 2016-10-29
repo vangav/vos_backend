@@ -152,6 +152,8 @@ public enum LocationType {
         return "Toronto";
       default:
         throw new CodeException(
+          153,
+          5,
           "Invalid LocationType ["
             + this.toString()
             + "]",

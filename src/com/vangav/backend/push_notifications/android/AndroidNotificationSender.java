@@ -97,6 +97,8 @@ public class AndroidNotificationSender {
       if (AndroidNotificationProperties.i().isDefined() == false) {
         
         throw new CodeException(
+          154,
+          1,
           "values in ["
           + AndroidNotificationProperties.i().getName()
           + ".prop] aren't defined, either define them or use the normal "

@@ -113,6 +113,8 @@ public class EarthConstantsInl {
     } catch (Exception e) {
       
       throw new CodeException(
+        61,
+        1,
         "couldn't initialize Earth's latitude range (-90, 90)",
         ExceptionClass.INITIALIZATION);
     }
@@ -129,6 +131,8 @@ public class EarthConstantsInl {
     } catch (Exception e) {
       
       throw new CodeException(
+        61,
+        2,
         "couldn't initialize Earth's longitude range (-180, 180)",
         ExceptionClass.INITIALIZATION);
     }

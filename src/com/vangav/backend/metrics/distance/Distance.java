@@ -270,6 +270,8 @@ public class Distance {
     if (value > this.value) {
       
       throw new CodeException(
+        122,
+        1,
         "Distance minus operation will lead to a negative distance, that's an "
         + "invalid operation, minus value must be smaller than or equal to "
         + "current value. Current value ["
@@ -297,6 +299,8 @@ public class Distance {
     if (convertedDistance.value > this.value) {
       
       throw new CodeException(
+        122,
+        2,
         "Distance minus operation will lead to a negative distance, that's an "
         + "invalid operation, minus value must be smaller than or equal to "
         + "current value. Current value ["

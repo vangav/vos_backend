@@ -127,6 +127,8 @@ public abstract class RequestJsonBody {
     }
     
     throw new BadRequestException(
+      151,
+      8,
       "unhandled request type, only handles POST and GET request types",
       ExceptionClass.TYPE);
   }

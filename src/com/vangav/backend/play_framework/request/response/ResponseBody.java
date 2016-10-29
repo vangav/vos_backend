@@ -133,6 +133,8 @@ public abstract class ResponseBody {
     }
     
     throw new CodeException(
+      151,
+      12,
       "Unhandled ResponseBody Type ["
       + this.getType().toString()
       + "]",

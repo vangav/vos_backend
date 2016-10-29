@@ -90,6 +90,8 @@ public class JavaCodeVerifierInl {
           CharVerifierInl.CharType.UNDER_SCORE) == false) {
       
       throw new CodeException(
+        23,
+        4,
         "["
         + identifierName
         + "] "
@@ -109,6 +111,8 @@ public class JavaCodeVerifierInl {
           CharVerifierInl.CharType.DIGIT) == false) {
         
         throw new CodeException(
+          23,
+          5,
           "["
           + identifierName
           + "] "
@@ -144,6 +148,8 @@ public class JavaCodeVerifierInl {
           CharVerifierInl.CharType.UNDER_SCORE) == false) {
         
         throw new CodeException(
+          23,
+          6,
           "invalid java package name ["
           + packageName
           + "]",
@@ -161,6 +167,8 @@ public class JavaCodeVerifierInl {
             CharVerifierInl.CharType.DOT) == false) {
           
           throw new CodeException(
+            23,
+            7,
             "invalid java package name ["
             + packageName
             + "]",

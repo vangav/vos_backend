@@ -213,6 +213,8 @@ public class PasswordHashingInl {
     }
     
     throw new CodeException(
+      181,
+      11,
       "invalid SHA algorithm type, the length of param hashed text doesn't"
       + "match any of SHA algorithm types",
       ExceptionClass.TYPE);

@@ -72,6 +72,8 @@ public abstract class RequestJsonBodyPost extends RequestJsonBody {
     Map<String, String[]> query) throws Exception {
     
     throw new CodeException(
+      151,
+      11,
       "this is a GET request method called for what should be a POST request",
       ExceptionClass.UNAUTHORIZED);
   }

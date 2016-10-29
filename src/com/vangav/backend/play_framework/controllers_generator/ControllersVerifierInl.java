@@ -130,6 +130,8 @@ public class ControllersVerifierInl {
       if (controllersNames.contains(controllerJson.name) == true) {
         
         throw new CodeException(
+          151,
+          1,
           "Can't have more than one controller with the same name ["
           + controllerJson.name
           + "]",
@@ -161,6 +163,8 @@ public class ControllersVerifierInl {
           if (requestParamNames.contains(requestParamJson.name) == true) {
             
             throw new CodeException(
+              151,
+              2,
               "Controller ["
               + controllerJson.name
               + "] can't contain duplicate request param ["
@@ -204,9 +208,11 @@ public class ControllersVerifierInl {
           if (responseParamNames.contains(responseParamJson.name) == true) {
             
             throw new CodeException(
+              151,
+              3,
               "Controller ["
               + controllerJson.name
-              + "] can't contain duplicate request param ["
+              + "] can't contain duplicate response param ["
               + responseParamJson.name
               + "]",
               ExceptionClass.JSON);
