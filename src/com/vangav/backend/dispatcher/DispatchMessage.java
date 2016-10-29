@@ -38,6 +38,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.vangav.backend.cassandra.keyspaces.dispatch_message.QueryDispatchable;
 import com.vangav.backend.networks.email.java_email.dispatch_message.JavaEmailDispatchable;
 import com.vangav.backend.networks.email.mail_gun_email.dispatch_message.MailGunEmailDispatchable;
+import com.vangav.backend.networks.twilio.dispatch_message.TwilioMmsDispatchable;
+import com.vangav.backend.networks.twilio.dispatch_message.TwilioSmsDispatchable;
 import com.vangav.backend.push_notifications.android.dispatch_message.AndroidNotificationDispatchable;
 import com.vangav.backend.push_notifications.apple.dispatch_message.AppleNotificationDispatchable;
 
@@ -62,7 +64,9 @@ import com.vangav.backend.push_notifications.apple.dispatch_message.AppleNotific
   @Type(value = AndroidNotificationDispatchable.class, name = "android_notification"),
   @Type(value = AppleNotificationDispatchable.class, name = "apple_notification"),
   @Type(value = JavaEmailDispatchable.class, name = "java_email"),
-  @Type(value = MailGunEmailDispatchable.class, name = "mail_gun_email") } )
+  @Type(value = MailGunEmailDispatchable.class, name = "mail_gun_email"),
+  @Type(value = TwilioSmsDispatchable.class, name = "twilio_sms"),
+  @Type(value = TwilioMmsDispatchable.class, name = "twilio_mms") } )
 public abstract class DispatchMessage {
   
   @JsonProperty

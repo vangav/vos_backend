@@ -1,0 +1,13 @@
+# Twilio properties
+
+# fill in the following properties with valid values for Twilio's functionality
+#   to work
+
+# Find your Account Sid at twilio.com/console
+username=
+
+# Find your Auth Token at twilio.com/console
+password=
+
+# Find your Auth Token at twilio.com/console
+account_sid=
