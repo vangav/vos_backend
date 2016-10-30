@@ -1,71 +1,73 @@
 # Error Codes
 
-+ Package codes
++ Each package has an error code as follows:
 
 | code | package |
 | ---- | ------- |
-| 21 | cassandra |
-| 22 | compression |
-| 23 | content |
-| 31 | data_structures_and_algorithms |
-| 32 | dispatcher |
-| 41 | exceptions |
-| 51 | files |
-| 61 | geo |
-| 81 | ids |
-| 82 | images |
-| 121 | math |
-| 122 | metrics |
-| 131 | networks |
-| 151 | play_framework |
-| 152 | properties |
-| 153 | public_apis |
-| 154 | push_notifications |
-| 181 | security |
-| 182 | system |
-| 191 | thread_pool |
-| 211 | vangav_m |
+| 21 | [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra) |
+| 22 | [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression) |
+| 23 | [content](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content) |
+| 31 | [data_structures_and_algorithms](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/data_structures_and_algorithms) |
+| 32 | [dispatcher](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher) |
+| 41 | [exceptions](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/exceptions) |
+| 51 | [files](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/files) |
+| 61 | [geo](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo) |
+| 81 | [ids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/ids) |
+| 82 | [images](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/images) |
+| 121 | [math](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math) |
+| 122 | [metrics](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/metrics) |
+| 131 | [networks](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks) |
+| 151 | [play_framework](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework) |
+| 152 | [properties](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/properties) |
+| 153 | [public_apis](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis) |
+| 154 | [push_notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications) |
+| 181 | [security](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security) |
+| 182 | [system](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/system) |
+| 191 | [thread_pool](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/thread_pool) |
+| 211 | [vangav_m](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m) |
 
-| code | sub-code | class | explanation |
-| ---- | -------- | ----- | ----------- |
-| 21 | 1 | Cassandra | Couldn't prepare prepared statement |
-| 21 | 2 | Cassandra | Couldn't execute query statement |
-| .. | . | ......... | .... |
-| | hello |
-| 21 | 3 | CassandraProperties | Invalid multi-deployment topology |
-| 21 | 4 | CassandraProperties | Invalid deployment mode |
-| .. | . | ................... | .... |
-| 21 | 5 | CassandraVerifierInl | Can't have more than one keyspace with the same name. |
-| 21 | 6 | CassandraVerifierInl | A keyspace must have at least one replication method. |
-| 21 | 7 | CassandraVerifierInl | Can't have more than one table with the same name. |
-| 21 | 8 | CassandraVerifierInl | Duplicate column-name within one table. |
-| 21 | 9 | CassandraVerifierInl | A table's partition key must be one of its columns. |
-| 21 | 10 | CassandraVerifierInl | A table's compound partition-keys can't have duplicate columns. |
-| 21 | 11 | CassandraVerifierInl | A table's secondary key must be one of its columns. |
-| 21 | 12 | CassandraVerifierInl | A table's compound secondary-keys can't have duplicate columns. |
-| 21 | 13 | CassandraVerifierInl | A table can't have order-by without having secondary keys. |
-| 21 | 14 | CassandraVerifierInl | A table's order-by columns must be in the table's secondary keys. |
-| 21 | 15 | CassandraVerifierInl | A table compound order-by can't have duplicate columns. |
-| .. | .. | .................... | .... |
-| ~~ | ~~ | ~~~~~~~~~~~~~~~~~~~~ | ~~~~ |
-| 22 | 1 | LempelZivWelchInl | Invalid compression. |
-| .. | . | ................. | .... |
-| ~~ | ~ | ~~~~~~~~~~~~~~~~~ | ~~~~ |
-| 23 | 1 | CassandraCqlVerifierInl | A CQL name must have a length between 1 and 32 (inclusive). |
-| 23 | 2 | CassandraCqlVerifierInl | A CQL name must start with a letter or an underscore. |
-| 23 | 3 | CassandraCqlVerifierInl | A CQL name can consist only of letters, digits and underscores. |
-| .. | . | ....................... | .... |
-| 23 | 4 | JavaCodeVerifierInl | A JAVA identifier must start with a letter or an underscore. |
-| 23 | 5 | JavaCodeVerifierInl | A JAVA identifier can consist only of letters, digits and underscores. |
-| 23 | 6 | JavaCodeVerifierInl | A JAVA individual package name must start with a letter or an underscore. |
-| 23 | 7 | JavaCodeVerifierInl | A JAVA package name/path can consist only of letters, digits and underscores. |
-| .. | . | ................... | .... |
-| 23 | 8 | StringVerifierInl | Null String isn't one of the valid values. |
-| 23 | 9 | StringVerifierInl | String isn't one of the valid values. |
-| 23 | 10 | StringVerifierInl | String isn't one of the enum values. |
-| .. | .. | ................. | .... |
-| ~~ | ~~ | ~~~~~~~~~~~~~~~~~ | ~~~~ |
-| 32 | 1 | Dispatcher | Property workers_topology isn't defined in the dispatcher_properties.prop file. |
+| code | sub-code | explanation |
+| ---- | -------- | ----------- |
+| [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra) | | |
+| | [Cassandra](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/Cassandra.java) | |
+| 21 | 1 | Couldn't prepare prepared statement |
+| 21 | 2 | Couldn't execute query statement |
+| | [CassandraProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/CassandraProperties.java) | |
+| 21 | 3 | Invalid multi-deployment topology |
+| 21 | 4 | Invalid deployment mode |
+| | [CassandraVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/CassandraVerifierInl.java) | |
+| 21 | 5 | Can't have more than one keyspace with the same name. |
+| 21 | 6 | A keyspace must have at least one replication method. |
+| 21 | 7 | Can't have more than one table with the same name. |
+| 21 | 8 | Duplicate column-name within one table. |
+| 21 | 9 | A table's partition key must be one of its columns. |
+| 21 | 10 | A table's compound partition-keys can't have duplicate columns. |
+| 21 | 11 | A table's secondary key must be one of its columns. |
+| 21 | 12 | A table's compound secondary-keys can't have duplicate columns. |
+| 21 | 13 | A table can't have order-by without having secondary keys. |
+| 21 | 14 | A table's order-by columns must be in the table's secondary keys. |
+| 21 | 15 | A table compound order-by can't have duplicate columns. |
+| [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression) | | |
+| | [LempelZivWelchInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/LempelZivWelchInl.java) | |
+| 22 | 1 | Invalid compression. |
+| [content](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content) | | |
+| | [CassandraCqlVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CassandraCqlVerifierInl.java) | |
+| 23 | 1 | A CQL name must have a length between 1 and 32 (inclusive). |
+| 23 | 2 | A CQL name must start with a letter or an underscore. |
+| 23 | 3 | A CQL name can consist only of letters, digits and underscores. |
+| | [JavaCodeVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/JavaCodeVerifierInl.java) | |
+| 23 | 4 | A JAVA identifier must start with a letter or an underscore. |
+| 23 | 5 | A JAVA identifier can consist only of letters, digits and underscores. |
+| 23 | 6 | A JAVA individual package name must start with a letter or an underscore. |
+| 23 | 7 | A JAVA package name/path can consist only of letters, digits and underscores. |
+| | [StringVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/StringVerifierInl.java) | |
+| 23 | 8 | Null String isn't one of the valid values. |
+| 23 | 9 | String isn't one of the valid values. |
+| 23 | 10 | String isn't one of the enum values. |
+| [dispatcher](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher) | | |
+| | [Dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java) | |
+| 32 | 1 | Property workers_topology isn't defined in the dispatcher_properties.prop file. |
+
 | .. | . | .......... | .... |
 | ~~ | ~ | ~~~~~~~~~~ | ~~~~ |
 | 41 | 1 | ArgumentsInl | Wrong class type. |
