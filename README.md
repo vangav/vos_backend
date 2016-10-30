@@ -40,14 +40,16 @@ Alternatively one can use Vangav Backend as a commons lib for any JAVA project u
 + python 2.7.10 (only for using cassandra)
   + to check python version type in the following command in a terminal session `python -V` and the output should be `Python 2.7.10`
   + then to install cassandra's python driver type the following command in a terminal session `pip install cassandra-driver==2.1.2`
++ installing python on mac os
   + [download python for Mac](https://www.python.org/ftp/python/2.7.10/python-2.7.10-macosx10.6.pkg)
-  + On ubuntu follow the following steps to install python 2.7.10
-    + `cd /usr/src`
-    + `wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz`
-    + `tar xzf Python-2.7.10.tgz`
-    + `cd Python-2.7.10`
-    + `sudo ./configure`
-    + `sudo make altinstall`
+  + open python-2.7.10-macosx10.6.pkg and follow the installer steps
++ installing python on ubuntu
+  + `cd /usr/src`
+  + `wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz`
+  + `tar xzf Python-2.7.10.tgz`
+  + `cd Python-2.7.10`
+  + `sudo ./configure`
+  + `sudo make altinstall`
 
 # Prerequisites
 
