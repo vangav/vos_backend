@@ -28,8 +28,8 @@ Vangav Backend generates services that are:
   + [Compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
   + [Cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/cryptography) (asymmetric, password hashing and two-way encryption)
   + [Math/geometry](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)
-  + [Vangav M](http://www.vangav.com/)
-+ Vangav Backend generates most of the code needed, you just connect the logic dots by putting in few lines of method calls.
+  + **[Vangav M](http://www.vangav.com/)**
++ **Vangav Backend generates most of the code needed**, you just connect the logic dots by putting in few lines of method calls.
 
 Alternatively one can use Vangav Backend as a commons lib for any JAVA project using the main jar [vos_backend.jar](https://github.com/vangav/vos_backend/tree/master/dist). And [lib](https://github.com/vangav/vos_backend/tree/master/lib) contains more jars that are needed for using some of those utilities.
 
@@ -38,8 +38,8 @@ Alternatively one can use Vangav Backend as a commons lib for any JAVA project u
 + unix operating system (e.g.: mac os, ubuntu, etc ...)
 + JAVA 8
 + python 2.7.10 (only for using cassandra)
-  + to check python version type in the following command in a terminal session `python -V` and the output should be `Python 2.7.10`
-  + then to install cassandra's python driver type the following command in a terminal session `pip install cassandra-driver==2.1.2`
+    + to check python version type in the following command in a terminal session `python -V` and the output should be `Python 2.7.10`
+    + then to install cassandra's python driver type the following command in a terminal session `pip install cassandra-driver==2.1.2`
 + installing python on mac os
   + [download python for Mac](https://www.python.org/ftp/python/2.7.10/python-2.7.10-macosx10.6.pkg)
   + open python-2.7.10-macosx10.6.pkg and follow the installer steps
