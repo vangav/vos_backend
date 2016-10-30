@@ -31,7 +31,7 @@
 | 21 | 1 | Cassandra | Couldn't prepare prepared statement |
 | 21 | 2 | Cassandra | Couldn't execute query statement |
 | .. | . | ......... | .... |
-| hello |
+| | hello |
 | 21 | 3 | CassandraProperties | Invalid multi-deployment topology |
 | 21 | 4 | CassandraProperties | Invalid deployment mode |
 | .. | . | ................... | .... |
