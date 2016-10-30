@@ -30,7 +30,7 @@
 
 | code | sub-code | explanation |
 | ---- | -------- | ----------- |
-| [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra) | | |
+| **[cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)** | | |
 | | [Cassandra](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/Cassandra.java) | |
 | 21 | 1 | Couldn't prepare prepared statement |
 | 21 | 2 | Couldn't execute query statement |
