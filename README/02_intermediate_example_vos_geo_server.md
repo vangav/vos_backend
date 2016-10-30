@@ -79,16 +79,16 @@ public class InitIndexInl {
   }
 }
 ```
-+ in **[default_package/Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java)** after the [following line](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L75)
++ in **[default_package/Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java)** after the [following line](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L94)
 ```java
 Countries.loadTable();
 ```
-add the [following lines](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L79)
+add the [following lines](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L98)
 ```java
 ReverseGeoCoding.load();
 InitIndexInl.initIndex();
 ```
-+ open class **[HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java)**, method **[`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L77)** should be as follows
++ open class **[HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java)**, method **[`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L96)** should be as follows
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
@@ -124,7 +124,7 @@ InitIndexInl.initIndex();
       reverseGeoCode.getContinent() );
   }
 ```
-+ then add the following [`method`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L111) in class **[HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java)**
++ then add the following [`method`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L130) in class **[HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java)**
 ```java
   @Override
   protected void afterProcessing (
@@ -234,7 +234,7 @@ public class ResponseTopContinents extends ResponseBodyJson {
   }
 }
 ```
-+ in class **[HandlerTopContinents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java)** method **[`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java#L78)** should be as follows:
++ in class **[HandlerTopContinents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java)** method **[`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java#L97)** should be as follows:
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
