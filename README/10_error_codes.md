@@ -1,5 +1,7 @@
 # Error Codes
 
++ This section lists all the error codes and sub-codes thrown by Vangav Backend. These codes gets returned as a part of **[Error Response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)**
+
 + Each package has an error code as follows:
 
 | code | package |
