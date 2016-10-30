@@ -49,10 +49,10 @@
 | 21 | 13 | A table can't have order-by without having secondary keys. |
 | 21 | 14 | A table's order-by columns must be in the table's secondary keys. |
 | 21 | 15 | A table compound order-by can't have duplicate columns. |
-| [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression) | | |
+| **[compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)** | | |
 | | [LempelZivWelchInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/LempelZivWelchInl.java) | |
 | 22 | 1 | Invalid compression. |
-| [content](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content) | | |
+| **[content](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content)** | | |
 | | [CassandraCqlVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CassandraCqlVerifierInl.java) | |
 | 23 | 1 | A CQL name must have a length between 1 and 32 (inclusive). |
 | 23 | 2 | A CQL name must start with a letter or an underscore. |
@@ -66,10 +66,10 @@
 | 23 | 8 | Null String isn't one of the valid values. |
 | 23 | 9 | String isn't one of the valid values. |
 | 23 | 10 | String isn't one of the enum values. |
-| [dispatcher](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher) | | |
+| **[dispatcher](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher)** | | |
 | | [Dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java) | |
 | 32 | 1 | Property workers_topology isn't defined in the dispatcher_properties.prop file. |
-| [exceptions](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/exceptions) | | |
+| **[exceptions](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/exceptions)** | | |
 | | [](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/exceptions/handlers/ArgumentsInl.java) | |
 | 41 | 1 | Wrong class type. |
 | 41 | 2 | Object can't be null. |
@@ -87,7 +87,7 @@
 | 41 | 14 | Long can't be less than minimum limit. |
 | 41 | 15 | Double can't be NaN or infinite. |
 | 41 | 16 | Invalid IpV4. |
-| [geo](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo) | | |
+| **[geo](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo)** | | |
 | | [EarthConstantsInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/EarthConstantsInl.java) | |
 | 61 | 1 | Can't initialize Earth's latitude range. |
 | 61 | 2 | Can't initialize Earth's longitude range. |
@@ -103,25 +103,25 @@
 | 61 | 10 | Invalid longitude range. |
 | 61 | 11 | Latitude gaps can't be smaller than 1. |
 | 61 | 12 | Longitude gaps can't be smaller than 1. |
-| [ids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/ids) | | |
+| **[ids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/ids)** | | |
 | | [SequentialIds](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SequentialIds.java) | |
 | 81 | 1 | Can't generate more than 100 million new IDs within one second. |
 | | [SnowFlake](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SnowFlake.java) | |
 | 81 | 2 | machineId can't be greater than maxMachineId. |
 | 81 | 3 | Can't generate a new id because the clock moved backwards which would result in an out of sequence id. |
-| [images](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/images) | | |
+| **[images](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/images)** | | |
 | | [Image](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/images/Image.java) | |
 | 82 | 1 | Can't apply features, segment the image first. |
-| [math](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math) | | |
+| **[math](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)** | | |
 | | [NumbersInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/NumbersInl.java) | |
 | 121 | 1 | The number of digits in the input long exceeds the length of the output string. |
 | | [Range](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/Range.java) | |
 | 121 | 2 | A range's max can't be smaller than its min. |
-| [metrics](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/metrics) | | |
+| **[metrics](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/metrics)** | | |
 | | [Distance](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/Distance.java) | |
 | 122 | 1 | Invalid: subtracting double value from Distance will lead to a negative Distance. |
 | 122 | 2 | Invalid: subtracting two Distance Objects will lead to a negative Distance. |
-| | [](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/DistanceConversionFactorInl.java) | |
+| | [DistanceConversionFactorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/DistanceConversionFactorInl.java) | |
 | 122 | 3 | Invalid enum DistanceUnitType. |
 | 122 | 4 | Invalid enum DistanceUnitType, no conversion factor. |
 | | [Period](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/time/Period.java) | |
@@ -132,10 +132,10 @@
 | | [TimeConversionFactorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/time/TimeConversionFactorInl.java) | |
 | 122 | 9 | Invalid enum TimeUnitType. |
 | 122 | 10 | Invalid enum TimeUnitType, no conversion factor. |
-| [networks](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks) | | |
+| **[networks](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)** | | |
 | | [JavaEmailSenderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmailSenderInl.java) | |
 | 131 | 1 | Unknown SslType. |
-| [play_framework](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework) | | |
+| **[play_framework](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework)** | | |
 | | [ControllersVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersVerifierInl.java) | |
 | 151 | 1 | Can't have more than one controller with the same name. |
 | 151 | 2 | A controller can't have more than one request param with the same name. |
@@ -156,10 +156,10 @@
 | 151 | 11 | Invalid call for fromQueryString. |
 | | [ResponseBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBody.java) | |
 | 151 | 12 | Unhandled ResponseBody type. |
-| [properties](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/properties) | | |
+| **[properties](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/properties)** | | |
 | | [PropertiesLoader](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/properties/PropertiesLoader.java) | |
 | 152 | 1 | Missing properties-file's value. |
-| [public_apis](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis) | | |
+| **[public_apis](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis)** | | |
 | | [Car2GoApi](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/Car2GoApi.java) | |
 | 153 | 1 | Invalid EdgeType. |
 | 153 | 2 | Invalid EdgeType. |
@@ -184,13 +184,13 @@
 | 153 | 18 | Unhandled field type. |
 | | [FacebookGraphApiEdgeType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/FacebookGraphApiEdgeType.java) | |
 | 153 | 19 | Unhandled edge type. |
-| [push_notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications) | | |
+| **[push_notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications)** | | |
 | | [AndroidNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotificationSender.java) | |
 | 154 | 1 | Singleton instance can't be used because the values in android_notification_properties.prop aren't defined. |
 | | [AppleNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/AppleNotificationSender.java) | |
 | 154 | 2 | Invalid ClientType. |
 | 154 | 3 | Singleton instance can't be used because the values in apple_notification_properties.prop aren't defined. |
-| [security](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security) | | |
+| **[security](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** | | |
 | | [FacebookAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java) | |
 | 181 | 1 | Error while communicating with Facebook Graph API. Didn't return 200 HTTP_OK. |
 | 181 | 2 | Facebook-auth returned null app id. |
@@ -206,7 +206,7 @@
 | 181 | 10 | Unhandled TokenType. |
 | | [PasswordHashingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/cryptography/PasswordHashingInl.java) | |
 | 181 | 11 | Invalid SHA algorithm type. |
-| [vangav_m](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m) | | |
+| **[vangav_m](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)** | | |
 | | [VangavMSolutionJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/vangav_m/json_client/VangavMJsonClientMain.java) | |
 | 211 | 1 | Vangav M client built-in in Vangav Backend supports JAVA_JAR solutions' type only. Refer for other clients on [vangav](www.vangav.com) for clients that support other languages. |
 | 211 | 2 | Can't have duplicate multi-range-input prefix. |
