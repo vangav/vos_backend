@@ -9,24 +9,25 @@ Use Vangav Backend to generate backends for services like:
 + etc ... (any stateless service)
 
 Vangav Backend generates services that are:
-+ light-weight
-+ stateless
-+ highly-scalable
-+ robust
++ Light-weight
++ Stateless
++ Highly-scalable
++ Robust
 + SOA-ready
-+ with a built-in dispatcher and a worker service
-+ eclipse-ready
++ With a built-in dispatcher and a worker service
++ Eclipse-ready
 + based on [Play Framework](https://www.playframework.com/documentation/2.2.6/Home) (JAVA) and [Cassandra](https://archive.apache.org/dist/cassandra/2.1.2/)
 + Loaded with utilities like:
-  + [authentication](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication) (Facebook, Google, OAuth2 and transaction tokens)
+  + [Authentication](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication) (Facebook, Google, OAuth2 and transaction tokens)
   + [Facebook Graph API integration](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis)
-  + [push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications) (iOS and Android)
-  + [email clients](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)
-  + [REST client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)
-  + [geo-services](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo)
-  + [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
-  + [cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/cryptography) (asymmetric, password hashing and two-way encryption)
-  + [math/geometry](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)
+  + [Push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications) (iOS and Android)
+  + [Email clients](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email)
+  + [Twilio](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/twilio)
+  + [REST client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/rest_client)
+  + [Geo-services](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo)
+  + [Compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
+  + [Cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/cryptography) (asymmetric, password hashing and two-way encryption)
+  + [Math/geometry](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)
   + [Vangav M](http://www.vangav.com/)
 + Vangav Backend generates most of the code needed, you just connect the logic dots by putting in few lines of method calls.
 
