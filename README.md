@@ -151,5 +151,5 @@ Have fun!
 + [doc/README.md](https://github.com/vangav/vos_backend/tree/master/doc)
 + [lib/README.md](https://github.com/vangav/vos_backend/tree/master/lib)
 + [prop/README.md](https://github.com/vangav/vos_backend/tree/master/prop)
-+ [src/com/vangav/backend/](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend)
++ [src/com/vangav/backend/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend)
 + [src/com/vangav/backend/backend_generator/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_generator)
