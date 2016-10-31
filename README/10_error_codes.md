@@ -2,6 +2,10 @@
 
 + This section lists all the error codes and sub-codes thrown by Vangav Backend. These codes gets returned as a part of **[Error Response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)**
 
++ [code 0](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/exceptions/VangavException.java#L189) is the default VangavException code (e.g.: when a thrown exception isn't given a code).
++ [code -1](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyError.java#L86) is the default ResponseBodyError code (e.g.: when sending back error_code is set to `false` in [response_error_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/response_error_properties.prop#L69)).
++ codes up to 299 are reserved for useby Vangav Backend, use codes 300 and up for your service's exceptions.
+
 + Each package has an error code as follows:
 
 | code | package |
