@@ -1,6 +1,7 @@
 # lib
 
 + This directory contains all the third_party libraries (jars) used for the utilities provided by Vangav Backend.
++ When generating a new RESTful Service using Vangav Backend, needed libs are automatically added to the generated service/worker. Using some utilities (e.g.: email, notifications, twilio, ...) require manually copying one or more of the jars in this directory into the generated service/worker.
 + Following is the explanation for each of these jars:
 
 | Jar | Explanation |
