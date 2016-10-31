@@ -149,3 +149,4 @@ Have fun!
 + [data/README.md](https://github.com/vangav/vos_backend/blob/master/data)
 + [dist/README.md](https://github.com/vangav/vos_backend/tree/master/dist)
 + [doc/README.md](https://github.com/vangav/vos_backend/tree/master/doc)
++ [lib/README.md](https://github.com/vangav/vos_backend/tree/master/lib)
