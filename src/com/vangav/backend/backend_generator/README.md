@@ -1,6 +1,6 @@
 # backend_generator
 
-[BackendGeneratorMain](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_generator/BackendGeneratorMain.java)
+**[BackendGeneratorMain](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_generator/BackendGeneratorMain.java)**
 
 + BackendGeneratorMain is the entry point for [backend_generator.jar](https://github.com/vangav/vos_backend/tree/master/tools_bin) used to generate Vangav Backend RESTful Services.
 + It does its job by following these steps:
@@ -18,6 +18,6 @@
   10. Compiles the generated service.
   11. Generates a worker service if the user asked for one.
 
-[defaults](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_generator/defaults)
+**[defaults](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_generator/defaults)**
 
 + Contains the default CommonPlayHandler and Global classes used by [BackendGeneratorMain](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_generator/BackendGeneratorMain.java) for new service generation.
