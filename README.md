@@ -154,3 +154,4 @@ Have fun!
 + [src/com/vangav/backend/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend)
 + [src/com/vangav/backend/backend_generator/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_generator)
 + [src/com/vangav/backend/cassandra/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)
++ [src/com/vangav/backend/compression/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
