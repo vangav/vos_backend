@@ -96,3 +96,16 @@ System.out.println(reverseGeoCode.toString() );
 //   continent(Africa)
 ```
 
+### [geo_hash](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/third_party/geo_hash)
+
++ A [Geohash](https://en.wikipedia.org/wiki/Geohash) lib developed by "Silvio Heuberger" and distributed under Apache License 2.0.
+
++ One usage example is in [vos_geo_server](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L103)
+```java
+// get geo hash
+String geoHash =
+  GeoHash.geoHashStringWithCharacterPrecision(
+    requestReverseGeoCode.latitude,
+    requestReverseGeoCode.longitude,
+    12);
+```
