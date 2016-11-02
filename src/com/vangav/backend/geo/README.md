@@ -65,7 +65,7 @@ for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
 // prints --> (shaped to visualize the level)
 //   10305  10306  10307  10308  10309
 //   10484                       10488
-//   10663                       10667
+//   10663        [10665]        10667
 //   10842                       10846
 //   11021  11022  11023  11024  11025
 ```
