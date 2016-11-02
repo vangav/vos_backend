@@ -31,6 +31,7 @@
 
 + Usage example
 ```java
+// init config
 GeoGridsConfig geoGridsConfig =
   new GeoGridsConfig(
     "Earth",
@@ -38,25 +39,30 @@ GeoGridsConfig geoGridsConfig =
       123.456,
       DistanceUnitType.NAUTICAL_MILE).getAs(DistanceUnitType.METRE) );
 
+// pick coordinates
 GeoCoordinates geoCoordinates =
   new GeoCoordinates(
     29.9792,
     31.1342);
 
+// init a geo grid
 GeoGrid geoGrid =
   new GeoGrid(
     geoGridsConfig,
     geoCoordinates);
 
+// print grid's id
 System.out.println(
   "Geo Grid Id: " + geoGrid.getGeoGridId().getId() );
 // prints --> Geo Grid Id: 10665
 
+// get level-2 surrounding grids
 ArrayList<GeoGrid> levelTwoGrids =
   geoGrid.getSurroundingGridsLevel(
     2,
     true);
 
+// print level-2 surrounding grids
 for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
 
   System.out.println(
