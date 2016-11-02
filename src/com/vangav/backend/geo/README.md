@@ -29,3 +29,44 @@
 | [GeoGridIndex2D](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridIndex2D.java) | Represents the 2-D index of a [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) in a gro-grids system. |
 | [GeoGridsConfig](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java) | Represents a geo-grids system's config. By default uses Earth's geo-system from [EarthConstantsInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/EarthConstantsInl.java). |
 
++ Usage example
+```java
+GeoGridsConfig geoGridsConfig =
+  new GeoGridsConfig(
+    "Earth",
+    new Distance(
+      123.456,
+      DistanceUnitType.NAUTICAL_MILE).getAs(DistanceUnitType.METRE) );
+
+GeoCoordinates geoCoordinates =
+  new GeoCoordinates(
+    29.9792,
+    31.1342);
+
+GeoGrid geoGrid =
+  new GeoGrid(
+    geoGridsConfig,
+    geoCoordinates);
+
+System.out.println(
+  "Geo Grid Id: " + geoGrid.getGeoGridId().getId() );
+// prints --> Geo Grid Id: 10665
+
+ArrayList<GeoGrid> levelTwoGrids =
+  geoGrid.getSurroundingGridsLevel(
+    2,
+    true);
+
+for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
+
+  System.out.println(
+    "  " + levelTwoGeoGrid.getGeoGridId().getId() );
+}
+// prints --> (shaped to visualize the level)
+//   10305  10306  10307  10308  10309
+//   10484                       10488
+//   10663                       10667
+//   10842                       10846
+//   11021  11022  11023  11024  11025
+```
+
