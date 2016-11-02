@@ -76,3 +76,17 @@ for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
 //   11021  11022  11023  11024  11025
 ```
 
+### [reverse_geo_coding](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/reverse_geo_coding)
+
++ Used to convert coordinates (latitude, longitude) into Continent, Country, Major City and City. Usage example can be found in [vos_geo_server](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L111)
+
+```java
+ReverseGeoCode reverseGeoCode =
+  ReverseGeoCoding.i().getReverseGeoCode(
+    29.9792,
+    31.1342);
+
+System.out.println(reverseGeoCode.toString() );
+// prints --> city (Al Jīzah) major city(Gizeh) country code(EG) country(Egypt) continent code(AF) continent(Africa)
+```
+
