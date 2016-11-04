@@ -79,7 +79,7 @@ request.getDispatcher().addDispatchMessage(mailGunEmailDispatchable);
 | [RestRequestPostJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestPostJson.java) | Represents a REST POST request. |
 | [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java) | Represents a REST JSON response. |
 | [RestResponseJsonGroup](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJsonGroup.java) | Represents a group of [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java) Objects where each Object maps to an HTTP Status code. Useful when the response's JSON structure differs depending on the HTTP Status code (e.g.: HTTP_OK 200, HTTP_BAD_REQUEST 400, ...). |
-| [RestSyncInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestSyncInl.java) | Is an inline class that handles sending GET/POST REST requests  |
-| []() |  |
+| [RestSyncInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestSyncInl.java) | Is an inline class that handles sending GET/POST REST requests synchronously. And provides the ability to check the response's status, maps the response to a [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java), [RestResponseJsonGroup](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJsonGroup.java), raw response String or write response's file (e.g.: when downloading files). |
+| [RestAsync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestAsync.java) |  |
 | []() |  |
 
