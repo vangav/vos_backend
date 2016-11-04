@@ -66,3 +66,11 @@ MailGunEmailDispatchable mailGunEmailDispatchable =
 request.getDispatcher().addDispatchMessage(mailGunEmailDispatchable);
 ```
 
+### [rest_client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/rest_client)
+
++ Having a built-in REST client in a backend service simplifies operations like:
+  + Communicating with public APIs (e.g.: Facebook Graph API).
+  + Dividing a backend into multiple smaller services (e.g.: one service response for authentication), then those services communicate with each to serve a response for an incoming request.
+  
+
+
