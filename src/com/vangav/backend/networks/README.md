@@ -70,7 +70,16 @@ request.getDispatcher().addDispatchMessage(mailGunEmailDispatchable);
 
 + Having a built-in REST client in a backend service simplifies operations like:
   + Communicating with public APIs (e.g.: Facebook Graph API).
-  + Dividing a backend into multiple smaller services (e.g.: one service response for authentication), then those services communicate with each to serve a response for an incoming request.
+  + Dividing a backend into smaller services (e.g.: one service response for authentication), then those services communicate with each other to serve a response for an incoming request.
   
-
+| Class | Explanation |
+| ----- | ----------- |
+| [RestRequest](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequest.java) | Is the parent class for [RestRequestGetQuery](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestGetQuery.java) and [RestRequestPostJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestPostJson.java). This REST client uses default headers for GET and POST REST requests unless the [`addHeader`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequest.java#L88) method of this parent class is used to specify the headers to be used. |
+| [RestRequestGetQuery](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestGetQuery.java) | Represents a REST GET request. |
+| [RestRequestPostJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestPostJson.java) | Represents a REST POST request. |
+| [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java) | Represents a REST JSON response. |
+| [RestResponseJsonGroup](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJsonGroup.java) | Represents a group of [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java) Objects where each Object maps to an HTTP Status code. Useful when the response's JSON structure differs depending on the HTTP Status code (e.g.: HTTP_OK 200, HTTP_BAD_REQUEST 400, ...). |
+| [RestSyncInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestSyncInl.java) | Is an inline class that handles sending GET/POST REST requests  |
+| []() |  |
+| []() |  |
 
