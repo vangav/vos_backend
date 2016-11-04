@@ -19,7 +19,7 @@
 JavaEmail javaEmail =
   new JavaEmail(
     "Lisa",
-    "example@eample.com",
+    "example@example.com",
     "contact@vangav.com",
     "Hola",
     "This is a usage example body text.",
@@ -34,3 +34,35 @@ JavaEmailDispatchable javaEmailDispatchable =
 
 request.getDispatcher().addDispatchMessage(javaEmailDispatchable);
 ```
+
+### [email/mail_gun_email](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email/mail_gun_email)
+
++ An email client that sends emails using [mailgun](http://www.mailgun.com/).
+
+| Class | Explanation |
+| ----- | ----------- |
+| [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java) | Represents an email (from, to, cc, subject, ...). |
+| [MailGunEmailProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmailProperties.java) | Maps [mail_gun_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/mail_gun_email_properties.prop) properties file. |
+| [MailGunEmailSenderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmailSenderInl.java) | Is an inline class that sends [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java) Objects synchronously. |
+| [MailGunEmailDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/dispatch_message/MailGunEmailDispatchable.java) | Represents a dispatchable version of [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java). |
+
++ Usage example
+```java
+MailGunEmail mailGunEmail =
+  new MailGunEmail (
+    "John",
+    "example",
+    "Hola",
+    "This is a usage example body text.",
+    "contact@vangav.com");
+    
+// option 1 - send it directly
+MailGunEmailSenderInl.sendEmail(mailGunEmail);
+
+// option 2 - enqueue it in the dispatcher to be executed on the worker side
+MailGunEmailDispatchable mailGunEmailDispatchable =
+  new MailGunEmailDispatchable(mailGunEmail);
+
+request.getDispatcher().addDispatchMessage(mailGunEmailDispatchable);
+```
+
