@@ -88,11 +88,11 @@ public class JavaEmailProperties extends PropertiesFile {
   }
   
   // properties names
-  public static final String kSmtpUserName = "mail_gun_api_key";
-  public static final String kSmtpPassword = "mail_gun_domain_name";
-  public static final String kSmtpHost = "mail_gun_domain_name";
-  public static final String kSmtpNoSslPort = "mail_gun_domain_name";
-  public static final String kSmtpSslPort = "mail_gun_domain_name";
+  public static final String kSmtpUserName = "smtp_user_name";
+  public static final String kSmtpPassword = "smtp_password";
+  public static final String kSmtpHost = "smtp_host";
+  public static final String kSmtpNoSslPort = "smtp_no_ssl_port";
+  public static final String kSmtpSslPort = "smtp_ssl_port";
   
   // property name -> property default value
   private static final Map<String, String> kProperties;
