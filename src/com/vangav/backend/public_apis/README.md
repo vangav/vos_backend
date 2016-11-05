@@ -4,10 +4,11 @@
 
 ### [facebook](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook)
 
-+ This sub-package facilitates querying Facebook Graph API for user-info (pictures, fields, edges, ...) synchronously/asynchronously.
++ This sub-package facilitates querying [Facebook Graph API](https://developers.facebook.com/docs/graph-api) for user-info (pictures, fields, edges, ...) synchronously/asynchronously.
 
 + Usage example
 ```java
+// init Facebook Graph API
 FacebookGraph facebookGraph =
   new FacebookGraph("fb_access_token"); // init with user's facebook access token
   
@@ -64,6 +65,25 @@ if (fieldsSync.get(FAVORITE_ATHLETES).getFirst() == SUCCESS) {
 | [FacebookGraphApiField](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiField.java) | Is the parent class for all the fields' classes implemented under [fields](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/fields) package. |
 | [FacebookGraphApiEdgeType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/FacebookGraphApiEdgeType.java) | is an enumeration of Facebook Graph API's edges. |
 | [edge](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/edge) | Is the parent class for all the edges' classes implemented under [edges](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges) package. |
+
+### [car2go](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/car2go)
+
++ This sub-package facilitates querying [car2go API](https://github.com/car2go/openAPI) public functions synchronously/asynchronously.
+
++ Usage example
+```java
+// init car2go API
+Car2GoApi car2GoApi = new Car2GoApi("my_api_key");
+
+// e.g.: get vehicles synchronously
+Map<LocationType, Pair<Boolean, RestResponseJson> > vehiclesSync =
+  car2GoApi.getEdgeSync(
+    EdgeType.VEHICLES,
+    SEATTLE,
+    ROMA);
+```
+
+
 
 
 
