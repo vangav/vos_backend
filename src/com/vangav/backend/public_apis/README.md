@@ -4,6 +4,8 @@
 
 ### [facebook](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook)
 
++ This sub-package facilitates querying Facebook Graph API for user-info (pictures, fields, edges, ...) synchronously/asynchronously.
+
 + Usage example
 ```java
 FacebookGraph facebookGraph =
