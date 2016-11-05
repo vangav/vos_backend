@@ -51,3 +51,17 @@ if (fieldsSync.get(FAVORITE_ATHLETES).getFirst() == SUCCESS) {
 
 // getting edges is similar to getting fields
 ```
+
+| Class/Package | Explanation |
+| ------------- | ----------- |
+| [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java) | Is the main entry point to getting any user-info using Facebook Graph API. |
+| [json](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json) | Has the JSON representation for all of the possible JSON responses from Facebook Graph API - fields, edges, bad request and error response. |
+| [BadRequestResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/BadRequestResponse.java) | Maps a bad request's response (http status code 400). |
+| [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/ErrorResponse.java) | Maps every response for http status codes other than 200 (success) and 400 (bad request). |
+| [FacebookGraphApiFieldType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiFieldType.java) | Is an enumeration of Facebook Graph API's fields. |
+| [FacebookGraphApiField](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiField.java) | Is the parent class for all the fields' classes implemented under [fields](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/fields) package. |
+| [FacebookGraphApiEdgeType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/FacebookGraphApiEdgeType.java) | is an enumeration of Facebook Graph API's edges. |
+| [edge](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/edge) | Is the parent class for all the edges' classes implemented under [edges](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges) package. |
+
+
+
