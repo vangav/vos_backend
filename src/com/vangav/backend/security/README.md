@@ -27,8 +27,9 @@ String userAppId =
 
 ### [cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/cryptography)
 
-+ Usage example
++ Usage examples
 ```java
+// EXAMPLE - A
 // Asymmetric encrypting example using RSA-1024
     
 // generate a pair of public and private keys
@@ -68,6 +69,7 @@ System.out.println(
 //   Decrypted:
 //     Hello World!
 
+// EXAMPLE - B
 // Password hashing example using salted-MD5
 //   check PasswordHashingInl for more hashing algorithms
 
@@ -84,7 +86,8 @@ System.out.println(
 //   Hashed:
 //     3de3fff81f98ce98fc11ad57c3fc2ba3
 
-// two-way encryption example using AES
+// EXAMPLE - C
+// Two-way encryption example using AES
 
 String key = "myKey123";
 String secretMessage = "My secret message.";
