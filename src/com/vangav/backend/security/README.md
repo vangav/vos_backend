@@ -59,58 +59,58 @@ System.out.println(
 //      49, 53, 17, 86, 98, 110, -30, -97, 12, 1]
 
 // decrypt
-    System.out.println(
-      "Decrypted:\n  "
-      + AsymmetricEncryptionInl.decryptRsa(
-          encrypted,
-          rsaKey.getSecond() ) );
-    // prints -->
-    //   Decrypted:
-    //     Hello World!
-    
-    // Password hashing example using salted-MD5
-    //   check PasswordHashingInl for more hashing algorithms
-    
-    // generate salt
-    byte[] salt = PasswordHashingInl.getSalt();
-    
-    String password = "myPassword123";
-    
-    // generate salted-MD5
-    System.out.println(
-      "Hashed:\n  "
-      + PasswordHashingInl.saltedMd5(password, salt).getFirst() );
-    // prints -->
-    //   Hashed:
-    //     3de3fff81f98ce98fc11ad57c3fc2ba3
-    
-    // two-way encryption example using AES
-    
-    String key = "myKey123";
-    String secretMessage = "My secret message.";
-    
-    // encrypt
-    String aesEncrypted =
-      TwoWayEncryptionInl.encryptAes(
-        key,
-        secretMessage);
-    
-    System.out.println(
-      "Encrypted:\n  "
-      + aesEncrypted);
-    // prints -->
-    //   Encrypted:
-    //     B66Oi3QAlzGsnrgE7g4MInDuaJ0ncl16tUEfppdECuI=
-    
-    // decrypt
-    System.out.println(
-      "Decrypted:\n  "
-      + TwoWayEncryptionInl.decryptAes(
-          key,
-          aesEncrypted) );
-    // prints -->
-    //   Decrypted:
-    //     My secret message.
+System.out.println(
+  "Decrypted:\n  "
+  + AsymmetricEncryptionInl.decryptRsa(
+      encrypted,
+      rsaKey.getSecond() ) );
+// prints -->
+//   Decrypted:
+//     Hello World!
+
+// Password hashing example using salted-MD5
+//   check PasswordHashingInl for more hashing algorithms
+
+// generate salt
+byte[] salt = PasswordHashingInl.getSalt();
+
+String password = "myPassword123";
+
+// generate salted-MD5
+System.out.println(
+  "Hashed:\n  "
+  + PasswordHashingInl.saltedMd5(password, salt).getFirst() );
+// prints -->
+//   Hashed:
+//     3de3fff81f98ce98fc11ad57c3fc2ba3
+
+// two-way encryption example using AES
+
+String key = "myKey123";
+String secretMessage = "My secret message.";
+
+// encrypt
+String aesEncrypted =
+  TwoWayEncryptionInl.encryptAes(
+    key,
+    secretMessage);
+
+System.out.println(
+  "Encrypted:\n  "
+  + aesEncrypted);
+// prints -->
+//   Encrypted:
+//     B66Oi3QAlzGsnrgE7g4MInDuaJ0ncl16tUEfppdECuI=
+
+// decrypt
+System.out.println(
+  "Decrypted:\n  "
+  + TwoWayEncryptionInl.decryptAes(
+      key,
+      aesEncrypted) );
+// prints -->
+//   Decrypted:
+//     My secret message.
 ```
 
 
