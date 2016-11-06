@@ -1,6 +1,6 @@
 # public_apis
 
-+ This package handles requesting information for any service's public API.
++ This package handles requesting information from any service's public API.
 
 ### [facebook](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook)
 
@@ -33,21 +33,26 @@ Map<
   FacebookGraphApiFieldType,
   Pair<FacebookApiResponseStatus, RestResponseJson> > fieldsSync =
   facebookGraph.getFieldsSync(
-    FAVORITE_ATHLETES,
-    BIRTHDAY);
+    FacebookGraphApiFieldType.FAVORITE_ATHLETES,
+    FacebookGraphApiFieldType.BIRTHDAY);
     
-if (fieldsSync.get(FAVORITE_ATHLETES).getFirst() == SUCCESS) {
+if (fieldsSync.get(
+      FacebookGraphApiFieldType.FAVORITE_ATHLETES).getFirst() == SUCCESS) {
   
   FavoriteAthletes favoriteAthletes =
-    (FavoriteAthletes)fieldsSync.get(FAVORITE_ATHLETES).getSecond();
-} else if (fieldsSync.get(FAVORITE_ATHLETES).getFirst() == BAD_REQUEST) {
+    (FavoriteAthletes)fieldsSync.get(
+      FacebookGraphApiFieldType.FAVORITE_ATHLETES).getSecond();
+} else if (fieldsSync.get(
+             FacebookGraphApiFieldType.FAVORITE_ATHLETES).getFirst() == BAD_REQUEST) {
   
   BadRequestResponse favoriteAthletesBadRequestResponse =
-    (BadRequestResponse)fieldsSync.get(FAVORITE_ATHLETES).getSecond();
+    (BadRequestResponse)fieldsSync.get(
+      FacebookGraphApiFieldType.FAVORITE_ATHLETES).getSecond();
 } else {
 
   ErrorResponse favoriteAthletesErrorResponse =
-    (ErrorResponse)fieldsSync.get(FAVORITE_ATHLETES).getSecond();
+    (ErrorResponse)fieldsSync.get(
+      FacebookGraphApiFieldType.FAVORITE_ATHLETES).getSecond();
 }
 
 // the same goes for BIRTHDAY field and any other fields
@@ -57,7 +62,7 @@ if (fieldsSync.get(FAVORITE_ATHLETES).getFirst() == SUCCESS) {
 
 | Class/Package | Explanation |
 | ------------- | ----------- |
-| [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java) | Is the main entry point to getting any user-info using Facebook Graph API. |
+| [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java) | Is the main entry point for getting any user-info using Facebook Graph API. |
 | [json](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json) | Has the JSON representation for all of the possible JSON responses from Facebook Graph API - fields, edges, bad request and error response. |
 | [BadRequestResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/BadRequestResponse.java) | Maps a bad request's response (http status code 400). |
 | [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/ErrorResponse.java) | Maps every response for http status codes other than 200 (success) and 400 (bad request). |
@@ -79,11 +84,26 @@ Car2GoApi car2GoApi = new Car2GoApi("my_api_key");
 Map<LocationType, Pair<Boolean, RestResponseJson> > vehiclesSync =
   car2GoApi.getEdgeSync(
     EdgeType.VEHICLES,
-    SEATTLE,
-    ROMA);
+    LocationType.SEATTLE,
+    LocationType.ROMA);
+    
+// get Roma's vehicles
+
+if (vehiclesSync.get(LocationType.ROMA).getFirst() == true) {
+
+  Vehicles romaVehicles =
+    (Vehicles)vehiclesSync.get(LocationType.ROMA).getSecond();
+} else {
+
+  ErrorResponse romaVehiclesErrorResponse =
+    (ErrorResponse)vehiclesSync.get(LocationType.ROMA).getSecond();
+}
 ```
 
-
-
-
+| Class/Package | Explanation |
+| ------------- | ----------- |
+| [Car2GoApi](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/Car2GoApi.java) | Is the main entry point for getting info from car2go API's public functions. |
+| [LocationType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/LocationType.java) | Is an enumeration of the locations where car2go operates. |
+| [json](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/car2go/json) | Has mapping classes for the JSON response per car2go API's public function. |
+| [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/ErrorResponse.java) | In case car2go API returned a status code other than HTTP_OK (200), this class holds the error response as shown in the example above. |
 
