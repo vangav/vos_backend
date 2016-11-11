@@ -53,9 +53,6 @@
 | 21 | 10 | A table's compound partition-keys can't have duplicate columns. |
 | 21 | 11 | A table's secondary key must be one of its columns. |
 | 21 | 12 | A table's compound secondary-keys can't have duplicate columns. |
-| 21 | 13 | A table can't have order-by without having secondary keys. |
-| 21 | 14 | A table's order-by columns must be in the table's secondary keys. |
-| 21 | 15 | A table compound order-by can't have duplicate columns. |
 | **[compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)** | | |
 | | [LempelZivWelchInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/LempelZivWelchInl.java) | |
 | 22 | 1 | Invalid compression. |
