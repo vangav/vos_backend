@@ -55,7 +55,6 @@ import java.util.Set;
 
 import com.vangav.backend.cassandra.keyspaces_generator.json.ColumnJson;
 import com.vangav.backend.cassandra.keyspaces_generator.json.KeyspaceJson;
-import com.vangav.backend.cassandra.keyspaces_generator.json.OrderByJson;
 import com.vangav.backend.cassandra.keyspaces_generator.json.TableJson;
 import com.vangav.backend.content.checking.CassandraCqlVerifierInl;
 import com.vangav.backend.exceptions.CodeException;
@@ -232,6 +231,8 @@ public class CassandraVerifierInl {
       tableJson.partition_keys,
       ExceptionType.CODE_EXCEPTION);
     
+    Set<String> partitionKeys = new HashSet<String>();
+    
     for (String partitionKey : tableJson.partition_keys) {
       
       if (columns.containsKey(partitionKey) == false) {
@@ -266,6 +267,7 @@ public class CassandraVerifierInl {
       }
 
       columns.put(partitionKey, 1);
+      partitionKeys.add(partitionKey);
     }
     
     // verify table's secondary keys
@@ -317,66 +319,6 @@ public class CassandraVerifierInl {
     if (tableJson.caching != null) {
       
       CassandraCqlVerifierInl.verifyCaching(tableJson.caching);
-    }
-    
-    // verify table's order by
-    if (tableJson.order_by != null && tableJson.order_by.length > 0) {
-      
-      if (tableJson.secondary_keys == null ||
-          tableJson.secondary_keys.length == 0) {
-        
-        throw new CodeException(
-          21,
-          13,
-          "keyspace ["
-          + keyspaceName
-          + "] table ["
-          + tableJson.name
-          + " ] can't have order by ["
-          + Arrays.toString(tableJson.order_by)
-          + "] since it has no secondary keys and an order by is only allowed "
-          + "on secondary key columns",
-          ExceptionClass.JSON);
-      }
-      
-      for (OrderByJson orderByJson : tableJson.order_by) {
-        
-        if (secondaryKeys.containsKey(orderByJson.column_name) == false) {
-          
-          throw new CodeException(
-            21,
-            14,
-            "keyspace ["
-            + keyspaceName
-            + "] table ["
-            + tableJson.name
-            + " ] order by column name ["
-            + orderByJson.column_name
-            + "] isn't one of the table's seconday keys: "
-            + Arrays.toString(tableJson.secondary_keys),
-            ExceptionClass.JSON);
-        }
-        
-        if (secondaryKeys.get(orderByJson.column_name) > 0) {
-          
-          throw new CodeException(
-            21,
-            15,
-            "keyspace ["
-            + keyspaceName
-            + "] table ["
-            + tableJson.name
-            + " ] order by column name ["
-            + orderByJson.column_name
-            + "] is a duplicate, a secondary key can only be used once per "
-            + "table's order by",
-            ExceptionClass.JSON);
-        }
-        
-        CassandraCqlVerifierInl.verifyOrderByType(orderByJson.order_type);
-
-        secondaryKeys.put(orderByJson.column_name, 1);
-      }
     }
   }
 }
