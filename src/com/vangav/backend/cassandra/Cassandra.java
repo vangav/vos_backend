@@ -624,6 +624,8 @@ public class Cassandra {
           }
 
           result.add((T)listenableFuture.get(kDefaultTimeout, kDefaultTimeunit) );
+          
+          break;
         } catch (NoHostAvailableException nhae) {
           
           try {
@@ -673,6 +675,8 @@ public class Cassandra {
       try {
         
         this.cluster.close();
+        
+        return;
       } catch (Exception e) {
         
         if (i == (this.connectRetries - 1) ) {
