@@ -187,10 +187,14 @@ public class Car2GoApi {
    * gets an edge's data (from param edgeType) for param locations
    * @param edgeType (e.g: GAS_STATIONS, VEHICLES, etc ...)
    * @param locations (e.g.: ROMA, BERLIN, etc ...)
-   * @return Map<LocationType, Pair<Boolean, RestResponseJson> >
+   * @return Map<LocationType, Pair<Integer, RestResponseJson> >
    *           key: LocationType (e.g.: Roma, Berlin, etc ...)
-   *           Pair-Boolean: true if the response's Http Status Code was
-   *             200 Success and false otherwise
+   *           Pair-Integer is the response's http status code
+   *             e.g.:
+   *               200 - HTTP_OK
+   *               400 - HTTP_BAD_REQUEST
+   *               500 - HTTP_INTERNAL_SERVER_ERROR
+   *               https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *           Pair-RestResponseJson: the corresponding RestResponseJson Object
    *             for param edgeType for 200 Success response or
    *             an ErrorResponse Object containing the raw response String
@@ -199,12 +203,12 @@ public class Car2GoApi {
    * @throws Exception
    */
   @SuppressWarnings("unchecked")
-  public Map<LocationType, Pair<Boolean, RestResponseJson> > getEdgeSync (
+  public Map<LocationType, Pair<Integer, RestResponseJson> > getEdgeSync (
     EdgeType edgeType,
     LocationType... locations) throws Exception {
     
     return
-      (Map<LocationType, Pair<Boolean, RestResponseJson> >)this.getEdge(
+      (Map<LocationType, Pair<Integer, RestResponseJson> >)this.getEdge(
         RequestType.SYNC,
         edgeType,
         locations);
@@ -233,10 +237,14 @@ public class Car2GoApi {
    * BLOCKING method
    * gets the response of a previously issued async request
    * @param requestTrackingUuid
-   * @return Map<LocationType, Pair<Boolean, RestResponseJson> >
+   * @return Map<LocationType, Pair<Integer, RestResponseJson> >
    *           key: LocationType (e.g.: Roma, Berlin, etc ...)
-   *           Pair-Boolean: true if the response's Http Status Code was
-   *             200 Success and false otherwise
+   *           Pair-Integer is the response's http status code
+   *             e.g.:
+   *               200 - HTTP_OK
+   *               400 - HTTP_BAD_REQUEST
+   *               500 - HTTP_INTERNAL_SERVER_ERROR
+   *               https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *           Pair-RestResponseJson: the corresponding RestResponseJson Object
    *             for param edgeType for 200 Success response or
    *             an ErrorResponse Object containing the raw response String
@@ -244,7 +252,7 @@ public class Car2GoApi {
    *             200 Success
    * @throws Exception
    */
-  public Map<LocationType, Pair<Boolean, RestResponseJson> > getEdgeAsync (
+  public Map<LocationType, Pair<Integer, RestResponseJson> > getEdgeAsync (
     String requestTrackingUuid) throws Exception {
     
     if (this.futureResponses.containsKey(requestTrackingUuid) == false) {
@@ -263,28 +271,18 @@ public class Car2GoApi {
 
     RestAsync currRestAsync;
     
-    Map<LocationType, Pair<Boolean, RestResponseJson> > result =
-      new HashMap<LocationType, Pair<Boolean, RestResponseJson> >();
+    Map<LocationType, Pair<Integer, RestResponseJson> > result =
+      new HashMap<LocationType, Pair<Integer, RestResponseJson> >();
     
     for (LocationType locationType : requests.keySet() ) {
       
       currRestAsync = requests.get(locationType);
-      
-      if (currRestAsync.isResponseStatusSuccess() == true) {
         
-        result.put(
-          locationType,
-          new Pair<Boolean, RestResponseJson>(
-            true,
-            currRestAsync.getRestResponseJson() ) );
-      } else {
-        
-        result.put(
-          locationType,
-          new Pair<Boolean, RestResponseJson>(
-            false,
-            new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
-      }
+      result.put(
+        locationType,
+        new Pair<Integer, RestResponseJson>(
+          currRestAsync.getResponseStatusCode(),
+          currRestAsync.getRestResponseJson() ) );
     }
     
     return result;
@@ -343,28 +341,18 @@ public class Car2GoApi {
       
       countDownLatch.await();
       
-      Map<LocationType, Pair<Boolean, RestResponseJson> > result =
-        new HashMap<LocationType, Pair<Boolean, RestResponseJson> >();
+      Map<LocationType, Pair<Integer, RestResponseJson> > result =
+        new HashMap<LocationType, Pair<Integer, RestResponseJson> >();
       
       for (LocationType locationType : locations) {
         
         currRestAsync = requests.get(locationType);
-        
-        if (currRestAsync.isResponseStatusSuccess() == true) {
-          
-          result.put(
-            locationType,
-            new Pair<Boolean, RestResponseJson>(
-              true,
-              currRestAsync.getRestResponseJson() ) );
-        } else {
-          
-          result.put(
-            locationType,
-            new Pair<Boolean, RestResponseJson>(
-              false,
-              new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
-        }
+
+        result.put(
+          locationType,
+          new Pair<Integer, RestResponseJson>(
+            currRestAsync.getResponseStatusCode(),
+            currRestAsync.getRestResponseJson() ) );
       }
       
       return result;

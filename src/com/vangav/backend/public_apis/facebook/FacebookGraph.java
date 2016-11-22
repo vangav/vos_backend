@@ -406,20 +406,24 @@ public class FacebookGraph {
    * getPicturesSync
    * BLOCKING method
    * @param pictureIds - of all the picture to be fetched
-   * @return Map<String, Pair<Boolean, String> >
+   * @return Map<String, Pair<Integer, String> >
    *          key is the picture_id
-   *          pair-Boolean is true for success response HTTP_OK (200)
-   *            and false otherwise
+   *          pair-Integer is the response's http status code
+   *            e.g.:
+   *              200 - HTTP_OK
+   *              400 - HTTP_BAD_REQUEST
+   *              500 - HTTP_INTERNAL_SERVER_ERROR
+   *              https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *          pair-String for the raw response String (the picture in case of a
    *            success response)
    * @throws Exception
    */
   @SuppressWarnings("unchecked")
-  public Map<String, Pair<Boolean, String> > getPicturesSync (
+  public Map<String, Pair<Integer, String> > getPicturesSync (
     String... pictureIds) throws Exception {
    
     return
-      (Map<String, Pair<Boolean, String> >)this.getPictures(
+      (Map<String, Pair<Integer, String> >)this.getPictures(
         RequestType.SYNC,
         pictureIds);
   }
@@ -442,15 +446,19 @@ public class FacebookGraph {
    * getPicturesAsync
    * BLOCKING method
    * @param requestTrackingUuid
-   * @return Map<String, Pair<Boolean, String> >
+   * @return Map<String, Pair<Integer, String> >
    *          key is the picture_id
-   *          pair-Boolean is true for success response HTTP_OK (200)
-   *            and false otherwise
+   *          pair-Integer is the response's http status code
+   *            e.g.:
+   *              200 - HTTP_OK
+   *              400 - HTTP_BAD_REQUEST
+   *              500 - HTTP_INTERNAL_SERVER_ERROR
+   *              https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *          pair-String for the raw response String (the picture in case of a
    *            success response)
    * @throws Exception
    */
-  public Map<String, Pair<Boolean, String> > getPicturesAsync (
+  public Map<String, Pair<Integer, String> > getPicturesAsync (
     String requestTrackingUuid) throws Exception {
 
     if (this.futureDownloadResponses.containsKey(
@@ -470,28 +478,18 @@ public class FacebookGraph {
     
     RestAsync currRestAsync;
     
-    Map<String, Pair<Boolean, String> > result =
-      new HashMap<String, Pair<Boolean, String> >();
+    Map<String, Pair<Integer, String> > result =
+      new HashMap<String, Pair<Integer, String> >();
     
     for (String pictureId : requests.keySet() ) {
       
       currRestAsync = requests.get(pictureId);
       
-      if (currRestAsync.isResponseStatusSuccess() == true) {
-        
-        result.put(
-          pictureId,
-          new Pair<Boolean, String>(
-            true,
-            currRestAsync.getRawResponseString() ) );
-      } else {
-        
-        result.put(
-          pictureId,
-          new Pair<Boolean, String>(
-            false,
-            currRestAsync.getRawResponseString() ) );
-      }
+      result.put(
+        pictureId,
+        new Pair<Integer, String>(
+          currRestAsync.getResponseStatusCode(),
+          currRestAsync.getRawResponseString() ) );
     }
     
     return result;
@@ -502,10 +500,14 @@ public class FacebookGraph {
    * @param requestType SYNC or ASYNC
    * @param pictureIds
    * @return
-   *        SYNC: Map<String, Pair<Boolean, String> >
+   *        SYNC: Map<String, Pair<Integer, String> >
    *          key is the picture_id
-   *          pair-Boolean is true for success response HTTP_OK (200)
-   *            and false otherwise
+   *          pair-Integer is the response's http status code
+   *            e.g.:
+   *              200 - HTTP_OK
+   *              400 - HTTP_BAD_REQUEST
+   *              500 - HTTP_INTERNAL_SERVER_ERROR
+   *              https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *          pair-String for the raw response String (the picture in case of a
    *            success response)
    *        ASYNC: String representing the request-tracking-uuid
@@ -548,28 +550,18 @@ public class FacebookGraph {
       
       countDownLatch.await();
       
-      Map<String, Pair<Boolean, String> > result =
-        new HashMap<String, Pair<Boolean, String> >();
+      Map<String, Pair<Integer, String> > result =
+        new HashMap<String, Pair<Integer, String> >();
       
       for (String pictureId : pictureIds) {
         
         currRestAsync = requests.get(pictureId);
         
-        if (currRestAsync.isResponseStatusSuccess() == true) {
-          
-          result.put(
-            pictureId,
-            new Pair<Boolean, String>(
-              true,
-              currRestAsync.getRawResponseString() ) );
-        } else {
-          
-          result.put(
-            pictureId,
-            new Pair<Boolean, String>(
-              false,
-              currRestAsync.getRawResponseString() ) );
-        }
+        result.put(
+          pictureId,
+          new Pair<Integer, String>(
+            currRestAsync.getResponseStatusCode(),
+            currRestAsync.getRawResponseString() ) );
       }
       
       return result;
@@ -593,13 +585,6 @@ public class FacebookGraph {
       ExceptionClass.TYPE);
   }
   
-  public enum FacebookApiResponseStatus {
-    
-    SUCCESS,
-    BAD_REQUEST,
-    ERROR
-  }
-  
   // format:
   //   String version,
   //   String fb_user_id,
@@ -614,10 +599,14 @@ public class FacebookGraph {
    * @param fields - of all the fields to be fetched
    * @return Map<
    *           FacebookGraphApiFieldType,
-   *           Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *           Pair<Integer, RestResponseJson> >
    *         key is the field enum type
-   *         pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
-   *           indicate which type of JSON Object is in pair-RestResponseJson
+   *         pair-Integer is the response's http status code
+   *            e.g.:
+   *              200 - HTTP_OK
+   *              400 - HTTP_BAD_REQUEST
+   *              500 - HTTP_INTERNAL_SERVER_ERROR
+   *              https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *         pair-RestResponseJson is a JSON Object containing the response,
    *           on 200 HTTP_SUCCESS it contains an Object from the JSON class
    *             corresponding to the field
@@ -630,13 +619,13 @@ public class FacebookGraph {
   public
     Map<
       FacebookGraphApiFieldType,
-      Pair<FacebookApiResponseStatus, RestResponseJson> > getFieldsSync (
+      Pair<Integer, RestResponseJson> > getFieldsSync (
         FacebookGraphApiFieldType... fields) throws Exception {
     
     return
       (Map<
         FacebookGraphApiFieldType,
-        Pair<FacebookApiResponseStatus, RestResponseJson> > )this.getFields(
+        Pair<Integer, RestResponseJson> > )this.getFields(
           RequestType.SYNC,
           fields);
   }
@@ -661,10 +650,14 @@ public class FacebookGraph {
    * @param requestTrackingUuid
    * @return Map<
    *           FacebookGraphApiFieldType,
-   *           Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *           Pair<Integer, RestResponseJson> >
    *         key is the field enum type
-   *         pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
-   *           indicate which type of JSON Object is in pair-RestResponseJson
+   *         pair-Integer is the response's http status code
+   *            e.g.:
+   *              200 - HTTP_OK
+   *              400 - HTTP_BAD_REQUEST
+   *              500 - HTTP_INTERNAL_SERVER_ERROR
+   *              https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *         pair-RestResponseJson is a JSON Object containing the response,
    *           on 200 HTTP_SUCCESS it contains an Object from the JSON class
    *             corresponding to the field
@@ -676,7 +669,7 @@ public class FacebookGraph {
   public
     Map<
       FacebookGraphApiFieldType,
-      Pair<FacebookApiResponseStatus, RestResponseJson> > getFieldsAsync (
+      Pair<Integer, RestResponseJson> > getFieldsAsync (
         String requestTrackingUuid) throws Exception {
 
     if (this.futureFieldResponses.containsKey(
@@ -698,42 +691,28 @@ public class FacebookGraph {
 
     Map<
       FacebookGraphApiFieldType,
-      Pair<FacebookApiResponseStatus, RestResponseJson> > result =
+      Pair<Integer, RestResponseJson> > result =
         new HashMap<
           FacebookGraphApiFieldType,
-          Pair<FacebookApiResponseStatus, RestResponseJson> >();
-    
-    FacebookApiResponseStatus currFacebookApiResponseStatus;
+          Pair<Integer, RestResponseJson> >();
     
     for (FacebookGraphApiFieldType field : requests.keySet() ) {
       
       currRestAsync = requests.get(field);
       
-      if (currRestAsync.isResponseStatusSuccess() == true) {
-        
-        currFacebookApiResponseStatus = FacebookApiResponseStatus.SUCCESS;
-      } else if (currRestAsync.isResponseStatusBadRequest() == true) {
-        
-        currFacebookApiResponseStatus =
-          FacebookApiResponseStatus.BAD_REQUEST;
-      } else {
-        
-        currFacebookApiResponseStatus = FacebookApiResponseStatus.ERROR;
-      }
-      
       if (currRestAsync.gotMatchingJsonResponse() == true) {
         
         result.put(
           field,
-          new Pair<FacebookApiResponseStatus, RestResponseJson>(
-            currFacebookApiResponseStatus,
+          new Pair<Integer, RestResponseJson>(
+            currRestAsync.getResponseStatusCode(),
             currRestAsync.getRestResponseJson() ) );
       } else {
         
         result.put(
           field,
-          new Pair<FacebookApiResponseStatus, RestResponseJson>(
-            currFacebookApiResponseStatus,
+          new Pair<Integer, RestResponseJson>(
+            currRestAsync.getResponseStatusCode(),
             new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
       }
     }
@@ -749,10 +728,14 @@ public class FacebookGraph {
    *        SYNC:
    *          Map<
    *            FacebookGraphApiFieldType,
-   *            Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *            Pair<Integer, RestResponseJson> >
    *          key is the field enum type
-   *          pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
-   *            indicate which type of JSON Object is in pair-RestResponseJson
+   *          pair-Integer is the response's http status code
+   *            e.g.:
+   *              200 - HTTP_OK
+   *              400 - HTTP_BAD_REQUEST
+   *              500 - HTTP_INTERNAL_SERVER_ERROR
+   *              https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *          pair-RestResponseJson is a JSON Object containing the response,
    *            on 200 HTTP_SUCCESS it contains an Object from the JSON class
    *              corresponding to the field
@@ -806,42 +789,28 @@ public class FacebookGraph {
 
       Map<
         FacebookGraphApiFieldType,
-        Pair<FacebookApiResponseStatus, RestResponseJson> > result =
+        Pair<Integer, RestResponseJson> > result =
           new HashMap<
             FacebookGraphApiFieldType,
-            Pair<FacebookApiResponseStatus, RestResponseJson> >();
-      
-      FacebookApiResponseStatus currFacebookApiResponseStatus;
+            Pair<Integer, RestResponseJson> >();
       
       for (FacebookGraphApiFieldType field : fields) {
         
         currRestAsync = requests.get(field);
         
-        if (currRestAsync.isResponseStatusSuccess() == true) {
-          
-          currFacebookApiResponseStatus = FacebookApiResponseStatus.SUCCESS;
-        } else if (currRestAsync.isResponseStatusBadRequest() == true) {
-          
-          currFacebookApiResponseStatus =
-            FacebookApiResponseStatus.BAD_REQUEST;
-        } else {
-          
-          currFacebookApiResponseStatus = FacebookApiResponseStatus.ERROR;
-        }
-        
         if (currRestAsync.gotMatchingJsonResponse() == true) {
           
           result.put(
             field,
-            new Pair<FacebookApiResponseStatus, RestResponseJson>(
-              currFacebookApiResponseStatus,
+            new Pair<Integer, RestResponseJson>(
+              currRestAsync.getResponseStatusCode(),
               currRestAsync.getRestResponseJson() ) );
         } else {
           
           result.put(
             field,
-            new Pair<FacebookApiResponseStatus, RestResponseJson>(
-              currFacebookApiResponseStatus,
+            new Pair<Integer, RestResponseJson>(
+              currRestAsync.getResponseStatusCode(),
               new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
         }
       }
@@ -888,10 +857,14 @@ public class FacebookGraph {
    * @param edges - of all the edges to be fetched
    * @return Map<
    *           FacebookGraphApiEdgeType,
-   *           Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *           Pair<Integer, RestResponseJson> >
    *         key is the edge enum type
-   *         pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
-   *           indicate which type of JSON Object is in pair-RestResponseJson
+   *         pair-Integer is the response's http status code
+   *           e.g.:
+   *             200 - HTTP_OK
+   *             400 - HTTP_BAD_REQUEST
+   *             500 - HTTP_INTERNAL_SERVER_ERROR
+   *             https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *         pair-RestResponseJson is a JSON Object containing the response,
    *           on 200 HTTP_SUCCESS it contains an Object from the JSON class
    *             corresponding to the edge
@@ -904,13 +877,13 @@ public class FacebookGraph {
   public
     Map<
       FacebookGraphApiEdgeType,
-      Pair<FacebookApiResponseStatus, RestResponseJson> > getEdgesSync (
+      Pair<Integer, RestResponseJson> > getEdgesSync (
         FacebookGraphApiEdgeType... edges) throws Exception {
     
     return
       (Map<
         FacebookGraphApiEdgeType,
-        Pair<FacebookApiResponseStatus, RestResponseJson> > )this.getEdges(
+        Pair<Integer, RestResponseJson> > )this.getEdges(
           RequestType.SYNC,
           edges);
   }
@@ -943,10 +916,14 @@ public class FacebookGraph {
    * @param requestTrackingUuid
    * @return Map<
    *           FacebookGraphApiEdgeType,
-   *           Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *           Pair<Integer, RestResponseJson> >
    *         key is the edge enum type
-   *         pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
-   *           indicate which type of JSON Object is in pair-RestResponseJson
+   *         pair-Integer is the response's http status code
+   *           e.g.:
+   *             200 - HTTP_OK
+   *             400 - HTTP_BAD_REQUEST
+   *             500 - HTTP_INTERNAL_SERVER_ERROR
+   *             https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *         pair-RestResponseJson is a JSON Object containing the response,
    *           on 200 HTTP_SUCCESS it contains an Object from the JSON class
    *             corresponding to the edge
@@ -958,7 +935,7 @@ public class FacebookGraph {
   public
     Map<
       FacebookGraphApiEdgeType,
-      Pair<FacebookApiResponseStatus, RestResponseJson> > getEdgesAsync (
+      Pair<Integer, RestResponseJson> > getEdgesAsync (
         String requestTrackingUuid) throws Exception {
 
     if (this.futureEdgeResponses.containsKey(
@@ -980,42 +957,28 @@ public class FacebookGraph {
 
     Map<
       FacebookGraphApiEdgeType,
-      Pair<FacebookApiResponseStatus, RestResponseJson> > result =
+      Pair<Integer, RestResponseJson> > result =
         new HashMap<
           FacebookGraphApiEdgeType,
-          Pair<FacebookApiResponseStatus, RestResponseJson> >();
-    
-    FacebookApiResponseStatus currFacebookApiResponseStatus;
+          Pair<Integer, RestResponseJson> >();
     
     for (FacebookGraphApiEdgeType edge : requests.keySet() ) {
       
       currRestAsync = requests.get(edge);
       
-      if (currRestAsync.isResponseStatusSuccess() == true) {
-        
-        currFacebookApiResponseStatus = FacebookApiResponseStatus.SUCCESS;
-      } else if (currRestAsync.isResponseStatusBadRequest() == true) {
-        
-        currFacebookApiResponseStatus =
-          FacebookApiResponseStatus.BAD_REQUEST;
-      } else {
-        
-        currFacebookApiResponseStatus = FacebookApiResponseStatus.ERROR;
-      }
-      
       if (currRestAsync.gotMatchingJsonResponse() == true) {
         
         result.put(
           edge,
-          new Pair<FacebookApiResponseStatus, RestResponseJson>(
-            currFacebookApiResponseStatus,
+          new Pair<Integer, RestResponseJson>(
+            currRestAsync.getResponseStatusCode(),
             currRestAsync.getRestResponseJson() ) );
       } else {
         
         result.put(
           edge,
-          new Pair<FacebookApiResponseStatus, RestResponseJson>(
-            currFacebookApiResponseStatus,
+          new Pair<Integer, RestResponseJson>(
+            currRestAsync.getResponseStatusCode(),
             new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
       }
     }
@@ -1035,10 +998,14 @@ public class FacebookGraph {
    *        SYNC:
    *          Map<
    *            FacebookGraphApiEdgeType,
-   *            Pair<FacebookApiResponseStatus, RestResponseJson> >
+   *            Pair<Integer, RestResponseJson> >
    *          key is the edge enum type
-   *          pair-FacebookApiResponseStatus SUCCESS, BAD_REQUEST or ERROR to
-   *            indicate which type of JSON Object is in pair-RestResponseJson
+   *          pair-Integer is the response's http status code
+   *            e.g.:
+   *              200 - HTTP_OK
+   *              400 - HTTP_BAD_REQUEST
+   *              500 - HTTP_INTERNAL_SERVER_ERROR
+   *              https://en.wikipedia.org/wiki/List_of_HTTP_status_codes
    *          pair-RestResponseJson is a JSON Object containing the response,
    *            on 200 HTTP_SUCCESS it contains an Object from the JSON class
    *              corresponding to the edge
@@ -1094,42 +1061,28 @@ public class FacebookGraph {
 
       Map<
         FacebookGraphApiEdgeType,
-        Pair<FacebookApiResponseStatus, RestResponseJson> > result =
+        Pair<Integer, RestResponseJson> > result =
           new HashMap<
             FacebookGraphApiEdgeType,
-            Pair<FacebookApiResponseStatus, RestResponseJson> >();
-      
-      FacebookApiResponseStatus currFacebookApiResponseStatus;
+            Pair<Integer, RestResponseJson> >();
       
       for (FacebookGraphApiEdgeType edge : edges) {
         
         currRestAsync = requests.get(edge);
         
-        if (currRestAsync.isResponseStatusSuccess() == true) {
-          
-          currFacebookApiResponseStatus = FacebookApiResponseStatus.SUCCESS;
-        } else if (currRestAsync.isResponseStatusBadRequest() == true) {
-          
-          currFacebookApiResponseStatus =
-            FacebookApiResponseStatus.BAD_REQUEST;
-        } else {
-          
-          currFacebookApiResponseStatus = FacebookApiResponseStatus.ERROR;
-        }
-        
         if (currRestAsync.gotMatchingJsonResponse() == true) {
           
           result.put(
             edge,
-            new Pair<FacebookApiResponseStatus, RestResponseJson>(
-              currFacebookApiResponseStatus,
+            new Pair<Integer, RestResponseJson>(
+              currRestAsync.getResponseStatusCode(),
               currRestAsync.getRestResponseJson() ) );
         } else {
           
           result.put(
             edge,
-            new Pair<FacebookApiResponseStatus, RestResponseJson>(
-              currFacebookApiResponseStatus,
+            new Pair<Integer, RestResponseJson>(
+              currRestAsync.getResponseStatusCode(),
               new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
         }
       }
