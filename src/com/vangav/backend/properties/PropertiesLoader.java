@@ -196,4 +196,14 @@ public class PropertiesLoader {
         propName,
         defaultValue);
   }
+  
+  /**
+   * reload
+   * used to reload properties file
+   * @throws Exception
+   */
+  public void reload () throws Exception {
+    
+    this.loadProperties();
+  }
 }
