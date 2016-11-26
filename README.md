@@ -48,7 +48,7 @@ Alternatively one can use Vangav Backend as a commons lib for any JAVA project u
   + `wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz`
   + `tar xzf Python-2.7.10.tgz`
   + `cd Python-2.7.10`
-  + `sudo ./configure --with-zlib --with-ssl`
+  + `sudo ./configure --with-zlib`
   + `sudo make install`
   + add `alias python=python2.7` in file `~/.bashrc`
 
