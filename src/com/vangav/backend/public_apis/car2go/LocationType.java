@@ -160,4 +160,78 @@ public enum LocationType {
           ExceptionClass.TYPE);
     }
   }
+  
+  /**
+   * getLocationId
+   * @return location's id
+   * @throws Exception
+   */
+  public int getLocationId () throws Exception {
+    
+    switch (this) {
+      
+      case AUSTIN:
+        return 2;
+      case HAMBURG:
+        return 3;
+      case VANCOUVER:
+        return 4;
+      case AMSTERDAM:
+        return 5;
+      case WIEN:
+        return 7;
+      case SAN_DIEGO:
+        return 8;
+      case WASHINGTON_DC:
+        return 9;
+      case PORTLAND:
+        return 11;
+      case BERLIN:
+        return 12;
+      case TORINO:
+        return 44;
+      case CALGARY:
+        return 15;
+      case STUTTGART:
+        return 18;
+      case RHEINLAND:
+        return 19;
+      case MILANO:
+        return 20;
+      case SEATTLE:
+        return 21;
+      case DENVER:
+        return 24;
+      case MONTREAL:
+        return 25;
+      case MÜNCHEN:
+        return 26;
+      case TWIN_CITIES:
+        return 29;
+      case COLUMBUS:
+        return 30;
+      case ROMA:
+        return 31;
+      case FRANKFURT:
+        return 33;
+      case NEW_YORK_CITY:
+        return 34;
+      case MADRID:
+        return 36;
+      case FIRENZE:
+        return 37;
+      case STOCKHOLM:
+        return 39;
+      case TORONTO:
+        return 13;
+      default:
+        throw new CodeException(
+          153,
+          5,
+          "Invalid LocationType ["
+            + this.toString()
+            + "]",
+          ExceptionClass.TYPE);
+    }
+  }
 }
