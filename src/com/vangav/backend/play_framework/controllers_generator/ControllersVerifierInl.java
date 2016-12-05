@@ -224,6 +224,7 @@ public class ControllersVerifierInl {
             "response param type",
             responseParamJson.type,
             false,
+            "boolean",
             "short",
             "int",
             "long",
