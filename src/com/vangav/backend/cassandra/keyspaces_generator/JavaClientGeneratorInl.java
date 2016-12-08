@@ -994,7 +994,8 @@ public class JavaClientGeneratorInl {
           preparedStatement.charAt(index + 1) != ',' &&
           preparedStatement.charAt(index + 1) != ')' &&
           preparedStatement.charAt(index + 1) != ';' &&
-          preparedStatement.charAt(index + 1) != ' ') {
+          preparedStatement.charAt(index + 1) != ' ' &&
+          preparedStatement.charAt(index + 1) != ']') {
         
         index += 1;
         
@@ -1005,7 +1006,8 @@ public class JavaClientGeneratorInl {
           if (preparedStatement.charAt(index) == ',' ||
               preparedStatement.charAt(index) == ')' ||
               preparedStatement.charAt(index) == ';' ||
-              preparedStatement.charAt(index) == ' ') {
+              preparedStatement.charAt(index) == ' ' ||
+              preparedStatement.charAt(index) == ']') {
             
             break;
           }
