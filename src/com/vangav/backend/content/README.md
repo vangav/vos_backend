@@ -14,6 +14,7 @@
 | Class | Explanation |
 | ----- | ----------- |
 | [CodeIdentifiersFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java) | Formats code identifiers (e.g.: CamelCase, lower_under, ...). |
+| [EncodingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/EncodingInl.java) | Handles encoding/decoding data (e.g.: used to store/get blobs into/from cassandra). |
 | [HashingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/HashingInl.java) | Formats an Object or a group of Objects into their hash value. |
 | [JavaFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/JavaFormatterInl.java) | Does operations like formatting package names/paths and reformats code/comment line length to maintain coding legend (e.g.: that's how generated service's code line's length doesn't exceed 80 characters). |
 | [PhrictionFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java) | Formats Strings according to [phriction remarkup](https://secure.phabricator.com/book/phabricator/article/remarkup/) (e.g.: bold, header, table, link, ...). Used to generate Cassandra's phriction wiki. |
