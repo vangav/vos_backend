@@ -66,6 +66,15 @@ MailGunEmailDispatchable mailGunEmailDispatchable =
 request.getDispatcher().addDispatchMessage(mailGunEmailDispatchable);
 ```
 
+### [jobs](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/jobs)
+
++ Job class is a simplified and serializable version of HTTP GET requests.
+  + A main service can dispatch a job to a helper service.
+  + Can be serialized and stored in the database for tracking and retrying in case of failure.
+  + Can be stored in the database and get executed at a later point in time.
+  + etc ...
++ JobExecutorInl executes jobs by issuing the jobs HTTP GET request asynchronously.
+
 ### [rest_client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/rest_client)
 
 + Having a built-in REST client in a backend service simplifies operations like:
