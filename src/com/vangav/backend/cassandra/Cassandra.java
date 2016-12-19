@@ -57,6 +57,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import com.datastax.driver.core.Cluster;
 import com.datastax.driver.core.PreparedStatement;
+import com.datastax.driver.core.QueryOptions;
 import com.datastax.driver.core.ResultSet;
 import com.datastax.driver.core.ResultSetFuture;
 import com.datastax.driver.core.Session;
@@ -94,6 +95,7 @@ public class Cassandra {
   private ArrayList<CassandraNode> topology;
   private int connectRetries;
   private int queryRetries;
+  private int fetchSize;
 
   /**
    * preparedStatements keeps track of prepared statements that get prepared
@@ -115,6 +117,9 @@ public class Cassandra {
     this.queryRetries =
       CassandraProperties.i().getIntProperty(
         CassandraProperties.kQueryRetries);
+    this.fetchSize =
+      CassandraProperties.i().getIntProperty(
+        CassandraProperties.kFetchSize);
     
     this.preparedStatements = new HashSet<String>();
     
@@ -193,8 +198,11 @@ public class Cassandra {
         try {
           
           this.cluster =
-            Cluster.builder().addContactPoint(
-              this.topology.get(i).getIp() ).build();
+            Cluster.builder()
+              .addContactPoint(this.topology.get(i).getIp() )
+              .withQueryOptions(
+                new QueryOptions().setFetchSize(this.fetchSize) )
+              .build();
           this.cluster.init();
           this.session = this.cluster.connect();
           

@@ -1,3 +1,4 @@
+
 # "First, solve the problem. Then, write the code. -John Johnson"
 # "Or use Vangav M"
 # www.vangav.com
@@ -53,6 +54,14 @@ connection_retries=3
 # How many times to retry a query upon failure
 # Default: 3
 query_retries=3
+
+# The fetch size specifies how many rows will be returned at once by Cassandra
+#   (in other words, it’s the size of each page).
+# Note that setting a fetch size doesn’t mean that Cassandra will always return
+#   the exact number of rows, it is possible that it returns slightly more or
+#   less results.
+# Default: 5000
+fetch_size=5000
 
 # Write Consistency Level
 # The consistency level determines the number of replicas on which the write

@@ -109,20 +109,29 @@ public class CassandraProperties extends PropertiesFile {
   }
   
   // properties names
-  public static final String kConnectionRetries = "connection_retries";
-  public static final String kQueryRetries = "query_retries";
+  public static final String kConnectionRetries =
+    "connection_retries";
+  public static final String kQueryRetries =
+    "query_retries";
+  public static final String kFetchSize =
+    "fetch_size";
   public static final String kWriteConsistencyLevel =
     "write_consistency_level";
   public static final String kReadConsistencyLevel =
     "read_consistency_level";
-  public static final String kDeploymentMode = "deployment_mode";
-  public static final String kSingleDeploymentIp = "single_deployment_ip";
+  public static final String kDeploymentMode =
+    "deployment_mode";
+  public static final String kSingleDeploymentIp =
+    "single_deployment_ip";
   public static final String kMultiDeploymentTopology =
     "multi_deployment_topology";
   
-  private static final String kSingleDeploymentMode = "single_deployment";
-  private static final String kMultiDeploymentMode = "multi_deployment";
-  private static final String kMultiDeploymentDelimiter = ",";
+  private static final String kSingleDeploymentMode =
+    "single_deployment";
+  private static final String kMultiDeploymentMode =
+    "multi_deployment";
+  private static final String kMultiDeploymentDelimiter =
+    ",";
   
   private static ArrayList<CassandraNode> kTopology =
     new ArrayList<CassandraNode>();
@@ -237,6 +246,9 @@ public class CassandraProperties extends PropertiesFile {
     kProperties.put(
       kQueryRetries,
       "3");
+    kProperties.put(
+      kFetchSize,
+      "5000");
     kProperties.put(
       kWriteConsistencyLevel,
       "ONE");
