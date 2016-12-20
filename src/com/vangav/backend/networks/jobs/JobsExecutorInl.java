@@ -66,12 +66,12 @@ public class JobsExecutorInl {
   private JobsExecutorInl () {}
   
   /**
-   * executeJob
+   * executeJobsAsync
    * executes jobs asynchronously then returns
    * @param jobs
    * @throws Exception
    */
-  public static void executeJob (
+  public static void executeJobsAsync (
     Job... jobs) throws Exception {
     
     if (jobs == null || jobs.length == 0) {
@@ -94,5 +94,38 @@ public class JobsExecutorInl {
 
       ThreadPool.i().executeInRestClientPool(currRestAsync);
     }
+  }
+  
+  /**
+   * executeJobsSync
+   * executes jobs asynchronously then blocks till they finish executing
+   * @param jobs
+   * @throws Exception
+   */
+  public static void executeJobsSync (
+    Job... jobs) throws Exception {
+    
+    if (jobs == null || jobs.length == 0) {
+      
+      return;
+    }
+    
+    CountDownLatch countDownLatch = new CountDownLatch(jobs.length);
+
+    RestAsync currRestAsync;
+    RestResponseJsonGroup restResponseJsonGroup = new RestResponseJsonGroup();
+    
+    for (Job job : jobs) {
+      
+      currRestAsync =
+        new RestAsync(
+          countDownLatch,
+          job.getRequest(),
+          restResponseJsonGroup);
+
+      ThreadPool.i().executeInRestClientPool(currRestAsync);
+    }
+    
+    countDownLatch.await();
   }
 }
