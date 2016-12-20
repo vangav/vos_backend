@@ -87,6 +87,16 @@ public class Period {
     this.value = value;
     this.unit = unit;
   }
+  
+  /**
+   * Copy Constructor - Period
+   * @param period
+   * @return a new Period Object identical to the param period one
+   */
+  public Period (Period period) {
+    
+    this(period.value, period.unit);
+  }
 
   /**
    * setValue
