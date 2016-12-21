@@ -96,11 +96,6 @@ class PeriodicJobRunner implements Runnable {
       // finish finite job?
       if (this.currPeriodicJob.isInfinite() == false) {
         
-        System.out.println(
-          "\n\nTime till end: "
-          + (this.currPeriodicJob.getEndTime() - System.currentTimeMillis() )
-          + "\n\n");
-        
         if (System.currentTimeMillis() > this.currPeriodicJob.getEndTime() ) {
           
           break;

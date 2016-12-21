@@ -256,10 +256,16 @@ public class CycleLog {
   
   /**
    * getActualEndTime
-   * @return this cycle's actual end unix time in milli seconds
+   * @return this cycle's actual end unix time in milli seconds, and -1 in case
+   *           this cycle didn't finish execution yet
    * @throws Exception
    */
   public long getActualEndTime () throws Exception {
+    
+    if (this.finished() == false) {
+      
+      return -1L;
+    }
     
     return this.actualEndTime;
   }
@@ -268,9 +274,15 @@ public class CycleLog {
    * endedBeforeTime
    * @return true if this cycle's actual end time happened before or at
    *           its planned end time to milli-second-precision
+   *         in case this cycle didn't finish execution yet it returns false
    * @throws Exception
    */
   public boolean endedBeforeTime () throws Exception {
+    
+    if (this.finished() == false) {
+      
+      return false;
+    }
     
     if (this.actualEndTime <= this.plannedEndTime) {
       
@@ -284,9 +296,15 @@ public class CycleLog {
    * endedOnTime
    * @return true if this cycle's actual end time is the same as its planned
    *           end time to milli-second-precision
+   *         in case this cycle didn't finish execution yet it returns false
    * @throws Exception
    */
   public boolean endedOnTime () throws Exception {
+    
+    if (this.finished() == false) {
+      
+      return false;
+    }
     
     if (this.actualEndTime == this.plannedEndTime) {
       
@@ -302,10 +320,16 @@ public class CycleLog {
    * @return the delta absolute delta between this cycle's planned and actual
    *           end times converted to param timeUnitType
    *           (milli secons, minutes, ...)
+   *         in case this cycle didn't finish execution yet, it returns null
    * @throws Exception
    */
   public Period getEndTimeDelta (
     TimeUnitType timeUnitType) throws Exception {
+    
+    if (this.finished() == false) {
+      
+      return null;
+    }
     
     Period startEndPeriod =
       new Period(
@@ -313,6 +337,33 @@ public class CycleLog {
         TimeUnitType.MILLISECOND);
     
     return startEndPeriod.getAs(timeUnitType);
+  }
+  
+  /**
+   * executedWithinPeriod
+   * @return true if this cycle finished execution within its planned execution
+   *           period and false otherwise (exeeded)
+   * @throws Exception
+   */
+  public boolean executedWithinPeriod () throws Exception {
+    
+    if (this.finished() == false) {
+      
+      return false;
+    }
+    
+    long actualExecutionTime =
+      this.actualEndTime - this.actualStartTime;
+    
+    long plannedExecutionTime =
+      this.plannedEndTime - this.plannedStartTime;
+    
+    if (actualExecutionTime <= plannedExecutionTime) {
+      
+      return true;
+    }
+    
+    return false;
   }
   
   /**
