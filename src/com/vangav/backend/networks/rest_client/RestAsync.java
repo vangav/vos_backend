@@ -491,4 +491,70 @@ public class RestAsync extends LatchThread {
       this.rawResponseString = downloadedData;
     }
   }
+  
+  @Override
+  public String toString () {
+    
+    String toString =
+      "Rest async:"
+      + "\nRest call type ["
+      + this.restCallType.toString()
+      + "]\nRest call response type ["
+      + this.restCallResponseType.toString()
+      + "]\nRequest string ["
+      + this.requestString
+      + "]\nUrl ["
+      + this.url
+      + "]";
+    
+    if (this.requestHeaders == null) {
+      
+      toString +=
+        "\nRequest headers [default]";
+    } else {
+      
+      toString +=
+        "\nRequest headers ["
+        + this.requestHeaders.toString()
+        + "]";
+    }
+    
+    toString +=
+      "\nRest response http status code ["
+      + this.restResponseHttpStatusCode
+      + "]";
+      
+    if (this.restResponseJsonGroup == null) {
+      
+      toString +=  
+        "\nRest response json group [null]";
+    } else {
+      
+      toString +=  
+        "\nRest response json group ["
+        + this.restResponseJsonGroup.toString()
+        + "]";
+    }
+    
+  if (this.restResponseJson == null) {
+    
+    toString +=  
+      "\nRest response json [null]";
+  } else {
+    
+    toString +=  
+      "\nRest response json ["
+      + this.restResponseJson.toString()
+      + "]";
+  }
+  
+  toString +=
+    "\nGot matching json response ["
+    + this.gotMatchingJsonResponse
+    + "]\nRaw response string ["
+    + this.rawResponseString
+    + "]";
+    
+    return toString;
+  }
 }

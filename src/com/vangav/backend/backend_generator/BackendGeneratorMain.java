@@ -50,6 +50,9 @@ package com.vangav.backend.backend_generator;
 import java.io.File;
 import java.util.ArrayList;
 
+import com.vangav.backend.backend_client_java.clients_generator.ClientsGeneratorConstantsInl;
+import com.vangav.backend.backend_client_java.clients_generator.ClientsGeneratorInl;
+import com.vangav.backend.backend_client_java.clients_generator.ClientsVerifierInl;
 import com.vangav.backend.cassandra.keyspaces_generator.CassandraGeneratorConstantsInl;
 import com.vangav.backend.cassandra.keyspaces_generator.CassandraVerifierInl;
 import com.vangav.backend.cassandra.keyspaces_generator.CqlScriptsGeneratorInl;
@@ -140,7 +143,8 @@ public class BackendGeneratorMain {
           + "a valid config directory contains 0 or 1 file named ["
           + ControllersGeneratorConstantsInl.kControllersConfigFileName
           + "] for controllers config\n"
-          + "and 0 or more files named [*.keyspace] for keyspace config\n"
+          + "and 0 or more files named [*.keyspace] for keyspaces config\n"
+          + "and 0 or more files named [*.client] for clients config\n"
           + "and no other files\n\n"
           
           + "Cancelling new project creation, fix the config directory and "
@@ -268,6 +272,8 @@ public class BackendGeneratorMain {
   private static boolean isConfigDir (
     final String dirPath) throws Exception {
     
+    // load controllers config files
+    
     File[] controllerConfigFiles =
       FileLoaderInl.loadFiles(
         dirPath,
@@ -283,6 +289,8 @@ public class BackendGeneratorMain {
       return false;
     }
     
+    // load keyspaces config files
+    
     File[] keyspaceConfigFiles =
       FileLoaderInl.loadFiles(
         dirPath,
@@ -293,12 +301,28 @@ public class BackendGeneratorMain {
       keyspaceConfigFiles = new File[0];
     }
     
+    // load clients config files
+    
+    File[] clientsConfigFiles =
+      FileLoaderInl.loadFiles(
+        dirPath,
+        ClientsGeneratorConstantsInl.kClientConfigExt);
+    
+    if (clientsConfigFiles == null) {
+      
+      clientsConfigFiles = new File[0];
+    }
+    
+    // check if a DS_Store file exists
+    
     boolean hasDsStoreFile = false;
     
     if (FileLoaderInl.fileExists(dirPath + "/.DS_Store") == true) {
       
       hasDsStoreFile = true;
     }
+    
+    // load all files
     
     File[] allFiles = FileLoaderInl.loadFiles(dirPath);
     
@@ -310,14 +334,19 @@ public class BackendGeneratorMain {
     if (hasDsStoreFile == false) {
     
       if (allFiles.length !=
-          (controllerConfigFiles.length + keyspaceConfigFiles.length) ) {
+          (controllerConfigFiles.length
+           + keyspaceConfigFiles.length
+           + clientsConfigFiles.length) ) {
         
         return false;
       }
     } else {
     
       if (allFiles.length !=
-          (controllerConfigFiles.length + keyspaceConfigFiles.length + 1) ) {
+          (controllerConfigFiles.length
+           + keyspaceConfigFiles.length
+           + clientsConfigFiles.length
+           + 1) ) {
         
         return false;
       }
@@ -344,7 +373,7 @@ public class BackendGeneratorMain {
     } catch (Exception e) {
       
       try {
-      
+    
         VangavException vangavException = (VangavException)e;
         
         System.err.println(
@@ -383,7 +412,33 @@ public class BackendGeneratorMain {
 
       System.err.println(
         "\nCancelling new project creation, fix keyspace config "
-        + "and try again ...\n");
+        + "and try again ...\n\n"
+        + "Stack trace:\n"
+        + VangavException.getExceptionStackTrace(e) );
+      System.exit(0);
+    }
+    
+    // verify clients config files *.client
+    try {
+      
+      ClientsVerifierInl.verifyClientsJson(
+        "../../config_" + projectName);
+    } catch (Exception e) {
+      
+      try {
+      
+        VangavException vangavException = (VangavException)e;
+        
+        System.err.println(
+          "client config is invalid because of:\n"
+          + vangavException.toString() );
+      } catch (Exception e2) {}
+
+      System.err.println(
+        "\nCancelling new project creation, fix client config "
+        + "and try again ...\n\n"
+        + "Stack trace:\n"
+        + VangavException.getExceptionStackTrace(e) );
       System.exit(0);
     }
   }
@@ -827,6 +882,13 @@ public class BackendGeneratorMain {
     PhrictionGeneratorInl.generateCassandraKeyspacesPhriction(
       configDirPath,
       projectDirPath);
+    
+    // generate clients
+    ClientsGeneratorInl.generateClients(
+      configDirPath,
+      projectDirPath,
+      projectName,
+      rootPackage);
     
     // move config into project
     CommandLineInl.executeCommand(

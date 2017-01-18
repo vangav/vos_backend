@@ -60,6 +60,9 @@ import java.util.Map;
  *   (e.g.: id=123&name=john)
  * */
 public class RestRequestGetQuery extends RestRequest {
+  
+  private static final String kDefaultArraySeparator = ",";
+  private String arraySeparator;
 
   private Map<String, String> params;
   
@@ -69,7 +72,8 @@ public class RestRequestGetQuery extends RestRequest {
    */
   public RestRequestGetQuery () {
     
-    params = new HashMap<String, String>();
+    this.arraySeparator = kDefaultArraySeparator;
+    this.params = new HashMap<String, String>();
   }
   
   /**
@@ -82,9 +86,26 @@ public class RestRequestGetQuery extends RestRequest {
    */
   public RestRequestGetQuery (String key, String value) throws Exception {
     
+    this.arraySeparator = kDefaultArraySeparator;
     this.params = new HashMap<String, String>();
     
     this.addParam(key, value);
+  }
+  
+  /**
+   * setArraySeparator
+   * sets an alternate array separator to ,
+   * array separator is used to format an array into a string in order to fit
+   *   into a GET query.
+   *   e.g.:
+   *   request bool array: true false true
+   *   formatted: true,false,true
+   * @param arraySeparator
+   * @throws Exception
+   */
+  public void setArraySeparator (String arraySeparator) throws Exception {
+    
+    this.arraySeparator = arraySeparator;
   }
   
   /**
@@ -95,6 +116,274 @@ public class RestRequestGetQuery extends RestRequest {
    * @throws Exception
    */
   public void addParam (String key, String value) throws Exception {
+    
+    this.params.put(key, value);
+  }
+  
+  /**
+   * addParam
+   * adds a param (key/value pair) to the GET query
+   * @param key
+   * @param value
+   * @throws Exception
+   */
+  public void addParam (String key, boolean value) throws Exception {
+    
+    this.params.put(key, "" + value);
+  }
+  
+  /**
+   * addParam
+   * adds a param (key/value pair) to the GET query
+   * @param key
+   * @param value
+   * @throws Exception
+   */
+  public void addParam (String key, short value) throws Exception {
+    
+    this.params.put(key, "" + value);
+  }
+  
+  /**
+   * addParam
+   * adds a param (key/value pair) to the GET query
+   * @param key
+   * @param value
+   * @throws Exception
+   */
+  public void addParam (String key, int value) throws Exception {
+    
+    this.params.put(key, "" + value);
+  }
+  
+  /**
+   * addParam
+   * adds a param (key/value pair) to the GET query
+   * @param key
+   * @param value
+   * @throws Exception
+   */
+  public void addParam (String key, long value) throws Exception {
+    
+    this.params.put(key, "" + value);
+  }
+  
+  /**
+   * addParam
+   * adds a param (key/value pair) to the GET query
+   * @param key
+   * @param value
+   * @throws Exception
+   */
+  public void addParam (String key, float value) throws Exception {
+    
+    this.params.put(key, "" + value);
+  }
+  
+  /**
+   * addParam
+   * adds a param (key/value pair) to the GET query
+   * @param key
+   * @param value
+   * @throws Exception
+   */
+  public void addParam (String key, double value) throws Exception {
+    
+    this.params.put(key, "" + value);
+  }
+
+  /**
+   * addParam
+   * formats values into a value string then
+   *   adds a param (key/value pair) to the GET query
+   * @param key
+   * @param values
+   * @throws Exception
+   */
+  public void addParam (String key, String[] values) throws Exception {
+    
+    String value = "";
+    
+    if (values != null) {
+      
+      for (int i = 0; i < values.length; i ++) {
+        
+        value += values[i];
+        
+        if (i < (values.length - 1) ) {
+          
+          value += this.arraySeparator;
+        }
+      }
+    }
+    
+    this.params.put(key, value);
+  }
+  
+  /**
+   * addParam
+   * formats values into a value string then
+   *   adds a param (key/value pair) to the GET query
+   * @param key
+   * @param values
+   * @throws Exception
+   */
+  public void addParam (String key, boolean[] values) throws Exception {
+    
+    String value = "";
+    
+    if (values != null) {
+      
+      for (int i = 0; i < values.length; i ++) {
+        
+        value += values[i];
+        
+        if (i < (values.length - 1) ) {
+          
+          value += this.arraySeparator;
+        }
+      }
+    }
+    
+    this.params.put(key, value);
+  }
+  
+  /**
+   * addParam
+   * formats values into a value string then
+   *   adds a param (key/value pair) to the GET query
+   * @param key
+   * @param values
+   * @throws Exception
+   */
+  public void addParam (String key, short[] values) throws Exception {
+    
+    String value = "";
+    
+    if (values != null) {
+      
+      for (int i = 0; i < values.length; i ++) {
+        
+        value += values[i];
+        
+        if (i < (values.length - 1) ) {
+          
+          value += this.arraySeparator;
+        }
+      }
+    }
+    
+    this.params.put(key, value);
+  }
+  
+  /**
+   * addParam
+   * formats values into a value string then
+   *   adds a param (key/value pair) to the GET query
+   * @param key
+   * @param values
+   * @throws Exception
+   */
+  public void addParam (String key, int[] values) throws Exception {
+    
+    String value = "";
+    
+    if (values != null) {
+      
+      for (int i = 0; i < values.length; i ++) {
+        
+        value += values[i];
+        
+        if (i < (values.length - 1) ) {
+          
+          value += this.arraySeparator;
+        }
+      }
+    }
+    
+    this.params.put(key, value);
+  }
+  
+  /**
+   * addParam
+   * formats values into a value string then
+   *   adds a param (key/value pair) to the GET query
+   * @param key
+   * @param values
+   * @throws Exception
+   */
+  public void addParam (String key, long[] values) throws Exception {
+    
+    String value = "";
+    
+    if (values != null) {
+      
+      for (int i = 0; i < values.length; i ++) {
+        
+        value += values[i];
+        
+        if (i < (values.length - 1) ) {
+          
+          value += this.arraySeparator;
+        }
+      }
+    }
+    
+    this.params.put(key, value);
+  }
+  
+  /**
+   * addParam
+   * formats values into a value string then
+   *   adds a param (key/value pair) to the GET query
+   * @param key
+   * @param values
+   * @throws Exception
+   */
+  public void addParam (String key, float[] values) throws Exception {
+    
+    String value = "";
+    
+    if (values != null) {
+      
+      for (int i = 0; i < values.length; i ++) {
+        
+        value += values[i];
+        
+        if (i < (values.length - 1) ) {
+          
+          value += this.arraySeparator;
+        }
+      }
+    }
+    
+    this.params.put(key, value);
+  }
+  
+  /**
+   * addParam
+   * formats values into a value string then
+   *   adds a param (key/value pair) to the GET query
+   * @param key
+   * @param values
+   * @throws Exception
+   */
+  public void addParam (String key, double[] values) throws Exception {
+    
+    String value = "";
+    
+    if (values != null) {
+      
+      for (int i = 0; i < values.length; i ++) {
+        
+        value += values[i];
+        
+        if (i < (values.length - 1) ) {
+          
+          value += this.arraySeparator;
+        }
+      }
+    }
     
     this.params.put(key, value);
   }

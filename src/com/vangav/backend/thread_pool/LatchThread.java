@@ -95,6 +95,18 @@ public abstract class LatchThread implements Runnable {
   protected abstract void execute () throws Exception;
   
   /**
+   * await
+   * blocks on this latch thread's count down latch, if this latch is shared
+   *   by multiple threads then this method will wait for all of those threads
+   *   to finish
+   * @throws Exception
+   */
+  final public void await () throws Exception {
+    
+    this.countDownLatch.await();
+  }
+  
+  /**
    * succeeded
    * @return true if this LatchThread's execution was successful and false
    *           if an exception was thrown during processing

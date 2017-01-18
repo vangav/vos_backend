@@ -190,6 +190,15 @@ public class RestResponseJsonGroup {
       restResponseJsonGroupBuilder.restResponseJsonMap;
   }
   
+  @Override
+  public String toString () {
+    
+    return
+      "Rest response json group ["
+      + this.restResponseJsonMap.toString()
+      + "]";
+  }
+  
   /**
    * OPTIONAL builder pattern class for RestResponseJsonGroup to be used if
    *   a user wants to define responses for HTTP status codes other than the
