@@ -181,7 +181,9 @@ public class ParamValidatorInl {
     String value,
     ParamType type) throws Exception {
 
-    if (name == null || value == null) {
+    if (name == null ||
+        value == null ||
+        value.compareToIgnoreCase("null") == 0) {
       
       throwInvalidParam(name);
     }
