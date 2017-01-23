@@ -124,7 +124,7 @@ public class ControllerCallLog {
       (int) (System.currentTimeMillis() - this.startTime);
     
     this.responseHttpStatusCode = -2;
-    this.response = new ErrorResponse();
+    this.response = ErrorResponse.getDefaultErrorResponse();
     
     this.threwExceptionsDuringCall = true;
     this.thrownException = VangavException.getExceptionStackTrace(e);

@@ -78,16 +78,20 @@ public class ErrorResponse extends RestResponseJson {
   }
   
   @JsonIgnore
-  public ErrorResponse () {
+  public static ErrorResponse getDefaultErrorResponse () {
     
-    this.error_type = "";
-    this.error_code = -2;
-    this.error_sub_code = -2;
-    this.error_message = "";
-    this.error_class = "";
-    this.error_stack_trace = "";
-    this.error_trace_id =
+    ErrorResponse defaultErrorResponse = new ErrorResponse();
+    
+    defaultErrorResponse.error_type = "";
+    defaultErrorResponse.error_code = -2;
+    defaultErrorResponse.error_sub_code = -2;
+    defaultErrorResponse.error_message = "";
+    defaultErrorResponse.error_class = "";
+    defaultErrorResponse.error_stack_trace = "";
+    defaultErrorResponse.error_trace_id =
       "00000000-0000-1000-0000-000000000000";
+    
+    return defaultErrorResponse;
   }
 
   @JsonProperty
