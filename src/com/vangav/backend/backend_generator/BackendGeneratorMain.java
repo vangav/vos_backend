@@ -144,7 +144,7 @@ public class BackendGeneratorMain {
           + ControllersGeneratorConstantsInl.kControllersConfigFileName
           + "] for controllers config\n"
           + "and 0 or more files named [*.keyspace] for keyspaces config\n"
-          + "and 0 or more files named [*.client] for clients config\n"
+          + "and 0 or more files named [*.client_java] for clients config\n"
           + "and no other files\n\n"
           
           + "Cancelling new project creation, fix the config directory and "
@@ -418,7 +418,7 @@ public class BackendGeneratorMain {
       System.exit(0);
     }
     
-    // verify clients config files *.client
+    // verify clients config files *.client_java
     try {
       
       ClientsVerifierInl.verifyClientsJson(

@@ -145,7 +145,7 @@ public class ClientsGeneratorInl {
     
     for (String configFileName : clientsJsonRaw.keySet() ) {
       
-      // removing extension (.client in this case)
+      // removing extension (.client_java in this case)
       clientsNames.add(
         configFileName.replaceFirst("[.][^.]+$", "") );
     }

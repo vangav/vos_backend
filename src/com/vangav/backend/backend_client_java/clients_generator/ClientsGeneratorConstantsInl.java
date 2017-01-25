@@ -60,7 +60,7 @@ public class ClientsGeneratorConstantsInl {
   private ClientsGeneratorConstantsInl () {}
 
   public static final char kClientCommentPrefix = '#';
-  public static final String kClientConfigExt = ".client";
+  public static final String kClientConfigExt = ".client_java";
   public static final String kClientsPackageName = "clients";
   public static final String kClientErrorResponsesPackageName =
     "error_responses";

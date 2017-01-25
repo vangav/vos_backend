@@ -70,7 +70,7 @@ import com.vangav.backend.files.FileLoaderInl;
  */
 /**
  * ClientsVerifierInl has inline static methods for verifying clients' config
- *   files [*.client]
+ *   files [*.client_java]
  */
 public class ClientsVerifierInl {
   
