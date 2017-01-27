@@ -277,12 +277,22 @@ public class Car2GoApi {
     for (LocationType locationType : requests.keySet() ) {
       
       currRestAsync = requests.get(locationType);
+      
+      if (currRestAsync.isResponseStatusSuccess() == true) {
         
-      result.put(
-        locationType,
-        new Pair<Integer, RestResponseJson>(
-          currRestAsync.getResponseStatusCode(),
-          currRestAsync.getRestResponseJson() ) );
+        result.put(
+          locationType,
+          new Pair<Integer, RestResponseJson>(
+            currRestAsync.getResponseStatusCode(),
+            currRestAsync.getRestResponseJson() ) );
+      } else {
+        
+        result.put(
+          locationType,
+          new Pair<Integer, RestResponseJson>(
+            currRestAsync.getResponseStatusCode(),
+            new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
+      }
     }
     
     return result;
@@ -347,12 +357,22 @@ public class Car2GoApi {
       for (LocationType locationType : locations) {
         
         currRestAsync = requests.get(locationType);
-
-        result.put(
-          locationType,
-          new Pair<Integer, RestResponseJson>(
-            currRestAsync.getResponseStatusCode(),
-            currRestAsync.getRestResponseJson() ) );
+        
+        if (currRestAsync.isResponseStatusSuccess() == true) {
+          
+          result.put(
+            locationType,
+            new Pair<Integer, RestResponseJson>(
+              currRestAsync.getResponseStatusCode(),
+              currRestAsync.getRestResponseJson() ) );
+        } else {
+          
+          result.put(
+            locationType,
+            new Pair<Integer, RestResponseJson>(
+              currRestAsync.getResponseStatusCode(),
+              new ErrorResponse(currRestAsync.getRawResponseString() ) ) );
+        }
       }
       
       return result;
