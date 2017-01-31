@@ -459,6 +459,114 @@ public class CalendarAndDateOperationsInl {
   }
   
   /**
+   * getMonthCalendarRange
+   * @param calendar
+   * @return a pair representing:
+   *           - first: a Calendar Object representing the first day of param
+   *               calendar's month
+   *           - second: a Calendar Object representing the last day of param
+   *               calendar's month
+   *           both first and last day calendars get their hour, minute,
+   *             second and millisecond values reset to 0
+   *           e.g.: 01/10/2017, 31/10/2017
+   * @throws Exception
+   */
+  public static Pair<Calendar, Calendar> getMonthCalendarRange (
+    final Calendar calendar) throws Exception {
+
+    ArgumentsInl.checkNotNull(
+      "Calendar",
+      calendar,
+      ExceptionType.CODE_EXCEPTION);
+    
+    Calendar startCalendar = (Calendar)calendar.clone();
+    
+    // reset calendar's day
+    startCalendar.set(Calendar.HOUR_OF_DAY, 0);
+    startCalendar.set(Calendar.MINUTE, 0);
+    startCalendar.set(Calendar.SECOND, 0);
+    startCalendar.set(Calendar.MILLISECOND, 0);
+    
+    // get start of month
+    startCalendar.set(
+      Calendar.DAY_OF_MONTH,
+      startCalendar.getActualMinimum(Calendar.DAY_OF_MONTH) );
+    
+    Calendar endCalendar = (Calendar)startCalendar.clone();
+    
+    // get end of month
+    endCalendar.set(
+      Calendar.DAY_OF_MONTH,
+      endCalendar.getActualMaximum(Calendar.DAY_OF_MONTH));
+    
+    return new Pair<Calendar, Calendar>(startCalendar, endCalendar);
+  }
+  
+  /**
+   * getMonthCalendarsRanges
+   * @param fromCalendar
+   * @param toCalendar
+   * @return an array list of pairs representing:
+   *           - first: a Calendar Object representing the first day of param
+   *               calendar's month
+   *           - second: a Calendar Object representing the last day of param
+   *               calendar's month
+   *           both first and last day calendars get their hour, minute,
+   *             second and millisecond values reset to 0
+   *           Omits duplicate months
+   * @throws Exception
+   */
+  public static ArrayList<Pair<Calendar, Calendar> > getMonthCalendarsRanges (
+    final Calendar fromCalendar,
+    final Calendar toCalendar) throws Exception {
+
+    ArgumentsInl.checkNotNull(
+      "From Calendar",
+      fromCalendar,
+      ExceptionType.CODE_EXCEPTION);
+    ArgumentsInl.checkNotNull(
+      "To Calendar",
+      toCalendar,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<Calendar> calendars =
+      getCalendarsFromTo(fromCalendar, toCalendar);
+    
+    ArrayList<Pair<Calendar, Calendar> > ranges =
+      new ArrayList<Pair<Calendar, Calendar> >();
+    
+    Pair<Calendar, Calendar> currRange;
+    
+    int index = 0;
+    
+    for (int i = 0; i < calendars.size(); i ++) {
+      
+      // get month's range (start and end dates)
+      currRange = getMonthCalendarRange(calendars.get(i) );
+      
+      if (i > 0) {
+        
+        // remove duplicate week
+        if ((currRange.getFirst().get(Calendar.YEAR)
+              == ranges.get(index - 1).getFirst().get(
+                   Calendar.YEAR) ) &&
+            (currRange.getFirst().get(Calendar.MONTH)
+              == ranges.get(index - 1).getFirst().get(
+                   Calendar.MONTH) ) ) {
+          
+          continue;
+        }
+      }
+      
+      index += 1;
+      
+      ranges.add(currRange);
+    }
+    
+    return ranges;
+  }
+  
+  /**
    * getCalendarsFromTo
    * @param fromCalendar
    * @param toCalendar
@@ -530,6 +638,42 @@ public class CalendarAndDateOperationsInl {
     ArrayList<Calendar> calendars = new ArrayList<Calendar>();
     
     for (Pair<Calendar, Calendar> calendarRange : weekCalendarsRanges) {
+      
+      calendars.add(calendarRange.getFirst() );
+    }
+
+    return calendars;
+  }
+  
+  /**
+   * getCalendarMonthsFromTo
+   * @param fromCalendar
+   * @param toCalendar
+   * @return a list of calendars from param fromCalendar till param toCalendar
+   *           inclusive representing the first day of each month between both
+   *           calendars where each calendar get its hour, minute, second and
+   *           millisecond values reset to 0
+   * @throws Exception
+   */
+  public static ArrayList<Calendar> getCalendarMonthsFromTo (
+    final Calendar fromCalendar,
+    final Calendar toCalendar) throws Exception {
+
+    ArgumentsInl.checkNotNull(
+      "From Calendar",
+      fromCalendar,
+      ExceptionType.CODE_EXCEPTION);
+    ArgumentsInl.checkNotNull(
+      "To Calendar",
+      toCalendar,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<Pair<Calendar, Calendar> > monthCalendarsRanges =
+      getMonthCalendarsRanges(fromCalendar, toCalendar);
+    
+    ArrayList<Calendar> calendars = new ArrayList<Calendar>();
+    
+    for (Pair<Calendar, Calendar> calendarRange : monthCalendarsRanges) {
       
       calendars.add(calendarRange.getFirst() );
     }
