@@ -297,6 +297,42 @@ public class BackendClientSession {
   }
   
   /**
+   * executeBurstControllersCalls
+   * this method is meant to be used to cases like stress testing a backend
+   *   service as it just keeps executing given calls for the given count
+   *   async without locking for a call's response
+   * note that all REST calls go through the rest calls thread pool, so to
+   *   stress test a backend service properly, make sure that enough instances
+   *   and resources are allocated to the testing client compared to those
+   *   allocated to the backend service
+   * @param callsCountPerController
+   * @param controllerCalls
+   * @throws Exception
+   */
+  public void executeBurstControllersCalls (
+    int callsCountPerController,
+    ControllerCall... controllerCalls) throws Exception {
+    
+    // nothing to exeute?
+    if (controllerCalls == null
+        || controllerCalls.length == 0
+        || callsCountPerController < 1) {
+      
+      return;
+    }
+    
+    // for the defined count
+    for (int i = 0; i < callsCountPerController; i ++) {
+      
+      // execute controllers' calls async
+      for (ControllerCall controllerCall : controllerCalls) {
+        
+        ThreadPool.i().executeInRunnablePool(controllerCall);
+      }
+    }
+  }
+  
+  /**
    * getWithControllerCallLog
    * @return this backend client sessions "with controller call log" value
    */
