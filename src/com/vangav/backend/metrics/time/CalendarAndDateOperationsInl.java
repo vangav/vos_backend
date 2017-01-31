@@ -47,10 +47,13 @@
 
 package com.vangav.backend.metrics.time;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.vangav.backend.data_structures_and_algorithms.tuple.Pair;
 import com.vangav.backend.exceptions.VangavException.ExceptionType;
 import com.vangav.backend.exceptions.handlers.ArgumentsInl;
 
@@ -167,6 +170,294 @@ public class CalendarAndDateOperationsInl {
     return result;
   }
   
+  private static final DateFormat kDefaultDateFormat =
+    new SimpleDateFormat("dd/MM/yyyy");
+  
+  /**
+   * getFormattedDate
+   * @param calendar
+   * @return e.g: 22/10/1987
+   * @throws Exception
+   */
+  public static String getFormattedDate (
+    final Calendar calendar) throws Exception {
+    
+    return getFormattedDate(kDefaultDateFormat, calendar);
+  }
+  
+  /**
+   * getFormattedDate
+   * @param dateFormat
+   * @param calendar
+   * @return e.g: 22/10/1987
+   * @throws Exception
+   */
+  public static String getFormattedDate (
+    final DateFormat dateFormat,
+    final Calendar calendar) throws Exception {
+    
+    ArgumentsInl.checkNotNull(
+      "Date Format",
+      dateFormat,
+      ExceptionType.CODE_EXCEPTION);
+    ArgumentsInl.checkNotNull(
+      "Calendar",
+      calendar,
+      ExceptionType.CODE_EXCEPTION);
+    
+    return dateFormat.format(getDateFromCalendar(calendar) );
+  }
+  
+  /**
+   * getFormattedDates
+   * @param calendars
+   * @return e.g.: 22/10/1987, 06/12/2013, ...
+   * @throws Exception
+   */
+  public static ArrayList<String> getFormattedDates (
+    final Calendar... calendars) throws Exception {
+    
+    ArgumentsInl.checkNotEmpty(
+      "Calendars",
+      calendars,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<String> formattedDates = new ArrayList<String>();
+    
+    for (Calendar calendar : calendars) {
+      
+      formattedDates.add(getFormattedDate(calendar) );
+    }
+    
+    return formattedDates;
+  }
+  
+  /**
+   * getFormattedDates
+   * @param calendars
+   * @return e.g.: 22/10/1987, 06/12/2013, ...
+   * @throws Exception
+   */
+  public static ArrayList<String> getFormattedDates (
+    final DateFormat dateFormat,
+    final Calendar... calendars) throws Exception {
+    
+    ArgumentsInl.checkNotNull(
+      "Date Format",
+      dateFormat,
+      ExceptionType.CODE_EXCEPTION);
+    ArgumentsInl.checkNotEmpty(
+      "Calendars",
+      calendars,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<String> formattedDates = new ArrayList<String>();
+    
+    for (Calendar calendar : calendars) {
+      
+      formattedDates.add(getFormattedDate(dateFormat, calendar) );
+    }
+    
+    return formattedDates;
+  }
+  
+  private static final DateFormat kDefaultTimeFormat =
+    new SimpleDateFormat("HH:mm");
+  
+  /**
+   * getFormattedTime
+   * @param calendar
+   * @return e.g: 02:00
+   * @throws Exception
+   */
+  public static String getFormattedTime (
+    final Calendar calendar) throws Exception {
+    
+    return getFormattedTime(kDefaultTimeFormat, calendar);
+  }
+  
+  /**
+   * getFormattedTime
+   * @param timeFormat
+   * @param calendar
+   * @return e.g: 02:00
+   * @throws Exception
+   */
+  public static String getFormattedTime (
+    final DateFormat timeFormat,
+    final Calendar calendar) throws Exception {
+    
+    ArgumentsInl.checkNotNull(
+      "Time Format",
+      timeFormat,
+      ExceptionType.CODE_EXCEPTION);
+    ArgumentsInl.checkNotNull(
+      "Calendar",
+      calendar,
+      ExceptionType.CODE_EXCEPTION);
+    
+    return timeFormat.format(getDateFromCalendar(calendar) );
+  }
+  
+  /**
+   * getFormattedTimes
+   * @param calendars
+   * @return e.g.: 02:00, 22:00, ...
+   * @throws Exception
+   */
+  public static ArrayList<String> getFormattedTimes (
+    final Calendar... calendars) throws Exception {
+    
+    ArgumentsInl.checkNotEmpty(
+      "Calendars",
+      calendars,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<String> formattedTimes = new ArrayList<String>();
+    
+    for (Calendar calendar : calendars) {
+      
+      formattedTimes.add(getFormattedTime(calendar) );
+    }
+    
+    return formattedTimes;
+  }
+  
+  /**
+   * getFormattedTimes
+   * @param calendars
+   * @return e.g.: 02:00, 22:00, ...
+   * @throws Exception
+   */
+  public static ArrayList<String> getFormattedTimes (
+    final DateFormat timeFormat,
+    final Calendar... calendars) throws Exception {
+    
+    ArgumentsInl.checkNotNull(
+      "Time Format",
+      timeFormat,
+      ExceptionType.CODE_EXCEPTION);
+    ArgumentsInl.checkNotEmpty(
+      "Calendars",
+      calendars,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<String> formattedTimes = new ArrayList<String>();
+    
+    for (Calendar calendar : calendars) {
+      
+      formattedTimes.add(getFormattedTime(timeFormat, calendar) );
+    }
+    
+    return formattedTimes;
+  }
+  
+  /**
+   * getWeekCalendarRange
+   * @param calendar
+   * @return a pair representing:
+   *           - first: a Calendar Object representing the first day of param
+   *               calendar's week
+   *           - second: a Calendar Object representing the last day of param
+   *               calendar's week
+   *           both first and last day calendars get their hour, minute,
+   *             second and millisecond values reset to 0
+   * @throws Exception
+   */
+  public static Pair<Calendar, Calendar> getWeekCalendarRange (
+    final Calendar calendar) throws Exception {
+
+    ArgumentsInl.checkNotNull(
+      "Calendar",
+      calendar,
+      ExceptionType.CODE_EXCEPTION);
+    
+    Calendar startCalendar = (Calendar)calendar.clone();
+    
+    // reset calendar's day
+    startCalendar.set(Calendar.HOUR_OF_DAY, 0);
+    startCalendar.set(Calendar.MINUTE, 0);
+    startCalendar.set(Calendar.SECOND, 0);
+    startCalendar.set(Calendar.MILLISECOND, 0);
+    
+    // get start of week
+    startCalendar.add(
+      Calendar.DAY_OF_WEEK, 
+      startCalendar.getFirstDayOfWeek()
+      - startCalendar.get(Calendar.DAY_OF_WEEK) );
+    
+    Calendar endCalendar = (Calendar)startCalendar.clone();
+    
+    // get end of week
+    endCalendar.add(Calendar.DAY_OF_YEAR, 6);
+    
+    return new Pair<Calendar, Calendar>(startCalendar, endCalendar);
+  }
+  
+  /**
+   * getWeekCalendarsRanges
+   * @param fromCalendar
+   * @param toCalendar
+   * @return an array list of pairs representing:
+   *           - first: a Calendar Object representing the first day of param
+   *               calendar's week
+   *           - second: a Calendar Object representing the last day of param
+   *               calendar's week
+   *           both first and last day calendars get their hour, minute,
+   *             second and millisecond values reset to 0
+   *           Omits duplicate weeks
+   * @throws Exception
+   */
+  public static ArrayList<Pair<Calendar, Calendar> > getWeekCalendarsRanges (
+    final Calendar fromCalendar,
+    final Calendar toCalendar) throws Exception {
+
+    ArgumentsInl.checkNotNull(
+      "From Calendar",
+      fromCalendar,
+      ExceptionType.CODE_EXCEPTION);
+    ArgumentsInl.checkNotNull(
+      "To Calendar",
+      toCalendar,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<Calendar> calendars =
+      getCalendarsFromTo(fromCalendar, toCalendar);
+    
+    ArrayList<Pair<Calendar, Calendar> > ranges =
+      new ArrayList<Pair<Calendar, Calendar> >();
+    
+    Pair<Calendar, Calendar> currRange;
+    
+    int index = 0;
+    
+    for (int i = 0; i < calendars.size(); i ++) {
+      
+      // get week's range (start and end dates)
+      currRange = getWeekCalendarRange(calendars.get(i) );
+      
+      if (i > 0) {
+        
+        // remove duplicate week
+        if ((currRange.getFirst().get(Calendar.YEAR)
+              == ranges.get(index - 1).getFirst().get(
+                   Calendar.YEAR) ) &&
+            (currRange.getFirst().get(Calendar.WEEK_OF_YEAR)
+              == ranges.get(index - 1).getFirst().get(
+                   Calendar.WEEK_OF_YEAR) ) ) {
+          
+          continue;
+        }
+      }
+      
+      index += 1;
+      
+      ranges.add(currRange);
+    }
+    
+    return ranges;
+  }
+  
   /**
    * getCalendarsFromTo
    * @param fromCalendar
@@ -207,6 +498,42 @@ public class CalendarAndDateOperationsInl {
       currTime += interval;
     }
     
+    return calendars;
+  }
+  
+  /**
+   * getCalendarWeeksFromTo
+   * @param fromCalendar
+   * @param toCalendar
+   * @return a list of calendars from param fromCalendar till param toCalendar
+   *           inclusive representing the first day of each week between both
+   *           calendars where each calendar get its hour, minute, second and
+   *           millisecond values reset to 0
+   * @throws Exception
+   */
+  public static ArrayList<Calendar> getCalendarWeeksFromTo (
+    final Calendar fromCalendar,
+    final Calendar toCalendar) throws Exception {
+
+    ArgumentsInl.checkNotNull(
+      "From Calendar",
+      fromCalendar,
+      ExceptionType.CODE_EXCEPTION);
+    ArgumentsInl.checkNotNull(
+      "To Calendar",
+      toCalendar,
+      ExceptionType.CODE_EXCEPTION);
+    
+    ArrayList<Pair<Calendar, Calendar> > weekCalendarsRanges =
+      getWeekCalendarsRanges(fromCalendar, toCalendar);
+    
+    ArrayList<Calendar> calendars = new ArrayList<Calendar>();
+    
+    for (Pair<Calendar, Calendar> calendarRange : weekCalendarsRanges) {
+      
+      calendars.add(calendarRange.getFirst() );
+    }
+
     return calendars;
   }
   
