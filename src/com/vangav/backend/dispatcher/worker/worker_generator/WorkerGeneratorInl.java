@@ -79,12 +79,14 @@ public class WorkerGeneratorInl {
    * 5- adds default classes/properties
    * 6- generates scripts for run, compile, etc ...
    * @param projectName
+   * @param javaPackageName
+   * @param addNotifications
+   * @param addCassandra
    * @throws Exception
    */
   public static void generateWorker (
     String projectName,
     final String javaPackageName,
-    final boolean isEclipseProject,
     final boolean addNotifications,
     final boolean addCassandra) throws Exception {
     
@@ -92,8 +94,7 @@ public class WorkerGeneratorInl {
     
     // write project generation script and execute it
     generateNewPlayProject(
-      projectName,
-      isEclipseProject);
+      projectName);
     
     // modify play generated content (add comments, suppress warnings, etc...)
     modifyPlayGeneratedContent(projectName);
@@ -160,8 +161,7 @@ public class WorkerGeneratorInl {
    * @throws Exception
    */
   private static void generateNewPlayProject (
-    final String projectName,
-    final boolean isEclipseProject) throws Exception {
+    final String projectName) throws Exception {
     
     // write project generation script and execute it
     
@@ -171,11 +171,9 @@ public class WorkerGeneratorInl {
         projectName,
         projectName,
         projectName);
-    
-    if (isEclipseProject == true) {
       
-      playProjectCreationScript += kMakeEclipseProject;
-    }
+    // make the new project eclipse compatible
+    playProjectCreationScript += kMakeEclipseProject;
     
     System.out.println(
       "Creating worker project ["

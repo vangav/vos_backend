@@ -165,7 +165,7 @@ public class BackendGeneratorMain {
     }
     
     // write project generation script and execute it
-    boolean isEclipseProject = generateNewPlayProject(projectName);
+    generateNewPlayProject(projectName);
     
     // modify play generated content (add comments, suppress warnings, etc...)
     modifyPlayGeneratedContent(projectName);
@@ -254,7 +254,7 @@ public class BackendGeneratorMain {
           + projectName
           + "] ?") == true) {
       
-      generateWorker(projectName, isEclipseProject);
+      generateWorker(projectName);
     }
     
     // finished
@@ -456,13 +456,10 @@ public class BackendGeneratorMain {
    * generateNewPlayProject
    * creates a new play project
    * @param projectName
-   * @return true if it's an eclipse project and false otherwise
    * @throws Exception
    */
-  private static boolean generateNewPlayProject (
+  private static void generateNewPlayProject (
     final String projectName) throws Exception {
-    
-    boolean isEclipseProject = false;
     
     // write project generation script and execute it
     
@@ -473,13 +470,8 @@ public class BackendGeneratorMain {
         projectName,
         projectName);
     
-    if (InteractiveConsole.i().confirm(
-          "Make project Eclipse compatible?") == true) {
-      
-      playProjectCreationScript += kMakeEclipseProject;
-      
-      isEclipseProject = true;
-    }
+    // make it eclipse compatible
+    playProjectCreationScript += kMakeEclipseProject;
     
     System.out.println(
       "Creating project ["
@@ -495,8 +487,6 @@ public class BackendGeneratorMain {
       "chmod +x _vangav_play_project_creation_script.sh",
       "./_vangav_play_project_creation_script.sh",
       "rm _vangav_play_project_creation_script.sh");
-    
-    return isEclipseProject;
   }
   
   /**
@@ -959,12 +949,10 @@ public class BackendGeneratorMain {
    * generateWorker
    * generates a worker project
    * @param projectName
-   * @param isEclipseProject
    * @throws Exception
    */
   private static void generateWorker (
-    final String projectName,
-    final boolean isEclipseProject) throws Exception {
+    final String projectName) throws Exception {
     
     if (FileLoaderInl.fileExists("../../" + projectName + "_worker") == true) {
       
@@ -1034,7 +1022,6 @@ public class BackendGeneratorMain {
     WorkerGeneratorInl.generateWorker(
       projectName,
       javaPackageName,
-      isEclipseProject,
       addNotifications,
       addCassandra);
   }
