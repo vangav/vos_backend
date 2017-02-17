@@ -47,8 +47,13 @@
 
 package com.vangav.backend.math;
 
+import java.util.ArrayList;
+
+import com.vangav.backend.content.generation.RandomGeneratorInl;
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
+import com.vangav.backend.exceptions.VangavException.ExceptionType;
+import com.vangav.backend.exceptions.handlers.ArgumentsInl;
 
 /**
  * @author mustapha
@@ -281,7 +286,7 @@ public class Range {
   }
   
   /**
-   * getUniion
+   * getUnion
    * @param range
    * @return a Range representing the union of this range and param range
    *         - if both ranges are invalid
@@ -293,7 +298,7 @@ public class Range {
    *               this range and param range
    * @throws Exception
    */
-  public Range getUniion (Range range) throws Exception {
+  public Range getUnion (Range range) throws Exception {
     
     if (this.isValid() == false || range.isValid() == false) {
       
@@ -316,6 +321,364 @@ public class Range {
       Math.max(this.max.doubleValue(), range.max.doubleValue() );
     
     return new Range(intersectionMin, intersectionMax);
+  }
+  
+  /**
+   * enum SamplingFunction represents the type of function to be used when
+   *   sampling a range
+   * default: UNIFORM
+   * 
+   * UNIFORM: the delta between any two consecutive samples is the same
+   * GAUSSIAN: more samples towards the mid-point of the range
+   * INVERSE_GAUSSIAN: more samples towards the min/max of the range
+   */
+  public enum SamplingFunction {
+    
+    UNIFORM,
+    GAUSSIAN,
+    INVERSE_GAUSSIAN
+  }
+  
+  /**
+   * enum SamplingType represents how the sampling is done
+   * default: EXACT
+   * 
+   * EXACT: returns the exact calculated sample
+   * RANDOM: after calculating a sample, it picks a random value around the
+   *           the calculated sample so that the random value falls within the
+   *           range and doesn't overlap with the random range of any of the
+   *           neighboring samples
+   */
+  public enum SamplingType {
+    
+    EXACT,
+    RANDOM
+  }
+  
+  /**
+   * sampleRange - overload
+   * samples this range
+   * @param samplesCount
+   * @return the calculated samples
+   * @throws Exception
+   */
+  public ArrayList<Double> sampleRange (
+    int samplesCount) throws Exception {
+    
+    return
+      this.sampleRange(
+        samplesCount,
+        SamplingFunction.UNIFORM,
+        SamplingType.EXACT);
+  }
+  
+  /**
+   * sampleRange - overload
+   * samples this range
+   * @param samplesCount
+   * @param samplingFunction
+   * @return the calculated samples
+   * @throws Exception
+   */
+  public ArrayList<Double> sampleRange (
+    int samplesCount,
+    SamplingFunction samplingFunction) throws Exception {
+    
+    return
+      this.sampleRange(
+        samplesCount,
+        samplingFunction,
+        SamplingType.EXACT);
+  }
+  
+  /**
+   * sampleRange - overload
+   * samples this range
+   * @param samplesCount
+   * @param samplingType
+   * @return the calculated samples
+   * @throws Exception
+   */
+  public ArrayList<Double> sampleRange (
+    int samplesCount,
+    SamplingType samplingType) throws Exception {
+    
+    return
+      this.sampleRange(
+        samplesCount,
+        SamplingFunction.UNIFORM,
+        samplingType);
+  }
+  
+  /**
+   * sampleRange
+   * samples this range
+   * @param samplesCount
+   * @param samplingFunction
+   * @param samplingType
+   * @return the calculated samples
+   * @throws Exception
+   */
+  public ArrayList<Double> sampleRange (
+    int samplesCount,
+    SamplingFunction samplingFunction,
+    SamplingType samplingType) throws Exception {
+    
+    ArgumentsInl.checkIntGreaterThanOrEqual(
+      "samples count",
+      samplesCount,
+      1,
+      ExceptionType.CODE_EXCEPTION);
+    
+    if (samplingFunction == SamplingFunction.UNIFORM) {
+      
+      return this.sampleRangeUniform(samplesCount, samplingType);
+    } else if (samplingFunction == SamplingFunction.GAUSSIAN) {
+      
+      return this.sampleRangeGaussian(samplesCount, samplingType);
+    } else if (samplingFunction == SamplingFunction.INVERSE_GAUSSIAN) {
+      
+      return this.sampleRangeInverseGaussian(samplesCount, samplingType);
+    }
+    
+    return null;
+  }
+  
+  /**
+   * sampleRangeUniform
+   * samples this range using the uniform sampling function
+   * @param samplesCount
+   * @param samplingType
+   * @return the calculated samples
+   * @throws Exception
+   */
+  private ArrayList<Double> sampleRangeUniform (
+    int samplesCount,
+    SamplingType samplingType) throws Exception {
+    
+    ArrayList<Double> result = new ArrayList<Double>();
+    
+    double minimum = this.min.doubleValue();
+    double maximum = this.max.doubleValue();
+    // get the delta between each two consecutive samples
+    double delta = ((maximum - minimum) / (samplesCount + 1) );
+    double currSample;
+    
+    for (int i = 1; i <= samplesCount; i ++) {
+      
+      currSample = (minimum + (delta * i) );
+      
+      if (samplingType == SamplingType.RANDOM) {
+        
+        // get a random value within this sample's range
+        result.add(
+          RandomGeneratorInl.generateRandomDouble(
+            (currSample - (delta / 2.0) ),
+            (currSample + (delta / 2.0) )) );
+      } else {
+        
+        result.add(currSample);
+      }
+    }
+    
+    return result;
+  }
+  
+  /**
+   * sampleRangeGaussian
+   * samples this range using the gaussian sampling function
+   * @param samplesCount
+   * @param samplingType
+   * @return the calculated samples
+   * @throws Exception
+   */
+  private ArrayList<Double> sampleRangeGaussian (
+    int samplesCount,
+    SamplingType samplingType) throws Exception {
+    
+    ArrayList<Double> result = new ArrayList<Double>();
+    
+    double minimum = this.min.doubleValue();
+    double maximum = this.max.doubleValue();
+    double midPoint = ((maximum + minimum) / 2.0);
+    
+    int halfSamples = (samplesCount / 2);
+    double halfDistance = ((midPoint - minimum) / 2.0);
+    double currDelta;
+    double currSample;
+    
+    // for the first half of the samples
+    for (int i = 1; i <= halfSamples; i ++) {
+      
+      // get sample's value
+      currSample =
+        (minimum + (halfDistance - (halfDistance / Math.pow(2, i) ) ) );
+      
+      if (samplingType == SamplingType.RANDOM) {
+        
+        // get sample's range
+        currDelta =
+          (((halfDistance - (halfDistance / Math.pow(2, i) ) ) -
+           (halfDistance - (halfDistance / Math.pow(2, (i - 1) ) ) ) ) /
+           2.0);
+        
+        // get a random value within this sample's range
+        result.add(
+          RandomGeneratorInl.generateRandomDouble(
+            (currSample - currDelta),
+            (currSample + currDelta) ) );
+      } else {
+        
+        result.add(currSample);
+      }
+    }
+    
+    // get a middle sample
+    if (samplesCount %2 == 1) {
+      
+      if (samplingType == SamplingType.RANDOM) {
+        
+        // get sample's range
+        currDelta =
+          (((halfDistance - (halfDistance / Math.pow(2, halfSamples + 1) ) ) -
+           (halfDistance - (halfDistance / Math.pow(2, halfSamples) ) ) ) /
+           2.0);
+        
+        // get a random value within this sample's range
+        result.add(
+          RandomGeneratorInl.generateRandomDouble(
+            (midPoint - currDelta),
+            (midPoint + currDelta) ) );
+      } else {
+        
+        result.add(midPoint);
+      }
+    }
+    
+    // for the second hald of the samples
+    for (int i = halfSamples; i >= 1; i --) {
+      
+      // get sample's value
+      currSample =
+        (halfDistance + (halfDistance - (halfDistance / Math.pow(2, i) ) ) );
+      
+      if (samplingType == SamplingType.RANDOM) {
+        
+        // get sample's range
+        currDelta =
+          (((halfDistance - (halfDistance / Math.pow(2, i) ) ) -
+           (halfDistance - (halfDistance / Math.pow(2, (i - 1) ) ) ) ) /
+           2.0);
+        
+        // get a random value within this sample's range
+        result.add(
+          RandomGeneratorInl.generateRandomDouble(
+            (currSample - currDelta),
+            (currSample + currDelta) ) );
+      } else {
+        
+        result.add(currSample);
+      }
+    }
+    
+    return result;
+  }
+  
+  /**
+   * sampleRangeInverseGaussian
+   * samples this range using the inverse gaussian sampling function
+   * @param samplesCount
+   * @param samplingType
+   * @return the calculated samples
+   * @throws Exception
+   */
+  private ArrayList<Double> sampleRangeInverseGaussian (
+    int samplesCount,
+    SamplingType samplingType) throws Exception {
+    
+    ArrayList<Double> result = new ArrayList<Double>();
+    
+    double minimum = this.min.doubleValue();
+    double maximum = this.max.doubleValue();
+    double midPoint = ((maximum + minimum) / 2.0);
+    
+    int halfSamples = (samplesCount / 2);
+    double halfDistance = ((midPoint - minimum) / 2.0);
+    double currDelta;
+    double currSample;
+    
+    // for the first half of the samples
+    for (int i = halfSamples; i >= 1; i --) {
+      
+      // get sample's value
+      currSample =
+        (minimum + (halfDistance - (halfDistance / Math.pow(2, i) ) ) );
+      
+      if (samplingType == SamplingType.RANDOM) {
+        
+        // get sample's range
+        currDelta =
+          (((halfDistance - (halfDistance / Math.pow(2, i) ) ) -
+           (halfDistance - (halfDistance / Math.pow(2, (i - 1) ) ) ) ) /
+           2.0);
+        
+        // get a random value within this sample's range
+        result.add(
+          RandomGeneratorInl.generateRandomDouble(
+            (currSample - currDelta),
+            (currSample + currDelta) ) );
+      } else {
+        
+        result.add(currSample);
+      }
+    }
+    
+    // get a middle sample
+    if (samplesCount %2 == 1) {
+      
+      if (samplingType == SamplingType.RANDOM) {
+        
+        // get sample's range
+        currDelta = halfDistance / 4.0;
+        
+        // get a random value within this sample's range
+        result.add(
+          RandomGeneratorInl.generateRandomDouble(
+            (midPoint - currDelta),
+            (midPoint + currDelta) ) );
+      } else {
+        
+        result.add(midPoint);
+      }
+    }
+    
+    // for the second hald of the samples
+    for (int i = 1; i <= halfSamples; i ++) {
+      
+      // get sample's value
+      currSample =
+        (halfDistance + (halfDistance - (halfDistance / Math.pow(2, i) ) ) );
+      
+      if (samplingType == SamplingType.RANDOM) {
+        
+        // get sample's range
+        currDelta =
+          (((halfDistance - (halfDistance / Math.pow(2, i) ) ) -
+           (halfDistance - (halfDistance / Math.pow(2, (i - 1) ) ) ) ) /
+           2.0);
+        
+        // get a random value within this sample's range
+        result.add(
+          RandomGeneratorInl.generateRandomDouble(
+            (currSample - currDelta),
+            (currSample + currDelta) ) );
+      } else {
+        
+        result.add(currSample);
+      }
+    }
+    
+    return result;
   }
   
   @Override
