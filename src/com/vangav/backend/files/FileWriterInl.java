@@ -100,6 +100,36 @@ public class FileWriterInl {
   }
   
   /**
+   * writeJsonFile
+   * @param jsonFile
+   * @return file's path
+   * @throws Exception
+   */
+  public static String writeJsonFile (
+    JsonFile jsonFile) throws Exception {
+    
+    return writeJsonFile(jsonFile, false);
+  }
+  
+  /**
+   * writeJsonFile
+   * @param jsonFile
+   * @param mkdirs
+   * @return file's path
+   * @throws Exception
+   */
+  public static String writeJsonFile (
+    JsonFile jsonFile,
+    boolean mkdirs) throws Exception {
+    
+    return
+      writeTextFile(
+        jsonFile.getAsString(),
+        jsonFile.getFilePath(),
+        mkdirs);
+  }
+  
+  /**
    * writeTextFile
    * @param lines
    * @param filePath

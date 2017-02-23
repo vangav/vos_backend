@@ -119,6 +119,24 @@ public class FileLoaderInl {
   }
   
   /**
+   * loadJsonFile
+   * loads a json file
+   * @param jsonFile
+   * @return the Json file Object representing the json contents of the file
+   * @throws Exception
+   */
+  public static JsonFile loadJsonFile (
+    JsonFile jsonFile) throws Exception {
+    
+    String jsonString =
+      loadTextFileWithoutComments(
+        jsonFile.getCommentLinePrefix(),
+        jsonFile.getFilePath() );
+    
+    return jsonFile.fromJsonString(jsonString);
+  }
+  
+  /**
    * loadTextFile
    * load text file to String
    * @param textFilePath (relative to execution or absolute)
