@@ -68,7 +68,47 @@ public class CharVerifierInl {
     UPPER_CASE,
     DIGIT,
     UNDER_SCORE,
+    DASH,
     DOT
+  }
+  
+  /**
+   * consistsOfCharTypes
+   * @param string
+   * @param charTypes
+   * @return true if:
+   *           - param string is null or empty
+   *           - param string only consists of characters belonging to param
+   *               charTypes
+   *         false if:
+   *           - param charTypes is null or empty
+   *           - one or more of param string characters don't belong to param
+   *               charTypes
+   * @throws Exception
+   */
+  public static boolean consistsOfCharTypes (
+    String string,
+    CharType... charTypes) throws Exception {
+    
+    if (string == null || string.length() == 0) {
+      
+      return true;
+    }
+    
+    if (charTypes == null || charTypes.length == 0) {
+      
+      return false;
+    }
+    
+    for (int i = 0; i < string.length(); i ++) {
+      
+      if (isOneOfChar(string.charAt(i), charTypes) == false) {
+        
+        return false;
+      }
+    }
+    
+    return true;
   }
   
   /**
@@ -83,7 +123,7 @@ public class CharVerifierInl {
     char c,
     CharType... charTypes) throws Exception {
     
-    if (charTypes == null) {
+    if (charTypes == null || charTypes.length == 0) {
       
       return false;
     }
@@ -111,6 +151,12 @@ public class CharVerifierInl {
       } else if (charType == CharType.UNDER_SCORE) {
         
         if (isUnderScoreChar(c) == true) {
+          
+          return true;
+        }
+      } else if (charType == CharType.DASH) {
+        
+        if (isDashChar(c) == true) {
           
           return true;
         }
@@ -183,6 +229,22 @@ public class CharVerifierInl {
   public static boolean isUnderScoreChar (char c) throws Exception {
     
     if (c == '_') {
+      
+      return true;
+    }
+    
+    return false;
+  }
+  
+  /**
+   * isDashChar
+   * @param c
+   * @return true if param c is a dash and false otherwise
+   * @throws Exception
+   */
+  public static boolean isDashChar (char c) throws Exception {
+    
+    if (c == '-') {
       
       return true;
     }

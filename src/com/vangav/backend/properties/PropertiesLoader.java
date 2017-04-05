@@ -53,6 +53,8 @@ import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import com.vangav.backend.exceptions.CodeException;
 import com.vangav.backend.exceptions.VangavException.ExceptionClass;
@@ -65,6 +67,8 @@ import com.vangav.backend.files.FileLoaderInl;
 /**
  * PropertiesLoader Loads all properties files and stores
  *   key:value pairs in memory
+ * It's also reload/get safe so a real-time-reload is safe with other threads
+ *   getting properties' values
  * */
 public class PropertiesLoader {
 
@@ -75,10 +79,27 @@ public class PropertiesLoader {
    *   under ./conf/prop/
    */
   private Map<String, Properties> propertiesFiles;
+  /**
+   * loadLatch is used activated on loading/reloading properties to make new
+   *   get requests wait till loading/reloading is finished
+   */
+  private CountDownLatch loadLatch;
+  /**
+   * getLatch is used to make loading/reloading requests wait till current
+   *   get requests are finished
+   */
+  private AtomicInteger getLatch;
   
-  protected PropertiesLoader () {
+  /**
+   * Constructor - PropertiesLoader
+   * @return new PropertiesLoader Object
+   * @throws Exception
+   */
+  protected PropertiesLoader () throws Exception {
     
     this.propertiesFiles = new HashMap<String, Properties>();
+    this.loadLatch = new CountDownLatch(0);
+    this.getLatch = new AtomicInteger(0);
     
     this.loadProperties();
   }
@@ -119,12 +140,26 @@ public class PropertiesLoader {
   /**
    * loadProperties
    * loads all properties files (with extension .prop) from ./conf/prop
+   * @throws Exception
    */
-  private void loadProperties() {
+  private synchronized void loadProperties() throws Exception {
+    
+    // lock for loading/reloading properties
+    this.loadLatch = new CountDownLatch(1);
+    
+    // wait for in-processing get requests to finish
+    while (this.getLatch.get() > 0) {
+      
+      try {
+        
+        this.getLatch.wait();
+      } catch (InterruptedException e) {
+      }
+    }
     
     try {
-      
-      propertiesFiles.clear();
+
+      Map<String, Properties> tempMap = new HashMap<String, Properties>();
       
       File [] propFiles =
         FileLoaderInl.loadFiles(
@@ -135,25 +170,28 @@ public class PropertiesLoader {
       Properties prop;
       
       for (File propFile : propFiles) {
-      
-        try {
-          
-          input = new FileInputStream(propFile.getAbsolutePath() );
-          
-          prop = new Properties();
-          prop.load(input);
-          
-          propertiesFiles.put(
-            propFile.getName().substring(
-              0,
-              propFile.getName().length() - kPropExt.length() ),
-            prop);
-        } catch (Exception e) {
-          
-        }
+        
+        input = new FileInputStream(propFile.getAbsolutePath() );
+        
+        prop = new Properties();
+        prop.load(input);
+        
+        tempMap.put(
+          propFile.getName().substring(
+            0,
+            propFile.getName().length() - kPropExt.length() ),
+          prop);
       }
+      
+      this.propertiesFiles.clear();
+      this.propertiesFiles.putAll(tempMap);
     } catch (Exception e) {
       
+      throw e;
+    } finally {
+      
+      // release loading/reloading lock
+      this.loadLatch.countDown();
     }
   }
   
@@ -183,18 +221,39 @@ public class PropertiesLoader {
         ExceptionClass.MISSING_ITEM);
     }
     
-    Properties prop =
-      propertiesFiles.get(fileName);
-    
-    if (prop == null) {
+    // wait for loading/reloading to finish
+    try {
       
-      return defaultValue;
+      this.loadLatch.await();
+    } catch (InterruptedException e) {
     }
     
-    return
-      prop.getProperty(
-        propName,
-        defaultValue);
+    // increment get latch
+    this.getLatch.incrementAndGet();
+    
+    try {
+      
+      Properties prop =
+        propertiesFiles.get(fileName);
+      
+      if (prop == null) {
+        
+        return defaultValue;
+      }
+      
+      return
+        prop.getProperty(
+          propName,
+          defaultValue);
+    } catch (Exception e) {
+      
+      throw e;
+    } finally {
+      
+      // decrement get latch and notify it
+      this.getLatch.decrementAndGet();
+      this.getLatch.notify();
+    }
   }
   
   /**
