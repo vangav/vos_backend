@@ -252,7 +252,11 @@ public class PropertiesLoader {
       
       // decrement get latch and notify it
       this.getLatch.decrementAndGet();
-      this.getLatch.notify();
+      
+      synchronized (this.getLatch) {
+        
+        this.getLatch.notify();
+      }
     }
   }
   
