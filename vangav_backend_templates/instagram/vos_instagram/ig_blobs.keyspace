@@ -1,0 +1,187 @@
+# "First, solve the problem. Then, write the code. -John Johnson"
+# "Or use Vangav M"
+# www.vangav.com
+
+# MIT License
+#
+# Copyright (c) 2016 Vangav
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# Community
+# Facebook Group: Vangav Open Source - Backend
+#   fb.com/groups/575834775932682/
+# Facebook Page: Vangav
+#   fb.com/vangav.f
+#
+# Third party communities for Vangav Backend
+#   - play framework
+#   - cassandra
+#   - datastax
+#
+# Tag your question online (e.g.: stack overflow, etc ...) with
+#   #vangav_backend
+#   to easier find questions/answers online
+
+# @author mustapha
+# fb.com/mustapha.abdallah
+
+{
+  "description": "used for all blob-related tables",
+  "name": "ig_blobs",
+  "replications": [
+    {
+      "description": "used for dev environment",
+      "name": "dev",
+      "replication": "'class': 'SimpleStrategy', 'replication_factor' : 1"
+    }
+  ],
+  "tables": [
+    
+    # profile_pictures_blobs      (picture_id, picture)
+    # photos_blobs                (photo_id, photo)
+    # photos_thumnbnails_blobs    (photo_id, photo_thumbnail)
+
+
+    # profile_pictures_blobs
+    {
+      "description": "stores users' profile pictures thumbnails",
+      "name": "profile_pictures_blobs",
+      "columns": [
+        {
+          "name": "picture_id",
+          "type": "uuid"
+        },
+        {
+          "name": "picture",
+          "type": "blob"
+        }
+      ],
+      "partition_keys": [
+        "picture_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "KEYS_ONLY",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts/updates a user's profile picture",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_blobs.profile_pictures_blobs (picture_id, picture) VALUES (:picture_id, :picture);"
+        },
+        {
+          "description": "deletes a user's profile picture",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_blobs.profile_pictures_blobs WHERE picture_id = :picture_id;"
+        },
+        {
+          "description": "selects a user's profile picture",
+          "name": "select",
+          "prepared_statement": "SELECT picture FROM ig_blobs.profile_pictures_blobs WHERE picture_id = :picture_id;"
+        }
+      ]
+    },
+    
+    # photos_blobs
+    {
+      "description": "stores posted photos",
+      "name": "photos_blobs",
+      "columns": [
+        {
+          "name": "photo_id",
+          "type": "uuid"
+        },
+        {
+          "name": "photo",
+          "type": "blob"
+        }
+      ],
+      "partition_keys": [
+        "photo_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a new photo",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_blobs.photos_blobs (photo_id, photo) VALUES (:photo_id, :photo);"
+        },
+        {
+          "description": "deletes a photo",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_blobs.photos_blobs WHERE photo_id = :photo_id;"
+        },
+        {
+          "description": "selects a photo",
+          "name": "select",
+          "prepared_statement": "SELECT photo FROM ig_blobs.photos_blobs WHERE photo_id = :photo_id;"
+        }
+      ]
+    },
+
+    # photos_thumnbnails_blobs
+    {
+      "description": "stores posted photos' thumbnails",
+      "name": "photos_thumnbnails_blobs",
+      "columns": [
+        {
+          "name": "photo_id",
+          "type": "uuid"
+        },
+        {
+          "name": "photo_thumbnail",
+          "type": "blob"
+        }
+      ],
+      "partition_keys": [
+        "photo_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a new photo's thumbnail",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_blobs.photos_thumnbnails_blobs (photo_id, photo_thumbnail) VALUES (:photo_id, :photo_thumnbnail);"
+        },
+        {
+          "description": "deletes a photo's thumbnail",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_blobs.photos_thumnbnails_blobs WHERE photo_id = :photo_id;"
+        },
+        {
+          "description": "selects a photo's thumbnail",
+          "name": "select",
+          "prepared_statement": "SELECT photo_thumbnail FROM ig_blobs.photos_thumnbnails_blobs WHERE photo_id = :photo_id;"
+        }
+      ]
+    }
+    
+
+  ]
+}

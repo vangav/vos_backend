@@ -1,0 +1,450 @@
+# "First, solve the problem. Then, write the code. -John Johnson"
+# "Or use Vangav M"
+# www.vangav.com
+
+# MIT License
+#
+# Copyright (c) 2016 Vangav
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# Community
+# Facebook Group: Vangav Open Source - Backend
+#   fb.com/groups/575834775932682/
+# Facebook Page: Vangav
+#   fb.com/vangav.f
+#
+# Third party communities for Vangav Backend
+#   - play framework
+#   - cassandra
+#   - datastax
+#
+# Tag your question online (e.g.: stack overflow, etc ...) with
+#   #vangav_backend
+#   to easier find questions/answers online
+
+# @author mustapha
+# fb.com/mustapha.abdallah
+
+{
+  "description": "used for all authentication-related tables",
+  "name": "ig_auth",
+  "replications": [
+    {
+      "description": "used for dev environment",
+      "name": "dev",
+      "replication": "'class': 'SimpleStrategy', 'replication_factor' : 1"
+    }
+  ],
+  "tables": [
+
+    # access_tokens     (user_id, device_token, access_token, time_stamp, expired)
+    # auth_codes        (user_id, device_token, auth_code, access_token, refresh_token)
+    # device_tokens     (device_token, user_ids)
+    # email_creds       (email, password, user_id)
+    # facebook_ids      (facebook_id, user_id)
+    # refresh_tokens    (user_id, device_token, refresh_token)
+    # users_cred_ids    (user_id, facebook_id, email)
+
+
+    # access_tokens
+    {
+      "description": "used to store users' access tokens",
+      "name": "access_tokens",
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        {
+          "name": "device_token",
+          "type": "varchar"
+        },
+        {
+          "name": "access_token",
+          "type": "varchar"
+        },
+        {
+          "name": "time_stamp",
+          "type": "bigint"
+        },
+        {
+          "name": "expired",
+          "type": "boolean"
+        }
+      ],
+      "partition_keys": [
+        "user_id",
+        "device_token"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a user's access token",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_auth.access_tokens (user_id, device_token, access_token, time_stamp, expired) VALUES (:user_id, :device_token, :access_token, :time_stamp, false);"
+        },
+        {
+          "description": "updates a user's access token",
+          "name": "update",
+          "prepared_statement": "UPDATE ig_auth.access_tokens SET access_token = :access_token, time_stamp = :time_stamp, expired = false WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "updates the auth token's expried flag to false when it gets expired",
+          "name": "expire",
+          "prepared_statement": "UPDATE ig_auth.access_tokens SET expired = true WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "selects a user's access token",
+          "name": "select",
+          "prepared_statement": "SELECT access_token, time_stamp, expired FROM ig_auth.access_tokens WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "delets a user's access token upon logout",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_auth.access_tokens WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "deletes all user's access tokens upon logging out from all devices",
+          "name": "delete_all",
+          "prepared_statement": "DELETE FROM ig_auth.access_tokens WHERE user_id = :user_id;"
+        }
+      ]
+    },
+
+    # auth_codes
+    {
+      "description": "used to store users' auth codes",
+      "name": "auth_codes",
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        {
+          "name": "device_token",
+          "type": "varchar"
+        },
+        {
+          "name": "auth_code",
+          "type": "varchar"
+        },
+        {
+          "name": "access_token",
+          "type": "varchar"
+        },
+        {
+          "name": "refresh_token",
+          "type": "varchar"
+        }
+      ],
+      "partition_keys": [
+        "user_id",
+        "device_token"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a user's auth codes upon signup/login, where the entry is valid for ttl-time only where the client should make the get access and refresh tokens call",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_auth.auth_codes (user_id, device_token, auth_code, access_token, refresh_token) VALUES (:user_id, :device_token, :auth_code, :access_token, :refresh_token) USING TTL :ttl;"
+        },
+        {
+          "description": "selects user's auth codes",
+          "name": "select",
+          "prepared_statement": "SELECT auth_code, access_token, refresh_token FROM ig_auth.auth_codes WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "deletes user's auth codes",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_auth.auth_codes WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "deletes all user's auth codes",
+          "name": "delete_all",
+          "prepared_statement": "DELETE FROM ig_auth.auth_codes WHERE user_id = :user_id;"
+        }
+      ]
+    },
+
+    # device_tokens
+    {
+      "description": "used to keep track of users' device tokens",
+      "name": "device_tokens",
+      "columns": [
+        {
+          "name": "device_token",
+          "type": "varchar"
+        },
+        {
+          "name": "user_ids",
+          "type": "set<uuid>"
+        }
+      ],
+      "partition_keys": [
+        "device_token"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "KEYS_ONLY",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a new device token and user id",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_auth.device_tokens (device_token, user_ids) VALUES (:device_token, :user_id);"
+        },
+        {
+          "description": "adds a user_id to a device token",
+          "name": "add_user_id",
+          "prepared_statement": "UPDATE ig_auth.device_tokens SET user_ids = user_ids + :user_id WHERE device_token = :device_token;"
+        },
+        {
+          "description": "removes a user_id from a device token",
+          "name": "remove_user_id",
+          "prepared_statement": "UPDATE ig_auth.device_tokens SET user_ids = user_ids - :user_id WHERE device_token = :device_token;"
+        },
+        {
+          "description": "selects the set of user ids associated with a device token",
+          "name": "select",
+          "prepared_statement": "SELECT user_ids FROM ig_auth.device_tokens WHERE device_token = :device_token;"
+        }
+      ]
+    },
+
+    # email_creds
+    {
+      "description": "used to map a user's email to her/his password and user id",
+      "name": "email_creds",
+      "columns": [
+        {
+          "name": "email",
+          "type": "varchar"
+        },
+        {
+          "name": "password",
+          "type": "varchar"
+        },
+        {
+          "name": "user_id",
+          "type": "uuid"
+        }
+      ],
+      "partition_keys": [
+        "email"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "NONE",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts new user's email creds upon signup",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_auth.email_creds (email, password, user_id) VALUES (:email, :password, :user_id);"
+        },
+        {
+          "description": "deletes a user's password and user_id based on her/his email",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_auth.email_creds WHERE email = :email;"
+        },
+        {
+          "description": "selects a user's password and user_id based on her/his email",
+          "name": "select",
+          "prepared_statement": "SELECT password, user_id FROM ig_auth.email_creds WHERE email = :email;"
+        }
+      ]
+    },
+
+    # facebook_ids
+    {
+      "description": "used to map a user's facebook id to her/his user id",
+      "name": "facebook_ids",
+      "columns": [
+        {
+          "name": "facebook_id",
+          "type": "varchar"
+        },
+        {
+          "name": "user_id",
+          "type": "uuid"
+        }
+      ],
+      "partition_keys": [
+        "facebook_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "NONE",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts new user's facebook id and user id upon signup",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_auth.facebook_ids (facebook_id, user_id) VALUES (:facebook_id, :user_id);"
+        },
+        {
+          "description": "deletes a user's facebook_id",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_auth.facebook_ids WHERE facebook_id = :facebook_id;"
+        },
+        {
+          "description": "selects a user's user_id based on her/his facebook_id",
+          "name": "select",
+          "prepared_statement": "SELECT user_id FROM ig_auth.facebook_ids WHERE facebook_id = :facebook_id;"
+        }
+      ]
+    },
+
+    # refresh_tokens
+    {
+      "description": "stores users' refresh tokens",
+      "name": "refresh_tokens",
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        {
+          "name": "device_token",
+          "type": "varchar"
+        },
+        {
+          "name": "refresh_token",
+          "type": "varchar"
+        }
+      ],
+      "partition_keys": [
+        "user_id",
+        "device_token"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a user's refresh token",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_auth.refresh_tokens (user_id, device_token, refresh_token) VALUES (:user_id, :device_token, :refresh_token);"
+        },
+        {
+          "description": "updates a user's refresh token",
+          "name": "update",
+          "prepared_statement": "UPDATE ig_auth.refresh_tokens SET refresh_token = :refresh_token WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "selects a user's refresh token",
+          "name": "select",
+          "prepared_statement": "SELECT refresh_token FROM ig_auth.refresh_tokens WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "deletes a user's refresh token upon logout",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_auth.refresh_tokens WHERE user_id = :user_id AND device_token = :device_token;"
+        },
+        {
+          "description": "deletes all user's refresh tokens upon logging out from all devices",
+          "name": "delete_all",
+          "prepared_statement": "DELETE FROM ig_auth.refresh_tokens WHERE user_id = :user_id;"
+        }
+      ]
+    },
+
+    # users_cred_ids
+    {
+      "description": "acts as a reverse index users' authentication cred-ids (email and facebook_id)",
+      "name": "users_cred_ids",
+      "columns": [
+        {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        {
+          "name": "facebook_id",
+          "type": "varchar"
+        },
+        {
+          "name": "email",
+          "type": "varchar"
+        }
+      ],
+      "partition_keys": [
+        "user_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a blank row for a new user",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_auth.users_cred_ids (user_id) VALUES (:user_id);"
+        },
+        {
+          "description": "sets a user's facebook_id",
+          "name": "set_facebook_id",
+          "prepared_statement": "UPDATE ig_auth.users_cred_ids SET facebook_id = :facebook_id WHERE user_id = :user_id;"
+        },
+        {
+          "description": "sets a user's email",
+          "name": "set_email",
+          "prepared_statement": "UPDATE ig_auth.users_cred_ids SET email = :email WHERE user_id = :user_id;"
+        },
+        {
+          "description": "deletes a user's cred ids",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_auth.users_cred_ids WHERE user_id = :user_id;"
+        },
+        {
+          "description": "selects a user's facebook_id",
+          "name": "select_facebook_id",
+          "prepared_statement": "SELECT facebook_id FROM ig_auth.users_cred_ids WHERE user_id = :user_id;"
+        },
+        {
+          "description": "selects a user's email",
+          "name": "select_email",
+          "prepared_statement": "SELECT email FROM ig_auth.users_cred_ids WHERE user_id = :user_id;"
+        },
+        {
+          "description": "selects a user's facebook_id and email",
+          "name": "select_all",
+          "prepared_statement": "SELECT facebook_id, email FROM ig_auth.users_cred_ids WHERE user_id = :user_id;"
+        }
+      ]
+    }
+    
+    
+
+  ]
+}

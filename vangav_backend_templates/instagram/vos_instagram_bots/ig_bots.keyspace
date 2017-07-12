@@ -1,0 +1,326 @@
+# "First, solve the problem. Then, write the code. -John Johnson"
+# "Or use Vangav M"
+# www.vangav.com
+
+# MIT License
+#
+# Copyright (c) 2016 Vangav
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# Community
+# Facebook Group: Vangav Open Source - Backend
+#   fb.com/groups/575834775932682/
+# Facebook Page: Vangav
+#   fb.com/vangav.f
+#
+# Third party communities for Vangav Backend
+#   - play framework
+#   - cassandra
+#   - datastax
+#
+# Tag your question online (e.g.: stack overflow, etc ...) with
+#   #vangav_backend
+#   to easier find questions/answers online
+
+# @author mustapha
+# fb.com/mustapha.abdallah
+
+{
+  "description": "used for all bots-related vos_instagream tables",
+  "name": "ig_bots",
+  "replications": [
+    {
+      "description": "used for dev environment",
+      "name": "dev",
+      "replication": "'class': 'SimpleStrategy', 'replication_factor' : 1"
+    }
+  ],
+  "tables": [
+
+    # cities (airport_code, latitude, longitude, continent, continent_code, country, country_code, city, population_in_millions, added_year_month_day)
+    # users_index (year_month_day, airport_code, seq_id, user_id, last_active_year_month_day)
+    # users_count (year_month_day_airport_code, users_count)
+    # posts_index (year_month_day, airport_code, seq_id, post_id)
+    # posts_count (year_month_day_airport_code, posts_count)
+
+    # cities
+    {
+      "description": "stores cities in which bot users are created",
+      "name": "cities",
+      "columns": [
+        {
+          "name": "airport_code",
+          "type": "varchar"
+        },
+        {
+          "name": "latitude",
+          "type": "double"
+        },
+        {
+          "name": "longitude",
+          "type": "double"
+        },
+        {
+          "name": "continent",
+          "type": "varchar"
+        },
+        {
+          "name": "continent_code",
+          "type": "varchar"
+        },
+        {
+          "name": "country",
+          "type": "varchar"
+        },
+        {
+          "name": "country_code",
+          "type": "varchar"
+        },
+        {
+          "name": "city",
+          "type": "varchar"
+        },
+        {
+          "name": "population_in_millions",
+          "type": "int"
+        },
+        {
+          "name": "added_year_month_day",
+          "type": "varchar"
+        }
+      ],
+      "partition_keys": [
+        "airport_code"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a new city",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_bots.cities (airport_code, latitude, longitude, continent, continent_code, country, country_code, city, population_in_millions, added_year_month_day) VALUES (:airport_code, :latitude, :longitude, :continent, :continent_code, :country, :country_code, :city, :population_in_millions, :added_year_month_day);"
+        },
+        {
+          "description": "selects one city's attributes",
+          "name": "select_city",
+          "prepared_statement": "SELECT latitude, longitude, continent, continent_code, country, country_code, city, population_in_millions, added_year_month_day FROM ig_bots.cities WHERE airport_code = :airport_code;"
+        },
+        {
+          "description": "selects all cities attributes",
+          "name": "select_all",
+          "prepared_statement": "SELECT * from ig_bots.cities;"
+        }
+      ]
+    },
+
+    # users_index
+    {
+      "description": "stores all bot users",
+      "name": "users_index",
+      "columns": [
+        {
+          "name": "year_month_day",
+          "type": "varchar"
+        },
+        {
+          "name": "airport_code",
+          "type": "varchar"
+        },
+        {
+          "name": "seq_id",
+          "type": "int"
+        },
+        {
+          "name": "user_id",
+          "type": "uuid"
+        },
+        {
+          "name": "last_active_year_month_day",
+          "type": "varchar"
+        }
+      ],
+      "partition_keys": [
+        "year_month_day",
+        "airport_code",
+        "seq_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a new user",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_bots.users_index (year_month_day, airport_code, seq_id, user_id, last_active_year_month_day) VALUES (:year_month_day, :airport_code, :seq_id, :user_id, :last_active_year_month_day);"
+        },
+        {
+          "description": "selects all user's in a city created on a specific day",
+          "name": "select_city",
+          "prepared_statement": "SELECT user_id FROM ig_bots.users_index WHERE year_month_day = :year_month_day AND airport_code = :airport_code;"
+        },
+        {
+          "description": "select a user's user id and last active date",
+          "name": "select_user",
+          "prepared_statement": "SELECT user_id, last_active_year_month_day FROM ig_bots.users_index WHERE year_month_day = :year_month_day AND airport_code = :airport_code AND seq_id = :seq_id;"
+        },
+        {
+          "description": "updates a user's last active_date",
+          "name": "update_last_active_date",
+          "prepared_statement": "UPDATE ig_bots.users_index SET last_active_year_month_day = :last_active_year_month_day WHERE ear_month_day = :year_month_day AND airport_code = :airport_code AND seq_id = :seq_id;"
+        }
+      ]
+    },
+
+    # users_count
+    {
+      "description": "stores the count of users created on a day in a city",
+      "name": "users_count",
+      "columns": [
+        {
+          "name": "year_month_day_airport_code",
+          "type": "varchar"
+        },
+        {
+          "name": "users_count",
+          "type": "counter"
+        }
+      ],
+      "partition_keys": [
+        "year_month_day_airport_code"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "increments the count of users created on a day in a city",
+          "name": "increment",
+          "prepared_statement": "UPDATE ig_bots.users_count SET users_count = users_count + 1 WHERE year_month_day_airport_code = :year_month_day_airport_code;"
+        },
+        {
+          "description": "increments the count of users created on a day in a city by a value",
+          "name": "increment_value",
+          "prepared_statement": "UPDATE ig_bots.users_count SET users_count = users_count + :users_count WHERE year_month_day_airport_code = :year_month_day_airport_code;"
+        },
+        {
+          "description": "selects the count of users created on a day in a city",
+          "name": "select",
+          "prepared_statement": "SELECT users_count FROM ig_bots.users_count WHERE year_month_day_airport_code = :year_month_day_airport_code;"
+        }
+      ]
+    },
+
+    # posts_index
+    {
+      "description": "stores all bot posts",
+      "name": "posts_index",
+      "columns": [
+        {
+          "name": "year_month_day",
+          "type": "varchar"
+        },
+        {
+          "name": "airport_code",
+          "type": "varchar"
+        },
+        {
+          "name": "seq_id",
+          "type": "int"
+        },
+        {
+          "name": "post_id",
+          "type": "uuid"
+        }
+      ],
+      "partition_keys": [
+        "year_month_day",
+        "airport_code",
+        "seq_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a new post",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_bots.posts_index (year_month_day, airport_code, seq_id, post_id) VALUES (:year_month_day, :airport_code, :seq_id, :post_id);"
+        },
+        {
+          "description": "selects a post's id",
+          "name": "select_post",
+          "prepared_statement": "SELECT post_id FROM ig_bots.posts_index WHERE year_month_day = :year_month_day AND airport_code = :airport_code AND seq_id = :seq_id;"
+        }
+      ]
+    },
+
+    # posts_count
+    {
+      "description": "stores the count of posts created on a day in a city",
+      "name": "posts_count",
+      "columns": [
+        {
+          "name": "year_month_day_airport_code",
+          "type": "varchar"
+        },
+        {
+          "name": "posts_count",
+          "type": "counter"
+        }
+      ],
+      "partition_keys": [
+        "year_month_day_airport_code"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "increments the count of posts created on a day in a city",
+          "name": "increment",
+          "prepared_statement": "UPDATE ig_bots.posts_count SET posts_count = posts_count + 1 WHERE year_month_day_airport_code = :year_month_day_airport_code;"
+        },
+        {
+          "description": "increments the count of posts created on a day in a city by a value",
+          "name": "increment_value",
+          "prepared_statement": "UPDATE ig_bots.posts_count SET posts_count = posts_count + :posts_count WHERE year_month_day_airport_code = :year_month_day_airport_code;"
+        },
+        {
+          "description": "selects the count of posts created on a day in a city",
+          "name": "select",
+          "prepared_statement": "SELECT posts_count FROM ig_bots.posts_count WHERE year_month_day_airport_code = :year_month_day_airport_code;"
+        }
+      ]
+    }
+    
+
+  ]
+}

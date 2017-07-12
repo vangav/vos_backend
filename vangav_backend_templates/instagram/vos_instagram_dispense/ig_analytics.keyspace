@@ -1,0 +1,297 @@
+# "First, solve the problem. Then, write the code. -John Johnson"
+# "Or use Vangav M"
+# www.vangav.com
+
+# MIT License
+#
+# Copyright (c) 2016 Vangav
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# Community
+# Facebook Group: Vangav Open Source - Backend
+#   fb.com/groups/575834775932682/
+# Facebook Page: Vangav
+#   fb.com/vangav.f
+#
+# Third party communities for Vangav Backend
+#   - play framework
+#   - cassandra
+#   - datastax
+#
+# Tag your question online (e.g.: stack overflow, etc ...) with
+#   #vangav_backend
+#   to easier find questions/answers online
+
+# @author mustapha
+# fb.com/mustapha.abdallah
+
+{
+  "description": "used for all analytics-related tables",
+  "name": "ig_analytics",
+  "replications": [
+    {
+      "description": "used for dev environment",
+      "name": "dev",
+      "replication": "'class': 'SimpleStrategy', 'replication_factor' : 1"
+    }
+  ],
+  "tables": [
+
+    # annual_regional_counters    (year_region, new_users, new_posts, sent_follows, received_follows, sent_unfollows, received_unfollows, sent_likes, received_likes, sent_comments, received_comments)
+    # daily_regional_counters     (year_month_day_region, new_users, new_posts, sent_follows, received_follows, sent_unfollows, received_unfollows, sent_likes, received_likes, sent_comments, received_comments)
+
+
+    # annual_regional_counters
+    {
+      "description": "stores counters per-year per-region (world, continent, country, ...)",
+      "name": "annual_regional_counters",
+      "columns": [
+        {
+          "name": "year_region",
+          "type": "varchar"
+        },
+        {
+          "name": "new_users",
+          "type": "counter"
+        },
+        {
+          "name": "new_posts",
+          "type": "counter"
+        },
+        {
+          "name": "sent_follows",
+          "type": "counter"
+        },
+        {
+          "name": "received_follows",
+          "type": "counter"
+        },
+        {
+          "name": "sent_unfollows",
+          "type": "counter"
+        },
+        {
+          "name": "received_unfollows",
+          "type": "counter"
+        },
+        {
+          "name": "sent_likes",
+          "type": "counter"
+        },
+        {
+          "name": "received_likes",
+          "type": "counter"
+        },
+        {
+          "name": "sent_comments",
+          "type": "counter"
+        },
+        {
+          "name": "received_comments",
+          "type": "counter"
+        }
+      ],
+      "partition_keys": [
+        "year_region"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "increments new_users",
+          "name": "increment_new_users",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET new_users = new_users + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments new_posts",
+          "name": "increment_new_posts",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET new_posts = new_posts + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments sent_follows",
+          "name": "increment_sent_follows",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET sent_follows = sent_follows + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments received_follows",
+          "name": "increment_received_follows",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET received_follows = received_follows + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments sent_unfollows",
+          "name": "increment_sent_unfollows",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET sent_unfollows = sent_unfollows + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments received_unfollows",
+          "name": "increment_received_unfollows",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET received_unfollows = received_unfollows + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments sent_likes",
+          "name": "increment_sent_likes",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET sent_likes = sent_likes + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments received_likes",
+          "name": "increment_received_likes",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET received_likes = received_likes + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments sent_comments",
+          "name": "increment_sent_comments",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET sent_comments = sent_comments + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "increments received_comments",
+          "name": "increment_received_comments",
+          "prepared_statement": "UPDATE ig_analytics.annual_regional_counters SET received_comments = received_comments + 1 WHERE year_region = :year_region;"
+        },
+        {
+          "description": "selects counters per-year per-region",
+          "name": "select",
+          "prepared_statement": "SELECT new_users, new_posts, sent_follows, received_follows, sent_unfollows, received_unfollows, sent_likes, received_likes, sent_comments, received_comments FROM ig_analytics.annual_regional_counters WHERE year_region = :year_region;"
+        }
+      ]
+    },
+
+    # daily_regional_counters
+    {
+      "description": "stores counters per-day per-region (world, continent, country, ...)",
+      "name": "daily_regional_counters",
+      "columns": [
+        {
+          "name": "year_month_day_region",
+          "type": "varchar"
+        },
+        {
+          "name": "new_users",
+          "type": "counter"
+        },
+        {
+          "name": "new_posts",
+          "type": "counter"
+        },
+        {
+          "name": "sent_follows",
+          "type": "counter"
+        },
+        {
+          "name": "received_follows",
+          "type": "counter"
+        },
+        {
+          "name": "sent_unfollows",
+          "type": "counter"
+        },
+        {
+          "name": "received_unfollows",
+          "type": "counter"
+        },
+        {
+          "name": "sent_likes",
+          "type": "counter"
+        },
+        {
+          "name": "received_likes",
+          "type": "counter"
+        },
+        {
+          "name": "sent_comments",
+          "type": "counter"
+        },
+        {
+          "name": "received_comments",
+          "type": "counter"
+        }
+      ],
+      "partition_keys": [
+        "year_month_day_region"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "increments new_users",
+          "name": "increment_new_users",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET new_users = new_users + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments new_posts",
+          "name": "increment_new_posts",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET new_posts = new_posts + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments sent_follows",
+          "name": "increment_sent_follows",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET sent_follows = sent_follows + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments received_follows",
+          "name": "increment_received_follows",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET received_follows = received_follows + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments sent_unfollows",
+          "name": "increment_sent_unfollows",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET sent_unfollows = sent_unfollows + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments received_unfollows",
+          "name": "increment_received_unfollows",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET received_unfollows = received_unfollows + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments sent_likes",
+          "name": "increment_sent_likes",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET sent_likes = sent_likes + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments received_likes",
+          "name": "increment_received_likes",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET received_likes = received_likes + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments sent_comments",
+          "name": "increment_sent_comments",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET sent_comments = sent_comments + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "increments received_comments",
+          "name": "increment_received_comments",
+          "prepared_statement": "UPDATE ig_analytics.daily_regional_counters SET received_comments = received_comments + 1 WHERE year_month_day_region = :year_month_day_region;"
+        },
+        {
+          "description": "selects counters per-year per-region",
+          "name": "select",
+          "prepared_statement": "SELECT new_users, new_posts, sent_follows, received_follows, sent_unfollows, received_unfollows, sent_likes, received_likes, sent_comments, received_comments FROM ig_analytics.daily_regional_counters WHERE year_month_day_region = :year_month_day_region;"
+        }
+      ]
+    }
+
+
+  ]
+}

@@ -1,0 +1,179 @@
+# "First, solve the problem. Then, write the code. -John Johnson"
+# "Or use Vangav M"
+# www.vangav.com
+
+# MIT License
+#
+# Copyright (c) 2016 Vangav
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+# Community
+# Facebook Group: Vangav Open Source - Backend
+#   fb.com/groups/575834775932682/
+# Facebook Page: Vangav
+#   fb.com/vangav.f
+#
+# Third party communities for Vangav Backend
+#   - play framework
+#   - cassandra
+#   - datastax
+#
+# Tag your question online (e.g.: stack overflow, etc ...) with
+#   #vangav_backend
+#   to easier find questions/answers online
+
+# @author mustapha
+# fb.com/mustapha.abdallah
+
+{
+  "description": "used for all jobs-related tables -- a job is an operation that's either executed on a later time or issued by one process and executed by another where a jobs table keeps track of unsuccessful jobs which need to be reexecuted",
+  "name": "ig_jobs",
+  "replications": [
+    {
+      "description": "used for dev environment",
+      "name": "dev",
+      "replication": "'class': 'SimpleStrategy', 'replication_factor' : 1"
+    }
+  ],
+  "tables": [
+
+    # current_jobs          (job_id, job_time, job)
+    # hourly_current_jobs   (year_month_day_hour, job_time, job_id)
+
+    
+    # current_jobs
+    {
+      "description": "stores jobs to be issued by one service and executed asynchronously by another service -- this table is useful to trace jobs that didn't get succefully executed and retry executing them at a later point in time",
+      "name": "current_jobs",
+      "columns": [
+        {
+          "name": "job_id",
+          "type": "uuid"
+        },
+        {
+          "name": "job_time",
+          "type": "bigint"
+        },
+        {
+          "name": "job",
+          "type": "blob"
+        }
+      ],
+      "partition_keys": [
+        "job_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+      ],
+      "queries": [
+        {
+          "description": "inserts a new job",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_jobs.current_jobs (job_id, job_time, job) VALUES (:job_id, :job_time, :job);"
+        },
+        {
+          "description": "deletes a job",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_jobs.current_jobs WHERE job_id = :job_id;"
+        },
+        {
+          "description": "selects a job",
+          "name": "select",
+          "prepared_statement": "SELECT job_time, job FROM ig_jobs.current_jobs WHERE job_id = :job_id;"
+        }
+      ]
+    },
+
+    # hourly_current_jobs
+    {
+      "description": "indexes jobs per-hour and sorts them by the oldest",
+      "name": "hourly_current_jobs",
+      "columns": [
+        {
+          "name": "year_month_day_hour",
+          "type": "varchar"
+        },
+        {
+          "name": "job_time",
+          "type": "bigint"
+        },
+        {
+          "name": "job_id",
+          "type": "uuid"
+        }
+      ],
+      "partition_keys": [
+        "year_month_day_hour",
+        "job_time",
+        "job_id"
+      ],
+      "secondary_keys": [
+      ],
+      "caching": "ALL",
+      "order_by": [
+        {
+          "column_name":"job_time",
+          "order_type":"ASC"
+        }
+      ],
+      "queries": [
+        {
+          "description": "inserts a new job",
+          "name": "insert",
+          "prepared_statement": "INSERT INTO ig_jobs.hourly_current_jobs (year_month_day_hour, job_time, job_id) VALUES (:year_month_day_hour, :job_time, :job_id);"
+        },
+        {
+          "description": "deletes a job",
+          "name": "delete",
+          "prepared_statement": "DELETE FROM ig_jobs.hourly_current_jobs WHERE year_month_day_hour = :year_month_day_hour AND job_time = :job_time AND job_id = :job_id;"
+        },
+        {
+          "description": "selects earliest jobs during an hour with a limit",
+          "name": "select_earliest_limit",
+          "prepared_statement": "SELECT job_time, job_id FROM ig_jobs.hourly_current_jobs WHERE year_month_day_hour = :year_month_day_hour LIMIT 30;"
+        },
+        {
+          "description": "selects jobs at a specific time",
+          "name": "select_equal",
+          "prepared_statement": "SELECT job_time, job_id FROM ig_jobs.hourly_current_jobs WHERE year_month_day_hour = :year_month_day_hour AND job_time = :job_time;"
+        },
+        {
+          "description": "selects jobs at or after a time with a limit",
+          "name": "select_at_or_after_limit",
+          "prepared_statement": "SELECT job_time, job_id FROM ig_jobs.hourly_current_jobs WHERE year_month_day_hour = :year_month_day_hour AND job_time >= :job_time LIMIT 30;"
+        },
+        {
+          "description": "selects jobs after a time with a limit",
+          "name": "select_after_limit",
+          "prepared_statement": "SELECT job_time, job_id FROM ig_jobs.hourly_current_jobs WHERE year_month_day_hour = :year_month_day_hour AND job_time > :job_time LIMIT 30;"
+        },
+        {
+          "description": "selects all jobs jobs within an hour, consider using paging when using this query",
+          "name": "select",
+          "prepared_statement": "SELECT job_time, job_id FROM ig_jobs.hourly_current_jobs WHERE year_month_day_hour = :year_month_day_hour;"
+        }
+      ]
+    }
+    
+
+  ]
+}
