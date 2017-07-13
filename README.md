@@ -77,13 +77,13 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 2. **copy** **controllers.json** from vos_backend/vangav_backend_templates/vos_calculate_sum/ to the directory vos_calculate_sum created in (1)
 3. open a terminal session and **`cd`** to my_services/vos_backend/tools_bin
 4. execute the command **`java -jar backend_generator.jar new vos_calculate_sum`** to generate the service
-5. enter **`Y`** for using the config directory in order to use **controllers.json** for generating
-6. enter **`N`** for generating a worker service (using workers is explained in a separate section)
+5. enter **`y`** for using the config directory in order to use **controllers.json** for generating
+6. enter **`n`** for generating a worker service (using workers is explained in a separate section)
 
 ### writing the service's logic code
 + optionally for eclipse users: open eclipse and import vos_calculate_sum project
-  + file > import > general > existing projects into workspace > next > set "select root directory" to my_services > under projects make sure that vos_calculate_sum is selected > finish
-  + double check the java version used for compiling the project: right click the project > properties > java compiler > enable project specific settings > compiler compliance level > 1.7 or 1.8
+  + file **>** import **>** general **>** existing projects into workspace **>** next **>** set "select root directory" to my_services **>** under projects make sure that vos_calculate_sum is selected **>** finish
+  + double check the java version used for compiling the project: right click the project **>** properties **>** java compiler **>** enable project specific settings **>** compiler compliance level **>** 1.7 or 1.8
 + open class **[HandlerCalculateSum.java](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java)** under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method **[`processRequest`](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L86)** should be as follows in order to complete the request-to-response logic
 ```java
   @Override
@@ -110,45 +110,22 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 3. try issuing an invalid request (e.g.: set `a` to "xyz", don't set `b`, ...) to get a sense of how the default error response looks like ([error responses](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md) are explained in depth in a separate section)
 
 ### stop the service
-1. in the terminal session where you started the service press **`control + d`**
+in the terminal session where you started the service press **`control + d`**
 
-> **Voila, it took a simple json file [controllers.json](https://github.com/vangav/vos_calculate_sum/blob/master/generator_config/controllers.json), one command line, few lines of code and the calculate_sum's backend is up and running in just few minutes. That's Vangav Backend.**
+# next
 
-# Community
+1. [project contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
+2. [next example with database (vos_geo_server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
+3. [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
+4. [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
+5. [request structure](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
+6. [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
+7. [usingd dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
+8. [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
+9. [deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
+10. [error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
 
-[Facebook Group: Vangav Open Source - Backend](http://www.fb.com/groups/575834775932682/)
-
-[Facebook Page: Vangav](http://www.fb.com/vangav.f)
-
-Third party communities for Vangav Backend
-- play framework
-- cassandra
-- datastax
-
-> Tag your question online (e.g.: stack overflow, etc ...) with **#vangav_backend** to easier find questions/answers online.
-
-# Hassle-Free
-
-Vangav Backend is open source because we know that starting a startup or developing a new service is already mission-impossible. You already got more than enough to worry about, Vangav Backend doesn't want to be one of those things you worry about.
-> "Keep going, never give up".
-
-Have fun!
-
-
-# Next
-
-1. [Project Contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
-2. [Intermediate Example (vos_geo_server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
-3. [Generated REST Service Structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
-4. [Generated REST Service Config Structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
-5. [Request Structure](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
-6. [Error Response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
-7. [Using Dispatcher - Worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
-8. [Debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
-9. [Deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
-10. [Error Codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
-
-# README index
+# readme index
 
 + [data/README.md](https://github.com/vangav/vos_backend/blob/master/data)
 + [dist/README.md](https://github.com/vangav/vos_backend/tree/master/dist)
