@@ -36,7 +36,7 @@
 + python 2.7.10 (only for using cassandra)
     + to check python version type in the following command in a terminal session `python2.7 -V` and the output should be `Python 2.7.10`
 + installing python on mac os
-  + [download python for Mac](https://www.python.org/ftp/python/2.7.10/python-2.7.10-macosx10.6.pkg)
+  + [download python for mac os](https://www.python.org/ftp/python/2.7.10/python-2.7.10-macosx10.6.pkg)
   + open python-2.7.10-macosx10.6.pkg and follow the installer steps
 + installing python on ubuntu
   + `cd ~/Downloads`
@@ -71,10 +71,11 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 5. enter **`Y`** for using the config directory in order to use **controllers.json** for generating
 6. enter **`N`** for generating a worker service (using workers is explained in a separate section)
 
-### Writing the service's logic code
-+ Open eclipse and **import** vos_calculate_sum project. File > import > General > Existing Projects into Workspace > Next > set "Select root directory" to my_services > under Projects make sure that vos_calculate_sum is selected > Finish.
-+ Double check the java version used for compiling the project. right click the project > properties > Java Compiler > Enable project specific settings > Compiler compliance level > 1.7 or 1.8.
-+ Open class **[HandlerCalculateSum.java](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java)** under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method **[`processRequest`](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L86)** should be as follows in order to complete the request-to-response logic.
+### writing the service's logic code
++ optionally for eclipse users: open eclipse and import vos_calculate_sum project
+  + file > import > general > existing projects into workspace > next > set "select root directory" to my_services > under projects make sure that vos_calculate_sum is selected > finish
+  + double check the java version used for compiling the project: right click the project > properties > java compiler > enable project specific settings > compiler compliance level > 1.7 or 1.8
++ open class **[HandlerCalculateSum.java](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java)** under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method **[`processRequest`](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L86)** should be as follows in order to complete the request-to-response logic
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
@@ -90,16 +91,16 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
   }
 ```
 
-### Start the service
+### start the service
 1. **cd** to my_services/vos_calculate_sum
 2. execute the command **`./_run.sh`**
 
-### Try it out
+### try it out
 1. open an internet browser page and type **[`http://localhost:9000/calculate_sum?a=1.2&b=2.3`](http://localhost:9000/calculate_sum?a=1.2&b=2.3)** - this returns 3.5
 2. play with `a` and `b` values in the request string in (1)
-3. try issuing an invalid request (e.g.: set `a` to "xyz", don't set `b`, ...) to get a sense of how the default error response looks like. [Error responses](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md) are explained in depth in a separate section.
+3. try issuing an invalid request (e.g.: set `a` to "xyz", don't set `b`, ...) to get a sense of how the default error response looks like ([error responses](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md) are explained in depth in a separate section)
 
-### Stop the service
+### stop the service
 1. in the terminal session where you started the service press **`control + d`**
 
 > **Voila, it took a simple json file [controllers.json](https://github.com/vangav/vos_calculate_sum/blob/master/generator_config/controllers.json), one command line, few lines of code and the calculate_sum's backend is up and running in just few minutes. That's Vangav Backend.**
