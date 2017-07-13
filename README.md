@@ -1,37 +1,33 @@
-# Vangav Backend
+# vangav backend
+## build big tech 10x faster
 
-Use Vangav Backend to generate backends for services like:
-+ Social
-+ Media sharing
-+ Chat
-+ Websites
-+ Transportation
-+ etc ... (any stateless service)
+### built on top tech
+| tech | ref |
+| ------------- | ------------- |
+| [cassandra](http://cassandra.apache.org/) | apple's cassandra deployment has over 75,000 nodes storing over 10PB of data |
+| [play framework](https://www.playframework.com/) | play framework powers linkedin's 500,000,000 members backend |
+| [akka](http://akka.io/) | akka helps power e-shopping for hundreds of millions of amazon members |
+| [datastax drivers](http://www.datastax.com/) | datastax processes over 1,000,000,000,000 cassandra requests for netflix per day |
 
-Vangav Backend generates services that are:
-+ Light-weight
-+ Stateless
-+ Highly-scalable
-+ Robust
-+ SOA-ready
-+ With a built-in dispatcher and a worker service
-+ Eclipse-ready
-+ based on [Play Framework](https://www.playframework.com/documentation/2.2.6/Home) (JAVA) and [Cassandra](https://archive.apache.org/dist/cassandra/2.1.2/)
-+ Loaded with utilities like:
-  + [Authentication](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication) (Facebook, Google, OAuth2 and transaction tokens)
-  + [Facebook Graph API integration](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis)
-  + [Push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications) (iOS and Android)
-  + [Email clients](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email)
-  + [Twilio](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/twilio)
-  + [REST client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/rest_client)
-  + [Geo-services](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo)
-  + [Compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
-  + [Cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/cryptography) (asymmetric, password hashing and two-way encryption)
-  + [Math/geometry](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)
-  + **[Vangav M](http://www.vangav.com/)**
-+ **Vangav Backend generates most of the code needed**, you just connect the logic dots by putting in few lines of method calls.
+### fully-loaded
+| utility | options |
+| ------------- | ------------- |
+| **backend generator** | design in json and generate **90+%** of the code for a service + several utilities |
+| [security](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/) | facebook/google auth, oauth 2, transaction tokens, encryption, ... |
+| [networks](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/) | twilio, mail gun, rest client, rest jobs, ... |
+| [push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications/) | ios, android, ... |
+| [geo services](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/) | geo grids, reverse geo coding, geo hashing, ... |
+| [dispatcher/worker](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher/) | dispatchable queries, push notifications, emails, sms, ... |
+| and more ... | periodic jobs, thread pools, facebook graph api, snow flake ids, compression, client generator, exceptions, geometry, metrics, deep vangav mighty integration, ... |
 
-Alternatively one can use Vangav Backend as a commons lib for any JAVA project using the main jar [vos_backend.jar](https://github.com/vangav/vos_backend/tree/master/dist). And [lib](https://github.com/vangav/vos_backend/tree/master/lib) contains more jars that are needed for using some of those utilities.
+### [great templates](https://github.com/vangav)
+| template | services | features | db tables | code: total | code: generated |
+| -------- | -------- | -------- | --------- | ----------- | --------------- |
+| instagram_* | 7 | 47 | 52 | 67,715 + 190,996 | 238,465 **(92.17%)** |
+| analytics | 2 | 9 | 4 | 67,715 + 10,252 | 74,552 **(95.62%)** |
+| whatsapp | 3 | 7 | 7 | 67,715 + 7,834 | 74,408 **(98.49%)** |
+| geo_server | 1 | 3 | 3 | 67,715 + 2,691 | 70,300 **(99.85%)** |
+| calculate_sum | 1 | 1 | 0 | 67,715 + 544 | 68,258 **(99.99%)** |
 
 # System Requirements
 
