@@ -4,10 +4,10 @@
 ### built on top tech
 | tech | ref |
 | ------------- | ------------- |
-| [cassandra](http://cassandra.apache.org/) | apple's cassandra deployment has over 75,000 nodes storing over 10PB of data |
-| [play framework](https://www.playframework.com/) | play framework powers linkedin's 500,000,000 members backend |
-| [akka](http://akka.io/) | akka helps power e-shopping for hundreds of millions of amazon members |
-| [datastax drivers](http://www.datastax.com/) | datastax processes over 1,000,000,000,000 cassandra requests for netflix per day |
+| [cassandra](http://cassandra.apache.org/) | **apple**'s cassandra deployment has over 75,000 nodes storing over 10PB of data |
+| [play framework](https://www.playframework.com/) | play framework powers **linkedin**'s 500,000,000 members backend |
+| [akka](http://akka.io/) | akka helps power e-shopping for hundreds of millions of **amazon** members |
+| [datastax drivers](http://www.datastax.com/) | datastax processes over 1,000,000,000,000 cassandra requests for **netflix** per day |
 
 ### fully-loaded
 | utility | options |
