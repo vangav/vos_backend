@@ -125,7 +125,7 @@ in the terminal session where you started the service press **`control + d`**
 9. [deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
 10. [error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
 
-# readme index
+# other readme index
 
 + [data/README.md](https://github.com/vangav/vos_backend/blob/master/data)
 + [dist/README.md](https://github.com/vangav/vos_backend/tree/master/dist)
