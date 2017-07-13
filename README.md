@@ -29,6 +29,15 @@
 | geo_server | 1 | 3 | 3 | 67,715 + 2,691 | 70,300 **(99.85%)** |
 | calculate_sum | 1 | 1 | 0 | 67,715 + 544 | 68,258 **(99.99%)** |
 
+### roadmap
+| time | effect |
+| ---- | ------ |
+| 5 min | first service [(vos_calculate_sum)](https://github.com/vangav/vos_calculate_sum) generated and running |
+| 20 min | second service [(vos_geo_server)](https://github.com/vangav/vos_geo_server) generated and running |
+| 2-3 days | finished all templates: command of all utilities, multi-service backends |
+| 1 week | full command of modifying/extending the underlying backend |
+| thereafter | mr-robot-level in implementing top class backend services, finishing a year's worth of work every month |
+
 # system requirements
 
 + unix operating system (e.g.: mac os, ubuntu, etc ...)
