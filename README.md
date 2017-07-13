@@ -29,10 +29,10 @@
 | geo_server | 1 | 3 | 3 | 67,715 + 2,691 | 70,300 **(99.85%)** |
 | calculate_sum | 1 | 1 | 0 | 67,715 + 544 | 68,258 **(99.99%)** |
 
-# System Requirements
+# system requirements
 
 + unix operating system (e.g.: mac os, ubuntu, etc ...)
-+ JAVA 8
++ java 8
 + python 2.7.10 (only for using cassandra)
     + to check python version type in the following command in a terminal session `python2.7 -V` and the output should be `Python 2.7.10`
 + installing python on mac os
@@ -49,31 +49,27 @@
   + `sudo make altinstall`
   + `python2.7 --version`
 
-# Prerequisites
+# prerequisites
 
-+ Basic JAVA
-+ Basic Play Framework (optional for using Vangav Backend to build services)
-+ Basic Cassandra/CQL (optional for using cassandra)
++ basic java
++ basic cassandra (optional for using cassandra)
 
-# Quick Start Example (vos_calculate_sum)
+# quick start example [(vos_calculate_sum)](https://github.com/vangav/vos_calculate_sum) service
 
-vos_calculate_sum is a service that takes two floats (a and b) request and returns a double (c) response representing the summation of a and b.
+vos_calculate_sum is a service that takes a two floats (a and b) request and returns a double (c) response representing the summation of a and b
 
-> Check out a finished version of this service at **https://github.com/vangav/vos_calculate_sum**
-
-### Init
+### init
 1. create a workspace directory "**my_services**" - this is the directory to contain both of vos_backend and all the services generated using it
-2. download this (**vos_backend.zip**) project inside the workspace directory created in (1) and unzip it
+2. download this **vos_backend.zip** project (from the green "clone or download button up there") inside the workspace directory created in (1) and unzip it
 3. **rename** downloaded vos_backend-master to vos_backend
 
-### Generate a new service
-1. Create a new directory "**my_services/vos_calculate_sum**".
-2. **Copy** **controllers.json** from vos_backend/vangav_backend_templates/vos_calculate_sum/ to the directory vos_calculate_sum created in (1).
-3. Open a terminal session and **cd** to my_services/vos_backend/tools_bin.
-4. Execute the command **`java -jar backend_generator.jar new vos_calculate_sum`** to generate the Vangav Backend Service.
-5. Enter **`Y`** for using the config directory in order to use **controllers.json** for generating the new service.
-6. Enter **`Y`** to generate an eclipse-compatible project.
-7. Enter **`N`** for generating a worker service. Using workers is explained in a separate section.
+### generate a new service
+1. create a new directory "**my_services/vos_calculate_sum**"
+2. **copy** **controllers.json** from vos_backend/vangav_backend_templates/vos_calculate_sum/ to the directory vos_calculate_sum created in (1)
+3. open a terminal session and **`cd`** to my_services/vos_backend/tools_bin
+4. execute the command **`java -jar backend_generator.jar new vos_calculate_sum`** to generate the service
+5. enter **`Y`** for using the config directory in order to use **controllers.json** for generating
+6. enter **`N`** for generating a worker service (using workers is explained in a separate section)
 
 ### Writing the service's logic code
 + Open eclipse and **import** vos_calculate_sum project. File > import > General > Existing Projects into Workspace > Next > set "Select root directory" to my_services > under Projects make sure that vos_calculate_sum is selected > Finish.
