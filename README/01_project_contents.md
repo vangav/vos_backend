@@ -65,20 +65,34 @@
 | [thread_pool](https://github.com/vangav/vos_backend/blob/master/prop/thread_pool_properties.prop) | vangav backend has a thread pool per type of operation with an optimal default size (per machine's specs) for handling big scale; only set values for this properties file if you are sure |
 | [twilio](https://github.com/vangav/vos_backend/blob/master/prop/twilio_properties.prop) | twilio api access values |
 
+### [src](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend)
++ contains all of vangav backend's source code
++ each directory inside `src` has its own readme file
 
+### [tools_bin](https://github.com/vangav/vos_backend/tree/master/tools_bin)
++ contains `backend_generator.jar` responsible for generating new vangav backend services using the command `java -jar backend_generator.jar new my_new_service_name`
++ inside it the `assets` directory has utilities that gets added to generated services like the `cassandra updater` and the `vangav mighty` solutions generator
 
+### [vangav_backend_templates](https://github.com/vangav/vos_backend/tree/master/vangav_backend_templates)
++ contains the generator config files used to generate the template services
++ all the template services has a complete version (with the 10-% of logic code added to them) on github as follows
 
-
-
-
-
-
-
-
-
-
-
-
-+ **[src/com/vangav/backend](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend)** contains all Vangav Backend's source code. The whole code is license-free with minor exceptions put under packages called "third_party" like geo hashing.
-+ **[tools_bin](https://github.com/vangav/vos_backend/tree/master/tools_bin)** contains `backend_generator.jar` which is the executable responsible for generating new Vangav Backend services using the command `java -jar backend_generator.jar new my_new_service_name`.
-+ **[vangav_backend_templates](https://github.com/vangav/vos_backend/tree/master/vangav_backend_templates)** contains functional templates for Vangav Backend's services.
+| service | level | explanation |
+| ------- | ----- | ----------- |
+| [calculate sum](https://github.com/vangav/vos_calculate_sum) | 1 | simple quick start service that calculates the sum of two numbers |
+| [geo server](https://github.com/vangav/vos_geo_server) | 2 | given a lat and long it returns the geo hash, city, country and continent info, it also keeps track of the top queried continents, countries and major cities |
+| **whatsapp** | 3 |  |
+| [whatsapp](https://github.com/vangav/vos_whatsapp) |  | the main whatsapp service handling authentication, user info and messaging |
+| [whatsapp worker](https://github.com/vangav/vos_whatsapp_worker) |  | non-user-experience-critical operations like analytics are handed over from the main whatsapp service to the worker service to handle them |
+| [whatsapp analytics](https://github.com/vangav/vos_whatsapp_analytics) |  | handles fetching service's analytics like messages count within certain dates, ... |
+| **analytics** | 3 |  |
+| [vangav analytics writer](https://github.com/vangav/vos_vangav_analytics_writer) |  | handles writing analytics data to the database in a non blocking manner in after-response processing |
+| [vangav analytics reader](https://github.com/vangav/vos_vangav_analytics_reader) |  | handles fetching analytics data in various ways (daily, monthly, ...) |
+| **instagram** | 4 |  |
+| [instagram](https://github.com/vangav/vos_instagram) |  | the main instagram service handling authentication, posting, insteraction, search, explore, ... |
+| [instagram worker](https://github.com/vangav/vos_instagram_worker) |  | non-user-experience-critical operations like analytics are handed over from the main instagram service to the worker service to handle them |
+| [instagram dispense](https://github.com/vangav/vos_instagram_dispense) |  | handles distributing a new post to followers (a separate service since a single post can be delivered to tens of millions of followers) |
+| [instagram jobs](https://github.com/vangav/vos_instagram_jobs) |  | it handles self heal as some post-response-success jobs like `dispense` record themselves in the db until success, this service fetches incomplete/failed jobs and retries executing them; this service also handle dated and recurrent jobs (e.g.: send a notification to each member on their birthday, send a notification to new members after 7 days, ...) |
+| [instagram dash board](https://github.com/vangav/vos_instagram_dash_board) |  | handles fetching analytics like members demographics, counts, activity, ... |
+| [instagram test](https://github.com/vangav/vos_instagram_test) |  | used to test all the instagram services above end to end and maintains a session log for each test run including success/failure info as well as request-to-response times |
+| [instagram bots](https://github.com/vangav/vos_instagram_bots) |  | will be deployed on vangav servers at a later stage to simulate elevating usage of the instagram services above for a year or more |
