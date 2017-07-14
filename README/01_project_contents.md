@@ -1,6 +1,6 @@
 # project's contents
 
-following is a brief explanantion for the contents of each of the project's top level directories
+following is a brief explanantion for the contents of each of the vangav backend project's top level directories
 
 ### [apache-cassandra-2.1.2](https://github.com/vangav/vos_backend/tree/master/apache-cassandra-2.1.2)
 + this is the cassandra used by vangav backend
