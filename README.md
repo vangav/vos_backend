@@ -68,17 +68,17 @@
 vos_calculate_sum is a service that takes a two floats (a and b) request and returns a double (c) response representing the summation of a and b
 
 ### init
-1. create a workspace directory "**my_services**" - this is the directory to contain both of vos_backend and all the services generated using it
-2. download this **vos_backend.zip** project (from the green "clone or download" button up there) inside the workspace directory created in (1) and unzip it
+1. create a workspace directory `my_services` - this is the directory to contain both of vos_backend and all the services generated using it
+2. download this `vos_backend.zip` project (from the green `clone or download` button up there) inside the workspace directory created in (1) and unzip it
 3. **rename** downloaded vos_backend-master to vos_backend
 
 ### generate a new service
-1. create a new directory "**my_services/vos_calculate_sum**"
-2. copy **controllers.json** from `vos_backend/vangav_backend_templates/vos_calculate_sum/` to the directory vos_calculate_sum created in (1)
-3. open a terminal session and **`cd`** to my_services/vos_backend/tools_bin
-4. execute the command **`java -jar backend_generator.jar new vos_calculate_sum`** to generate the service
-5. enter **`y`** for using the config directory in order to use **controllers.json** for generating
-6. enter **`n`** for generating a worker service (using workers is explained in a separate section)
+1. create a new directory `my_services/vos_calculate_sum`
+2. copy `controllers.json` from `vos_backend/vangav_backend_templates/vos_calculate_sum/` to the directory `vos_calculate_sum` created in (1)
+3. open a terminal session and `cd` to my_services/vos_backend/tools_bin
+4. execute the command `java -jar backend_generator.jar new vos_calculate_sum` to generate the service
+5. enter `y` for using the config directory in order to use `controllers.json` for generating
+6. enter `n` for generating a worker service (using workers is explained in a separate section)
 
 ### writing the service's logic code
 + optionally for eclipse users: open eclipse and import vos_calculate_sum project
@@ -101,8 +101,8 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 ```
 
 ### start the service
-1. **cd** to my_services/vos_calculate_sum
-2. execute the command **`./_run.sh`**
+1. `cd` to my_services/vos_calculate_sum
+2. execute the command `./_run.sh`
 
 ### try it out
 1. open an internet browser page and type [`http://localhost:9000/calculate_sum?a=1.2&b=2.3`](http://localhost:9000/calculate_sum?a=1.2&b=2.3) - this returns 3.5
@@ -110,7 +110,7 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 3. try issuing an invalid request (e.g.: set `a` to "xyz", don't set `b`, ...) to get a sense of how the default error response looks like ([error responses](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md) are explained in depth in a separate section)
 
 ### stop the service
-in the terminal session where you started the service press **`control + d`**
+in the terminal session where you started the service press `control + d`
 
 # next
 
