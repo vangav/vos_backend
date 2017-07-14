@@ -1,6 +1,6 @@
 # project's contents
 
-#### [apache-cassandra-2.1.2](https://github.com/vangav/vos_backend/tree/master/apache-cassandra-2.1.2)
+### [apache-cassandra-2.1.2](https://github.com/vangav/vos_backend/tree/master/apache-cassandra-2.1.2)
 + this is the cassandra used by vangav backend
 + in dev mode, it's automatically used by all the services generated using vangav backend
 + for prod mode, refer to the "deploy" tutorial
