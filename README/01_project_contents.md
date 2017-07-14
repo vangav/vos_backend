@@ -5,16 +5,16 @@
 + in dev mode, it's automatically used by all the services generated using vangav backend
 + for prod mode, refer to the "deploy" tutorial
 
-#### [data](https://github.com/vangav/vos_backend/tree/master/data)
+### [data](https://github.com/vangav/vos_backend/tree/master/data)
 + contains the data files needed for using some of the built-in utilities like reverse geo coding
 + [vos_geo_server](https://github.com/vangav/vos_geo_server) is one example that utilizes these data
 
-#### [dist](https://github.com/vangav/vos_backend/tree/master/dist)
+### [dist](https://github.com/vangav/vos_backend/tree/master/dist)
 + contains `vos_backend.jar` that includes both of the underlying backend for all generated services as well as all of the provided utilities
 + the jar above is automatically included with all generated services
 + alternatively one case use it as a lib for any java project
 
-#### [lib](https://github.com/vangav/vos_backend/tree/master/lib)
+### [lib](https://github.com/vangav/vos_backend/tree/master/lib)
 + conatins all the third-party libs used by vangav backend
 + all the necessary libs are automatically copied to generated services
 + the optional use of some utilities (e.g.: email. twilio, ...) require manually copying a lib or more to your generated service's lib directory
@@ -40,11 +40,11 @@
 | [slf4j-api-1.7.6.jar](http://www.slf4j.org/) | the simple logging facade for java (slf4j) serves as a simple facade or abstraction for various logging frameworks (e.g. java.util.logging, logback, log4j) allowing the end user to plug in the desired logging framework at deployment time |
 | [twilio-7.1.0-jar-with-dependencies.jar](https://github.com/twilio/twilio-java) | used for sending sms and mms through [twilio](https://www.twilio.com/) |
 
-#### [play-2.2.6](https://github.com/vangav/vos_backend/tree/master/play-2.2.6)
+### [play-2.2.6](https://github.com/vangav/vos_backend/tree/master/play-2.2.6)
 + this is the play framework used by vangav backend
 + each generated service comes with _scripts.sh (_run.sh, _compile.sh, etc ...) that point to this directory for play framework
 
-#### [prop](https://github.com/vangav/vos_backend/tree/master/prop)
+### [prop](https://github.com/vangav/vos_backend/tree/master/prop)
 + holds all vangav backend's properties files
 + generated services autoamtically get a copy of the properties necessary properties files depending on the project's config
 + optionally copy additional properties files to the generated service to use the corresponding utility
