@@ -1,17 +1,19 @@
-# Generated REST Service Structure
+# generated service structure
 
-> This section uses the [vos_geo_server](https://github.com/vangav/vos_geo_server) example, yet it's the same structure for all REST services generated using Vangav Backend.
+> this section uses the [geo server](https://github.com/vangav/vos_geo_server) example, yet it's the same structure for all services generated using vangav backend
 
 ### [scripts](https://github.com/vangav/vos_geo_server)
 
-The following scripts are generated for every Vangav Backend Service.
+the following scripts are generated for every vangav backend service
 
-+ [_run.sh](https://github.com/vangav/vos_geo_server/blob/master/_run.sh) runs the service in dev mode.
-+ [_clean.sh](https://github.com/vangav/vos_geo_server/blob/master/_clean.sh) cleans the service's build.
-+ [_compile.sh](https://github.com/vangav/vos_geo_server/blob/master/_compile.sh) compiles the service.
-+ [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) run the service in debug mode. Debugging the code can happen in eclipse as explained later.
-+ [_dist.sh](https://github.com/vangav/vos_geo_server/blob/master/_dist.sh) generates a production executable for the service to deploy it on the production server(s).
-+ [_eclipsify.sh](https://github.com/vangav/vos_geo_server/blob/master/_eclipsify.sh) makes the service eclipse-ready.
+| script | explanation |
+| ------ | ----------- |
+| [_run.sh](https://github.com/vangav/vos_geo_server/blob/master/_run.sh) | runs the service in dev mode; by default it runs on port 9000, to run on a different port use `./_run.sh a_different_port_number` e.g.: `./_run.sh 8765` |
+| [_clean.sh](https://github.com/vangav/vos_geo_server/blob/master/_clean.sh) | cleans the service's build |
+| [_compile.sh](https://github.com/vangav/vos_geo_server/blob/master/_compile.sh) | compiles the service |
+| [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) | runs the service in debug mode; debugging the code can happen in eclipse as explained in the [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md) tutorial |
+| [_dist.sh](https://github.com/vangav/vos_geo_server/blob/master/_dist.sh) | generates a production executable for the service to deploy it on the production server(s); deoployment is explained in the [deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md) tutorial |
+| [_eclipsify.sh](https://github.com/vangav/vos_geo_server/blob/master/_eclipsify.sh) | makes the service eclipse-ready; all generated services are eclipse-ready by default |
 
 ### [conf](https://github.com/vangav/vos_geo_server/tree/master/conf)
 
