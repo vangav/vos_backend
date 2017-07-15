@@ -63,7 +63,7 @@
 + basic java
 + basic cassandra (optional for using cassandra)
 
-# quick start example: [vos_calculate_sum](https://github.com/vangav/vos_calculate_sum)
+# quick start example: [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
 vos_calculate_sum is a service that takes a two floats (a and b) request and returns a double (c) response representing the summation of a and b
 
