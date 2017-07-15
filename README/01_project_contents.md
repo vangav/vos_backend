@@ -82,7 +82,7 @@ following is a brief explanantion for the contents of each of the vangav backend
 | service | level | explanation |
 | ------- | ----- | ----------- |
 | [calculate sum](https://github.com/vangav/vos_calculate_sum) | 1 | simple quick start service that calculates the sum of two numbers |
-| [geo server](https://github.com/vangav/vos_geo_server) | 2 | given a lat and long it returns the geo hash, city, country and continent info, it also keeps track of the top queried continents, countries and major cities |
+| [geo server](https://github.com/vangav/vos_geo_server) | 2 | given a lat and long it returns the geo hash, city, country and continent info, it also keeps track of the top queried continents and countries |
 | **whatsapp** | 3 |  |
 | [whatsapp](https://github.com/vangav/vos_whatsapp) |  | the main whatsapp service handling authentication, user info and messaging |
 | [whatsapp worker](https://github.com/vangav/vos_whatsapp_worker) |  | non-user-experience-critical operations like analytics are handed over from the main whatsapp service to the worker service to handle them |
