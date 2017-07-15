@@ -44,19 +44,19 @@
 + java 8
 + python 2.7.10 (only for using cassandra)
     + to check python version type in the following command in a terminal session `python2.7 -V` and the output should be `Python 2.7.10`
-+ installing python on mac os
-  + [download python for mac os](https://www.python.org/ftp/python/2.7.10/python-2.7.10-macosx10.6.pkg)
-  + open python-2.7.10-macosx10.6.pkg and follow the installer steps
-+ installing python on ubuntu
-  + `cd ~/Downloads`
-  + `wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz`
-  + `tar -zxvf  Python-2.7.10.tgz`
-  + `sudo apt-get install build-essential checkinstall`
-  + `sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libgdbm-dev libc6-dev libbz2-dev  libsqlite3-dev tk-dev libssl-dev`
-  + `cd ~/Downloads/Python-2.7.10/`
-  + `sudo ./configure`
-  + `sudo make altinstall`
-  + `python2.7 --version`
+  + installing python on mac os
+    + [download python for mac os](https://www.python.org/ftp/python/2.7.10/python-2.7.10-macosx10.6.pkg)
+    + open python-2.7.10-macosx10.6.pkg and follow the installer steps
+  + installing python on ubuntu
+    + `cd ~/Downloads`
+    + `wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz`
+    + `tar -zxvf  Python-2.7.10.tgz`
+    + `sudo apt-get install build-essential checkinstall`
+    + `sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libgdbm-dev libc6-dev libbz2-dev  libsqlite3-dev tk-dev libssl-dev`
+    + `cd ~/Downloads/Python-2.7.10/`
+    + `sudo ./configure`
+    + `sudo make altinstall`
+    + `python2.7 --version`
 
 # prerequisites
 
