@@ -21,11 +21,11 @@ the following scripts are generated for every vangav backend service
 + this directory gets packaged with the productions version after using the [_dist.sh](https://github.com/vangav/vos_geo_server/blob/master/_dist.sh) script
 + any additional config/data files must go under this directory
 
-#### [routes](https://github.com/vangav/vos_geo_server/blob/master/conf/routes) and [application.conf](https://github.com/vangav/vos_geo_server/blob/master/conf/application.conf)
+#### - [routes](https://github.com/vangav/vos_geo_server/blob/master/conf/routes) and [application.conf](https://github.com/vangav/vos_geo_server/blob/master/conf/application.conf)
 + used by play framework to define the servie's entry points and the service's configuration respectively
 + vangav backend's generated services automatically sets the values for these files
 
-#### [prop](https://github.com/vangav/vos_backend/tree/master/prop)
+#### - [prop](https://github.com/vangav/vos_backend/tree/master/prop)
 + holds all vangav backend's properties files
 + generated services autoamtically get a copy of the necessary properties files depending on the project's config
 + optionally copy additional properties files to the generated service to use the corresponding utility
