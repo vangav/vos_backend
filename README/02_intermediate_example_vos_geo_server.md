@@ -240,7 +240,7 @@ public class ResponseTopContinents extends ResponseBodyJson {
 }
 ```
 #### - processing top queried continents
-+ in class **[HandlerTopContinents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java)** method **[`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java#L97)** should be as follows:
++ in class [HandlerTopContinents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java) method [`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java#L97) should be as follows:
 ```java
   @Override
   protected void processRequest (final Request request) throws Exception {
