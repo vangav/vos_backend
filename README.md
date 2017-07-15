@@ -223,7 +223,7 @@ in the terminal session where you started the service press `control + d`
 # next steps
 
 1. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
-2. [next example with database (vos_geo_server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
+2. [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
 3. [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
 4. [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
 5. [request structure](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
