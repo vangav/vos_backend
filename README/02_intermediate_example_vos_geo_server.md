@@ -323,8 +323,8 @@ public class ResponseTopContinents extends ResponseBodyJson {
 1. `cd` to `my_services/vos_geo_server`
 2. execute the command `./_run.sh`
 
-### Try it out
-+ open an internet browser page and type any of
+### try it out
+1. open an internet browser page and type any of
   + [`http://localhost:9000/reverse_geo_code?latitude=49&longitude=11`](http://localhost:9000/reverse_geo_code?latitude=49&longitude=11) - play around with the latitude and longitude values
   + [`http://localhost:9000/top_continents`](http://localhost:9000/top_continents)
   + [`http://localhost:9000/top_countries`](http://localhost:9000/top_countries)
