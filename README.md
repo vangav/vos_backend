@@ -192,7 +192,7 @@ based on vos_calculate_sum, the following steps show how to expand the service t
 7. enter `n` for generating a worker service (using workers is explained in a separate section)
 
 ### writing the service's logic code
-+ repeat all the steps in the **writing the service's logic code** section above then add to them the following steps to implement the multiplication feature's logic
++ repeat all the steps in the [writing the service's logic code](https://github.com/vangav/vos_backend/blob/master/README.md#writing-the-services-logic-code) section above then add to them the following steps to implement the multiplication feature's logic
 + open class `HandlerCalculateMultiplication.java` under package `com.vangav.vos_calculate_sum.controllers.calculate_multiplication`, method `processRequest` should be as follows in order to complete the request-to-response logic
 ```java
   @Override
