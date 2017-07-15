@@ -3,7 +3,7 @@
 geo server is a service that takes a latitude/longitude request and returns the hash code and reverse geo code (continent, country, major city, city); it also keeps track of queried continents/countries to provide lists of sorted top queried continents, countries and major cities
 
 ### init
-> skip this section if you already id it in [init](https://github.com/vangav/vos_backend#init) of the calculate sum example
+> skip this section if you already did it in [init](https://github.com/vangav/vos_backend#init) of the calculate sum example
 1. create a workspace directory `my_services` - this is the directory to contain both of vos_backend and all the services generated using it
 2. download this `vos_backend.zip` project (from the green `clone or download` button up there) inside the workspace directory created in (1) and unzip it
 3. **rename** downloaded vos_backend-master to vos_backend
