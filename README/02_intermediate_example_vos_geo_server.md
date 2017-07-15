@@ -42,7 +42,7 @@ geo server is a service that takes a latitude/longitude request and returns the 
   + double check the java version used for compiling the project: right click the project **>** properties **>** java compiler **>** enable project specific settings **>** compiler compliance level **>** 1.7 or 1.8
 #### - index initialization
 + under package `com.vangav.vos_geo_server` add a new package `[common](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/common)`
-+ in the created package in the previous step add a new class [InitIndexInl](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/common/InitIndexInl.java) with the following implementation:
++ in the created package in the previous step add a new class [InitIndexInl.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/common/InitIndexInl.java) with the following implementation:
 ```java
 package com.vangav.vos_geo_server.common;
 
@@ -164,7 +164,7 @@ InitIndexInl.initIndex();
   }
 ```
 #### - complete the top queried continents' response structure (nested json)
-+ under package [com.vangav.vos_geo_server.controllers.top_continents](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/controllers/top_continents) add class [ResponseTopContinent](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/response_json/ResponseTopContinent.java).java with the following code
++ under package [com.vangav.vos_geo_server.controllers.top_continents](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/controllers/top_continents) add class [ResponseTopContinent.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/response_json/ResponseTopContinent.java) with the following code
 ```java
 package com.vangav.vos_geo_server.controllers.top_continents;
 
