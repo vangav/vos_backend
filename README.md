@@ -36,7 +36,7 @@
 | 20 min | second service [(vos_geo_server)](https://github.com/vangav/vos_geo_server) generated and running |
 | 5-7 days | finished all templates: command of all utilities, multi-service backends |
 | 1-2 weeks | full command of modifying/extending the underlying backend |
-| thereafter | mr-robot-level in implementing top class backend services, finishing a year's worth of work every month |
+| thereafter | best-in-class-level in implementing top class backend services, finishing a year's worth of work every month |
 
 # system requirements
 
