@@ -11,30 +11,22 @@ geo server is a service that takes a latitude/longitude request and returns the 
 ### generate a new service
 
 1. create a new directory `my_services/vos_geo_server`
-2. copy `controllers.json` and `gs_top.keyspace`from `vos_backend/vangav_backend_templates/vos_geo_server/` to the directory `my_services/vos_geo_server` created in (1)
+2. copy `controllers.json` and `gs_top.keyspace` from `vos_backend/vangav_backend_templates/vos_geo_server/` to the directory `my_services/vos_geo_server` created in (1)
 3. open a terminal session and `cd` to `my_services/vos_backend/tools_bin`
-4. execute the command `java -jar backend_generator.jar new vos_calculate_sum` to generate the service
-5. enter `y` for using the config directory in order to use `controllers.json` for generating
+4. execute the command `java -jar backend_generator.jar new vos_geo_server` to generate the service
+5. enter `y` for using the config directory in order to use `controllers.json` and `gs_top.keyspace` for generating
 6. enter `n` for generating a worker service (using workers is explained in a separate section)
 
-1. Create a new directory "**my_services/vos_geo_server**".
-2. **Copy** **controllers.json** and **gs_top.keyspace** from vos_backend/vangav_backend_templates/vos_geo_server/ to the directory vos_geo_server created in (1).
-3. Open a terminal session and **cd** to my_services/vos_backend/tools_bin.
-4. Execute the command **`java -jar backend_generator.jar new vos_geo_server`** to generate the Vangav Backend Service.
-5. Enter **`Y`** for using the config directory.
-6. Enter **`Y`** to generate an eclipse-compatible project.
-7. Enter **`N`** for generating a worker service. Using workers is explained in a separate section.
+### init the service's cassandra database
+1. `cd` to `my_services/vos_geo_server/cassandra/cql/`
+2. execute the command `./_start_cassandra.sh` to start cassandra
+3. `cd` to `my_services/vos_geo_server/cassandra/cql/drop_and_create/`
+4. execute the command `./_execute_cql.sh gs_top_dev.cql` to initialize the service's database tables
 
-### Init the service's cassandra database
-1. **cd** to my_services/vos_geo_server/cassandra/cql/
-2. execute the command **`./_start_cassandra.sh`** - to start cassandra
-3. **cd** to my_services/vos_geo_server/cassandra/cql/drop_and_create/
-4. execute the command **`./_execute_cql.sh gs_top_dev.cql`** to initialize the service's database tables.
+### init service's data
+1. `copy` the contents of the directory `my_services/vos_backend/data/geo/reverse_geo_coding/` to `my_services/vos_geo_server/conf/data/geo/reverse_geo_coding/`
 
-### Init service's data
-1. **copy** the contents of the directory my_services/vos_backend/data/geo/reverse_geo_coding/ to my_services/vos_geo_server/conf/data/geo/reverse_geo_coding/
-
-### Start the service
+### start the service
 1. **cd** to my_services/vos_geo_server
 2. execute the command **`./_run.sh`**
 
