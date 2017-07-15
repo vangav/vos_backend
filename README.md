@@ -101,7 +101,7 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 ```
 
 ### start the service
-1. `cd` to my_services/vos_calculate_sum
+1. `cd` to `my_services/vos_calculate_sum`
 2. execute the command `./_run.sh`
 
 ### try it out
@@ -210,7 +210,7 @@ based on vos_calculate_sum, the following steps show how to expand the service t
 ```
 
 ### start the service
-1. `cd` to my_services/calculator
+1. `cd` to `my_services/calculator`
 2. execute the command `./_run.sh`
 
 ### try it out
