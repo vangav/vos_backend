@@ -5,7 +5,7 @@ following is a brief explanantion for the contents of each of the vangav backend
 ### [apache-cassandra-2.1.2](https://github.com/vangav/vos_backend/tree/master/apache-cassandra-2.1.2)
 + this is the cassandra used by vangav backend
 + in dev mode, it's automatically used by all the services generated using vangav backend
-+ for prod mode, refer to the "deploy" tutorial
++ for prod mode, refer to the [deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md) tutorial
 
 ### [data](https://github.com/vangav/vos_backend/tree/master/data)
 + contains the data files needed for using some of the built-in utilities like reverse geo coding
