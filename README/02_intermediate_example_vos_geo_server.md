@@ -40,7 +40,7 @@ geo server is a service that takes a latitude/longitude request and returns the 
 + optionally for eclipse users: open eclipse and import vos_geo_server project
   + file **>** import **>** general **>** existing projects into workspace **>** next **>** set "select root directory" to my_services **>** under projects make sure that vos_geo_server is selected **>** finish
   + double check the java version used for compiling the project: right click the project **>** properties **>** java compiler **>** enable project specific settings **>** compiler compliance level **>** 1.7 or 1.8
-##### index initialization
+#### index initialization
 + under package `com.vangav.vos_geo_server` add a new package `[common](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/common)`
 + in the created package in the previous step add a new class [InitIndexInl](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/common/InitIndexInl.java) with the following implementation:
 ```java
@@ -80,7 +80,7 @@ public class InitIndexInl {
   }
 }
 ```
-##### load reverse geo coding data and initialize index on service start
+#### load reverse geo coding data and initialize index on service start
 + in [default_package/Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java) after the [following line](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L94)
 ```java
 Countries.loadTable();
@@ -90,7 +90,7 @@ add the [following lines](https://github.com/vangav/vos_geo_server/blob/master/a
 ReverseGeoCoding.load();
 InitIndexInl.initIndex();
 ```
-##### processing reverse geo coding
+#### processing reverse geo coding
 + open class [HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java), method [`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L96) should be as follows
 ```java
   @Override
@@ -127,7 +127,7 @@ InitIndexInl.initIndex();
       reverseGeoCode.getContinent() );
   }
 ```
-##### update top queried locations data in after-processing
+#### update top queried locations data in after-processing
 + then add the following [`method`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L130) in class [HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java)
 ```java
   @Override
@@ -163,7 +163,7 @@ InitIndexInl.initIndex();
       reverseGeoCode.getCountry() );
   }
 ```
-##### complete the top queried continents' response structure (nested json)
+#### complete the top queried continents' response structure (nested json)
 + under package [com.vangav.vos_geo_server.controllers.top_continents](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/controllers/top_continents) add class [ResponseTopContinent](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/response_json/ResponseTopContinent.java).java with the following code
 ```java
 package com.vangav.vos_geo_server.controllers.top_continents;
@@ -239,7 +239,7 @@ public class ResponseTopContinents extends ResponseBodyJson {
   }
 }
 ```
-##### processing top queried continents
+#### processing top queried continents
 + in class **[HandlerTopContinents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java)** method **[`processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/top_continents/HandlerTopContinents.java#L97)** should be as follows:
 ```java
   @Override
