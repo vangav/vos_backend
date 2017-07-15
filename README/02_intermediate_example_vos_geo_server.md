@@ -1,15 +1,22 @@
-# Intermediate Example (vos_geo_server)
+# [geo server](https://github.com/vangav/vos_geo_server)
 
-vos_geo_server is a service that takes a latitude/longitude request and returns the reverse geo code (continent, country, major city, city). It also keeps track of queried continents/countries to also provide lists of sorted top queried continents/countries.
+geo server is a service that takes a latitude/longitude request and returns the hash code and reverse geo code (continent, country, major city, city); it also keeps track of queried continents/countries to provide lists of sorted top queried continents, countries and major cities
 
-> Check out a finished version of this service at **https://github.com/vangav/vos_geo_server**
-
-### Init
-1. create a workspace directory "**my_services**" - this is the directory to contain both of vos_backend and all the services generated using it
-2. download this (**vos_backend.zip**) project inside the workspace directory and unzip it
+### init
+> skip this section if you already id it in [init](https://github.com/vangav/vos_backend#init) of the calculate sum example
+1. create a workspace directory `my_services` - this is the directory to contain both of vos_backend and all the services generated using it
+2. download this `vos_backend.zip` project (from the green `clone or download` button up there) inside the workspace directory created in (1) and unzip it
 3. **rename** downloaded vos_backend-master to vos_backend
 
-### Generate a new service
+### generate a new service
+
+1. create a new directory `my_services/vos_geo_server`
+2. copy `controllers.json` and `gs_top.keyspace`from `vos_backend/vangav_backend_templates/vos_geo_server/` to the directory `my_services/vos_geo_server` created in (1)
+3. open a terminal session and `cd` to `my_services/vos_backend/tools_bin`
+4. execute the command `java -jar backend_generator.jar new vos_calculate_sum` to generate the service
+5. enter `y` for using the config directory in order to use `controllers.json` for generating
+6. enter `n` for generating a worker service (using workers is explained in a separate section)
+
 1. Create a new directory "**my_services/vos_geo_server**".
 2. **Copy** **controllers.json** and **gs_top.keyspace** from vos_backend/vangav_backend_templates/vos_geo_server/ to the directory vos_geo_server created in (1).
 3. Open a terminal session and **cd** to my_services/vos_backend/tools_bin.
