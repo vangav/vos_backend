@@ -48,7 +48,7 @@ following is a brief explanantion for the contents of each of the vangav backend
 
 ### [prop](https://github.com/vangav/vos_backend/tree/master/prop)
 + holds all vangav backend's properties files
-+ generated services autoamtically get a copy of the properties necessary properties files depending on the project's config
++ generated services autoamtically get a copy of the necessary properties files depending on the project's config
 + optionally copy additional properties files to the generated service to use the corresponding utility
 + following is the explanation of each of the properties files, inside each properties file is a detailed explanation of exactly how to set/use each property
 
