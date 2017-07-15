@@ -1,6 +1,6 @@
 # [geo server](https://github.com/vangav/vos_geo_server)
 
-geo server is a service that takes a latitude/longitude request and returns the hash code and reverse geo code (continent, country, major city, city); it also keeps track of queried continents/countries to provide lists of sorted top queried continents, countries and major cities
+geo server is a service that takes a latitude/longitude request and returns the hash code and reverse geo code (continent, country, major city, city); it also keeps track of queried continents/countries to provide lists of sorted top queried continents and countries
 
 ### init
 > skip this section if you already did it in [init](https://github.com/vangav/vos_backend#init) of the calculate sum example
