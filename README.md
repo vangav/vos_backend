@@ -75,7 +75,7 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 ### generate a new service
 1. create a new directory `my_services/vos_calculate_sum`
 2. copy `controllers.json` from `vos_backend/vangav_backend_templates/vos_calculate_sum/` to the directory `vos_calculate_sum` created in (1)
-3. open a terminal session and `cd` to my_services/vos_backend/tools_bin
+3. open a terminal session and `cd` to `my_services/vos_backend/tools_bin`
 4. execute the command `java -jar backend_generator.jar new vos_calculate_sum` to generate the service
 5. enter `y` for using the config directory in order to use `controllers.json` for generating
 6. enter `n` for generating a worker service (using workers is explained in a separate section)
@@ -105,14 +105,121 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 2. execute the command `./_run.sh`
 
 ### try it out
-1. open an internet browser page and type [`http://localhost:9000/calculate_sum?a=1.2&b=2.3`](http://localhost:9000/calculate_sum?a=1.2&b=2.3) - this returns 3.5
+1. open an internet browser page and type [`http://localhost:9000/calculate_sum?a=1.2&b=2.3`](http://localhost:9000/calculate_sum?a=1.2&b=2.3) - this returns **3.5**
 2. play with `a` and `b` values in the request string in (1)
 3. try issuing an invalid request (e.g.: set `a` to "xyz", don't set `b`, ...) to get a sense of how the default error response looks like ([error responses](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md) are explained in depth in a separate section)
 
 ### stop the service
 in the terminal session where you started the service press `control + d`
 
-# next
+## expand "calculate sum" to "calculator"
+
+based on vos_calculate_sum, the following steps show how to expand the service to a more generic "calculator service"
+
+### generate a new service
+1. create a new directory `my_services/calculator`
+2. copy `controllers.json` from `vos_backend/vangav_backend_templates/vos_calculate_sum/` to the directory `calculator` created in (1)
+3. add as many features as desired by editing `my_services/calculator/controllers.json`; for example after adding a multiplication feature the `controllers` part of `my_services/calculator/controllers.json` will be as follows
+
+```json
+  "controllers": [
+
+    # CalculateSum
+    {
+      "is_preset": false,
+      "name": "CalculateSum",
+      "type": "GET",
+      "request_params": [
+        {
+          "name": "a",
+          "type": "FLOAT",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        },
+        {
+          "name": "b",
+          "type": "FLOAT",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        }
+      ],
+      "response_type": "JSON",
+      "response_params": [
+        {
+          "name": "c",
+          "type": "double",
+          "is_array": false
+        }
+      ]
+    },
+
+    # CalculateMultiplication
+    {
+      "is_preset": false,
+      "name": "CalculateMultiplication",
+      "type": "GET",
+      "request_params": [
+        {
+          "name": "a",
+          "type": "FLOAT",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        },
+        {
+          "name": "b",
+          "type": "FLOAT",
+          "is_array": false,
+          "optionality": "MANDATORY"
+        }
+      ],
+      "response_type": "JSON",
+      "response_params": [
+        {
+          "name": "c",
+          "type": "double",
+          "is_array": false
+        }
+      ]
+    }
+
+  ]
+```
+
+4. open a terminal session and `cd` to `my_services/vos_backend/tools_bin`
+5. execute the command `java -jar backend_generator.jar new calculator` to generate the service
+6. enter `y` for using the config directory in order to use `controllers.json` for generating
+7. enter `n` for generating a worker service (using workers is explained in a separate section)
+
+### writing the service's logic code
++ repeat all the steps in the **writing the service's logic code** section above then add to them the following steps to implement the multiplication feature's logic
++ open class `HandlerCalculateMultiplication.java` under package `com.vangav.vos_calculate_sum.controllers.calculate_multiplication`, method `processRequest` should be as follows in order to complete the request-to-response logic
+```java
+  @Override
+  protected void processRequest (final Request request) throws Exception {
+
+    // use the following request Object to process the request and set
+    //   the response to be returned
+    RequestCalculateMultiplication requestCalculateMultiplication =
+      (RequestCalculateMultiplication)request.getRequestJsonBody();
+    
+    // set response's value
+    ((ResponseCalculateMultiplication)request.getResponseBody() ).set(
+      requestCalculateMultiplication.a * requestCalculateMultiplication.b);
+  }
+```
+
+### start the service
+1. `cd` to my_services/calculator
+2. execute the command `./_run.sh`
+
+### try it out
+1. test sum: open an internet browser page and type [`http://localhost:9000/calculate_sum?a=1.2&b=2.3`](http://localhost:9000/calculate_sum?a=1.2&b=2.3) - this returns **3.5**
+2. test multiplication: open an internet browser page and type [`http://localhost:9000/calculate_multiplication?a=1.2&b=2.3`](http://localhost:9000/calculate_sum?a=1.2&b=2.3) - this returns **2.76**
+
+### stop the service
+in the terminal session where you started the service press `control + d`
+
+# next steps
 
 1. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
 2. [next example with database (vos_geo_server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
