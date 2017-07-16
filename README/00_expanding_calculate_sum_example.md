@@ -18,9 +18,7 @@ based on [calculate sum](https://github.com/vangav/vos_calculate_sum), the follo
     {
       "is_preset": false,
       "name": "CalculateSum",
-      .
-      .
-      .
+      ...
     },
 
     # CalculateMultiplication
