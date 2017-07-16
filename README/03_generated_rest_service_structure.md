@@ -1,5 +1,7 @@
 # generated service structure
 
+> ~10 min: this tutorial explains the building blocks a vangav backend generated service
+
 > this section uses the [geo server](https://github.com/vangav/vos_geo_server) example, yet it's the same structure for all services generated using vangav backend
 
 ### [scripts](https://github.com/vangav/vos_geo_server)
