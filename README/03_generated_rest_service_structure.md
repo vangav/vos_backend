@@ -80,7 +80,7 @@ cassandra updater is used after a service is generated to update the database; i
 
 #### - in prod mode (when reseting the database's data is "not" okay)
 
-steps 2, 3 and 10 should be reconsidered depending on the changes done to the database design
++ steps 2, 3 and 10 should be reconsidered depending on the changes done to the database design
 
 ### [lib](https://github.com/vangav/vos_geo_server/tree/master/lib)
 
