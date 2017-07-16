@@ -252,6 +252,7 @@ in this section we will get the same result from the [expand "calculate sum" to 
       requestCalculateMultiplication.a * requestCalculateMultiplication.b);
   }
 ```
+8. append the following line to the [`routes`](https://github.com/vangav/vos_calculate_sum/blob/master/conf/routes) conf file `GET   /calculate_multiplication                    com.vangav.vos_calculate_sum.controllers.calculate_multiplication.ControllerCalculateMultiplication.getCalculateMultiplication()`
 
 ### start the service
 1. `cd` to `my_services/calculator`
