@@ -116,7 +116,7 @@ in the terminal session where you started the service press `control + d`
 
 # next tutorials
 
-1. [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
+1. 5 min: [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
 2. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
 3. [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
 4. [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
