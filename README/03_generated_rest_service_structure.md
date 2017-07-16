@@ -94,6 +94,7 @@ cassandra updater is used after a service is generated to update the database; i
 + generator_config includes the files used to generate a vangav backend service
 + as explained above, [cassandra_updater](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md#cassandra_updater) relies on the `.keyspace` files under this directory to update the service's database
 + `controllers.json` file is kept for reference and for future functionalities utilizing it
++ `.client_java` files are also kept for reference and for future functionalities utilizing it, using `.client_java` config files in the next tutorial [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
 
 ### [public](https://github.com/vangav/vos_geo_server/tree/master/public)
 
