@@ -1,7 +1,7 @@
 
 ## expand "calculate sum" to "calculator"
 
-based on vos_calculate_sum, the following steps show how to expand the service to a more generic "calculator service"
+based on [calculate sum](https://github.com/vangav/vos_calculate_sum), the following steps show how to expand the service to a more generic "calculator service"
 
 ### generate a new service
 1. create a new directory `my_services/calculator`
