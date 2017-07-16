@@ -65,6 +65,9 @@
 
 # quick start example: [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
+> this tutorial explains how to generate and use the first vangav backend service
+> 5-10 min
+
 vos_calculate_sum is a service that takes a two floats (a and b) request and returns a double (c) response representing the summation of a and b
 
 ### init
