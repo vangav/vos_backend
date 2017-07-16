@@ -115,7 +115,7 @@ cassandra updater is used after a service is generated to update the database; i
 
 + each table's class like [Continents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java) has the following structure:
   + starts with a [block comment: 57-91](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L57) listing the table's structure and prepared statements
-  + [initialization block: 92-192](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L92) where the table and its prepared statements are initialized
+  + then an [initialization block: 92-192](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L92) where the table and its prepared statements are initialized
   + followed by five methods per-query as follows
   
   | query | explanantion |
