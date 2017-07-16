@@ -126,7 +126,7 @@ in the terminal session where you started the service press `control + d`
 
 ## expand "calculate sum" to "calculator" without regenerating the service
 
-in this section we will get the same result from the [expand "calculate sum" to "calculator"](https://github.com/vangav/vos_backend/blob/master/README.md#expand-calculate-sum-to-calculator) without regenerating the service; given the already generated [calculate sum](https://github.com/vangav/vos_calculate_sum) backend service, we will follow the following steps to add a multiplication feature
+in this section we will get the same result from the [expand "calculate sum" to "calculator"](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md#expand-calculate-sum-to-calculator) without regenerating the service; given the already generated [calculate sum](https://github.com/vangav/vos_calculate_sum) backend service, we will follow the following steps to add a multiplication feature
 
 1. under the package [`com/vangav/vos_calculate_sum/controllers/`](https://github.com/vangav/vos_calculate_sum/tree/master/app/com/vangav/vos_calculate_sum/controllers) we will make a copy of `calculate_sum` and call it `calculate_multiplication`
 2. inside `calculate_multiplication` we will do the following modifications
