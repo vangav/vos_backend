@@ -79,7 +79,24 @@ based on [calculate sum](https://github.com/vangav/vos_calculate_sum), the follo
 7. enter `n` for generating a worker service (using workers is explained in a separate section)
 
 ### writing the service's logic code
-+ repeat all the steps in the [writing the service's logic code](https://github.com/vangav/vos_backend/blob/master/README.md#writing-the-services-logic-code) section above then add to them the following steps to implement the multiplication feature's logic
++ optionally for eclipse users: open eclipse and import vos_calculate_sum project
+  + file **>** import **>** general **>** existing projects into workspace **>** next **>** set "select root directory" to my_services **>** under projects make sure that vos_calculate_sum is selected **>** finish
+  + double check the java version used for compiling the project: right click the project **>** properties **>** java compiler **>** enable project specific settings **>** compiler compliance level **>** 1.7 or 1.8
++ open class [HandlerCalculateSum.java](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java) under package `com.vangav.vos_calculate_sum.controllers.calculate_sum`, method [`processRequest`](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L86) should be as follows in order to complete the request-to-response logic
+```java
+  @Override
+  protected void processRequest (final Request request) throws Exception {
+
+    // use the following request Object to process the request and set
+    //   the response to be returned
+    RequestCalculateSum requestCalculateSum =
+      (RequestCalculateSum)request.getRequestJsonBody();
+    
+    // set response's value
+    ((ResponseCalculateSum)request.getResponseBody() ).set(
+      requestCalculateSum.a + requestCalculateSum.b);
+  }
+```
 + open class `HandlerCalculateMultiplication.java` under package `com.vangav.vos_calculate_sum.controllers.calculate_multiplication`, method `processRequest` should be as follows in order to complete the request-to-response logic
 ```java
   @Override
