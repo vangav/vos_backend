@@ -62,22 +62,25 @@ the following scripts are generated for every vangav backend service
   
 ### [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater)
 
-+ During the development of a new service as the database evolves, it's becomes complicated and expensive to continuously update all of:
-  + JAVA clients
-  + CQL scripts
-  + phriction-wiki
-+ To solve this problem [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater) is provided and can be used as follows:
-  1. open a terminal and **cd** to [vos_geo_server/generator_config/](https://github.com/vangav/vos_geo_server/tree/master/generator_config)
-  2. add/remove/edit .keyspace files as needed
-  3. **cd** to [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater)
-  4. execute the command **`java -jar cassandra_keyspaces_updater.jar`**
-  5. confirm by entering **`Y`**
-+ Check out [cassandra_updater_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/cassandra_updater/cassandra_updater_properties.prop) and only edit it if needed (usually never needed).
-+ More steps are sometimes needed depending on the changes done to the database configuration:
-  + Deleting a table(s)/keyspace(s). Either run the CQL drop script before executing `cassandra_keyspaces_updater.jar` (deletes all the data, good only for dev mode where reseting the data doesn't do any harm), or manually run the drop commands on these table(s)/keyspace(s) from CQL. If drop is used, then execute the `create_if_doesnot_exist` CQL scripts after executing `cassandra_keyspaces_updater.jar`.
-  + Adding table(s)/keyspace(s). Just execute the `create_if_doesnot_exist` CQL scripts after executing `cassandra_keyspaces_updater.jar`.
-  + Editing table's columns. Either execute the `drop_and_create` CQL scripts (deletes all the data, good only for dev mode where reseting the data doesn't do any harm), or manually run the CQL commands to specifically do these edits.
-  + Adding/removing/editing queries/description. No CQL needed, just execute `cassandra_keyspaces_updater.jar`.
+> [geo server](https://github.com/vangav/vos_geo_server) example is used for references in this section, but it's exactly the same steps for any vangav backend generated service
+
+cassandra updater is used after a service is generated to update the database; it updates the java clients, cql scripts and phriction-wiki
+
+#### - in dev mode (when reseting the database's data is okay)
+1. open a new terminal session
+2. `cd` to [`vos_geo_server/cassandra/cql/drop/`](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/drop)
+3. reset the database's data: execute `./_execute_cql.sh gs_top_dev.cql`; repeat for every `.cql` file
+4. `cd` to [`vos_geo_server/generator_config/`](https://github.com/vangav/vos_geo_server/tree/master/generator_config)
+5. add/remove/edit .keyspace files as needed
+6. `cd` to [`vos_geo_server/cassandra_updater`](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater)
+7. execute the command `java -jar cassandra_keyspaces_updater.jar`
+8. confirm by entering `y`
+9. `cd` to [`vos_geo_server/cassandra/cql/drop_and_create/`](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/drop_and_create)
+10. reinitialize the database: execute `./_execute_cql.sh gs_top_dev.cql`; repeat for every `.cql` file
+
+#### - in prod mode (when reseting the database's data is "not" okay)
+
+steps 2, 3 and 10 should be reconsidered depending on the changes done to the database design
 
 ### [lib](https://github.com/vangav/vos_geo_server/tree/master/lib)
 
