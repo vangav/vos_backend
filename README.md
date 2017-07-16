@@ -120,7 +120,7 @@ based on vos_calculate_sum, the following steps show how to expand the service t
 1. create a new directory `my_services/calculator`
 2. copy `controllers.json` from `vos_backend/vangav_backend_templates/vos_calculate_sum/` to the directory `my_services/calculator` created in (1)
 3. add as many features as desired by editing `my_services/calculator/controllers.json`; for example after adding a multiplication feature the `controllers` part of `my_services/calculator/controllers.json` will be as follows
-> note: in vangav backend, inline comments are supported in json files
+> note: in vangav backend, inline comments (lines starting with a `#`) are supported in json files
 
 ```json
   "controllers": [
