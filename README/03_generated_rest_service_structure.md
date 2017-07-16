@@ -49,16 +49,16 @@ the following scripts are generated for every vangav backend service
 ### [cassandra/phriction](https://github.com/vangav/vos_geo_server/tree/master/cassandra/phriction)
 
 + phriction is the wiki tool of [phabricator](https://secure.phabricator.com/book/phabricator/article/installation_guide/)
-+ this directory has a `keyspace_name.phriction` file per database's keyspace hace a phriction-styled documentation of the keyspace, paste the contents of these files into a phriction's page to have an up-to-date wiki for your database.
++ this directory has a `keyspace_name.phriction` file per database's keyspace with a phriction-styled documentation of the keyspace, paste the contents of these files into a phriction's page to have an up-to-date wiki for your database
 
 ### [cassandra/cql](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql)
 
-+ CQL (Cassandra Query Language) is the equivalent of SQL for Cassandra.
-+ Scripts [_start_cassandra.sh](https://github.com/vangav/vos_geo_server/blob/master/cassandra/cql/_start_cassandra.sh) and [_cassandra_status.sh](https://github.com/vangav/vos_geo_server/blob/master/cassandra/cql/_cassandra_status.sh) are used to start Cassandra and check its status respectively.
-+ In order to init/update/delete the database the scripts in each of the following directories are used. Cassandra has to be already running to be able to run these scripts. The **`_execute_cql.sh`** script in each of those directories takes the .cql file as an argument to execute it.
-  + [create_if_doesnot_exist](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/create_if_doesnot_exist) has script(s) per-keyspace to create the keyspace and its table(s) if they don't already exsist. Used primarily to update Cassandra on keyspace/table levels.
-  + [drop](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/drop) has script(s) per-keyspace to drop a keyspace and its tables. Used primarily to clear a dev machine after testing.
-  + [drop_and_create](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/drop_and_create) has script(s) per-keyspace to drop (if already exsists) and create the keyspace and its table(s). Used primarily to initialize the keyspaces and their tables, beware that it overwrites any keyspaces with the same name.
++ cql (cassandra query language) is the equivalent of sql for cassandra
++ scripts [_start_cassandra.sh](https://github.com/vangav/vos_geo_server/blob/master/cassandra/cql/_start_cassandra.sh) and [_cassandra_status.sh](https://github.com/vangav/vos_geo_server/blob/master/cassandra/cql/_cassandra_status.sh) are used to start Cassandra and check its status respectively
++ in order to init/update/delete the database the scripts in each of the following directories are used (cassandra has to be already running to be able to run these scripts); the `_execute_cql.sh` script in each of those directories takes the .cql file as an argument to execute it e.g.: `./_execute_cql.sh v_analytics_dev.cql`
+  + [create_if_doesnot_exist](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/create_if_doesnot_exist) has script(s) per-keyspace to create the keyspace and its table(s) if they don't already exsist
+  + [drop](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/drop) has script(s) per-keyspace to drop a keyspace and its tables; used primarily to clear a dev machine after testing
+  + [drop_and_create](https://github.com/vangav/vos_geo_server/tree/master/cassandra/cql/drop_and_create) has script(s) per-keyspace to drop (if already exsists) and create the keyspace and its table(s)
   
 ### [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater)
 
