@@ -1,6 +1,8 @@
 
 ## expand "calculate sum" to "calculator"
 
+> 5-10 min: this tutorial explains how to add new features to a service before and after generation
+
 based on [calculate sum](https://github.com/vangav/vos_calculate_sum), the following steps show how to expand the service to a more generic "calculator service"
 
 ### generate a new service
