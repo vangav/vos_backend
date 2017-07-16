@@ -103,27 +103,27 @@ cassandra updater is used after a service is generated to update the database; i
 ### [app](https://github.com/vangav/vos_geo_server/tree/master/app)
 
 + app is the directory containing all the services source code
-+ [Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java) extends play framework's GlobalSettings to override some functionalities like `beforeStart`, `onStart`, `onStop`, etc ...
-  + [`beforeStart`](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L76) is used by Vangav Backend to load properties, connect to cassandra and prepare cassandra's perpared statements.
-  + [`onStop`](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L127) is used by Vangav Backend to shutdown the thread pools and disconnect from cassandra
++ [Global.java](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java) extends play framework's `GlobalSettings` to override some functionalities that either run one time per service start/stop or on certain events like `beforeStart`, `onStart`, `onStop`, ...
+  + [`beforeStart`](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L76) is used by vangav backend to load properties, connect to cassandra and prepare cassandra's perpared statements; that's also where other functionalities like loading geo services data and similar operations should take place
+  + [`onStop`](https://github.com/vangav/vos_geo_server/blob/master/app/Global.java#L127) is used by vangav backend to shutdown the thread pools and disconnect from cassandra; that's also where free-resource operations should take place
 + [views](https://github.com/vangav/vos_geo_server/tree/master/app/views) is created by play framework to keep the service's html pages
-+ [controllers](https://github.com/vangav/vos_geo_server/tree/master/app/controllers) is created by play framework. Not used by Vangav Backend and to be left as is.
++ [controllers](https://github.com/vangav/vos_geo_server/tree/master/app/controllers) is created by play framework; not used by vangav backend and to be left as is
 
 ### [app/com/vangav/vos_geo_server/cassandra_keyspaces/](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/cassandra_keyspaces)
 
-+ This directory contains all the generated database clients for cassandra's tables, where each keyspace is represented by a directory and each keyspace's table is represented by a class.
++ this directory contains all the generated database clients for cassandra's tables, where each keyspace is represented by a directory and each keyspace's table is represented by a class
 
-+ Each table's class like [Continents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java) has the following structure:
-  + [Lines (57-91)](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L57): starts with a block comment listing the table's structure and prepared statements
-  + [Lines (92-192)](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L92): is used by Vangav Backend to initialize the table and prepare its prepared statements
-  + [Then](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L175) for each of the table's prepared statements the following five methods are provided
-    + [**`getQuery`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L207) returns the raw Query Object to use it however you like.
-    + [**`getQueryDispatchable`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L221) returns a dispatchable version of the query to be added to the service's worker dispatcher. e.g.: `request.getDispatcher().addDispatchMessage(getQueryDispatchable() );`.
-    + [**`getBoundStatement`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L238) returns a the query's BoundStatement. Usually used for:
-      1. Add it to a BatchStatement
-      2. Execute multiple BoundStatements synchronously since it's faster than executing those statements sequentially. Since internally all these statements get executed asynchronously.
-    + [**`executeAsync`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L253) executes the query asynchronously and returns a ResultSetFuture Object which holds the future result of executing the query.
-    + [**`executeSync`**](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L269) is a blocking method that executes the query synchronously then returns a ResultSet Object containing the result of executing the query.
++ each table's class like [Continents.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java) has the following structure:
+  + starts with a [block comment: 57-91](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L57) listing the table's structure and prepared statements
+  + [initialization block: 92-192]((https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L92)) where the table and its prepared statements are initialized
+  + followed by five methods per-query as follows
+  | query | explanantion |
+  | ----- | ------------ |
+  | [`getQuery`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L207) | returns the raw query object to be used in any way; useful in case the other four methods aren't serving the inteded functionality  |
+  | [`getQueryDispatchable`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L221) | returns a dispatchable version of the query to be added to the service's dispatcher and executed by the service's worker; e.g.: `request.getDispatcher().addDispatchMessage(Continents.i().getQueryDispatchablexxx() );` |
+  | [`getBoundStatement`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L238) | returns the query's [`BoundStatement`](http://docs.datastax.com/en/drivers/java/2.1/com/datastax/driver/core/BoundStatement.html) which can be then added to a [`BatchStatement`](http://docs.datastax.com/en/drivers/java/2.1/com/datastax/driver/core/BatchStatement.html) or store few of them in an array and execute them using [`executeSync`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/Cassandra.java#L390) method since it will execute them asynchronously internally faster than executing them synchronously one by one |
+  | [`executeAsync`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L253) | executes the query asynchronously and returns a [`ResultSetFuture`](http://docs.datastax.com/en/drivers/java/2.1/com/datastax/driver/core/ResultSetFuture.html) object which holds the future result of executing the query |
+  | [`executeSync`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L269) | is a blocking method that executes the query synchronously then returns a [`ResultSet`](http://docs.datastax.com/en/latest-java-driver-api/com/datastax/driver/core/ResultSet.html) object containing the result of executing the query |
     
 ### [app/com/vangav/vos_geo_server/controllers/](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/controllers)
 
