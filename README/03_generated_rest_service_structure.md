@@ -84,14 +84,16 @@ cassandra updater is used after a service is generated to update the database; i
 
 ### [lib](https://github.com/vangav/vos_geo_server/tree/master/lib)
 
-+ lib contains the jar files on which a Vangav Backend's service depends. Initially Vangav Backend's generators adds all the jars initially needed for the service to work properly.
-+ For some of the built-in utilities (e.g.: [email clients](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks), [push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications), etc ...) more libraries need to be added to your project's dependencies; those libraries can be found at https://github.com/vangav/vos_backend/tree/master/lib
++ conatins all the third-party libs used by vangav backend
++ all the necessary libs are automatically copied to generated services
++ the optional use of some utilities (e.g.: email. twilio, ...) require manually copying a lib or more to your generated service's lib directory
++ refer to the lib section of the [project's contents tutorial](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md#lib) for detailed information
 
 ### [generator_config](https://github.com/vangav/vos_geo_server/tree/master/generator_config)
 
-+ generator_config includes the files used to generate this Vangav Backend Service
-+ as explained above, cassandra_updater relies on the .keyspace files to update the service's database
-+ controllers.json file is currently just for reference
++ generator_config includes the files used to generate a vangav backend service
++ as explained above, [cassandra_updater](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md#cassandra_updater) relies on the `.keyspace` files under this directory to update the service's database
++ `controllers.json` file is kept for reference and for future functionalities utilizing it
 
 ### [public](https://github.com/vangav/vos_geo_server/tree/master/public)
 
