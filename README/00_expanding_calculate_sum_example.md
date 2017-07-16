@@ -18,29 +18,9 @@ based on [calculate sum](https://github.com/vangav/vos_calculate_sum), the follo
     {
       "is_preset": false,
       "name": "CalculateSum",
-      "type": "GET",
-      "request_params": [
-        {
-          "name": "a",
-          "type": "FLOAT",
-          "is_array": false,
-          "optionality": "MANDATORY"
-        },
-        {
-          "name": "b",
-          "type": "FLOAT",
-          "is_array": false,
-          "optionality": "MANDATORY"
-        }
-      ],
-      "response_type": "JSON",
-      "response_params": [
-        {
-          "name": "c",
-          "type": "double",
-          "is_array": false
-        }
-      ]
+      .
+      .
+      .
     },
 
     # CalculateMultiplication
