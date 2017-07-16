@@ -1,5 +1,7 @@
 # [geo server](https://github.com/vangav/vos_geo_server)
 
+> 15-20 min: this tutorial explains how to generate a next level service (compared to calculate sum); including database, using utilities and data
+
 geo server is a service that takes a latitude/longitude request and returns the hash code and reverse geo code (continent, country, major city, city); it also keeps track of queried continents/countries to provide lists of sorted top queried continents and countries
 
 ### init
