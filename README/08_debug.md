@@ -1,8 +1,8 @@
-# Debugging
+# debugging
 
-1. Execute the [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) script. From a terminal session execute **`./_debug.sh`**.
-2. In eclipse: right-click the project > Debug As > Debug Configurations... > double-click 'Remote Java Application' > change the port number to `9999` > Ok.
-3. Add the needed break-points in the code.
-4. In the terminal session where you started the debugger execute **`run`**.
-5. From the browser/client send the problematic request; that will trigger your first break point and you go from there.
-6. To stop the service from the terminal execute **`control + d`**, then execute **`exit`** to stop the debugger.
+1. execute the [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) script; in a terminal session execute `./_debug.sh`
+2. in eclipse: right-click the project **>** debug as **>** debug configurations... **>** double-click 'remote java application' **>** change the port number to `9999` **>** ok
+3. add the needed break-points in the code
+4. in the terminal session where you started the debugger execute `run` to run on port 9000 or `run different_port_number` 
+5. from the browser/client send the problematic request that will trigger your first break point and you go from there
+6. to stop the service from the terminal press `control + d`, then execute `exit` to stop the debugger
