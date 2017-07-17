@@ -136,7 +136,7 @@ cassandra updater is used after a service is generated to update the database; i
 
 | step | explanantion |
 | ---- | ------------ |
-| [`checkSource`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L62) | is used to check the requests source. e.g.: if the service only accepts requests from mobile clients, a set of mac addresses, ... |
+| [`checkSource`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L62) | is used to check the request's source; e.g.: if the service only accepts requests from mobile clients, a set of mac addresses, ... |
 | [`throttle`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L69) | is used to track and prevent spammy behavior |
 | [`authenticateRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L76) | is used to authenticate a request using the built-in oauth2, facebook login, google login, ... |
 | [`afterProcessing`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L83) | override this method per-controller-handler to do further processing after a request's response is sent back to the client; e.g.: use it for a blocking operation like push notifications which doesn't impact the service's core functionality in case of failure and shouldn't delay sending back the request's response |
