@@ -72,16 +72,16 @@
 | [`analysis`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L55) | [`dispatchAnalysis` and `dispatchDefaultAnalysis`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L104) | is used to switch on/off doing analysis |
 | [`logging`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L56) | [`dispatchLogging` and `dispatchDefaultLogging`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L118) | is used to switch on/off doing logging |
 
-+ Followed by [`controllers`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L58) array where each elements defines one of the service's controllers (entry points).
++ followed by [`controllers`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L58) array where each element defines one of the service's controllers (api entry points)
 
-| element | definition |
+| element | explanation |
 | ------- | ---------- |
-| [`is_preset`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L62) | keep it false, not currently in use. needed for a coming feature that allows adding predefined controllers including logic/database/etc ... (e.g.: user management controllers - login/logout/reset/deactivate/...) |
+| [`is_preset`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L62) | keep it false, not currently in use; needed for a coming feature that allows adding predefined controllers including logic/database/... (e.g.: user management controllers - login/logout/reset/deactivate/...) |
 | [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L63) | controller's name, recommended to be in CamelCase |
-| [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L64) | set it to `GET` or `POST` |
-| [`request_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L65) | optionally add request's params to this array|
-| [`response_type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L79) | set it to `JSON`, `FILE` or `HTML` |
-| [`response_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L80) | optionally add response's params in case of a `JSON` response_type |
+| [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L64) | set it to `GET` or `POST` depending on the desired http request type |
+| [`request_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L65) | optionally add request's params to this array, more on to setting this part below |
+| [`response_type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L79) | set it to `JSON`, `FILE` or `HTML` depending on the desired response type |
+| [`response_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L80) | optionally add response's params in case of a `JSON` response_type to this array, more on to setting this part below |
 
   + Each element in [`request_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L65) has [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L67) (recomended to be lowerCamelCase), [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L68) which defines how a param should be validated, [`is_array`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L69) to define if this is an array param or not (arrays in GET requests are comma ',' separated) and [`optionality`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L70) which can either be `MANDATORY` or `OPTIONAL`. The following table lists possible param types from [ParamType.java](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java) and describes how each of them is validated. Any param that's null or empty is invalid regardless of its type.
   
