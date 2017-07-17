@@ -167,7 +167,7 @@ cassandra updater is used after a service is generated to update the database; i
 + following are the steps followed to generate and use a vangav mighty solution in vangav backend; learn more about vangav mighty -> http://vangav.com/
 
 1. under [`vos_instagram_jobs/vangav_m/solutions`](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions) add/remove/edit `.mlang` solution files
-2. `cd` to `vos_instagram_jobs/vangav_m`
+2. `cd` to [`vos_instagram_jobs/vangav_m`](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m)
 3. execute `java -jar vangav_m_json_client.jar`; this updates all vangav mighty solutions and link them in the service's build
 4. import [`vangav_m.vangavmpostsrank.VangavMPostsRank;`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L56) one or more of the generated solutions in the source file where a vangav mighty solution will be used
 5. create a new instance [`new VangavMPostsRank();`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L236) or use the solutions singleton instance `VangavMPostsRank.i()`
