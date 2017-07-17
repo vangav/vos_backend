@@ -116,17 +116,17 @@ in the terminal session where you started the service press `control + d`
 
 # next tutorials
 
-1. [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
-2. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
-3. [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
-4. [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
-5. [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
-6. [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
-7. [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
-8. [usingd dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
-9. [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
-10. [deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
-11. [error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
+### 1. [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
+### 2. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
+### 3. [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
+### 4. [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
+### 5. [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
+### 6. [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
+### 7. [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
+### 8. [usingd dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
+### 9. [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
+### 10. [deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
+### 11. [error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
 
 # other readme index
 
