@@ -18,6 +18,9 @@ following is a brief explanantion for the contents of each of the vangav backend
 + the jar above is automatically included with all generated services
 + alternatively one case use it as a lib for any java project
 
+### [doc](https://github.com/vangav/vos_backend/tree/master/doc)
++ contains the java docs for vangav backend's source code
+
 ### [lib](https://github.com/vangav/vos_backend/tree/master/lib)
 + conatins all the third-party libs used by vangav backend
 + all the necessary libs are automatically copied to generated services
