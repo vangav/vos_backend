@@ -1,8 +1,20 @@
 # service generator config structure
 
-When using Vangav Backend to generate a REST service, adding config files is optional but highly recommended as it saves the majority of the cost needed to implement the REST service. Config consists of one mandatory **[controllers.json](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json)** file and zero-to-many database config files **[keyspace_name.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace)** (one file per database keyspace).
+> 10-15 min: this tutorial explains the config structure used to generate a vangav backend
 
-+ All config files have a **JSON** structure, however in Vangav Backend JSON supports inline comments. A comment line is any lines starting with zero or more spaces followed by a #. **[Comment Example](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L2)**
++ using a config directory is optional but highly recommended when generating a new vangav backend as it save more than 90% of the time needed to implement the backend's code
++ a config directory (named after the new backend service) contains:
+  + a mandatory [controllers.json](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json) even if it has no api controllers in it as it defines the service's genera strucutre in its first block as explained below
+  + zero-to-many `.client_java` (e.g.: [vos_instagram_dash_board.client_java](https://github.com/vangav/vos_instagram_test/blob/master/generator_config/vos_instagram_dash_board.client_java)) files to generate as many clients as needed; these files are identical to the `controllers.json` files in structure where the first block defining the executing sequence isn't needed
+  + zero-to-many `.keyspace` (e.g.: [keyspace_name.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace)) files where each one defines a database's keyspace
++ all config files have a `json` structure where [inline comments](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L2) (lines starting with `#`) are allowed
+
+
+
+
+
+
+
 
 ### [controllers.json](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json) structure
 
