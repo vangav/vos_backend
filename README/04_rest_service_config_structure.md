@@ -94,7 +94,7 @@
 
 + the following table lists possible [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L68) values from [ParamType.java](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java), and how each type gets validated; any param with a null/emptu value is invalid regardless of its type
 
-> this is a good section to bookmark to help pick request param types on configuring a new vangav backend service
+> this is a good section to bookmark to help pick request param types when configuring a new vangav backend service
   
   | type | validation method | validation |
   | ---- | ----------------- | ---------- |
