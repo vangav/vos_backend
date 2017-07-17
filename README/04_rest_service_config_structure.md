@@ -77,7 +77,7 @@
 | element | explanation |
 | ------- | ----------- |
 | [`is_preset`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L62) | keep it false, not currently in use; needed for a coming feature that allows adding predefined controllers including logic/database/... (e.g.: user management controllers - login/logout/reset/deactivate/...) |
-| [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L63) | controller's name, recommended to be in CamelCase |
+| [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L63) | controller's name, recommended to be in `CamelCase` |
 | [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L64) | set it to `GET` or `POST` depending on the desired http request type |
 | [`request_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L65) | optionally add request's params to this array, more on to setting this part below |
 | [`response_type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L79) | set it to `JSON`, `FILE` or `HTML` depending on the desired response type |
@@ -87,7 +87,7 @@
 
 | element | explanation |
 | ------- | ----------- |
-| [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L67) | request param's name (recomended to be lowerCamelCase) |
+| [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L67) | request param's name (recomended to be `lowerCamelCase`) |
 | [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L68) | defines how a request param should be validated, more on this in the next section |
 | [`is_array`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L69) | `true` or `false` to define if this is an array param; in `GET` requests arrays are `,` separated (e.g.: url.com/get_colors?fruits=apple,orange,mango |
 | [`optionality`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L70) | `MANDATORY` or `OPTIONAL`; invalid `MANDATORY` params automatically result in a 400 BAD_REQUEST response and invalid `OPTIONAL` params are tracked and can be check using the request's [`isValidParam`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java#L224) method |
@@ -136,7 +136,13 @@
   | [`TRACKING_ID`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java#L107) | [`validateTrackingId`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamValidatorInl.java#L1056) | length smaller than or equal to 200; usage example: the server side adds it in the response as it came in the request for an async client to track which response matches which request |
   | [`NO_VALIDATION_TYPE`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java#L112) |  | always valid - use with caution :)) |
   
-  + Each element in [`response_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L80) has [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L82) (recomended to be lowerCamelCase), [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L83) which defines the primitive type of a response param as one of (`short`, `int`, `long`, `float`, `double`, `String`), [`is_array`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L84) to define if this is an array param or not.
+  each element in [`response_params`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L80) has the following sub-elements
+  
+  | element | explanantion |
+  | ------- | ------------ |
+  | [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L82) | response param's name (recomended to be `lowerCamelCase`) |
+  | [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L83) | defines the primitive type of a response param as one of (`boolean`, `short`, `int`, `long`, `float`, `double`, `String`) |
+  | [`is_array`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L84) | `true` or `false` to define if this is an array param |
   
 ### [gs_top.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace) structure
 
