@@ -146,7 +146,7 @@
   
 ### [gs_top.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace) structure
 
-+ Here's an empty template for gs_top.keyspace
++ here's an empty template for a `.keyspace` config file
 
 ```json
 {
@@ -189,19 +189,19 @@
 }
 ```
 
-+ Each keyspace_name.keyspace config file is structured as follows:
-  + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L46): descripes the purpose of this keyspace. Shows in generated Java clients comment blocks and generated phriction-wiki.
-  + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L47): keyspace's name.
-  + [`replications`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L48): is an array of replication methods for this keyspace (e.g.: one replication method for dev with one replica and another for prod with two replicas). CQL scripts (create, drop, ...) are generated per-keyspace per-replication-method. Each replication element is structured as follows:
-    + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L50): descripes the purpose of this replication method (e.g.: for dev, for prod, etc ...). Shows in generated Java clients comment blocks and generated phriction-wiki.
-    + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L51): to identify a replication method and becomes part of the CQL script's file name.
-    + [`replication`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L52): a valid Cassandra replication method (use ' instead of " to avoid confusion with JSON's ").
-  + [`tables`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L55): is an array of the keyspace's tables. Each table element is structured as follows:
-    + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L59): descripts the purpose of this table. Shows in generated Java clients comment blocks and generated phriction-wiki.
-    + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L60): table's name.
-    + [`columns`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L61): is an array defining the table's columns. Each colum element is structured as follows:
-      + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L63): column's name.
-      + [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L64): column's type. Detailed list of possible types can be found [**here**](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/cql_data_types_c.html). Here's a list of possible column types:
++ each `keyspace_name.keyspace` config file is structured as follows:
+  + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L46): descripes the purpose of this keyspace; shows in generated java clients comment blocks and generated phriction-wiki
+  + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L47): keyspace's name
+  + [`replications`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L48): is an array of replication methods for this keyspace (e.g.: one replication method for dev with one replica and another for prod with two replicas); cql scripts (create, drop, ...) are generated per-keyspace per-replication-method - each replication element is structured as follows:
+    + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L50): descripes the purpose of this replication method (e.g.: for dev, for prod, etc ...); shows in generated java clients comment blocks and generated phriction-wiki
+    + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L51): to identify a replication method and becomes part of the cql script's file name
+    + [`replication`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L52): a valid cassandra replication method (use ' instead of " to avoid confusion with json's ").
+  + [`tables`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L55): is an array of the keyspace's tables; each table element is structured as follows:
+    + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L59): descripts the purpose of this table; shows in generated java clients comment blocks and generated phriction-wiki
+    + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L60): table's name
+    + [`columns`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L61): is an array defining the table's columns; each colum element is structured as follows:
+      + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L63): column's name
+      + [`type`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L64): column's type; detailed list of possible types can be found [here](http://docs.datastax.com/en/cql/3.1/cql/cql_reference/cql_data_types_c.html) - here's a list of possible column types:
         + ascii
         + bigint
         + blob
@@ -223,13 +223,13 @@
         + uuid
         + varchar
         + varint
-    + [`partition_keys`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L71): is a String array of the table's partition key(s) (from column names).
-    + [`secondary_keys`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L74): is a String array of the table's secondary key(s) (from column names).
-    + [`caching`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L76): defines the table's caching as `ALL`, `KEYS_ONLY` or `NONE`.
-    + [`order_by`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L77): optinally defines how the table should be ordered.
-    + [`queries`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L79): is an array of the queries (prepared statements) to be used on this table. Each query element is structured as follows:
-      + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L81): describes the purpose of this prepared statement. Shows in generated Java clients comment blocks and generated phriction-wiki.
-      + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L82): used to identify a query per-table and becomes part of the methods' names for this query ([`getQueryInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L231), [`getQueryDispatchableInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L245), [`getBoundStatementInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L262), [`executeAsyncInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L277), [`executeSyncInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L293)).
-      + [`prepared_statement`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L83): is the actual query's prepared statement. When writing a prepared statement beware to:
+    + [`partition_keys`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L71): is a string array of the table's partition key(s) (from column names)
+    + [`secondary_keys`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L74): is a string array of the table's secondary key(s) (from column names)
+    + [`caching`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L76): defines the table's caching as `ALL`, `KEYS_ONLY` or `NONE`
+    + [`order_by`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L77): optionally defines how the table should be ordered
+    + [`queries`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L79): is an array of the queries (prepared statements) to be used on this table; each query element is structured as follows:
+      + [`description`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L81): describes the purpose of this prepared statement; shows in generated java clients comment blocks and generated phriction-wiki
+      + [`name`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L82): used to identify a query per-table and becomes part of the methods' names for this query ([`getQueryInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L231), [`getQueryDispatchableInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L245), [`getBoundStatementInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L262), [`executeAsyncInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L277), [`executeSyncInsert`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/NameIndex.java#L293))
+      + [`prepared_statement`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L83): is the actual query's prepared statement; when writing a prepared statement **beware** to:
         + write keyspace_name.table_name in the query and not only the table_name
         + define the statements variables using `:variable_name` instead of `?`
