@@ -123,7 +123,7 @@ in the terminal session where you started the service press `control + d`
 ### 5. [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
 ### 6. [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
 ### 7. [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
-### 8. [usingd dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
+### 8. [using dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
 ### 9. [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
 ### 10. [deploy](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
 ### 11. [error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
