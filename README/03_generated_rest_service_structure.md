@@ -132,7 +132,7 @@ cassandra updater is used after a service is generated to update the database; i
 
 + [CommonPlayHandler.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java) is the parent class for all the controllers' handlers (e.g.: [HandlerReverseGeoCode.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java)) where the request-to-response logic is implemented
 
-+ in vagav backend processing a request goes through sequential-optional steps; to enable one or more of these steps, they must be set to true in [request_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/conf/prop/request_properties.prop) as explained above; [CommonPlayHandler.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java) class provides the ability to implement/override those sequential-optional steps in `CommonPlayHandler.java` or per-controller (e.g.: `HandlerReverseGeoCode.java`) as follows:
++ in vagav backend processing a request goes through sequential-optional steps; to enable one or more of these steps, they must be set to true in [request_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/conf/prop/request_properties.prop); [CommonPlayHandler.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java) class provides the ability to implement/override those sequential-optional steps in `CommonPlayHandler.java` or per-controller (e.g.: `HandlerReverseGeoCode.java`) as follows:
 
 | step | explanantion |
 | ---- | ------------ |
