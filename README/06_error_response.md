@@ -44,3 +44,6 @@ throw new CodeException(
     + "]",
   ExceptionClass.PROPERTIES);
 ```
+
+## next tutorial -> [using dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
+> shows why and how to us the dispatcher with one or more worker service(s)
