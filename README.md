@@ -137,7 +137,7 @@ in the terminal session where you started the service press `control + d`
 ### 10. [deploy on a production server](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
 + once your service is ready for release, this tutorial has the step-by-step process till your service is up and running on a production server - as well as how to scale it up
 ### 11. [vangav backend error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
-+ vangav backend detects various types of errors (e.g.: invalid request param, invalid generator config, wrong utility method arguments, unauthorized third-party authentication, invalid vangav mighty solution, ...); this tutorial lists all of vangav backend's error codes/sub-codes with reference to the lines of code production them for ease of tracing if you get one
++ vangav backend detects various types of errors (e.g.: invalid request param, invalid generator config, wrong utility method arguments, unauthorized third-party authentication, invalid vangav mighty solution, ...); this tutorial lists all of vangav backend's error codes/sub-codes with reference to the code producing them for ease of tracing if you get one
 
 # other readme index
 
