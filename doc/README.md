@@ -1,3 +1,2 @@
 # doc
-
-+ This directory contains the JAVA docs for Vangav Backend project.
++ contains the java docs for vangav backend's source code
