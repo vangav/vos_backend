@@ -103,3 +103,5 @@ following is a brief explanantion for the contents of each of the vangav backend
 | [instagram dash board](https://github.com/vangav/vos_instagram_dash_board) |  | handles fetching analytics like members demographics, counts, activity, ... |
 | [instagram test](https://github.com/vangav/vos_instagram_test) |  | used to test all the instagram services above end to end and maintains a session log for each test run including success/failure info as well as request-to-response times |
 | [instagram bots](https://github.com/vangav/vos_instagram_bots) |  | will be deployed on vangav servers at a later stage to simulate elevating usage of the instagram services above for a year or more |
+
+# next tutorial -> [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
