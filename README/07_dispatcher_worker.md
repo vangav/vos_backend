@@ -39,3 +39,9 @@
     + add as many dispatch messages as needed to the request's dispatcher and all these messages gets automatically dispatched to the worker(s) at the end of the request's processing
 4. make sure to start the worker service (using its `_run.sh` script) before starting the primary service
 5. you don't need to write a single line of code in the worker - it just works :)); just double check that every thing is correct in its properties files
+
+# exercise
+> when would you use a worker service?
+
+## next tutorial -> [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
+> explains how to start and use the debugger
