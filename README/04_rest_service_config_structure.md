@@ -59,6 +59,8 @@
 
 + followed by a set of booleans (check_source ... logging) whose values go into the generated [request_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/conf/prop/request_properties.prop); for each received request, [ParentPlayHandler.java](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java) checks each value to decide what to execute and what to skip
 
+> whenever in doubt, set to true; that will make it easier to expand the service as time goes on
+
 | boolean | code ref | explanation |
 | ------- | -------- | ---------- |
 | [`check_source`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json#L47) | [`checkSource`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/CommonPlayHandler.java#L62) | is used to turn on/off checking requests' source; e.g.: if the service only accepts requests from mobile clients, a set of mac addresses, ... |
