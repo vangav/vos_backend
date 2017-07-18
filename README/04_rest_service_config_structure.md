@@ -235,3 +235,10 @@
       + [`prepared_statement`](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace#L83): is the actual query's prepared statement; when writing a prepared statement **beware** to:
         + write keyspace_name.table_name in the query and not only the table_name
         + define the statements variables using `:variable_name` instead of `?`
+        
+# exercise
++ what's a `.client_java` config file?
++ what's the difference between `after_response` and `after_processing`?
+
+## next tutorial -> [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
+> when implementing a service's logic, the passed request object keeps all the request's information from start to finish; this tutorial shows how to use that object
