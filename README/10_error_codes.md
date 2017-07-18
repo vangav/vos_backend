@@ -217,12 +217,12 @@
 | 211 | 1 | vangav mighty client built-in in vangav backend supports JAVA_JAR solutions' type only. Refer for other clients on [vangav](www.vangav.com) for clients that support other languages |
 | 211 | 2 | can't have duplicate multi-range-input prefix |
 | 211 | 3 | duplicate input name |
-| 211 | 4 | input's range is too narrow |
+| 211 | 4 | input's range is too narrow; min-to-max min-range = 0.02 and min-to-mid/mid-to-max min-ranges = 0.01 |
 | 211 | 5 | multi-range-inputs have no corresponding input-names |
 | 211 | 6 | finite input doesn't belong to solution's inputs |
 | 211 | 7 | can't have duplicate multi-range-output prefix |
 | 211 | 8 | duplicate output name |
-| 211 | 9 | output's range is too narrow |
+| 211 | 9 | output's range is too narrow; min-to-max min-range = 0.02 and min-to-mid/mid-to-max min-ranges = 0.01 |
 | 211 | 10 | multi-range-outputs have no corresponding output-names |
 | 211 | 11 | relation's input name doesn't belong to the solution's inputs |
 | 211 | 12 | relation's output name doesn't belong to the solution's outputs |
