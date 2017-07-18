@@ -3,7 +3,7 @@
 + skip cassandra/cql-related steps in case the service to be deployed doesn't use cassandra
 
 ### initializing the server
-1. recommended operating system is [ubuntu server 16.04 lts](https://www.ubuntu.com/server); alternatively any ubuntu server lts version or another unix os version should suffice
+1. recommended operating system is [ubuntu server 16.04 LTS](https://www.ubuntu.com/server); alternatively any ubuntu server lts version or another unix os version should suffice
 2. install java 8 on the server; follow the following steps for ubuntu
     + check if java is already installed: `java -version`, if that prints `1.8.xx` skip this step (2)
     + `sudo apt-get update`
