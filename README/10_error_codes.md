@@ -5,7 +5,8 @@
 + when the service is running, these codes along with the exception class/type, message, stack trace and trace id are returned in an [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md) json object
 
 + [code 0](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/exceptions/VangavException.java#L189) is the default `VangavException` code (e.g.: when a thrown exception isn't given a code)
-+ [code -1](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyError.java#L86) is the default `ResponseBodyError` code (e.g.: when sending back error_code is set to `false` in [response_error_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/response_error_properties.prop#L69)).
++ [code -1](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyError.java#L86) is the default `ResponseBodyError` code (e.g.: when sending back error_code is set to `false` in [response_error_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/response_error_properties.prop#L69))
++ [code -2](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ErrorResponse.java#L86) is the default `ErrorResonse` code that comes from a vangav backend generated client
 
 > codes up to **299** are reserved for use by vangav backend, use codes **300** and up for your service's exceptions
 
@@ -13,6 +14,7 @@
 
 | code | package |
 | ---- | ------- |
+| 11 | [backend_client_java](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java) |
 | 21 | [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra) |
 | 22 | [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression) |
 | 23 | [content](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content) |
@@ -39,6 +41,18 @@
 
 | pkg/class | code : sub_code | explanation |
 | ---- | -------- | ----------- |
+| **pkg: [backend_client_java](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java)** | | |
+| [ClientsVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/clients_generator/ClientsVerifierInl.java) | | |
+| | 11 : 1 | can't have more than one controller with the same name |
+| | 11 : 2 | can't have more than one request param with the same name within one controller |
+| | 11 : 3 | can't have more than one response param with the same name within one controller |
+| | 11 : 4 | can't have more than one error response with the same name |
+| | 11 : 5 | an error response must have at least one http status code |
+| | 11 : 6 | an error response http status codes can't have a value of 200 |
+| | 11 : 7 | a single http status code is owned by more than one error response |
+| | 11 : 8 | an error response can't have more than one response param with the same name |
+| [ParamType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/param/ParamType.java) | | |
+| | 11 : 9 | unknown ParamType |
 | **pkg: [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)** | | |
 | [Cassandra](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/Cassandra.java) | | |
 | | 21 : 1 | couldn't prepare prepared statement |
