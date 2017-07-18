@@ -152,4 +152,4 @@ in the terminal session where you started the service press `control + d`
 # exercise
 > expand this service to a fully fledged calculator service
 
-# next tutorial: [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
+# next tutorial -> [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
