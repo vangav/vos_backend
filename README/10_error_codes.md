@@ -37,97 +37,97 @@
 
 + each exception (error) thrown by vangav backend has a code and a sub-code as follows:
 
-| code | sub-code | explanation |
+| pkg/class | code : sub-code | explanation |
 | ---- | -------- | ----------- |
-| **[cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)** | | |
-| | [Cassandra](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/Cassandra.java) | |
-| 21 | 1 | couldn't prepare prepared statement |
-| 21 | 2 | couldn't execute query statement |
-| | [CassandraProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/CassandraProperties.java) | |
-| 21 | 3 | invalid multi-deployment topology |
-| 21 | 4 | invalid deployment mode |
-| | [CassandraVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/CassandraVerifierInl.java) | |
-| 21 | 5 | can't have more than one keyspace with the same name |
-| 21 | 6 | a keyspace must have at least one replication method |
-| 21 | 7 | can't have more than one table with the same name |
-| 21 | 8 | duplicate column-name within one table |
-| 21 | 9 | a table's partition key must be one of its columns |
-| 21 | 10 | a table's compound partition-keys can't have duplicate columns |
-| 21 | 11 | a table's secondary key must be one of its columns |
-| 21 | 12 | a table's compound secondary-keys can't have duplicate columns |
-| **[compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)** | | |
-| | [LempelZivWelchInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/LempelZivWelchInl.java) | |
-| 22 | 1 | invalid compression |
-| **[content](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content)** | | |
-| | [CassandraCqlVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CassandraCqlVerifierInl.java) | |
-| 23 | 1 | a cql name must have a length between 1 and 32 (inclusive) |
-| 23 | 2 | a cql name must start with a letter or an underscore |
-| 23 | 3 | a cql name can consist only of letters, digits and underscores |
-| | [JavaCodeVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/JavaCodeVerifierInl.java) | |
-| 23 | 4 | a java identifier must start with a letter or an underscore |
-| 23 | 5 | a java identifier can consist only of letters, digits and underscores |
-| 23 | 6 | a java individual package name must start with a letter or an underscore |
-| 23 | 7 | a java package name/path can consist only of letters, digits and underscores |
-| | [StringVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/StringVerifierInl.java) | |
-| 23 | 8 | null string isn't one of the valid values |
-| 23 | 9 | string isn't one of the valid values |
-| 23 | 10 | string isn't one of the enum values |
-| **[dispatcher](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher)** | | |
-| | [Dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java) | |
-| 32 | 1 | property workers_topology isn't defined in the dispatcher_properties.prop file |
-| **[exceptions](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/exceptions)** | | |
-| | [ArgumentsInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/exceptions/handlers/ArgumentsInl.java) | |
-| 41 | 1 | wrong class type |
-| 41 | 2 | object can't be null |
-| 41 | 3 | string can't be empty |
-| 41 | 4 | object array can't be empty |
-| 41 | 5 | short array can't be empty |
-| 41 | 6 | int array can't be empty |
-| 41 | 7 | long array can't be empty |
-| 41 | 8 | float array can't be empty |
-| 41 | 9 | double array can't be empty |
-| 41 | 10 | generic collection can't be empty |
-| 41 | 11 | generic map can't be empty |
-| 41 | 12 | int can't be out of range |
-| 41 | 13 | int can't be less than minimum limit |
-| 41 | 14 | long can't be less than minimum limit |
-| 41 | 15 | double can't be NaN or infinite |
-| 41 | 16 | invalid ip-v4 |
-| **[geo](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo)** | | |
-| | [EarthConstantsInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/EarthConstantsInl.java) | |
-| 61 | 1 | can't initialize earth's latitude range |
-| 61 | 2 | can't initialize earth's longitude range |
-| | [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) | |
-| 61 | 3 | can't get distance between two GeoGrid objects with different configuration |
-| 61 | 4 | can't get center-distance between two GeoGrid objects with different configuration |
-| 61 | 5 | can't get the line segment connecting two GeoGrid objects with different configuration |
-| 61 | 6 | can't get surrounding grids for an invalid grid |
-| | [GeoGridsConfig](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java) | |
-| 61 | 7 | grid dimension, map width and map length must all have the same unit |
-| 61 | 8 | grid dimension can't be greater than the map's width or length |
-| 61 | 9 | invalid latitude range |
-| 61 | 10 | invalid longitude range |
-| 61 | 11 | latitude gaps can't be smaller than 1 |
-| 61 | 12 | longitude gaps can't be smaller than 1 |
-| **[ids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/ids)** | | |
-| | [SequentialIds](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SequentialIds.java) | |
-| 81 | 1 | can't generate more than 100 million new ids within one second |
-| | [SnowFlake](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SnowFlake.java) | |
-| 81 | 2 | machineId can't be greater than maxMachineId |
-| 81 | 3 | can't generate a new id because the clock moved backwards which would result in an out of sequence id |
-| **[images](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/images)** | | |
-| | [Image](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/images/Image.java) | |
-| 82 | 1 | can't apply features, segment the image first |
-| **[math](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)** | | |
-| | [NumbersInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/NumbersInl.java) | |
-| 121 | 1 | the number of digits in the input long exceeds the length of the output string |
-| | [Range](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/Range.java) | |
-| 121 | 2 | a range's max can't be smaller than its min |
-| **[metrics](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/metrics)** | | |
-| | [Distance](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/Distance.java) | |
-| 122 | 1 | invalid: subtracting double value from distance will lead to a negative distance |
-| 122 | 2 | invalid: subtracting two distance objects will lead to a negative distance |
-| | [DistanceConversionFactorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/DistanceConversionFactorInl.java) | |
+| **pkg: [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)** | | |
+| [Cassandra](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/Cassandra.java) | | |
+| | 21 : 1 | couldn't prepare prepared statement |
+| | 21 : 2 | couldn't execute query statement |
+| [CassandraProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/CassandraProperties.java) | | |
+| | 21 : 3 | invalid multi-deployment topology |
+| | 21 : 4 | invalid deployment mode |
+| [CassandraVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/CassandraVerifierInl.java) | | |
+| | 21 : 5 | can't have more than one keyspace with the same name |
+| | 21 : 6 | a keyspace must have at least one replication method |
+| | 21 : 7 | can't have more than one table with the same name |
+| | 21 : 8 | duplicate column-name within one table |
+| | 21 : 9 | a table's partition key must be one of its columns |
+| | 21 : 10 | a table's compound partition-keys can't have duplicate columns |
+| | 21 : 11 | a table's secondary key must be one of its columns |
+| | 21 : 12 | a table's compound secondary-keys can't have duplicate columns |
+| **pkg: [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)** | | |
+| [LempelZivWelchInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/LempelZivWelchInl.java) | | |
+| | 21 : 1 | invalid compression |
+| **pkg: [content](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content)** | | |
+| [CassandraCqlVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CassandraCqlVerifierInl.java) | | |
+| | 23 : 1 | a cql name must have a length between 1 and 32 (inclusive) |
+| | 23 : 2 | a cql name must start with a letter or an underscore |
+| | 23 : 3 | a cql name can consist only of letters, digits and underscores |
+| [JavaCodeVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/JavaCodeVerifierInl.java) | | |
+| | 23 : 4 | a java identifier must start with a letter or an underscore |
+| | 23 : 5 | a java identifier can consist only of letters, digits and underscores |
+| | 23 : 6 | a java individual package name must start with a letter or an underscore |
+| | 23 : 7 | a java package name/path can consist only of letters, digits and underscores |
+| [StringVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/StringVerifierInl.java) | | |
+| | 23 : 8 | null string isn't one of the valid values |
+| | 23 : 9 | string isn't one of the valid values |
+| | 23 : 10 | string isn't one of the enum values |
+| **pkg: [dispatcher](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher)** | | |
+| [Dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java) | | |
+| | 32 : 1 | property workers_topology isn't defined in the dispatcher_properties.prop file |
+| **pkg: [exceptions](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/exceptions)** | | |
+| [ArgumentsInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/exceptions/handlers/ArgumentsInl.java) | | |
+| | 41 : 1 | wrong class type |
+| | 41 : 2 | object can't be null |
+| | 41 : 3 | string can't be empty |
+| | 41 : 4 | object array can't be empty |
+| | 41 : 5 | short array can't be empty |
+| | 41 : 6 | int array can't be empty |
+| | 41 : 7 | long array can't be empty |
+| | 41 : 8 | float array can't be empty |
+| | 41 : 9 | double array can't be empty |
+| | 41 : 10 | generic collection can't be empty |
+| | 41 : 11 | generic map can't be empty |
+| | 41 : 12 | int can't be out of range |
+| | 41 : 13 | int can't be less than minimum limit |
+| | 41 : 14 | long can't be less than minimum limit |
+| | 41 : 15 | double can't be NaN or infinite |
+| | 41 : 16 | invalid ip-v4 |
+| **pkg: [geo](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo)** | | |
+| [EarthConstantsInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/EarthConstantsInl.java) | | |
+| | 61 : 1 | can't initialize earth's latitude range |
+| | 61 : 2 | can't initialize earth's longitude range |
+| [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) | | |
+| | 61 : 3 | can't get distance between two GeoGrid objects with different configuration |
+| | 61 : 4 | can't get center-distance between two GeoGrid objects with different configuration |
+| | 61 : 5 | can't get the line segment connecting two GeoGrid objects with different configuration |
+| | 61 : 6 | can't get surrounding grids for an invalid grid |
+| [GeoGridsConfig](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java) | | |
+| | 61 : 7 | grid dimension, map width and map length must all have the same unit |
+| | 61 : 8 | grid dimension can't be greater than the map's width or length |
+| | 61 : 9 | invalid latitude range |
+| | 61 : 10 | invalid longitude range |
+| | 61 : 11 | latitude gaps can't be smaller than 1 |
+| | 61 : 12 | longitude gaps can't be smaller than 1 |
+| **pkg: [ids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/ids)** | | |
+| [SequentialIds](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SequentialIds.java) | | |
+| | 81 : 1 | can't generate more than 100 million new ids within one second |
+| [SnowFlake](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SnowFlake.java) | | |
+| | 81 : 2 | machineId can't be greater than maxMachineId |
+| | 81 : 3 | can't generate a new id because the clock moved backwards which would result in an out of sequence id |
+| **pkg: [images](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/images)** | | |
+| [Image](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/images/Image.java) | | |
+| | 82 : 1 | can't apply features, segment the image first |
+| **pkg: [math](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)** | | |
+| [NumbersInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/NumbersInl.java) | | |
+| | 121 : 1 | the number of digits in the input long exceeds the length of the output string |
+| [Range](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/Range.java) | | |
+| | 121 : 2 | a range's max can't be smaller than its min |
+| **pkg: [metrics](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/metrics)** | | |
+| [Distance](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/Distance.java) | | |
+| | 122 : 1 | invalid: subtracting double value from distance will lead to a negative distance |
+| | 122 : 2 | invalid: subtracting two distance objects will lead to a negative distance |
+| [DistanceConversionFactorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/DistanceConversionFactorInl.java) | | 
 | 122 | 3 | invalid enum DistanceUnitType |
 | 122 | 4 | invalid enum DistanceUnitType, no conversion factor |
 | | [Period](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/time/Period.java) | |
