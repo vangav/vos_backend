@@ -154,8 +154,8 @@
 | | 151 : 6 | unhandled ParamType |
 | | 151 : 7 | invalid param |
 | [RequestJsonBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java) | | |
-| 151 | 8 | unhandled request type |
-| | [RequestJsonBodyGet](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBodyGet.java) | |
+| | 151 : 8 | unhandled request type |
+| [RequestJsonBodyGet](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBodyGet.java) | | |
 | | 151 : 9 | invalid call for fromJsonString |
 | | 151 : 10 | unhandled primitive type |
 | [RequestJsonBodyPost](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBodyPost.java) | | |
