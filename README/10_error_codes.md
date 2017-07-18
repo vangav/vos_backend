@@ -213,7 +213,7 @@
 | | [PasswordHashingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/cryptography/PasswordHashingInl.java) | |
 | 181 | 11 | invalid sha algorithm type |
 | **[vangav_m](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)** | | |
-| | [VangavMSolutionJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/vangav_m/json_client/VangavMJsonClientMain.java) | |
+| | [VangavMSolutionJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/vangav_m/json_client/json/VangavMSolutionJson.java) | |
 | 211 | 1 | vangav mighty client built-in in vangav backend supports JAVA_JAR solutions' type only. Refer for other clients on [vangav](www.vangav.com) for clients that support other languages |
 | 211 | 2 | can't have duplicate multi-range-input prefix |
 | 211 | 3 | duplicate input name |
