@@ -1,5 +1,5 @@
 
-## expand "calculate sum" to "calculator"
+# expand "calculate sum" to "calculator"
 
 > 5-10 min: this tutorial explains how to add new features to a service before and after generation
 
@@ -104,7 +104,7 @@ based on [calculate sum](https://github.com/vangav/vos_calculate_sum), the follo
 ### stop the service
 in the terminal session where you started the service press `control + d`
 
-## expand "calculate sum" to "calculator" without regenerating the service
+# expand "calculate sum" to "calculator" without regenerating the service
 
 in this section we will get the same result from the [expand "calculate sum" to "calculator"](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md#expand-calculate-sum-to-calculator) without regenerating the service; given the already generated [calculate sum](https://github.com/vangav/vos_calculate_sum) backend service, we will follow the following steps to add a multiplication feature
 
@@ -148,3 +148,8 @@ in this section we will get the same result from the [expand "calculate sum" to 
 
 ### stop the service
 in the terminal session where you started the service press `control + d`
+
+# exercise
+> expand this service to a fully fledged calculator service
+
+# next tutorial: [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
