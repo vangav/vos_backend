@@ -33,17 +33,36 @@
 5. make a copy of [`apache-cassandra-2.1.2`](https://github.com/vangav/vos_backend/tree/master/apache-cassandra-2.1.2) on your local machine and **make sure** that it's clear of data by deleting the `data` and `logs` directories inside it
 6. compress the cassandra copied in (5) to `apache-cassandra-2.1.2.zip`
 7. copy cassandra from (6) to the server's vos_backend directory created in (4): `scp apache-cassandra-2.1.2.zip your_username@you_server_ip_or_domain_name:/path/to/vos_backend`
-8. start cassandra on the server `cd ~/my_services/vos_backend/` **->** `unzip apache-cassandra-2.1.2.zip` **->** `cd apache-cassandra-2.1.2/bin` **->** `./cassandra`
+8. start cassandra on the server:
+    + `cd ~/my_services/vos_backend/`
+    + `unzip apache-cassandra-2.1.2.zip`
+    + `cd apache-cassandra-2.1.2/bin`
+    + `./cassandra`
 
 ### deploy a vangav backend service
 
-1. on the server `cd ~/my_services` **->** `mkdir my_service_name` e.g.: `mkdir vos_geo_server`; the created directory will hold the service's binaries and cql scripts
-2. copy the service's cassandra directory (e.g.: [cassandra](https://github.com/vangav/vos_geo_server/tree/master/cassandra)) into the directory created in (1) in order to have the service's cql scripts on the server; e.g.: `scp vos_geo_server/cassandra.zip your_username@you_server_ip_or_domain_name:/path/to/my_services/vos_geo_server`
-3. decompress on the server, e.g.: `cd ~/my_services/vos_geo_server` **->** `unzip cassandra.zip`
-4. on the server `cd ~/my_services/vos_geo_server/cassandra/cql/drop_and_create/` **->** `./_execute_cql.sh gs_top_dev.cql` to initialize the service's database **note: only do this step once per-service per-server**
-5. on your local dev machine `cd path_to_my_service` **->** `./_dist.sh` to create a production executable under `my_service_name/target/universal/my_service_name-1.0-SNAPSHOT.zip`
-6. copy the executable created in (5) to the server `scp my_service_name/target/universal/my_service_name-1.0-SNAPSHOT.zip your_username@you_server_ip_or_domain_name:/path/to/my_services/my_service_name`; then unzip it on the server `cd ~/my_services/my_service_name` **->** `unzip my_service_name-1.0-SNAPSHOT.zip`
-7. start the service; go to the executable unzipped in (6) `cd my_service_name-1.0-SNAPSHOT` then execute `./bin/my_service_name -Dhttp.port=9000 &`, change the `9000` port number to the desired port number
+1. on the server: create a directory that will hold the service's binaries and cql scripts
+    + `cd ~/my_services`
+    + `mkdir my_service_name` e.g.: `mkdir vos_geo_server`
+2. copy the service's cassandra directory (e.g.: [cassandra](https://github.com/vangav/vos_geo_server/tree/master/cassandra)) into the directory created in (1) in order to have the service's cql scripts on the server e.g.:
+    + `scp vos_geo_server/cassandra.zip your_username@you_server_ip_or_domain_name:/path/to/my_services/vos_geo_server`
+3. decompress on the server, e.g.:
+    + `cd ~/my_services/vos_geo_server`
+    + `unzip cassandra.zip`
+4. initialize the service's database on the server **note: only do this step once per-service per-server**
+    + `cd ~/my_services/vos_geo_server/cassandra/cql/drop_and_create/`
+    + `./_execute_cql.sh gs_top_dev.cql`
+5. create a production executable on the local dev machine under `my_service_name/target/universal/my_service_name-1.0-SNAPSHOT.zip`
+    + `cd path_to_my_service`
+    + `./_dist.sh`
+6. copy the executable created in (5) to the server
+    +`scp my_service_name/target/universal/my_service_name-1.0-SNAPSHOT.zip your_username@you_server_ip_or_domain_name:/path/to/my_services/my_service_name`
+    + then unzip it on the server
+    + `cd ~/my_services/my_service_name`
+    + `unzip my_service_name-1.0-SNAPSHOT.zip`
+7. start the service
+    + go to the executable unzipped in (6) `cd my_service_name-1.0-SNAPSHOT`
+    + then execute `./bin/my_service_name -Dhttp.port=9000 &`, change the `9000` port number to the desired port number
 8. configure the web-server installed earlier to forward incoming traffic to your service's port number; e.g.: forward port `80` traffic coming on `my_service_name.com` domain to port `9000`
 9. open an internet browser on your dev machine and test your service (or use an extension like postman on google chrome)
 
