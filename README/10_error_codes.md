@@ -127,107 +127,107 @@
 | [Distance](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/Distance.java) | | |
 | | 122 : 1 | invalid: subtracting double value from distance will lead to a negative distance |
 | | 122 : 2 | invalid: subtracting two distance objects will lead to a negative distance |
-| [DistanceConversionFactorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/DistanceConversionFactorInl.java) | | 
-| 122 | 3 | invalid enum DistanceUnitType |
-| 122 | 4 | invalid enum DistanceUnitType, no conversion factor |
-| | [Period](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/time/Period.java) | |
-| 122 | 5 | a period can't have a negative value |
-| 122 | 6 | can't set a period with a negative value |
-| 122 | 7 | invalid: subtracting double from period will lead to a negative period |
-| 122 | 8 | invalid: subtracting two periods will lead to a negative period |
-| | [TimeConversionFactorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/time/TimeConversionFactorInl.java) | |
-| 122 | 9 | invalid enum TimeUnitType |
-| 122 | 10 | invalid enum TimeUnitType, no conversion factor |
-| **[networks](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)** | | |
-| | [JavaEmailSenderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmailSenderInl.java) | |
-| 131 | 1 | unknown ssl type |
-| **[play_framework](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework)** | | |
-| | [ControllersVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersVerifierInl.java) | |
-| 151 | 1 | can't have more than one controller with the same name |
-| 151 | 2 | a controller can't have more than one request param with the same name |
-| 151 | 3 | a controller can't have more than one response param with the same name |
-| | [ParamParsersInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamParsersInl.java) | |
-| 151 | 4 | date doesn't follow any of the supported formats |
-| | [ParamType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java) | |
-| 151 | 5 | unhandled ParamType |
-| | [ParamValidatorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamValidatorInl.java) | |
-| 151 | 6 | unhandled ParamType |
-| 151 | 7 | invalid param |
-| | [RequestJsonBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java) | |
+| [DistanceConversionFactorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/distance/DistanceConversionFactorInl.java) | | |
+| | 122 : 3 | invalid enum DistanceUnitType |
+| | 122 : 4 | invalid enum DistanceUnitType, no conversion factor |
+| [Period](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/time/Period.java) | | |
+| | 122 : 5 | a period can't have a negative value |
+| | 122 : 6 | can't set a period with a negative value |
+| | 122 : 7 | invalid: subtracting double from period will lead to a negative period |
+| | 122 : 8 | invalid: subtracting two periods will lead to a negative period |
+| [TimeConversionFactorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/metrics/time/TimeConversionFactorInl.java) | | |
+| | 122 : 9 | invalid enum TimeUnitType |
+| | 122 : 10 | invalid enum TimeUnitType, no conversion factor |
+| **pkg: [networks](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)** | | |
+| [JavaEmailSenderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmailSenderInl.java) | | |
+| | 131 : 1 | unknown ssl type |
+| **pkg: [play_framework](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework)** | | |
+| [ControllersVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersVerifierInl.java) | | |
+| | 151 : 1 | can't have more than one controller with the same name |
+| | 151 : 2 | a controller can't have more than one request param with the same name |
+| | 151 : 3 | a controller can't have more than one response param with the same name |
+| [ParamParsersInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamParsersInl.java) | | |
+| | 151 : 4 | date doesn't follow any of the supported formats |
+| [ParamType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java) | | |
+| | 151 : 5 | unhandled ParamType |
+| [ParamValidatorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamValidatorInl.java) | | |
+| | 151 : 6 | unhandled ParamType |
+| | 151 : 7 | invalid param |
+| [RequestJsonBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java) | | |
 | 151 | 8 | unhandled request type |
 | | [RequestJsonBodyGet](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBodyGet.java) | |
-| 151 | 9 | invalid call for fromJsonString |
-| 151 | 10 | unhandled primitive type |
-| | [RequestJsonBodyPost](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBodyPost.java) | |
-| 151 | 11 | invalid call for fromQueryString |
-| | [ResponseBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBody.java) | |
-| 151 | 12 | unhandled ResponseBody type |
-| **[properties](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/properties)** | | |
-| | [PropertiesLoader](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/properties/PropertiesLoader.java) | |
-| 152 | 1 | missing properties-file's value |
-| **[public_apis](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis)** | | |
-| | [Car2GoApi](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/Car2GoApi.java) | |
-| 153 | 1 | invalid EdgeType |
-| 153 | 2 | invalid EdgeType |
-| 153 | 3 | invalid request-tracking-id |
-| 153 | 4 | unhandled RequestType |
-| | [LocationType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/LocationType.java) | |
-| 153 | 5 | invalid LocationType |
-| | [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java) | |
-| 153 | 6 | wrong facebook access token |
-| 153 | 7 | facebook Graph API returned 400 BAD_REQUEST |
-| 153 | 8 | invalid request-tracking-id |
-| 153 | 9 | couldn't get user's profile picture, async |
-| 153 | 10 | couldn't get user's profile picture, sync |
-| 153 | 11 | unhandled RequestType for getting user's profile picture |
-| 153 | 12 | invalid request-tracking-id |
-| 153 | 13 | unhandled RequestType for getting user's pictures |
-| 153 | 14 | invalid request-tracking-id |
-| 153 | 15 | unhandled RequestType for get-fields |
-| 153 | 16 | invalid request-tracking-id |
-| 153 | 17 | unhandled RequestType for get-edges |
-| | [FacebookGraphApiFieldType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiFieldType.java) | |
-| 153 | 18 | unhandled field type |
-| | [FacebookGraphApiEdgeType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/FacebookGraphApiEdgeType.java) | |
-| 153 | 19 | unhandled edge type |
-| **[push_notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications)** | | |
-| | [AndroidNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotificationSender.java) | |
-| 154 | 1 | singleton instance can't be used because the values in android_notification_properties.prop aren't defined |
-| | [AppleNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/AppleNotificationSender.java) | |
-| 154 | 2 | invalid ClientType |
-| 154 | 3 | singleton instance can't be used because the values in apple_notification_properties.prop aren't defined |
-| **[security](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** | | |
-| | [FacebookAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java) | |
-| 181 | 1 | error while communicating with Facebook Graph API. Didn't return 200 HTTP_OK. |
-| 181 | 2 | facebook-auth returned null app id |
-| 181 | 3 | facebook-auth returned different app id |
-| 181 | 4 | error while communicating with facebook graph api |
-| | [GoogleAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/google/GoogleAuthInl.java) | |
-| 181 | 5 | error while communicating with Google API. Got 500 INTERNAL_ERROR. |
-| 181 | 6 | invalid google-id-token |
-| 181 | 7 | google-auth return null app id |
-| 181 | 8 | google-auth returned different app id |
-| 181 | 9 | error while communicating with google api |
-| | [TransactionTokensGeneratorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/transaction_tokens/TransactionTokensGeneratorInl.java) | |
-| 181 | 10 | unhandled TokenType |
-| | [PasswordHashingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/cryptography/PasswordHashingInl.java) | |
-| 181 | 11 | invalid sha algorithm type |
-| **[vangav_m](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)** | | |
-| | [VangavMSolutionJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/vangav_m/json_client/json/VangavMSolutionJson.java) | |
-| 211 | 1 | vangav mighty client built-in in vangav backend supports JAVA_JAR solutions' type only. Refer for other clients on [vangav](www.vangav.com) for clients that support other languages |
-| 211 | 2 | can't have duplicate multi-range-input prefix |
-| 211 | 3 | duplicate input name |
-| 211 | 4 | input's range is too narrow; min-to-max min-range = 0.02 and min-to-mid/mid-to-max min-ranges = 0.01 |
-| 211 | 5 | multi-range-inputs have no corresponding input-names |
-| 211 | 6 | finite input doesn't belong to solution's inputs |
-| 211 | 7 | can't have duplicate multi-range-output prefix |
-| 211 | 8 | duplicate output name |
-| 211 | 9 | output's range is too narrow; min-to-max min-range = 0.02 and min-to-mid/mid-to-max min-ranges = 0.01 |
-| 211 | 10 | multi-range-outputs have no corresponding output-names |
-| 211 | 11 | relation's input name doesn't belong to the solution's inputs |
-| 211 | 12 | relation's output name doesn't belong to the solution's outputs |
-| 211 | 13 | relation's relative-weight is greater than the maximum possible value |
-| 211 | 14 | relative relation's input doesn't belong to the solution's inputs |
-| 211 | 15 | a relative relation can't have the same key for max_output and min_output |
-| 211 | 16 | relative relation's max_output doesn't belong to any of the solution's outputs |
-| 211 | 17 | relative relation's min_output doesn't belong to any of the solution's outputs |
+| | 151 : 9 | invalid call for fromJsonString |
+| | 151 : 10 | unhandled primitive type |
+| [RequestJsonBodyPost](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBodyPost.java) | | |
+| | 151 : 11 | invalid call for fromQueryString |
+| [ResponseBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBody.java) | | |
+| | 151 : 12 | unhandled ResponseBody type |
+| **pkg: [properties](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/properties)** | | |
+| [PropertiesLoader](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/properties/PropertiesLoader.java) | | |
+| | 152 : 1 | missing properties-file's value |
+| **pkg: [public_apis](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis)** | | |
+| [Car2GoApi](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/Car2GoApi.java) | | |
+| | 153 : 1 | invalid EdgeType |
+| | 153 : 2 | invalid EdgeType |
+| | 153 : 3 | invalid request-tracking-id |
+| | 153 : 4 | unhandled RequestType |
+| [LocationType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/LocationType.java) | | |
+| | 153 : 5 | invalid LocationType |
+| [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java) | | |
+| | 153 : 6 | wrong facebook access token |
+| | 153 : 7 | facebook Graph API returned 400 BAD_REQUEST |
+| | 153 : 8 | invalid request-tracking-id |
+| | 153 : 9 | couldn't get user's profile picture, async |
+| | 153 : 10 | couldn't get user's profile picture, sync |
+| | 153 : 11 | unhandled RequestType for getting user's profile picture |
+| | 153 : 12 | invalid request-tracking-id |
+| | 153 : 13 | unhandled RequestType for getting user's pictures |
+| | 153 : 14 | invalid request-tracking-id |
+| | 153 : 15 | unhandled RequestType for get-fields |
+| | 153 : 16 | invalid request-tracking-id |
+| | 153 : 17 | unhandled RequestType for get-edges |
+| [FacebookGraphApiFieldType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiFieldType.java) | | |
+| | 153 : 18 | unhandled field type |
+| [FacebookGraphApiEdgeType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/FacebookGraphApiEdgeType.java) | | |
+| | 153 : 19 | unhandled edge type |
+| **pkg: [push_notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications)** | | |
+| [AndroidNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotificationSender.java) | | |
+| | 154 : 1 | singleton instance can't be used because the values in android_notification_properties.prop aren't defined |
+| [AppleNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/AppleNotificationSender.java) | | |
+| | 154 : 2 | invalid ClientType |
+| | 154 : 3 | singleton instance can't be used because the values in apple_notification_properties.prop aren't defined |
+| **pkg: [security](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)** | | |
+| [FacebookAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java) | | |
+| | 181 : 1 | error while communicating with Facebook Graph API. Didn't return 200 HTTP_OK. |
+| | 181 : 2 | facebook-auth returned null app id |
+| | 181 : 3 | facebook-auth returned different app id |
+| | 181 : 4 | error while communicating with facebook graph api |
+| [GoogleAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/google/GoogleAuthInl.java) | | |
+| | 181 : 5 | error while communicating with Google API. Got 500 INTERNAL_ERROR. |
+| | 181 : 6 | invalid google-id-token |
+| | 181 : 7 | google-auth return null app id |
+| | 181 : 8 | google-auth returned different app id |
+| | 181 : 9 | error while communicating with google api |
+| [TransactionTokensGeneratorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/transaction_tokens/TransactionTokensGeneratorInl.java) | | |
+| | 181 : 10 | unhandled TokenType |
+| [PasswordHashingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/cryptography/PasswordHashingInl.java) | | |
+| | 181 : 11 | invalid sha algorithm type |
+| **pkg: [vangav_m](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)** | | |
+| [VangavMSolutionJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/vangav_m/json_client/json/VangavMSolutionJson.java) | | |
+| | 211 : 1 | vangav mighty client built-in in vangav backend supports JAVA_JAR solutions' type only. Refer for other clients on [vangav](www.vangav.com) for clients that support other languages |
+| | 211 : 2 | can't have duplicate multi-range-input prefix |
+| | 211 : 3 | duplicate input name |
+| | 211 : 4 | input's range is too narrow; min-to-max min-range = 0.02 and min-to-mid/mid-to-max min-ranges = 0.01 |
+| | 211 : 5 | multi-range-inputs have no corresponding input-names |
+| | 211 : 6 | finite input doesn't belong to solution's inputs |
+| | 211 : 7 | can't have duplicate multi-range-output prefix |
+| | 211 : 8 | duplicate output name |
+| | 211 : 9 | output's range is too narrow; min-to-max min-range = 0.02 and min-to-mid/mid-to-max min-ranges = 0.01 |
+| | 211 : 10 | multi-range-outputs have no corresponding output-names |
+| | 211 : 11 | relation's input name doesn't belong to the solution's inputs |
+| | 211 : 12 | relation's output name doesn't belong to the solution's outputs |
+| | 211 : 13 | relation's relative-weight is greater than the maximum possible value |
+| | 211 : 14 | relative relation's input doesn't belong to the solution's inputs |
+| | 211 : 15 | a relative relation can't have the same key for max_output and min_output |
+| | 211 : 16 | relative relation's max_output doesn't belong to any of the solution's outputs |
+| | 211 : 17 | relative relation's min_output doesn't belong to any of the solution's outputs |
