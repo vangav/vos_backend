@@ -114,19 +114,30 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 ### stop the service
 in the terminal session where you started the service press `control + d`
 
-# next tutorials
+# vangav backend tutorials
 
 ### 1. [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
++ shows how to add controllers (api entry points) before and after service generation
 ### 2. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
++ explains the building blocks of vangav backend
 ### 3. [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
++ generates a service that has a backend database and also uses the geo services utility
 ### 4. [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
++ explains the building blocks of a generated service
 ### 5. [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
++ explains the building blocks of the config used to generate a service
 ### 6. [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
++ when implementing a service's logic, the passed request object keeps all the request's information from start to finish; this tutorial shows how to use that object
 ### 7. [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
++ explains what happens whenever an error happens during request processing and how to manually return various types of error response
 ### 8. [using dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
++ shows why and how to us the dispatcher with one or more worker service(s)
 ### 9. [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
++ explains how to start and use the debugger
 ### 10. [deploy on a production server](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
-### 11. [error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
++ once your service is ready for release, this tutorial has the step-by-step process till your service is up and running on a production server - as well as how to scale it up
+### 11. [vangav backend error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
++ vangav backend detects various types of errors (e.g.: invalid request param, invalid generator config, wrong utility method arguments, third-party authentication, invalid vangav mighty solution, ...); this tutorial lists all of vangav backend's error codes/sub-codes with reference to the lines of code production them for ease of tracing if you get one
 
 # other readme index
 
