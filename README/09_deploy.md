@@ -1,6 +1,6 @@
 # deploy on a production server
 
-+ skip cassandra/cql-related steps in case the service to be deployed doesn't use cassandra
+> skip cassandra/cql-related steps in case the service to be deployed doesn't use cassandra
 
 ### initializing the server
 1. recommended operating system is [ubuntu server 16.04 LTS](https://www.ubuntu.com/server); alternatively any ubuntu server LTS (long term support) version or another unix os version should suffice
@@ -35,13 +35,20 @@
 7. copy cassandra from (6) to the server's vos_backend directory created in (4): `scp apache-cassandra-2.1.2.zip your_username@you_server_ip_or_domain_name:/path/to/vos_backend`
 8. start cassandra on the server `cd ~/my_services/vos_backend/` **->** `unzip apache-cassandra-2.1.2.zip` **->** `cd apache-cassandra-2.1.2/bin` **->** `./cassandra`
 
-### Per-service deployment
-5. Under **`my_services`** (created in (1)) make a new empty directory called **`my_service_name`** to hold the services binaries and CQL scripts.
-6. **`scp [cassandra](https://github.com/vangav/vos_geo_server/tree/master/cassandra)`** into the **`my_services/my_service_name`** (created in (5)) in order to have the service's CQL scripts on the server.
-7. From the **`cassandra`** directory copied in (6) run the needed script(s) to initialize/update the service's database. As explained in the [vos_geo_server](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md#init-the-services-cassandra-database) example.
-8. Execute the [_dist.sh](https://github.com/vangav/vos_geo_server/blob/master/_dist.sh) script. From a terminal session execute **`./_dist.sh`**. This creates the production executable under `my_service_name/target/universal/my_service_name-1.0-SNAPSHOT.zip`.
-9. **`scp my_service_name-1.0-SNAPSHOT.zip`** generated in (8) into **`my_services/my_service_name`**, and unzip it.
-10. **`cd`** to **`scp my_service_name-1.0-SNAPSHOT`** (copied and unzipped in (9)) then execute the command **`./bin/my_service_name -Dhttp.port=9000 &`**. Change the `9000` port to the desired port per instance.
-11. To run multiple instances of the service/worker, just make multiple copies of **`scp my_service_name-1.0-SNAPSHOT.zip`** and repeat step (10) with a different port per instance then configure these port numbers in a load balancer.
+### deploy a vangav backend service
 
-> Recommended load balancer is [nginx](https://www.nginx.com/).
+1. on the server `cd ~/my_services` **->** `mkdir my_service_name` e.g.: `mkdir vos_geo_server`; the created directory will hold the service's binaries and cql scripts
+2. copy the service's cassandra directory (e.g.: [cassandra](https://github.com/vangav/vos_geo_server/tree/master/cassandra)) into the directory created in (1) in order to have the service's cql scripts on the server; e.g.: `scp vos_geo_server/cassandra.zip your_username@you_server_ip_or_domain_name:/path/to/my_services/vos_geo_server`
+3. decompress on the server, e.g.: `cd ~/my_services/vos_geo_server` **->** `unzip cassandra.zip`
+4. on the server `cd ~/my_services/vos_geo_server/cassandra/cql/drop_and_create/` **->** `./_execute_cql.sh gs_top_dev.cql` to initialize the service's database **note: only do this step once per-service per-server**
+5. on your local dev machine `cd path_to_my_service` **->** `./_dist.sh` to create a production executable under `my_service_name/target/universal/my_service_name-1.0-SNAPSHOT.zip`
+6. copy the executable created in (5) to the server `scp my_service_name/target/universal/my_service_name-1.0-SNAPSHOT.zip your_username@you_server_ip_or_domain_name:/path/to/my_services/my_service_name`; then unzip it on the server `cd ~/my_services/my_service_name` **->** `unzip my_service_name-1.0-SNAPSHOT.zip`
+7. start the service; go to the executable unzipped in (6) `cd my_service_name-1.0-SNAPSHOT` then execute `./bin/my_service_name -Dhttp.port=9000 &`, change the `9000` port number to the desired port number
+8. configure the web-server installed earlier to forward incoming traffic to your service's port number; e.g.: forward port `80` traffic coming on `my_service_name.com` domain to port `9000`
+9. open an internet browser on your dev machine and test your service (or use an extension like postman on google chrome)
+
+> to deploy a worker service, follow the same steps above (1) to (7) unless the worker service needs to be accessed from another production server then the web-server will also be configured like in step (8)
+
+> to scale up and deploy multiple instances per service/worker, just make multiple copies of the executable created in steps (5) and (6) on the server (all directly under the `~/my_services/my_service_name` directory and repeat step (7) per copy while giving each a unique port number then configure those port numbers as explained in step (8)
+
+> to get the ports in use `sudo lsof -i -P -n | grep LISTEN`
