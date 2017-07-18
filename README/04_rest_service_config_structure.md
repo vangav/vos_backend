@@ -215,9 +215,9 @@
         + frozen
         + inet
         + int
-        + list: list<type> (e.g.: list<varchar>)
+        + list: list<value_type>
         + map: map<key_type, value_type> (e.g.: map<varchar, varchar>)
-        + set: set<type> (e.g.: set<varchar>)
+        + set: set<value_type>
         + text
         + timestamp
         + timeuuid
