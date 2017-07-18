@@ -5,24 +5,24 @@
 ### initializing the server
 1. recommended operating system is [ubuntu server 16.04 lts](https://www.ubuntu.com/server); alternatively any ubuntu server lts version or another unix os version should suffice
 2. install java 8 on the server; follow the following steps for ubuntu
-  + check if java is already installed: `java -version`, if that prints `1.8.xx` skip this step (2)
-  + `sudo apt-get update`
-  + `sudo apt-get install default-jre`
-  + optionally also install the jdk `sudo apt-get install default-jdk`
-  + check installation: `java -version`, should print `1.8.xx`
+    + check if java is already installed: `java -version`, if that prints `1.8.xx` skip this step (2)
+    + `sudo apt-get update`
+    + `sudo apt-get install default-jre`
+    + optionally also install the jdk `sudo apt-get install default-jdk`
+    + check installation: `java -version`, should print `1.8.xx`
 3. if the service to be deployed uses cassandra, then python is also needed; the following steps show how to install python on ubuntu
-  + check if the needed python version is already installed: `python2.7 --version`, if that prints `Python 2.7.10` skip this step (3)
-  + `cd ~/Downloads`
-  + `wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz`
-  + `tar -zxvf Python-2.7.10.tgz`
-  + `sudo apt-get install build-essential checkinstall`
-  + `sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libgdbm-dev libc6-dev libbz2-dev libsqlite3-dev tk-dev libssl-dev`
-  + `cd ~/Downloads/Python-2.7.10/`
-  + `sudo ./configure`
-  + `sudo make altinstall`
-  + check installation: `python2.7 --version`, should print `Python 2.7.10`
+    + check if the needed python version is already installed: `python2.7 --version`, if that prints `Python 2.7.10` skip this step (3)
+    + `cd ~/Downloads`
+    + `wget https://www.python.org/ftp/python/2.7.10/Python-2.7.10.tgz`
+    + `tar -zxvf Python-2.7.10.tgz`
+    + `sudo apt-get install build-essential checkinstall`
+    + `sudo apt-get install libreadline-gplv2-dev libncursesw5-dev libgdbm-dev libc6-dev libbz2-dev libsqlite3-dev tk-dev libssl-dev`
+    + `cd ~/Downloads/Python-2.7.10/`
+    + `sudo ./configure`
+    + `sudo make altinstall`
+    + check installation: `python2.7 --version`, should print `Python 2.7.10`
 4. install a web-server/load-balancer if you don't have one already; we recommend [nginx](https://www.nginx.com/), or [apache](https://httpd.apache.org/)
-  + [nginx installation tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
+    + [nginx installation tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-16-04)
 
 ### setting the server up for vangav backend
 
