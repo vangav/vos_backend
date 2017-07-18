@@ -174,3 +174,11 @@ cassandra updater is used after a service is generated to update the database; i
 6. [`setInputs(...)`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L454) each time there's a new set of input(s) to be processed
 7. [`process()`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L473) the solution to set the solution's output(s) value(s)
 8. [`getOutputs`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L475) to get the processed output values
+
+# exercise
++ what are the methods generated per-query?
++ what are the classes generated per-controller?
++ what's cassandra_updater used for
+
+## next tutorial -> [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
+> explains the building blocks of the config used to generate a service
