@@ -37,7 +37,7 @@
 
 + each exception (error) thrown by vangav backend has a code and a sub-code as follows:
 
-| pkg/class | code : sub-code | explanation |
+| pkg/class | code : sub_code | explanation |
 | ---- | -------- | ----------- |
 | **pkg: [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)** | | |
 | [Cassandra](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/Cassandra.java) | | |
