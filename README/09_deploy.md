@@ -52,3 +52,6 @@
 > to scale up and deploy multiple instances per service/worker, just make multiple copies of the executable created in steps (5) and (6) on the server (all directly under the `~/my_services/my_service_name` directory and repeat step (7) per copy while giving each a unique port number then configure those port numbers as explained in step (8)
 
 > to get the ports in use `sudo lsof -i -P -n | grep LISTEN`
+
+## next tutorial -> [vangav backend error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
+> vangav backend detects various types of errors (e.g.: invalid request param, invalid generator config, wrong utility method arguments, unauthorized third-party authentication, invalid vangav mighty solution, ...); this tutorial lists all of vangav backend's error codes/sub-codes with reference to the code producing them for ease of tracing if you get one
