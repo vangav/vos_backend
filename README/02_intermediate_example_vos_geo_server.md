@@ -333,3 +333,11 @@ public class ResponseTopContinents extends ResponseBodyJson {
 
 ### stop the service
 1. in the terminal session where you started the service press `control + d`
+
+# exercise
+> add a feature that gets the top queried continents/countries by month; here are some tips ;-)
++ in [gs_top.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace) add two table `monthly_continents` and `monthly_countries` with key columns `month_continent` and `month_country` respectively
++ use [cassandra_updater](https://github.com/vangav/vos_geo_server/tree/master/cassandra_updater) as explained in this [tutorial](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md#cassandra_updater) to update the java clients and cql scripts
++ add two new controllers as explained in this [tutorial](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md#expand-calculate-sum-to-calculator-without-regenerating-the-service); the two new controllers are similar to [top_continents](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/controllers/top_continents) and [top_countries](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/controllers/top_countries) but take a month param in their requests
+
+# next tutorial -> [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
