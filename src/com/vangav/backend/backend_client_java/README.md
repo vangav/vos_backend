@@ -10,3 +10,7 @@
 > to top it off, we designed generated clients to have server/client duality; means you can deploy multiple client services managed by another service which can then aggregate the results from all the client services using the built-in merge feature - e.g.: imagine testing your backend service from ten servers simultaneously or crawling a service using multiple instances/servers then periodically aggregating all the results to other service(s) responsible for storing/analyzing the aggregated data
 
 # backend_client_java
+
+# client generator
+
+# using the generated client
