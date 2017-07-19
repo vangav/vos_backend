@@ -337,6 +337,11 @@ public class ResponseTopContinents extends ResponseBodyJson {
 ### stop the service
 1. in the terminal session where you started the service press `control + d`
 
+### how to stop cassandra
+1. in a terminal session execute `ps auwx | grep  cassandra`; this shows cassandra's `pid` (process id)
+2. execute `kill -9 (pid)` (pid) got from step (1)
+3. repeat step (1) to make sure you get one (pid) only - that's the pid for the `grep command`
+
 # exercise
 > add a feature that gets the top queried continents/countries by month; here are some tips ;-)
 + in [gs_top.keyspace](https://github.com/vangav/vos_geo_server/blob/master/generator_config/gs_top.keyspace) add two table `monthly_continents` and `monthly_countries` with key columns `month_continent` and `month_country` respectively
