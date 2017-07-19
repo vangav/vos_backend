@@ -1,4 +1,6 @@
 
+> **why?** because sometimes after you generate a service and start implementing its logic, your design evolves in a way that requires modifying/adding/removing controllers (api entry points)
+
 # expand "calculate sum" to "calculator"
 
 > 5-10 min: this tutorial explains how to add new features to a service before and after generation
