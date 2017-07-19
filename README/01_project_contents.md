@@ -1,5 +1,5 @@
 
-> **why?** knowing the why each building block is there empowers you to understand your generated services as well as evolve and tune vangav backend to your needs
+> **why?** knowing why each building block is there empowers you to understand your generated services as well as evolve and tune vangav backend to your needs
 
 # project's contents
 
