@@ -1,5 +1,5 @@
 
-> **why?** whenever you get an error response with an error code between `1` and `299` that means it's coming from vangav backend (usually an invalid request param, bad properties config, bad utility method argument, ...); to understand more about that error, this tutorial/index is the easiest and fastest wat to get to the bottom of why you got that error response
+> **why?** whenever you get an error response with an error code between `1` and `299` that means it's coming from vangav backend (usually an invalid request param, bad properties config, bad utility method argument, ...); this tutorial/index is the easiest and fastest way to get to the bottom of why you got that error response - we recommend you bookmark this page
 
 # vangav backend error codes
 
