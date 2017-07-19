@@ -1,5 +1,5 @@
 
-> **why?** so far after generating `calculate sum` and `geo server` services, hopefully as you took a look at the generator's config files it appeared clear and intuitive; but what else is possible? what are the possible request param types that has built-in param validation? what if you don't want vangav backend to validate a specific param? -- this tutorial answers all those questions and a little more :))
+> **why?** so far after generating `calculate sum` and `geo server` services, hopefully as you took a look at the generator's config files it appeared clear and intuitive; but what else is possible? what are the possible request param types that has built-in param validation? what if you don't want vangav backend to validate a specific param? -- this tutorial answers all those questions and a little more :)) - we recommend you bookmark this tutorial as it's a good all-in-one place for generating vangav backend services
 
 # service generator config structure
 
