@@ -1,3 +1,6 @@
+
+> **why?** we do our best building bullet-proof services as well as educating members how to use them; but what happens when things go wrong (e.g.: a member missed a request param, put a string in place of an int, ...) or when you want to intentionally return an error response in some circumstances (e.g.: detecting a spammy behavior, ...) - this tutorial answers these questions :))
+
 # [error response](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyError.java)
 
 + normally a vangav backend service will return the expected response (`json`, `html` or `file`) as defined per-controller with a status code of 200 (`HTTP_OK`)
