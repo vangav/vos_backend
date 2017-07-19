@@ -1,3 +1,6 @@
+
+> **why?** knowing the why each building block is there empowers you to understand your generated services as well as evolve and tune vangav backend to your needs
+
 # project's contents
 
 > 5-10 min: this tutorial explains the building blocks of vangav backend
