@@ -231,7 +231,7 @@
 | | 181 : 11 | invalid sha algorithm type |
 | **pkg: [vangav_m](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)** | | |
 | [VangavMSolutionJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/vangav_m/json_client/json/VangavMSolutionJson.java) | | |
-| | 211 : 1 | vangav mighty client built-in in vangav backend supports JAVA_JAR solutions' type only. Refer for other clients on [vangav](www.vangav.com) for clients that support other languages |
+| | 211 : 1 | vangav mighty client built-in in vangav backend supports JAVA_JAR solutions' type only.; on [vangav](www.vangav.com) you can find clients that support other languages as well as standalone desktop/web clients providing solutions in all supported languages |
 | | 211 : 2 | can't have duplicate multi-range-input prefix |
 | | 211 : 3 | duplicate input name |
 | | 211 : 4 | input's range is too narrow; min-to-max min-range = 0.02 and min-to-mid/mid-to-max min-ranges = 0.01 |
