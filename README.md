@@ -61,7 +61,7 @@
 # prerequisites
 
 + basic java
-+ basic cassandra (optional for using cassandra)
++ basic cassandra (optional for using cassandra database)
 
 # quick start example: [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
