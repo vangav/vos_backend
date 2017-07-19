@@ -1,3 +1,6 @@
+
+**why?** sooner or later you will need to generate something that needs a database and/or utilizes some of vangav backend's built-in utilities - the geo services utility is picked for this tutorial to show how something that's a bit complicated like reverse geo coding is compressed to a one method call in vangav backend
+
 # [geo server](https://github.com/vangav/vos_geo_server)
 
 > 15-20 min: this tutorial explains how to generate a next level service (compared to calculate sum); including database, using utilities and data
