@@ -46,7 +46,7 @@ geo server is a service that takes a latitude/longitude request and returns the 
   + file **>** import **>** general **>** existing projects into workspace **>** next **>** set "select root directory" to my_services **>** under projects make sure that vos_geo_server is selected **>** finish
   + double check the java version used for compiling the project: right click the project **>** properties **>** java compiler **>** enable project specific settings **>** compiler compliance level **>** 1.7 or 1.8
 #### - index initialization
-+ under package `com.vangav.vos_geo_server` add a new package `[common](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/common)`
++ under package `com.vangav.vos_geo_server` add a new package [`common`](https://github.com/vangav/vos_geo_server/tree/master/app/com/vangav/vos_geo_server/common)
 + in the created package in the previous step add a new class [InitIndexInl.java](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/common/InitIndexInl.java) with the following implementation:
 ```java
 package com.vangav.vos_geo_server.common;
