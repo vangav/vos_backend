@@ -1,3 +1,6 @@
+
+> **why?** as services get larger, every now and then you come across a mind-boggling error; in this case a debugger comes in handy to help identify the problem
+
 # debugging
 
 1. execute the [_debug.sh](https://github.com/vangav/vos_geo_server/blob/master/_debug.sh) script; in a terminal session execute `./_debug.sh`
