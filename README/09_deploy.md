@@ -1,3 +1,6 @@
+
+> **why?** once you are done with a development phase of a service, you want to bring it to life by deploying it on a server; this tutorial gives you a detailed step-by-step process from making a production version of your service till running it on your server(s)
+
 # deploy on a production server
 
 > skip cassandra/cql-related steps in case the service to be deployed doesn't use cassandra
