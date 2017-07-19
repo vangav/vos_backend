@@ -1,7 +1,7 @@
 
 > **why?**
 
-> for every vangav backend service(s), there needs to be a client service that thoroughly tests it before production deployment - those client services sometimes need tens of thousands of lines of boring api code; so we went ahead and developed this client generator, because who wants to write boring code ;-)
+> for every vangav backend's service(s), there needs to be a client service that thoroughly tests it before production deployment - those client services sometimes need tens of thousands of lines of boring api code; so we went ahead and developed this client generator, because who wants to write boring code ;-)
 
 > this client generator can also be used to generate clients for existing services (e.g.: a facebook graph api, ...)
 
