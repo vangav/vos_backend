@@ -12,5 +12,11 @@
 
 ### generator config
 + to add a client or more to a vangav backend generator config, just add a `.client_java` config file per client like [vos_instagram_dash_board.client_java](https://github.com/vangav/vos_instagram_test/blob/master/generator_config/vos_instagram_dash_board.client_java); that file is exactly the same as [controllers.json](https://github.com/vangav/vos_instagram_dash_board/blob/master/generator_config/controllers.json) config file used to generate [instagram dash board](https://github.com/vangav/vos_instagram_dash_board) service, just a different extension `.client_java` for vangav backend service generator to detect that it should generate a java client
++ refer to the [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md#controllersjson-structure) tutorial for an in depth explaination of the building blocks of these config files
+
+### generator structure
++ 
+
+### generated clients structure
 
 # using generated clients
