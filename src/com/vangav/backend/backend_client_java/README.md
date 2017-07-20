@@ -15,8 +15,18 @@
 + refer to the [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md#controllersjson-structure) tutorial for an in depth explaination of the building blocks of these config files
 
 ### [clients_generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java/clients_generator)
-+ this sub-package is responsible for verifying `.client_java`
++ this sub-package is responsible for verifying `.client_java` config files as well as generating client(s) for a vangav backend service
 
 ### generated clients structure
++ [clients_properties.prop](https://github.com/vangav/vos_instagram_test/blob/master/conf/prop/clients_properties.prop) properties file is generated to hold the url for each client's server - after generation, those values must be set by the user
++ [clients](https://github.com/vangav/vos_instagram_test/tree/master/app/com/vangav/vos_instagram_test/clients) package is added to hold all of the clients' source files, where each client has its own sub-package in addition to the following two classes:
+  + [ClientsProperties](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/ClientsProperties.java) represents the [clients_properties.prop](https://github.com/vangav/vos_instagram_test/blob/master/conf/prop/clients_properties.prop) properties file
+  + [Constants](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/Constants.java) stores the values from [ClientsProperties](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/ClientsProperties.java) into global constants
++ for each client's controller, the following three classes are generated
+| class | explanation |
+| ----- | ----------- |
+| [Requestxxx](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/RequestLoginEmail.java) |  |
+| []() |  |
+| []() |  |
 
 # using generated clients
