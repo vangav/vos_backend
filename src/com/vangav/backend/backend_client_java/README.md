@@ -5,4 +5,4 @@
 
 # client generator
 
-# using the generated client
+# using generated clients
