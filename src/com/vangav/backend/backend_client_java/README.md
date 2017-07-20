@@ -22,11 +22,12 @@
 + [clients](https://github.com/vangav/vos_instagram_test/tree/master/app/com/vangav/vos_instagram_test/clients) package is added to hold all of the clients' source files, where each client has its own sub-package in addition to the following two classes:
   + [ClientsProperties](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/ClientsProperties.java) represents the [clients_properties.prop](https://github.com/vangav/vos_instagram_test/blob/master/conf/prop/clients_properties.prop) properties file
   + [Constants](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/Constants.java) stores the values from [ClientsProperties](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/ClientsProperties.java) into global constants
-+ for each client's controller, the following three classes are generated
++ for each client's controller (api entry point), the following three classes are generated
+
 | class | explanation |
 | ----- | ----------- |
-| [Requestxxx](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/RequestLoginEmail.java) |  |
-| []() |  |
-| []() |  |
+| [Requestxxx](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/RequestLoginEmail.java) | represents the request and provides: a [mandatory params constructor](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/RequestLoginEmail.java#L75), a [mandatory + optional params constructor](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/RequestLoginEmail.java#L99) and a [per-optional param setter](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/RequestLoginEmail.java#L148) |
+| [Responsexxx](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/ResponseLoginEmail.java) | represents the response and holds a response's value(s) upon making a client call |
+| [ControllerCallxxx](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/ControllerCallLoginEmail.java) | represents a client's controller-call, and takes a request object as a constructor argument; using this class to make a client call is explained below in this tutorial |
 
 # using generated clients
