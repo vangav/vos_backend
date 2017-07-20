@@ -148,6 +148,7 @@ in the terminal session where you started the service press `control + d`
 + [prop/README.md](https://github.com/vangav/vos_backend/tree/master/prop)
 + [src/com/vangav/backend/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend)
 + src/com/vangav/backend/:
+  + [backend_client_java/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java)
   + [backend_generator/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_generator)
   + [cassandra/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)
   + [compression/README.md](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
