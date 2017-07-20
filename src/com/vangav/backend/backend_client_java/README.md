@@ -38,7 +38,7 @@
 | pkg/class | explanation |
 | --------- | ----------- |
 | [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ErrorResponse.java) | represents the default error response (vangav backend's) for a client's backend service; otherwise define your own [ErrorResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/clients_generator/json/ErrorResponseJson.java) in the `.client_java` config file before generating a client |
-| [ControllerCallLog](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ControllerCallLog.java) | represents a the log for a single client's controller call with [attributes](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ControllerCallLog.java#L63) like `requestToResponseTimeInMilliSeconds`, `response`, exceptions (if any), ... - using this `ControllerCallLog` is optional |
+| [ControllerCallLog](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ControllerCallLog.java) | represents a the log for a single client's controller call with [attributes](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ControllerCallLog.java#L63) like `requestToResponseTimeInMilliSeconds`, `response`, exceptions (if any), ... - using `ControllerCallLog` is optional |
 | []() |  |
 | []() |  |
 | []() |  |
