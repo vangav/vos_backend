@@ -39,10 +39,17 @@
 | --------- | ----------- |
 | [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ErrorResponse.java) | represents the default error response (vangav backend's) for a client's backend service; otherwise define your own [ErrorResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/clients_generator/json/ErrorResponseJson.java) in the `.client_java` config file before generating a client |
 | [ControllerCallLog](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ControllerCallLog.java) | represents a the log for a single client's controller call with [attributes](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ControllerCallLog.java#L63) like `requestToResponseTimeInMilliSeconds`, `response`, exceptions (if any), ... - using `ControllerCallLog` is optional as shown below |
+| [ControllerCall](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ControllerCall.java) | is an abstract parent class for all controller call classes like [ControllerCallLoginEmail](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/ControllerCallLoginEmail.java) where each object represents a single client call optionally holding its [ControllerCallLog](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/ControllerCallLog.java) object |
+| [BackendClientSession](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/BackendClientSession.java) | represents a session where any number of controller calls can be made to one or more clients and provides the functionalities listed below this table |
+| [server_json](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java/json_response/server_json) |  |
 | []() |  |
-| []() |  |
-| []() |  |
-| []() |  |
+
+the following are the functionalities provided through [BackendClientSession](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/BackendClientSession.java)
++ [construct](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/BackendClientSession.java#L95) with or without logging
++ [merge](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/BackendClientSession.java#L119) multiple sessions; useful for things like merging the results of multiple client sessions
++ [execute controller calls](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/BackendClientSession.java#L217) executes one or more controller calls (e.g.: [ControllerCallLoginEmail](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/clients/vos_instagram/login_email/ControllerCallLoginEmail.java)) for one or more clients sync or async; if logs are set to true it adds them to the session's log as well as returning this subset of logs
++ [execute burst controller calls](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/BackendClientSession.java#L312) repeats the passed controller calls the number of times in the methods param (e.g.: 100,000) without logging or waiting for response; mainly to stress test the server side where everything should be logged on the server side
++ in addition to getter methods for general session logs as well as logs per-controller-call
 
 ### generated service side
 > this sub-section explains how to use the client-features explained above
