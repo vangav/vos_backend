@@ -57,8 +57,66 @@ the following are the functionalities provided through [BackendClientSession](ht
 following are some usage examples from [HandlerTestAllControllers](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java) for the features explained above
 
 + [initializing](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L180) a `BackendClientSession` object
+```java
+  BackendClientSession backendClientSession =
+    new BackendClientSession(
+      "test_all_controllers",
+      true);
+```
 + issuing a [sync controller call](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L189)
+```java
+  // 1- A: sign up email
+  currCallsLog =
+    backendClientSession.executeControllersCalls(
+      RestCallsType.SYNC,
+      new ControllerCallSignupEmail(
+        new RequestSignupEmail(
+          userA.getDeviceToken(),
+          userA.getEmail(),
+          userA.getPassword(),
+          userA.getName() ) ) );
+```
 + checking the [http status code](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L198) from the controller call's log
+```java
+  if (currCallsLog.get(0).getResponseHttpStatusCode() ==
+      HttpURLConnection.HTTP_OK) {
+    
+    // ...
+  }
+```
 + fetching the [response content](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L202) from the controller call's log
-+ issuing multiple [async calls](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L354)
+```java
+  ResponseSignupEmail responseSignupEmail =
+    (ResponseSignupEmail)currCallsLog.get(0).getResponse();
+```
++ issuing multiple [async calls](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L444)
+```java
+  // 15- A: get followers
+  // 16- B: get following
+  backendClientSession.executeControllersCalls(
+    RestCallsType.ASYNC,
+    new ControllerCallGetFollowers(
+      new RequestGetFollowers(
+        userA.getDeviceToken(),
+        userA.getUserId(),
+        userA.getAccessToken(),
+        userA.getUserId() ) ),
+    new ControllerCallGetFollowing(
+      new RequestGetFollowing(
+        userB.getDeviceToken(),
+        userB.getUserId(),
+        userB.getAccessToken(),
+        userB.getUserId() ) ) );
+```
 + returning a [backend client session response](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L755) where the controller's response class[ResponseTestAllControllers](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/ResponseTestAllControllers.java) is a child-class from the [ServerJsonBackendClientSession](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/json_response/server_json/ServerJsonBackendClientSession.java) class explained above
+```java
+  // set response
+  ((ResponseTestAllControllers)request.getResponseBody() ).set(
+    backendClientSession);
+```
+```java
+  public class ResponseTestAllControllers extends ServerJsonBackendClientSession {
+  
+    // ...
+  }
+```
