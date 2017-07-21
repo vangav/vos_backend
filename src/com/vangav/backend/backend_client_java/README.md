@@ -53,3 +53,12 @@ the following are the functionalities provided through [BackendClientSession](ht
 
 ### generated service side
 > this sub-section explains how to use the client-features explained above
+
+following are some usage examples from [HandlerTestAllControllers](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java) for the features explained above
+
++ [initializing](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L180) a `BackendClientSession` object
++ issuing a [sync controller call](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L189)
++ checking the [http status code](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L198) from the controller call's log
++ fetching the [response content](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L202) from the controller call's log
++ issuing multiple [async calls](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L354)
++ returning a [backend client session response](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L755) where the controller's response class[ResponseTestAllControllers](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/ResponseTestAllControllers.java) is a child-class from the [ServerJsonBackendClientSession](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_client_java/json_response/server_json/ServerJsonBackendClientSession.java) class explained above
