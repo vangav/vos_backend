@@ -1,8 +1,6 @@
 
 > **why?** it takes relatively no time to think of a new service's design, but then it takes forever to implement it although less than 10% of the written code represent's the logic of the service while the remaining >90% of the code is just throwing in classes that represent the general structure of the service - to help everyone get their services implemented **10x** faster we developed this backend generator that takes care of writting that >90% code; the generated services have top quality design and top quality and elegant code
 
-
-
 # backend generator
 > this package is responsible for managing the generation of a new vangav backend service
 
