@@ -1,7 +1,24 @@
+
+> **why?** it takes relatively no time to think of a new service's design, but then it takes forever to implement it although less than 10% of the written code represent's the logic of the service while the remaining >90% of the code is just throwing in classes that represent the general structure of the service - to help everyone get their services implements **10x** faster we developed this backend generator that takes care of writting that >90% code; the generated services have top quality design and top quality and elegant code
+
 # backend generator
 > this package is responsible for managing the generation of a new vangav backend service
 
 > explore this package if you are interested in seeing how services get generated or want to expand on how services get generated; but there are no utilies here that one can use once a service is generated
+
+### resources
+this package manages the generation of vangav backends (api, database clients/scripts/wiki and clients) using the following resources
+
+| resource | explanation |
+| -------- | ----------- |
+| [controllers_generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework/controllers_generator) | generates api code (`Controllerxxx`, `Handlerxxx`, `Requestxxx` and `Responsexxx`) classes per controller |
+| [keyspaces_generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra/keyspaces_generator) | generates a package per keyspace containing a class per table that provides five methods (`query`, `disbatch`, `bound statement`, `sync` and `async`) per query, `drop` and `create` scripts per-keyspace per-replication-method and a phriction-wiki file per-keyspace |
+| [clients_generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java/clients_generator) | generates a package per-client containing `ControllerCallxxx`, `Requestxxx` and `Responsexxx` classes per client's controller (api entry point) |
+| [prop](https://github.com/vangav/vos_backend/tree/master/prop) | the generator copies the needed properties file from this directory and sets the values needed per-property into the generated vangav backend service |
+| [lib](https://github.com/vangav/vos_backend/tree/master/lib) | the generator copies the needed third-party libs from this directory into the generated vangav backend service |
+| [play-2.2.6](https://github.com/vangav/vos_backend/tree/master/play-2.2.6) | all generated service scripts (e.g.: `_run.sh`, `_dist.sh`, ...) point to this directory `../vos_backend/play-2.2.6/` |
+| [apache-cassandra-2.1.2](https://github.com/vangav/vos_backend/tree/master/apache-cassandra-2.1.2) | all generated database scripts (e.g.: `start_cassandra.sh`, `execute.sh`, ...) point to this directory |
+| [tools_bin](https://github.com/vangav/vos_backend/tree/master/tools_bin) | contains [BackendGeneratorMain](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_generator/BackendGeneratorMain.java)'s executable `backend_generator.jar` which is used to generate new vangav backend services using the command `java -jar backend_generator.jar new my_new_service_name`; inside it the `assets` directory has utilities that gets added to generated services like the `cassandra updater` and the `vangav mighty` solutions generator |
 
 ### [BackendGeneratorMain](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_generator/BackendGeneratorMain.java)
 
