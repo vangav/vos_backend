@@ -1,7 +1,7 @@
 
 > **why content checking?** this sub-package is needed for verifying vangav backend generator config files and vangav mighty solution files
 
-> **why content formatting?** this sub-package is needed for formatting generated java code, cql scripts and phriction wiki files
+> **why content formatting?** this sub-package is needed for formatting generated java code, cql scripts and phriction wiki files; for example a controller's name would be `lower_under` as a package name, `CamelCase` as a class name, `lowerCamelCase` as a variable name, ...
 
 > **why content generation?** generating random content (strings, numbers, emails, ...) are useful in various cases like generating test data, security tokens, ...
 
@@ -102,6 +102,29 @@
 | [JavaFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/JavaFormatterInl.java) | does operations like formatting package names/paths and reformats code/comment line length to maintain coding legend (e.g.: that's how generated service's code line's length doesn't exceed 80 characters) |
 | [PhrictionFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java) | formats strings according to [phriction remarkup](https://secure.phabricator.com/book/phabricator/article/remarkup/) (e.g.: bold, header, table, link, ...); used to generate cassandra's phriction wiki |
 | [SerializationInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/SerializationInl.java) | handles serializing/deserializing objects (e.g.: used by the built-in dispatcher-worker to serialize objects on the dispatcher side then deserialize them on the worker side for execution) |
+
+#### [CodeIdentifiersFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java) usage examples
+
++ using [`camelCase`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L178) in [ControllersGeneratorInl: `generateControllerClass`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersGeneratorInl.java#L769)
+
+```java
+  String nameCamelCase =
+    CodeIdentifiersFormatterInl.camelCase(true, controllerJson.name);
+  // first param `true` to remove underscores (if any)
+```
+
++ using [`lower_under`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L72) in [ControllersGeneratorInl: `generateControllerClass`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersGeneratorInl.java#L771)
+
+```java
+  String nameLowerUnder =
+    CodeIdentifiersFormatterInl.lowerUnder(controllerJson.name);
+```
+
++ [CodeIdentifiersFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java) also provides [`lowerCamelCase`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L238), [`kCamelCase`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L281), [`UPPER_UNDER`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L311) and [`UPPER`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L342)
+
+
+
+
 
 ### [generation](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content/generation)
 
