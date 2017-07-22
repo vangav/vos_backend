@@ -144,21 +144,6 @@
         Calendar.DAY_OF_MONTH) ) );
 ```
 
+# exercise
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+> when would one use `BatchStatement` vs multiple `BoundStatement`?
