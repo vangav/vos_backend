@@ -75,6 +75,17 @@ following are some usage examples from [HandlerTestAllControllers](https://githu
           userA.getEmail(),
           userA.getPassword(),
           userA.getName() ) ) );
+          
+  // OFF COURSE: if we want to do the same call above but in a
+  //               BRUST way for stress testing, let's say 1,000 times
+  backendClientSession.executeBurstControllersCalls(
+    1000,
+    new ControllerCallSignupEmail(
+      new RequestSignupEmail(
+        userA.getDeviceToken(),
+        userA.getEmail(),
+        userA.getPassword(),
+        userA.getName() ) ) );
 ```
 + checking the [http status code](https://github.com/vangav/vos_instagram_test/blob/master/app/com/vangav/vos_instagram_test/controllers/test_all_controllers/HandlerTestAllControllers.java#L198) from the controller call's log
 ```java
