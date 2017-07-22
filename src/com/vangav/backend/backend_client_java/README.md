@@ -78,6 +78,7 @@ following are some usage examples from [HandlerTestAllControllers](https://githu
           
   // OFF COURSE: if we want to do the same call above but in a
   //               BRUST way for stress testing, let's say 1,000 times
+  //             in that case it will issue async calls
   backendClientSession.executeBurstControllersCalls(
     1000,
     new ControllerCallSignupEmail(
