@@ -42,7 +42,39 @@
   
 ### usage examples
 
-> in this section [whatsapp](https://github.com/vangav/vos_whatsapp) template service is used as a reference; yet it's the same for every generated service
++ [`executeSyncxxx`](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L140) example from the `SendMessage` handler of `whatsapp` template
+
+```java
+  ResultSet resultSet = AuthCreds.i().executeSyncSelect(toUserId);
+```
+
++ [`executeAsyncxxx`](https://github.com/vangav/vos_vangav_analytics_writer/blob/master/app/com/vangav/vos_vangav_analytics_writer/controllers/record_action/HandlerRecordAction.java#L113) example from the `RecordAction` handler of `vangav analytics writer` template
+
+```java
+  AnnualActionCounters.i().executeAsyncIncrement(
+    CalendarFormatterInl.concatCalendarFields(
+      request.getStartCalendar(),
+      Calendar.YEAR)
+    + "_"
+    + action);
+```
+
+> if you want to wait and fetch the `ResultSet` from the async query above, one way is to do the following
+
+```java
+  ResultSetFuture resultSetFuture =
+    AnnualActionCounters.i().executeAsyncIncrement(
+      CalendarFormatterInl.concatCalendarFields(
+        request.getStartCalendar(),
+        Calendar.YEAR)
+      + "_"
+      + action);
+    
+  ThreadPool.i().<ResultSet>executeInCassandraPool(resultSetFuture);
+  
+  ResultSet resultSet =
+    result.getUninterruptibly(20, TimeUnit.SECONDS);
+```
 
 
 
