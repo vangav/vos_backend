@@ -189,9 +189,36 @@
       getTableQueryComment(tableJson) ) );
 ```
 
+#### [PhrictionFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java) usage examples
 
++ using [`largeHeader`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java#L205) and [`bold`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java#L71) in [PhrictionGeneratorInl: `generateCassandraKeyspacePhriction`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/PhrictionGeneratorInl.java#L135)
 
+```java
+  // keyspace name
+  phrictionBuffer.append(
+    PhrictionFormatterInl.largeHeader(
+      PhrictionFormatterInl.bold(
+        "Keyspace: " + keyspaceJson.name) ) );
+```
 
++ [PhrictionFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java) also provides [`link`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java#L185), [`bulletList`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java#L253), [`tableRow`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/PhrictionFormatterInl.java#L361) and 13 other phiriction formatting methods
+
+#### [SerializationInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/SerializationInl.java) usage examples
+
++ using [`serializeObject`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/SerializationInl.java#L73) in [HandlerPostPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L156)
+
+```java
+  // serialize job
+  String jobSerialized =
+    SerializationInl.serializeObject(job);
+```
+
++ using [`deserializeObject`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/SerializationInl.java#L94) in [RestJobs: `process`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/rest_jobs/RestJobs.java#L162)
+
+```java
+  // deserialize
+  currJob = SerializationInl.<Job>deserializeObject(currSerializedJob);
+```
 
 ### [generation](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content/generation)
 
