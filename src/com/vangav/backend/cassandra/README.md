@@ -103,6 +103,47 @@
     boundStatements.toArray(new BoundStatement[0] ) );
 ```
 
++ [`BatchStatement`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L163) example from the `PostPhoto` handler of `instagram` template; one common use for batch statements is when multiple queries must succeed together and the failure of one query cancels the execution of all the other queries
+
+1. [initialize](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L163)
+
+```java
+  // insert into ig_jobs
+  // all queries must succeed
+  BatchStatement batchStatement = new BatchStatement(Type.LOGGED);
+```
+
+2. [add](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L166) as many bound statements as needed to the initialized batch statement
+
+```java
+  // insert into ig_jobs.current_jobs
+  batchStatement.add(
+    CurrentJobs.i().getBoundStatementInsert(
+      request.getRequestId(),
+      request.getStartTime(),
+      jobByteBuffer) );
+```
+
+3. [execute](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L185) the batch statement (sync or async)
+
+```java
+  // execute batch statement
+  Cassandra.i().executeSync(batchStatement);
+```
+
++ [`getQueryDispatchablexxx`](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L215) example from `SendMessage` handler of `whatsapp` template; used whenever a query should be execute in the worker service
+
+```java
+  // dispatch analysis
+  request.getDispatcher().addDispatchMessage(
+    MessagesCount.i().getQueryDispatchableIncrement(
+      CalendarFormatterInl.concatCalendarFields(
+        request.getStartCalendar(),
+        Calendar.YEAR,
+        Calendar.MONTH,
+        Calendar.DAY_OF_MONTH) ) );
+```
+
 
 
 
