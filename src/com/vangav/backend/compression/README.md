@@ -1,8 +1,9 @@
+
 # compression
 
-+ This package has all Vangav Backend's built-in compression/decompression utilities.
++ this package has all vangav backend's built-in compression/decompression utilities
 
-+ Usage example for [LempelZivWelchInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/LempelZivWelchInl.java):
++ usage example for [LempelZivWelchInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/LempelZivWelchInl.java):
 ```java
   List<Integer> compressed =
     LempelZivWelchInl.compress("Hello World!");
@@ -16,7 +17,7 @@
   // prints --> Decompressed: Hello World!
 ```
 
-+ Usage example for [RunLengthEncodingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/RunLengthEncodingInl.java):
++ usage example for [RunLengthEncodingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/compression/RunLengthEncodingInl.java):
 ```java
   String compressed =
     RunLengthEncodingInl.compress("aaabccccZZZZZZZZZZ");
