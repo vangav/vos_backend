@@ -1,5 +1,5 @@
 
-> **why [cassandra](cassandra.apache.org)?** the best nosql database for high performance, high availability, scalability and master-master replication; proven by apple's deployment with 75,000 nodes storing over 10 PB of data, netfllix's 2,500 nodes storing 420 TB with over 1 trillion requests per day and more than 1500 other companies like github, instagram, ebay, ...
+> **why [cassandra](cassandra.apache.org)?** the best nosql database for high performance, high availability, scalability and master-master replication; proven by apple's deployment with 75,000 nodes storing over 10 PB of data, netfllix's 2,500 nodes storing 420 TB with over 1,000,000,000,000 requests per day and more than 1500 other companies like github, instagram, ebay, ...
 
 # cassandra
 
