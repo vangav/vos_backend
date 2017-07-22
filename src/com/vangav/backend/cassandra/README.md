@@ -146,4 +146,4 @@
 
 # exercise
 
-> when would one use `BatchStatement` vs multiple `BoundStatement`?
+> when would one use [**`BatchStatement`**](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L163) vs [**`getBoundStatementxxx`**](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L172)?
