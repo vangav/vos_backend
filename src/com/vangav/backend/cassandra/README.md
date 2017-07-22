@@ -42,13 +42,13 @@
   
 ### usage examples
 
-+ [`executeSyncxxx`](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L140) example from the `SendMessage` handler of `whatsapp` template
++ [**`executeSyncxxx`**](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L140) example from the `SendMessage` handler of `whatsapp` template
 
 ```java
   ResultSet resultSet = AuthCreds.i().executeSyncSelect(toUserId);
 ```
 
-+ [`executeAsyncxxx`](https://github.com/vangav/vos_vangav_analytics_writer/blob/master/app/com/vangav/vos_vangav_analytics_writer/controllers/record_action/HandlerRecordAction.java#L113) example from the `RecordAction` handler of `vangav analytics writer` template
++ [**`executeAsyncxxx`**](https://github.com/vangav/vos_vangav_analytics_writer/blob/master/app/com/vangav/vos_vangav_analytics_writer/controllers/record_action/HandlerRecordAction.java#L113) example from the `RecordAction` handler of `vangav analytics writer` template
 
 ```java
   AnnualActionCounters.i().executeAsyncIncrement(
@@ -76,7 +76,7 @@
     result.getUninterruptibly(20, TimeUnit.SECONDS);
 ```
 
-+ [`getBoundStatementxxx`](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L172) example from the `SendMessage` handler of `whatsapp` template; used to execute multiple queries
++ [**`getBoundStatementxxx`**](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L172) example from the `SendMessage` handler of `whatsapp` template; used to execute multiple queries
 
 1. [initialize](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L167) a list of `BoundStatement`
 
@@ -103,7 +103,7 @@
     boundStatements.toArray(new BoundStatement[0] ) );
 ```
 
-+ [`BatchStatement`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L163) example from the `PostPhoto` handler of `instagram` template; one common use for batch statements is when multiple queries must succeed together and the failure of one query cancels the execution of all the other queries
++ [**`BatchStatement`**](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L163) example from the `PostPhoto` handler of `instagram` template; one common use for batch statements is when multiple queries must succeed together and the failure of one query cancels the execution of all the other queries
 
 1. [initialize](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L163)
 
@@ -131,7 +131,7 @@
   Cassandra.i().executeSync(batchStatement);
 ```
 
-+ [`getQueryDispatchablexxx`](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L215) example from `SendMessage` handler of `whatsapp` template; used whenever a query should be execute in the worker service
++ [**`getQueryDispatchablexxx`**](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L215) example from `SendMessage` handler of `whatsapp` template; used whenever a query should be execute in the worker service
 
 ```java
   // dispatch analysis
