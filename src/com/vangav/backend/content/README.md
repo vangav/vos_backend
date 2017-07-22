@@ -37,7 +37,60 @@
   CassandraCqlVerifierInl.verifyCaching(tableJson.caching);
 ```
 
+#### [CharVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CharVerifierInl.java) usage example
 
++ using [`isOneOfChar`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CharVerifierInl.java#L122) in [JavaCodeVerifierInl: `verifyIdentifier`](https://github.com/vangav/vos_backend/blob/b6d137a78c036e2d79dacdaf0b3356e1760a7a74/src/com/vangav/backend/content/checking/JavaCodeVerifierInl.java#L86)
+
+```java
+  if (CharVerifierInl.isOneOfChar(
+        identifier.charAt(0),
+        CharVerifierInl.CharType.LOWER_CASE,
+        CharVerifierInl.CharType.UPPER_CASE,
+        CharVerifierInl.CharType.UNDER_SCORE) == false) {
+    
+    // ...
+  }
+```
+
+#### [JavaCodeVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/JavaCodeVerifierInl.java) usage examples
+
++ using [`verifyPackageName`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/JavaCodeVerifierInl.java#L134) in [ControllersVerifierInl: `verifyControllersJson`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersVerifierInl.java#L108)
+
+```java
+  JavaCodeVerifierInl.verifyPackageName(controllersJson.java_package);
+```
+
++ using [`verifyIdentifier`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/JavaCodeVerifierInl.java#L75) in [ControllersVerifierInl: `verifyControllersJson`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersVerifierInl.java#L109)
+
+```java
+  JavaCodeVerifierInl.verifyIdentifier(
+    "project name",
+    projectName);
+```
+
+#### [StringVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/StringVerifierInl.java) usage examples
+
++ using [`isOneOfString`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/StringVerifierInl.java#L78) in [ControllersVerifierInl: `verifyControllersJson`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersVerifierInl.java#L144)
+
+```java
+  // verify type
+  StringVerifierInl.isOneOfString(
+    "controller type",
+    controllerJson.type,
+    true,
+    "GET",
+    "POST");
+```
+
++ using [`belongsToEnum`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/StringVerifierInl.java#L151) in [ControllersVerifierInl: `verifyControllersJson`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/controllers_generator/ControllersVerifierInl.java#L191)
+
+```java
+  // verify response type
+  StringVerifierInl.belongsToEnum(
+    "response type",
+    controllerJson.response_type,
+    ResponseBody.ResponseType.class);
+```
 
 ### [formatting](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content/formatting)
 
