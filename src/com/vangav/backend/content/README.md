@@ -16,6 +16,29 @@
 | [JavaCodeVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/JavaCodeVerifierInl.java) | varifies java code (e.g.: identifier, package name, ...) |
 | [StringVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/StringVerifierInl.java) | verifies a string's value (e.g.: belongs to an enum) |
 
+#### [CassandraCqlVerifierInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CassandraCqlVerifierInl.java) usage examples
+
++ using [`verifyName`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CassandraCqlVerifierInl.java#L81) in [CassandraVerifierInl: `verifyKeyspacesConfig`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/CassandraVerifierInl.java#L114)
+
+```java
+  // verify keyspace's name
+  CassandraCqlVerifierInl.verifyName(currKeyspaceJson.name);
+```
+
++ using [`verifyColumnType`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CassandraCqlVerifierInl.java#L149) in [CassandraVerifierInl: `verifyTableConfig`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/CassandraVerifierInl.java#L203)
+
+```java
+  CassandraCqlVerifierInl.verifyColumnType(columnJson.type);
+```
+
++ using [`verifyCaching`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/checking/CassandraCqlVerifierInl.java#L428) in [CassandraVerifierInl: `verifyTableConfig`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/CassandraVerifierInl.java#L321)
+
+```java
+  CassandraCqlVerifierInl.verifyCaching(tableJson.caching);
+```
+
+
+
 ### [formatting](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content/formatting)
 
 | class | explanation |
