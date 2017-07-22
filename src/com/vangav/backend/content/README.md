@@ -120,7 +120,74 @@
     CodeIdentifiersFormatterInl.lowerUnder(controllerJson.name);
 ```
 
-+ [CodeIdentifiersFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java) also provides [`lowerCamelCase`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L238), [`kCamelCase`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L281), [`UPPER_UNDER`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L311) and [`UPPER`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L342)
++ [CodeIdentifiersFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java) also provides [`lowerCamelCase`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L238), [`kCamelCase`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L281), [`UPPER_UNDER`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L311) and [`UPPER`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/CodeIdentifiersFormatterInl.java#L342) formatting methods
+
+#### [EncodingInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/EncodingInl.java) usage examples
+
++ using [`encodeStringIntoByteBuffer`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/EncodingInl.java#L71) in [HandlerPostPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L192)
+
+```java
+  ByteBuffer photoByteBuffer =
+    EncodingInl.encodeStringIntoByteBuffer(requestPostPhoto.photo);
+```
+
++ using [`decodeStringFromByteBuffer`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/EncodingInl.java#L86) in [HandlerGetPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/get_photo/HandlerGetPhoto.java#L140)
+
+```java
+  // decode photo
+  String photoString =
+    EncodingInl.decodeStringFromByteBuffer(photoByteBuffer);
+```
+
+#### [JavaFormatterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/JavaFormatterInl.java) usage examples
+
++ using [`getPathToPackage`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/JavaFormatterInl.java#L76) in [JavaClientGeneratorInl: `generateCassandraJavaClient`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/JavaClientGeneratorInl.java#L114)
+
+```java
+  String pathToPackage =
+    JavaFormatterInl.getPathToPackage(
+      projectDirPath,
+      JavaFormatterInl.kPlaySrcDirName,
+      rootPackage,
+      projectName,
+      CassandraGeneratorConstantsInl.kCassandraPackageName);
+  
+  // the last param represents `String... morePackages`
+```
+
++ using [`getPackageName`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/JavaFormatterInl.java#L126) in [JavaClientGeneratorInl: `generateCassandraJavaClient`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/JavaClientGeneratorInl.java#L122)
+
+```java
+  String packageName =
+    JavaFormatterInl.getPackageName(
+      rootPackage,
+      projectName,
+      CassandraGeneratorConstantsInl.kCassandraPackageName);
+      
+  // the last param represents `String... morePackages`
+```
+
++ using [`formatStringLength`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/formatting/JavaFormatterInl.java#L164) in [JavaClientGeneratorInl: `generateTable`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces_generator/JavaClientGeneratorInl.java#L488)
+
+```java
+  stringBuffer.append(
+    String.format(
+      kTableClassCommentFormat,
+      tableNameCamelCase,
+      tableJson.name,
+      keyspaceName,
+      tableJson.name,
+      JavaFormatterInl.formatStringLength( // <<
+        tableJson.description, // <<
+        " *   ", // << new line prefix
+        false), // << not a String-variable
+      getTableColumnsComment(tableJson),
+      getTablePartitionKeysComment(tableJson),
+      getTableSecondaryKeysComment(tableJson),
+      CodeIdentifiersFormatterInl.upper(tableJson.caching),
+      getTableOrderByComment(tableJson),
+      getTableQueryComment(tableJson) ) );
+```
 
 
 
