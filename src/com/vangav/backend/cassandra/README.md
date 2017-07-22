@@ -59,7 +59,7 @@
     + action);
 ```
 
-> if you want to wait and fetch the `ResultSet` from the async query above, one way is to do the following
+> if you want to wait and fetch the `ResultSet` from the async query above, one way is to do the following; but it's much better to use a `sync` execution method instead like [`executeSyncxxx`](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L140)
 
 ```java
   ResultSetFuture resultSetFuture =
@@ -74,6 +74,33 @@
   
   ResultSet resultSet =
     result.getUninterruptibly(20, TimeUnit.SECONDS);
+```
+
++ [`getBoundStatementxxx`](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L172) example from the `SendMessage` handler of `whatsapp` template; used to execute multiple queries
+
+1. [initialize](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L167) a list of `BoundStatement`
+
+```java
+  ArrayList<BoundStatement> boundStatements =
+    new ArrayList<BoundStatement>();
+```
+
+2. [add](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L171) as many `BoundStatement` objects as needed
+
+```java
+  // insert into messages
+  boundStatements.add(
+    Messages.i().getBoundStatementInsert(
+      messageId,
+      messageByteBuffer) );
+```
+
+3. [execute](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L195) all the `BoundStatement` objects
+
+```java
+  // execute bound statements
+  Cassandra.i().executeSync(
+    boundStatements.toArray(new BoundStatement[0] ) );
 ```
 
 
