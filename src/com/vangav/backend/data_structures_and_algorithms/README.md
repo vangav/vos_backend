@@ -4,7 +4,7 @@
 
 | Class | Explanation |
 | ----- | ----------- |
-| [DuplicatesInl] (https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/data_structures_and_algorithms/algorithms/DuplicatesInl.java) | Checks for and/or removes duplicates from data structures. |
+| [DuplicatesInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/data_structures_and_algorithms/algorithms/DuplicatesInl.java) | Checks for and/or removes duplicates from data structures. |
 | [MatricesInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/data_structures_and_algorithms/algorithms/MatricesInl.java) | Martix operations like rotate, search, traverse, ... |
 | [StringsAndArraysInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/data_structures_and_algorithms/algorithms/StringsAndArraysInl.java) | Strings and arrays operations like reverse-polish-notation, palindrome, binary-operations, longest-common-prefix, ... |
 | [SubsetInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/data_structures_and_algorithms/algorithms/SubsetInl.java) | Checks if a data structure is subset of another. |
