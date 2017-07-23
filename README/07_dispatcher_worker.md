@@ -31,21 +31,49 @@
     + push notifications are added to the generated worker, *if the new service's config has [notifications](https://github.com/vangav/vos_calculate_sum/blob/master/generator_config/controllers.json#L10) set to `true` in the controllers.json config file*
     + manually add twilio/email by adding their properties files ([java_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/java_email_properties.prop), [mail_gun_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/mail_gun_email_properties.prop), [twilio_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/twilio_properties.prop)) and their jars from [lib](https://github.com/vangav/vos_backend/tree/master/lib) to the generated worker service's `conf/prop` and `lib` directories respectively
 2. in the primary-backend-instance, set [`workers_topology`](https://github.com/vangav/vos_backend/blob/master/prop/dispatcher_properties.prop#L53) to the ip(s)/port(s) of the worker(s)
-3. at any point during request-processing (before-or-after response) you can enqueue a [DispatchMessage](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/DispatchMessage.java) into the request's [Dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L210):
-    + e.g.: adding a [QueryDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/cassandra/keyspaces/dispatch_message/QueryDispatchable.java) [UpdateCounterValue](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/cassandra_keyspaces/gs_top/Continents.java#L221) from the geo server service:
-    ```java
-      request.getDispatcher().addDispatchMessage(
-        Continents.i().getQueryDispatchableUpdateCounterValue(
-          "Europe") );
-    ```
-    + adding an [AppleNotificationDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/dispatch_message/AppleNotificationDispatchable.java) exmple:
-    ```java
-      request.getDispatcher().addDispatchMessage(
-        new AppleNotificationDispatchable(appleNotification) );
-    ```
-    + add as many dispatch messages as needed to the request's dispatcher and all these messages gets automatically dispatched to the worker(s) at the end of the request's processing
+3. at any point during request-processing (before-or-after response) you can enqueue a [DispatchMessage](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/DispatchMessage.java) into the request's [Dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java#L210); add as many dispatch messages as needed to the request's dispatcher and all these messages gets automatically dispatched to the worker(s) at the end of the request's processing
 4. make sure to start the worker service (using its `_run.sh` script) before starting the primary service
 5. you don't need to write a single line of code in the worker - it just works :)); just double check that every thing is correct in its properties files
+
+### usage examples
+
++ examples from [instagram: HandlerComment](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/comment/HandlerComment.java)
+
++ [dispatching a query](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/comment/HandlerComment.java#L234)
+
+```java
+  request.getDispatcher().addDispatchMessage(
+    CountPerWeek.i().getQueryDispatchableIncrementCommentsReceivedCount(
+      postOwnerUserId.toString()
+      + Constants.kCassandraIdConcat
+      + CalendarFormatterInl.concatCalendarFields(
+        request.getStartCalendar(),
+        Calendar.YEAR,
+        Calendar.WEEK_OF_YEAR) ) );
+```
+
++ [dispatching an apple push notification](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/comment/HandlerComment.java#L283)
+
+```java
+  request.getDispatcher().addDispatchMessage(
+    new AppleNotificationDispatchable(
+      new AppleNotificationBuilder(deviceToken)
+        .alertBody(commenterName + " commented on your photo")
+        .badgeNumber(1)
+        .build() ) );
+```
+
++ [dispatching an android push notification](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/comment/HandlerComment.java#L292)
+
+```java
+  request.getDispatcher().addDispatchMessage(
+    new AndroidNotificationDispatchable(
+      new AndroidNotification(
+        new Message.Builder()
+          .collapseKey(commenterName + " commented on your photo")
+          .build(),
+        deviceToken) ) );
+```
 
 # exercise
 > when would you use a worker service?
