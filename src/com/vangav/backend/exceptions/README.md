@@ -3,19 +3,6 @@
 
 # exceptions
 
-### vangav backend catching points
-
-+ when implementing a new method in a generated vangav backend service make sure it throws exceptions so whenever a problem happens, vangav backend can deal with it; the following table lists where each type of exception is caught
-
-| exception |
-| --------- |
-| [`processRequest`: BadRequestException](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L306) |
-| [`processRequest`: CodeException](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L327) |
-| [`processRequest`: Exception](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L348) |
-| [failure to init `afterResponse` thread](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L402) |
-| [failure to start `afterResponse` thread](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L396) |
-| [all `afterResponse` steps](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L471) |
-
 ### types of exceptions
 
 + [VangavException](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/exceptions/VangavException.java) is the parent class for exceptions, and also holds [ExceptionClass](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/exceptions/VangavException.java#L86) types
@@ -115,3 +102,16 @@
     accessToken,
     ExceptionType.CODE_EXCEPTION);
 ```
+
+### vangav backend catching points
+
++ when implementing a new method in a generated vangav backend service make sure it throws exceptions so whenever a problem happens, vangav backend can deal with it; the following table lists where each type of exception is caught
+
+| exception |
+| --------- |
+| [`processRequest`: BadRequestException](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L306) |
+| [`processRequest`: CodeException](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L327) |
+| [`processRequest`: Exception](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L348) |
+| [failure to init `afterResponse` thread](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L402) |
+| [failure to start `afterResponse` thread](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L396) |
+| [all `afterResponse` steps](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L471) |
