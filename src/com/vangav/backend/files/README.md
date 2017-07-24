@@ -65,29 +65,52 @@
 
 + [FileLoaderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java) also provides [`loadPropertiesFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L105), [`loadTextFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L146), [`loadTextFiles`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L213), [`loadImageFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L402) and [`loadObjectFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L420)
 
+### [FileWriterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java) usage examples
 
++ using [`mkdirs`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java#L84) in [VangavMJsonClientMain: `generateVangavMSolutions`](https://github.com/vangav/vos_backend/blob/a32cbc1c7159ddb04db11b33808e1c4f1bec5e74/src/com/vangav/backend/vangav_m/json_client/VangavMJsonClientMain.java#L204)
 
-
-
-
-
-
-
-+ This package provide all the funtionalities related to file-loading/writing, for all file types (text, images, HTTP response files, Object files, etc ...).
-
-+ [FileLoaderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java) usage [example](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_generator/BackendGeneratorMain.java#L286):
 ```java
-File[] keyspaceConfigFiles =
-  FileLoaderInl.loadFiles(
-    dirPath,
-    CassandraGeneratorConstantsInl.kCassandraKeyspaceExt);
+  FileWriterInl.mkdirs(
+    kGeneratedSolutions,
+    false); // not a file path (i.e.: directory path)
 ```
 
-+ [FileWriterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java) usage [example](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_generator/BackendGeneratorMain.java#L532):
++ using [`writeTextFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java#L141) in [VangavMJsonClientMain: `generateVangavMSolutions`](https://github.com/vangav/vos_backend/blob/a32cbc1c7159ddb04db11b33808e1c4f1bec5e74/src/com/vangav/backend/vangav_m/json_client/VangavMJsonClientMain.java#L433)
+
 ```java
-FileWriterInl.mkdirs(
-  "../../"
-  + projectName
-  + "/vangav_m/solutions",
-  false);
+  FileWriterInl.writeTextFile(
+    classPathLinesNew,
+    kClassPathFilePath,
+    false, // don't append new lines
+    false); // don't make directories
 ```
+
++ using [`writeTextFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java#L183) (overload) in [VangavMJsonClientMain: `generateVangavMSolutions`](https://github.com/vangav/vos_backend/blob/a32cbc1c7159ddb04db11b33808e1c4f1bec5e74/src/com/vangav/backend/vangav_m/json_client/VangavMJsonClientMain.java#L331)
+
+```java
+  // write extraction script
+  FileWriterInl.writeTextFile(
+    String.format(
+      kExtractionScriptFormat,
+      currSolutionZipFileName),
+    kExtractionScriptPath,
+    false); // don't make directories
+```
+
++ using [`writeHttpResponseFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java#L256) in [RestSyncInl: `writeResponseFile`](https://github.com/vangav/vos_backend/blob/a32cbc1c7159ddb04db11b33808e1c4f1bec5e74/src/com/vangav/backend/networks/rest_client/RestSyncInl.java#L353)
+
+```java
+  public static String writeResponseFile (
+    String filePath,
+    URLConnection urlConnection,
+    boolean mkdirs) throws Exception {
+    
+    return FileWriterInl.writeHttpResponseFile(filePath, urlConnection, mkdirs);
+  }
+```
+
++ [FileWriterInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java) also provides [`wrtieJsonFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java#L108) and [`writeObjectFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileWriterInl.java#L216)
+
+### [JsonFile](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/JsonFile.java)
+
++ [vangav analytics writer / ActionsJson](https://github.com/vangav/vos_vangav_analytics_writer/blob/39e222517d2946c2b2af1c3998f23b321f9bbd5f/app/com/vangav/vos_vangav_analytics_writer/actions/json/ActionsJson.java) represents a `JsonFile` child class
