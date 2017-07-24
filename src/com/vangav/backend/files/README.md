@@ -63,6 +63,10 @@
     (ActionsJson)FileLoaderInl.loadJsonFile(new ActionsJson() );
 ```
 
++ [FileLoaderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java) also provides [`loadPropertiesFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L105), [`loadTextFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L146), [`loadTextFiles`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L213), [`loadImageFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L402) and [`loadObjectFile`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/FileLoaderInl.java#L420)
+
+
+
 
 
 
