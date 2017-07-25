@@ -22,33 +22,44 @@
 | [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) | represents a single grid in a geo-grids system and has all the functionalities provided by [geo_grids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/geo_grids) |
 | [GeoGridId](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridId.java) | represents a [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) id (can also be used a hash-key like in a HashMap) |
 | [GeoGridIndex2D](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridIndex2D.java) | represents the 2-D index of a [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) in a gro-grids system |
-| [GeoGridsConfig](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java) | represents a geo-grids system's config; by default uses earth's geo-system from [EarthConstantsInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/EarthConstantsInl.java); this provides the flexibility to work on sub-earth maps (e.g.: the map of Paris) or other cosmic objects' maps (e.g: mars, earth's moon, ...); [`gridDimension`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java#L160) defines each grid's side (e.g.: 4.5 metres, 1.2 km, 2 miles, 15 feet, ...) |
+| [GeoGridsConfig](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java) | represents a geo-grids system's config |
 
+### [GeoGridsConfig](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java)
 
++ by default uses earth's geo-system from [EarthConstantsInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/EarthConstantsInl.java)
++ it provides the flexibility to work on sub-earth maps (e.g.: the map of Paris) or other cosmic objects' maps (e.g: mars, earth's moon, ...)
++ [`gridDimension`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java#L160) defines each grid's side (e.g.: 4.5 metres, 1.2 km, 2 miles, 15 feet, ...)
++ on initialization [`gridDimension`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java#L160) must be converted to metres, e.g.:
 
+```java
+  // init config
+  GeoGridsConfig geoGridsConfig =
+    new GeoGridsConfig(
+      "Earth",
+      new Distance(
+        123.456,
+        DistanceUnitType.NAUTICAL_MILE).getAs(DistanceUnitType.METRE) );
+```
 
+### [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java)
 
++ [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) is the main [geo_grids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/geo_grids) class providing most of the functionalities as follows
 
+| method | explanation |
+| ------ | ----------- |
+| [`isValid`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L172) | checks if a `geo grid` is valid (an invalid `geo grid` can be initialized using the default constructor) |
+| [`getCenterGeoCoordinates`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L217) | get the coordinates at the grid's center |
+| [`equal`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L233) | checks for grids' config and id (returns true even if both grids were initialiazed using different coordinates belonging to the same grid); use [`getGeoCoordinates`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L190) to compare coordinates |
+| [`getDistance`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L260) | returns the distance between the coordinates used to initialize both grids |
+| [`getCentersDistance`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L284) | returns the distance between the center coordinates of both grids |
+| [`getLine`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L308) | returns a [LineSegment](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/geometry/LineSegment.java) object based on the 2d-indicies of both grids |
+| [`getSurroundingGrids ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L330) | returns a 2d array of this grid and one-level of surrounding grids |
+| [`getSurroundingGrids (levels)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L352) | returns a 2d array containing all of the n-levels (from param levels (e.g.: 2, 3, ...) ) of surrounding grids |
+| [`getSurroundingGridsLevels (startLevel, endLevel)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L423) | returns a list of grids per each requested level |
+| [`getSurroundingGridsLevels (level)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L473) | returns a list of grids for the requested level (e.g.: get the grids on level-4 only) |
 
+### usage template
 
-
-
-
-
-### [geo_grids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/geo_grids)
-
-+ Any map can be divided into a matrix of Geo Grids.
-+ Each grid can have any size (e.g.: 4.5 metres, 1.2 km, 2 miles, 15 feet, etc ...) through [gridDimension](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java#L113)
-+ A [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) offers some operations like:
-  + [`Distance getDistance (GeoGrid geoGrid)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L260)
-  + [`LineSegment getLine (GeoGrid geoGrid)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L308)
-  + `getSurroundingGrids` offers all the variations of from-to levels using multiple methods
-    + [`public GeoGrid[][] getSurroundingGrids ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L330)
-    + [`GeoGrid[][] getSurroundingGrids (int levels)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L352)
-    + [`ArrayList<ArrayList<GeoGrid> > getSurroundingGridsLevels (int startLevel, int endLevel, boolean includeOutOfRangeGrids)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L423)
-    + [`ArrayList<GeoGrid> getSurroundingGridsLevel (int level, boolean includeOutOfRangeGrids)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L473)
-
-+ Usage example
 ```java
 // init config
 GeoGridsConfig geoGridsConfig =
@@ -94,6 +105,21 @@ for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
 //   10842                       10846
 //   11021  11022  11023  11024  11025
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ### [reverse_geo_coding](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/reverse_geo_coding)
 
