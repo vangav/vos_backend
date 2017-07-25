@@ -3,6 +3,8 @@
 
 > **at vangav?** at vangav most of the time we prefer using unsorted [`UUID`](http://docs.oracle.com/javase/7/docs/api/java/util/UUID.html#randomUUID()); whenever sorting is needed we use partitioning first (e.g.: per-user, per-day, ...) then we sort each partition by a secondary key (like a milli-second time stamp) using cassandra's built-in sorting - using `UUID` also ommits the need for a dedicated id-creation-service
 
+> **vangav sorting example:** [sorting chat-messages](https://github.com/vangav/vos_whatsapp/blob/master/generator_config/wa_chat.keyspace#L93) in `whatsapp` template by message time where partition is done per-user
+
 # ids
 
 ### [SequentialIds](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SequentialIds.java)
