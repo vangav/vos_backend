@@ -3,7 +3,7 @@
 
 # geo
 
-### structure
+## structure
 
 | class/pkg | explanation |
 | --------- | ----------- |
@@ -12,9 +12,9 @@
 | [reverse_geo_coding](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/reverse_geo_coding) | given a latitude-longitude pair it finds: continent name, continent code, country name, country code, major city name and city name |
 | [geo_hash](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/third_party/geo_hash) | represents the [geohash](https://en.wikipedia.org/wiki/Geohash)  geocoding system invented by "Gustavo Niemeyer" |
 
-### [geo_grids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/geo_grids)
+## [geo_grids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/geo_grids)
 
-#### structure
+### structure
     
 | class | explanation |
 | ----- | ----------- |
