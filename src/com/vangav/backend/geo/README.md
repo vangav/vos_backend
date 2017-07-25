@@ -83,8 +83,8 @@ GeoGrid geoGrid =
 
 // print grid's id
 System.out.println(
-  "Geo Grid Id: " + geoGrid.getGeoGridId().getId() );
-// prints --> Geo Grid Id: 10665
+  "Geo Grid Id: [" + geoGrid.getGeoGridId().getId() + "]" );
+// prints --> Geo Grid Id: [10665]
 
 // get level-2 surrounding grids
 ArrayList<GeoGrid> levelTwoGrids =
@@ -104,6 +104,55 @@ for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
 //   10663        [10665]        10667
 //   10842                       10846
 //   11021  11022  11023  11024  11025
+```
+
+### usage examples
+
++ initializing [GeoGridsConfig](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGridsConfig.java) in [instagram / Constants](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/common/Constants.java#L258)
+
+```java
+  /**
+   * kGeoGridsConfig defines the geo grids config
+   */
+  public static final GeoGridsConfig kGeoGridsConfig;
+  static {
+    
+    try {
+      
+      kGeoGridsConfig =
+        new GeoGridsConfig(
+          "vos_instagram",
+          new Distance(
+            kGeoGridDimensionMetres,
+            DistanceUnitType.METRE) );
+    } catch (Exception e) {
+      
+      throw new CodeException(
+        300,
+        8,
+        "Couldn't initialize kGeoGridsConfig: "
+          + VangavException.getExceptionStackTrace(e),
+        ExceptionClass.INITIALIZATION);
+    }
+  }
+```
+
++ initializing [GeoCoordinates](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoCoordinates.java) in [instagram / HandlerPostPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L287)
+
+```java
+  GeoCoordinates postGeoCoordinates =
+    new GeoCoordinates(
+      requestPostPhoto.latitude,
+      requestPostPhoto.longitude);
+```
+
++ initializing [GeoGrid](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java) in [instagram / HandlerPostPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L292)
+
+```java
+  GeoGrid postGeoGrid =
+    new GeoGrid(
+      Constants.kGeoGridsConfig,
+      postGeoCoordinates);
 ```
 
 
