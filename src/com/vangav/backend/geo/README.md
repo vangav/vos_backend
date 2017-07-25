@@ -56,7 +56,7 @@
 | [`getSurroundingGrids ()`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L330) | returns a 2d array of this grid and one-level of surrounding grids |
 | [`getSurroundingGrids (levels)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L352) | returns a 2d array containing all of the n-levels (from param levels (e.g.: 2, 3, ...) ) of surrounding grids |
 | [`getSurroundingGridsLevels (startLevel, endLevel)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L423) | returns a list of grids per each requested level |
-| [`getSurroundingGridsLevels (level)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L473) | returns a list of grids for the requested level (e.g.: get the grids on level-4 only) |
+| [`getSurroundingGridsLevel (level)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/geo/geo_grids/GeoGrid.java#L473) | returns a list of grids for the requested level (e.g.: get the grids on level-4 only) |
 
 ### usage template
 
