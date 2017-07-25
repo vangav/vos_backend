@@ -12,7 +12,7 @@
 + collision resistant: throws an exception on collision
 + generates unique ids per-instance (i.e.: can be distributed only in a master-slave way)
 + works until year 4857
-+ uses java `Long` (19 digits); 11 digits for unix time and 8 digits for counter (e.g.: 0146619060100000017 -> unix time = 1466190601 and counter = 17)
++ uses java `Long` (19 digits); 11 digits for unix time and 8 digits for counter (e.g.: 0146619060100000017 -> unix time = 1466190601 and counter = 00000017)
 + depends on system time, a change in the system time affects the generated ids and can potentially result in out-of-sequence ids for a period of time; in case of a master-slave distributed deployment, make sure all the servers have their time in sync using [ntp: network time protocol](https://en.wikipedia.org/wiki/Network_Time_Protocol)
 + usage example
 
