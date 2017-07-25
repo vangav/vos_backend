@@ -155,40 +155,72 @@ for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
       postGeoCoordinates);
 ```
 
+## [reverse_geo_coding](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/reverse_geo_coding)
 
++ used to convert coordinates (latitude, longitude) into continent name/code, country name/code, major city and city
 
+### usage examples
 
-
-
-
-
-
-
-
-
-
-
-
-
-### [reverse_geo_coding](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/reverse_geo_coding)
-
-+ Used to convert coordinates (latitude, longitude) into Continent, Country, Major City and City. Usage example can be found in [vos_geo_server](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L111), and here's another example.
++ usage template
 
 ```java
-ReverseGeoCode reverseGeoCode =
-  ReverseGeoCoding.i().getReverseGeoCode(
-    29.9792,
-    31.1342);
+  ReverseGeoCode reverseGeoCode =
+    ReverseGeoCoding.i().getReverseGeoCode(
+      29.9792,
+      31.1342);
 
-System.out.println(reverseGeoCode.toString() );
-// prints -->
-//   city (Al Jīzah)
-//   major city(Gizeh)
-//   country code(EG)
-//   country(Egypt)
-//   continent code(AF)
-//   continent(Africa)
+  System.out.println(reverseGeoCode.toString() );
+  // prints -->
+  //   city (Al Jīzah)
+  //   major city(Gizeh)
+  //   country code(EG)
+  //   country(Egypt)
+  //   continent code(AF)
+  //   continent(Africa)
 ```
+
++ in [geo server / HandlerReverseGeoCode: `processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L111)
+
+```java
+  // get reverse geo code
+  ReverseGeoCode reverseGeoCode =
+    ReverseGeoCoding.i().getReverseGeoCode(
+      requestReverseGeoCode.latitude,
+      requestReverseGeoCode.longitude);
+    
+  // set response
+  ((ResponseReverseGeoCode)request.getResponseBody() ).set(
+    requestReverseGeoCode.latitude,
+    requestReverseGeoCode.longitude,
+    geoHash,
+    reverseGeoCode.getCity(),
+    reverseGeoCode.getMajorCity(),
+    reverseGeoCode.getCountryCode(),
+    reverseGeoCode.getCountry(),
+    reverseGeoCode.getContinentCode(),
+    reverseGeoCode.getContinent() );
+```
+
++ in [instagram / HandlerPostPhoto: `dispatchAnalysis`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L446)
+
+```java
+  ReverseGeoCode reverseGeoCode =
+    ReverseGeoCoding.i().getReverseGeoCode(
+      requestPostPhoto.latitude,
+      requestPostPhoto.longitude);
+
+  postLocation = reverseGeoCode.getContinentCode();
+```
+
+
+
+
+
+
+
+
+
+
 
 ### [geo_hash](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/third_party/geo_hash)
 
