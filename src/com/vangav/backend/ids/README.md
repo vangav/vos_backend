@@ -51,6 +51,14 @@
   + 10 bits for server id (server's mac address); up to 1024 servers
   + 12 bits for sequence; sequence is used for ids generated within the same milli-second on the same server - allows for 4096 ids per-milli-second per-server
 + can be distributed on multiple servers with the following constrains:
-  1. one instance per server; when using server's mac address as instance id, otherwise modify the way the instance's id is set to allow for multiple instances per server
+  1. one instance per server; when using server's mac address as instance id, otherwise modify the way the instance's id is set by modifying [`getMachineId`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SnowFlake.java#L201) method to allow for multiple instances per server
   2. make sure all the servers have their time in sync using [ntp: network time protocol](https://en.wikipedia.org/wiki/Network_Time_Protocol)
 + collision resistant: in case of generating all possible 4096 ids within one millisecond on one server, it waits till the next milli-second to generate the next id
+
++ usage example
+
+```java
+  long id = SnowFlake.i().getNewId();
+  
+  System.out.println("snow flake id: " + id);
+```
