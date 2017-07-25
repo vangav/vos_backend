@@ -18,7 +18,7 @@
 | [push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications/) | ios, android, ... |
 | [geo services](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/) | geo grids, reverse geo coding, geo hashing, ... |
 | [dispatcher/worker](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher/) | dispatchable queries, push notifications, emails, sms, ... |
-| and more ... | periodic jobs, thread pools, facebook graph api, snow flake ids, compression, client generator, exceptions, geometry, metrics, deep vangav mighty integration, ... |
+| and more ... | periodic jobs, thread pools, facebook graph api, snow flake ids (twitter's ids), compression, client generator, exceptions, geometry, metrics, deep vangav mighty integration, ... |
 
 ### [great templates](https://github.com/vangav)
 | template | services | features | db tables | code: total | code: generated |
