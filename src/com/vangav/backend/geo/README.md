@@ -212,26 +212,16 @@ for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
   postLocation = reverseGeoCode.getContinentCode();
 ```
 
+## [geo_hash](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/third_party/geo_hash)
 
++ a [Geohash](https://en.wikipedia.org/wiki/Geohash) lib developed by "Silvio Heuberger" and distributed under Apache License 2.0
 
-
-
-
-
-
-
-
-
-### [geo_hash](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo/third_party/geo_hash)
-
-+ A [Geohash](https://en.wikipedia.org/wiki/Geohash) lib developed by "Silvio Heuberger" and distributed under Apache License 2.0.
-
-+ One usage example is in [vos_geo_server](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L103)
++ usage example in [geo server / HandlerReverseGeoCode: `processRequest`](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java#L104)
 ```java
-// get geo hash
-String geoHash =
-  GeoHash.geoHashStringWithCharacterPrecision(
-    requestReverseGeoCode.latitude,
-    requestReverseGeoCode.longitude,
-    12);
+  // get geo hash
+  String geoHash =
+    GeoHash.geoHashStringWithCharacterPrecision(
+      requestReverseGeoCode.latitude,
+      requestReverseGeoCode.longitude,
+      12);
 ```
