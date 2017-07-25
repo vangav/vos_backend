@@ -225,3 +225,7 @@ for (GeoGrid levelTwoGeoGrid : levelTwoGrids) {
       requestReverseGeoCode.longitude,
       12);
 ```
+
+# exercise
+
+> what's the difference between `geo grids` and `geo hash`?
