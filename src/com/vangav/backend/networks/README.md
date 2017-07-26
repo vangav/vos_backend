@@ -1,4 +1,32 @@
+
+> **why?** this package offers essential networks utilities like:
+  > + downloading files from other services (e.g.: download a member's facebook profile picture)
+  > + sending emails (e.g.: sending news letters or password reset emails to members)
+  > + sending sms/mms (e.g.: sending verification code sms to a new member upon signing up with her/his phone number)
+  > + sync/async rest client (e.g.: to communicate with public apis like facebook graph api, communicating with other backend services in a [service oriented architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture)
+  > + rest jobs provide the ability to serialize http requests then forward them to other services to handle them and/or store them in the database (e.g.: store a rest request in the database that triggers a happy birthday notification to a member every year)
+
 # networks
+
+## structure
+
+| class/pkg | explanation |
+| --------- | ----------- |
+| [rest client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/rest_client) | sync/async rest client (e.g.: to communicate with public apis like facebook graph api, communicating with other backend services in a [service oriented architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture) |
+| [jobs](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/jobs) | rest jobs provide the ability to serialize http requests then forward them to other services to handle them and/or store them in the database (e.g.: store a rest request in the database that triggers a happy birthday notification to a member every year) |
+| [java email](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email/java_email) | handles constructing and sending [java email](http://docs.oracle.com/javaee/6/api/javax/mail/Message.html); constructed emails are also [dispatchable](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md) |
+| [mail gun email](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email/mail_gun_email) | handles constructing and sending [mail gun](https://www.mailgun.com/) emails; constructed emails are also [dispatchable](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md) |
+| [twilio](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/twilio) | handles constructing and sending [twilio](https://www.twilio.com/) sms and mms; constructed messages are also [dispatchable](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md) |
+| [DonwloadInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/DownloadInl.java) | handles downloading files from other services (e.g.: download a member's facebook profile picture) |
+
+
+
+
+
+
+
+
+
 
 + [DownloadInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/DownloadInl.java) is used to download files (e.g.: download a user's Facebook profile picture upon signup).
 
