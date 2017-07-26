@@ -1,10 +1,10 @@
 
 > **why?** this package offers essential networks utilities like:
-  > + downloading files from other services (e.g.: download a member's facebook profile picture)
-  > + sending emails (e.g.: sending news letters or password reset emails to members)
-  > + sending sms/mms (e.g.: sending verification code sms to a new member upon signing up with her/his phone number)
   > + sync/async rest client (e.g.: to communicate with public apis like facebook graph api, communicating with other backend services in a [service oriented architecture](https://en.wikipedia.org/wiki/Service-oriented_architecture)
   > + rest jobs provide the ability to serialize http requests then forward them to other services to handle them and/or store them in the database (e.g.: store a rest request in the database that triggers a happy birthday notification to a member every year)
+  > + sending emails (e.g.: sending news letters or password reset emails to members)
+  > + sending sms/mms (e.g.: sending verification code sms to a new member upon signing up with her/his phone number)
+  > + downloading files from other services (e.g.: download a member's facebook profile picture)
 
 # networks
 
@@ -19,6 +19,64 @@
 | [twilio](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/twilio) | handles constructing and sending [twilio](https://www.twilio.com/) sms and mms; constructed messages are also [dispatchable](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md) |
 | [DonwloadInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/DownloadInl.java) | handles downloading files from other services (e.g.: download a member's facebook profile picture) |
 
+## [rest client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/rest_client)
+
+### structure
+
+| class | explanation |
+| ----- | ----------- |
+| [RestRequest](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequest.java) | is the parent class for all http request types (`GET`, `POST`, ...) and provides the option to set the request's header |
+| [RestRequestGetQuery](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestGetQuery.java) | represents a `GET` http request, inherits from [RestRequest](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequest.java); provides setting single/array params and formats finished request |
+| [RestRequestPostJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestPostJson.java) | is the parent class representing `POST` http requests, inherits from [RestRequest](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequest.java) |
+| [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java) | is the parent class for all `json` http responses |
+| [RestResponseJsonGroup](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJsonGroup.java) | represents a group of [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java) responses where each response corresponds to an http status code (e.g.: `200`, `400`, `500`, ...) |
+| [FutureResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/FutureResponse.java) | holds the future reponse for async http requests |
+| [RestSyncInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestSyncInl.java) | has inline static methods for handling http request calls of different types synchronously; also provides the ability to check a requet's status and extract its response (raw or formatted) |
+| [RestAsync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestAsync.java) | handles asynchronous http requests, provides the ability to check the request's status and extracts its response (raw or formatted) |
+
+### usage examples
+
++ in [FacebookGraph: `getFields`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java#L762)
+
+```java
+  CountDownLatch countDownLatch = new CountDownLatch(1);
+  
+  RestAsync currRestAsync =
+    new RestAsync(
+      countDownLatch,
+      String.format(
+        kGetField,
+        this.version,
+        this.userId,
+        field.getName(),
+        this.accessToken),
+      new RestResponseJsonGroup(
+        field.getNewFieldInstance(),
+        new BadRequestResponse() ) );
+        
+  ThreadPool.i().executeInRestClientPool(currRestAsync);
+  
+  // sync mode example
+  countDownLatch.await();
+  
+  if (currRestAsync.gotMatchingJsonResponse() == true) {
+    
+    System.out.println(
+      "http status code: "
+      + currRestAsync.getResponseStatusCode() );
+    System.out.println(
+      "json response: "
+      + currRestAsync.getRestResponseJson().toString() );
+  } else {
+    
+    System.out.println(
+      "http status code: "
+      + currRestAsync.getResponseStatusCode() );
+    System.out.println(
+      "raw response: "
+      + currRestAsync.getRawResponseString() );
+  }
+```
 
 
 
