@@ -41,23 +41,22 @@
 ```java
   CountDownLatch countDownLatch = new CountDownLatch(1);
   
+  // initialize request
   RestAsync currRestAsync =
     new RestAsync(
       countDownLatch,
-      String.format(
-        kGetField,
-        this.version,
-        this.userId,
-        field.getName(),
-        this.accessToken),
+      getRequestUrl,
       new RestResponseJsonGroup(
-        field.getNewFieldInstance(),
+        field.getNewFieldInstance(), // for 200 success response
         new BadRequestResponse() ) );
         
+  // execute request
   ThreadPool.i().executeInRestClientPool(currRestAsync);
   
-  // sync mode example
+  // sync mode example (wait for response)
   countDownLatch.await();
+  
+  // extract response
   
   if (currRestAsync.gotMatchingJsonResponse() == true) {
     
