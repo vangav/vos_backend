@@ -77,6 +77,72 @@
   }
 ```
 
+## [jobs](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/jobs)
+
+### structure
+
+| class | explanation |
+| ----- | ----------- |
+| [Job](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/jobs/Job.java) | is basically a serializable `GET` http request with optional `job_id` and `job_time` for traceability  |
+| [JobsExecutorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/jobs/JobsExecutorInl.java) | has inline static methods for executing [Job](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/jobs/Job.java) objects (i.e.: sending the `GET` http request) asynchronously or synchronously |
+
+### usage example
+
++ the following example shows the multi-step process of:
+1. create a job and save the job in the database
+2. execute the job and delete it from the database
+3. iterate on failed jobs in the databse and retry them
+
+1. create a job in [instagram / HandlerPostPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L143)
+
+```java
+  // create dispense job using request's uuid and request's time
+    
+  Job job =
+    new Job(
+      DispenseProperties.i().getStringPropterty(
+        DispenseProperties.kPostPhotoToFollowers) );
+
+  job.addParam("user_id", requestPostPhoto.getUserId().toString() );
+  job.addParam("post_id", postId.toString() );
+  job.addParam("photo_id", postId.toString() );
+  job.addParam("post_time", "" + request.getStartTime() );
+  job.addParam("job_id", request.getRequestId().toString() );
+
+  // serialize job
+  String jobSerialized =
+    SerializationInl.serializeObject(job);
+
+  ByteBuffer jobByteBuffer =
+    EncodingInl.encodeStringIntoByteBuffer(jobSerialized);
+
+  // insert into ig_jobs
+  // all queries must succeed
+  BatchStatement batchStatement = new BatchStatement(Type.LOGGED);
+
+  // insert into ig_jobs.current_jobs
+  batchStatement.add(
+    CurrentJobs.i().getBoundStatementInsert(
+      request.getRequestId(),
+      request.getStartTime(),
+      jobByteBuffer) );
+
+  // insert into ig_jobs.hourly_current_jobs
+  batchStatement.add(
+    HourlyCurrentJobs.i().getBoundStatementInsert(
+      CalendarFormatterInl.concatCalendarFields(
+        request.getStartCalendar(),
+        Calendar.YEAR,
+        Calendar.MONTH,
+        Calendar.DAY_OF_MONTH,
+        Calendar.HOUR_OF_DAY),
+      request.getStartTime(),
+      request.getRequestId() ) );
+
+  // execute batch statement
+  Cassandra.i().executeSync(batchStatement);
+```
+
 
 
 
