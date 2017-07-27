@@ -34,7 +34,7 @@
 | [RestSyncInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestSyncInl.java) | has inline static methods for handling http request calls of different types synchronously; also provides the ability to check a requet's status and extract its response (raw or formatted) |
 | [RestAsync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestAsync.java) | handles asynchronous http requests, provides the ability to check the request's status and extracts its response (raw or formatted) |
 
-### usage examples
+### usage example
 
 + in [FacebookGraph: `getFields`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java#L762)
 
