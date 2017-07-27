@@ -89,11 +89,14 @@
 ### usage example
 
 + the following example shows the multi-step process of:
-1. create a job and save the job in the database
-2. execute the job and delete it from the database
-3. iterate on failed jobs in the databse and retry them
+1. create a job and store it in the database
+2. deliver the job
+3. receive the job, execute it and delete it from the database
+4. iterate on failed jobs in the databse and retry them
 
-1. create a job in [instagram / HandlerPostPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L143)
++ here's the step by step using `instagram`, `instagram dispense` and `instagram jobs` services
+
+1. create a job and store it in the database in [instagram / HandlerPostPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L143)
 
 ```java
   // create dispense job using request's uuid and request's time
@@ -141,6 +144,101 @@
 
   // execute batch statement
   Cassandra.i().executeSync(batchStatement);
+```
+
+2. deliver the job in [instagram / HandlerPostPhoto: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L143)
+
+```java
+  // pass job to dispense service
+  try {
+
+    // non-fatal on failure, jobs service will retry executing the job
+    JobsExecutorInl.executeJobsAsync(job);
+  } catch (BadRequestException | CodeException ve) {
+
+    request.addVangavException(ve);
+  } catch (Exception e) {
+
+    request.addException(e);
+  }
+```
+
+3. receive the job, execute it and delete it from the database in [instagram dispense / HandlerPostPhotoToFollowers: `afterProcessing`](https://github.com/vangav/vos_instagram_dispense/blob/master/app/com/vangav/vos_instagram_dispense/controllers/post_photo_to_followers/HandlerPostPhotoToFollowers.java#L141)
+
+```java
+  // finished processing successfully - delete job
+    
+  UUID jobId = UUID.fromString(requestPostPhotoToFollowers.job_id);
+
+  // all queries must succeed
+  BatchStatement batchStatement = new BatchStatement(Type.LOGGED);
+
+  batchStatement.add(
+    CurrentJobs.i().getBoundStatementDelete(jobId) );
+
+  batchStatement.add(
+    HourlyCurrentJobs.i().getBoundStatementDelete(
+      CalendarFormatterInl.concatCalendarFields(
+        CalendarAndDateOperationsInl.getCalendarFromUnixTime(
+          requestPostPhotoToFollowers.post_time),
+        Calendar.YEAR,
+        Calendar.MONTH,
+        Calendar.DAY_OF_MONTH,
+        Calendar.HOUR_OF_DAY),
+      requestPostPhotoToFollowers.post_time,
+      jobId) );
+
+  // execute batch statement
+  Cassandra.i().executeSync(batchStatement);
+```
+
+4. iterate on failed jobs in the databse and retry them in [instagram jobs / RestJobs: `process`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/rest_jobs/RestJobs.java#L115)
+
+```java
+  // query all jobs within cycle's hour
+  ResultSet resultSet =
+    HourlyCurrentJobs.i().executeSyncSelect(
+      CalendarFormatterInl.concatCalendarFields(
+        plannedStartCalendar,
+        Calendar.YEAR,
+        Calendar.MONTH,
+        Calendar.DAY_OF_MONTH,
+        Calendar.HOUR_OF_DAY) );
+
+  // to to fetch each job
+  ResultSet currJobResultSet;
+
+  String currSerializedJob;
+  Job currJob;
+
+  // retry executing every found job (failed to execute job)
+  for (Row row : resultSet) {
+
+    if (resultSet.getAvailableWithoutFetching() <=
+        Constants.kCassandraPrefetchLimit &&
+        resultSet.isFullyFetched() == false) {
+
+      // this is asynchronous
+      resultSet.fetchMoreResults();
+    }
+
+    // select job
+    currJobResultSet =
+      CurrentJobs.i().executeSyncSelect(
+        row.getUUID(HourlyCurrentJobs.kJobIdColumnName) );
+
+    // get serialized job
+    currSerializedJob =
+      EncodingInl.decodeStringFromByteBuffer(
+        currJobResultSet.one().getBytes(
+          CurrentJobs.kJobColumnName) );
+
+    // deserialize
+    currJob = SerializationInl.<Job>deserializeObject(currSerializedJob);
+
+    // execute job (retry)
+    JobsExecutorInl.executeJobsAsync(currJob);
+  }
 ```
 
 
