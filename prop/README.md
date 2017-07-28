@@ -1,3 +1,6 @@
+
+> **why?** using properties files is useful in many ways like: easily configure how a service works without having to understand/edit code, reconfigure a live service (e.g.: changing a helper service's ip) without having to stop it to edit its code
+
 # prop
 + holds all vangav backend's properties files
 + generated services autoamtically get a copy of the necessary properties files depending on the project's config
