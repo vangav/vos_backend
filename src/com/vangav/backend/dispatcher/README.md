@@ -3,7 +3,7 @@
 
 # dispatcher
 
-### Structure
+### structure
 
 | class | explanation |
 | ----- | ----------- |
