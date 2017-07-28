@@ -241,6 +241,45 @@
   }
 ```
 
+## [java email](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email/java_email)
+
++ an email client that sends emails using [JavaMail](http://www.oracle.com/technetwork/java/javamail/index.html)
+
+### structure
+
+| Class | Explanation |
+| ----- | ----------- |
+| [JavaEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmail.java) | represents an email (from, to, cc, subject, ssl type, ...) |
+| [JavaEmailProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmailProperties.java) | maps [java_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/java_email_properties.prop) properties file defining [smtp](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) values (host, port, ...) |
+| [JavaEmailSenderInl](JavaEmailSenderInl) | is an inline class that sends [JavaEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmail.java) objects synchronously |
+| [JavaEmailDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/dispatch_message/JavaEmailDispatchable.java) | represents a dispatchable version of [JavaEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmail.java) |
+
+### usage template
+
+```java
+  // init an email
+  JavaEmail javaEmail =
+    new JavaEmail(
+      "Lisa Sender",
+      "lisa_sender@example.com",
+      "receiver@example.com",
+      "This is a usage template subject text.",
+      "This is a usage template body text.",
+      SslType.WITH_SSL);
+    
+  // option 1 - send it directly
+  JavaEmailSenderInl.sendEmail(javaEmail);
+
+  // option 2 - enqueue it in the dispatcher to be executed on the worker service side
+  
+  JavaEmailDispatchable javaEmailDispatchable =
+    new JavaEmailDispatchable(javaEmail);
+
+  request.getDispatcher().addDispatchMessage(javaEmailDispatchable);
+```
+
+
+
 
 
 
