@@ -1,4 +1,41 @@
-# play_framework
+
+> **why?** play framework powers linkedin's 500,000,000 members backend; it makes it easy to build web applications
+
+> vangav backend generated services add 100% of the play-framwork-code and tunes it for high performance and big scale; generated services offers a multitude of features on top of play framework as explained in this tutorial
+
+# play framework
+
+### structure
+
+| pkg/class | explanation |
+| --------- | ----------- |
+| [ParentPlayHandler](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java) | is the root class for handling all incoming requests to a vangav backend service where execution starts at [`handleRequestAsync`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L232) |
+| **pkg: [param](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework/param)** | represents requests' params and handles their parsing and validation |
+| [ParamType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java) | an enum representing supported request param types like [`ACCESS_TOKEN`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java#L89), [`EMAIL`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java#L92), [`PHONE_NUMBER`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamType.java#L94), ... |
+| [ParamOptionality](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamOptionality.java) | is an enum used to distinguish between mandatory and optional requests' params |
+| [ParamValidatorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamValidatorInl.java) | has the inline static methods for validating requests' params |
+| [ParamValidatorProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamValidatorProperties.java) | maps [param_validator_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/param_validator_properties.prop) properties file defining how some params get validated like a photo's size |
+| [ParamParsersInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamParsersInl.java) | handles requests' params parsing like parsing an incoming date `string` into a `date` object |
+| **pkg: [request](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework/request)** | represents incoming requests' objects (header, params, state, thrown exceptions, dispatch queue, ...) as well as handling building a response for each request |
+| [Request](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java) | is the main class to deal with as explained in depth later in this tutorial; it holds objects from all other classes under this package |
+| []() |  |
+| []() |  |
+| []() |  |
+| []() |  |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 + This package is responsible for:
   + For every Vangav Backend generated RESTful service, [controllers_generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework/controllers_generator) handles validating [config file](https://github.com/vangav/vos_geo_server/blob/master/generator_config/controllers.json) as well as generating [Controller](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/ControllerReverseGeoCode.java), [Handler](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/HandlerReverseGeoCode.java), [Request](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/RequestReverseGeoCode.java) and [Response](https://github.com/vangav/vos_geo_server/blob/master/app/com/vangav/vos_geo_server/controllers/reverse_geo_code/ResponseReverseGeoCode.java) classes per-entry-point.
