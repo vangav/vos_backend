@@ -401,3 +401,7 @@
     return DownloadInl.downloadFileAsString(this.cover.source);
   }
 ```
+
+# exercise
+
+> when would one use a [rest job](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/jobs)?
