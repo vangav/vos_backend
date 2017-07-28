@@ -247,7 +247,7 @@
 
 ### structure
 
-| Class | Explanation |
+| class | explanation |
 | ----- | ----------- |
 | [JavaEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmail.java) | represents an email (from, to, cc, subject, ssl type, ...) |
 | [JavaEmailProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmailProperties.java) | maps [java_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/java_email_properties.prop) properties file defining [smtp](https://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol) values (host, port, ...) |
@@ -278,171 +278,126 @@
   request.getDispatcher().addDispatchMessage(javaEmailDispatchable);
 ```
 
+## [mail gun email](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email/mail_gun_email)
 
++ an email client that sends emails using [mailgun](http://www.mailgun.com/)
 
+### structure
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-+ [DownloadInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/DownloadInl.java) is used to download files (e.g.: download a user's Facebook profile picture upon signup).
-
-### [email/java_email](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email/java_email)
-
-+ An email client that sends emails using [JavaMail](http://www.oracle.com/technetwork/java/javamail/index.html).
-
-| Class | Explanation |
+| class | explanation |
 | ----- | ----------- |
-| [JavaEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmail.java) | Represents an email (from, to, cc, subject, ...). |
-| [JavaEmailProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmailProperties.java) | Maps [java_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/java_email_properties.prop) properties file. |
-| [JavaEmailSenderInl](JavaEmailSenderInl) | Is an inline class that sends [JavaEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmail.java) Objects synchronously. |
-| [JavaEmailDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/dispatch_message/JavaEmailDispatchable.java) | Represents a dispatchable version of [JavaEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/java_email/JavaEmail.java). |
+| [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java) | represents an email (from, to, cc, subject, ...) |
+| [MailGunEmailProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmailProperties.java) | maps [mail_gun_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/mail_gun_email_properties.prop) properties file defining api key and mailgun domain name |
+| [MailGunEmailSenderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmailSenderInl.java) | is an inline class that sends [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java) objects synchronously |
+| [MailGunEmailDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/dispatch_message/MailGunEmailDispatchable.java) | represents a dispatchable version of [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java) |
 
-+ Usage example
+### usage template
+
 ```java
-// init an email
-JavaEmail javaEmail =
-  new JavaEmail(
-    "Lisa",
-    "example@example.com",
-    "contact@vangav.com",
-    "Hola",
-    "This is a usage example body text.",
-    SslType.WITH_SSL);
+  MailGunEmail mailGunEmail =
+    new MailGunEmail (
+      "Lisa Sender",
+      "lisa_sender",
+      "This is a usage template subject text.",
+      "This is a usage template body text.",
+      "receiver_1@example.com",
+      "receiver_2@example.com");
     
-// option 1 - send it directly
-JavaEmailSenderInl.sendEmail(javaEmail);
+  // option 1 - send it directly
+  MailGunEmailSenderInl.sendEmail(mailGunEmail);
 
-// option 2 - enqueue it in the dispatcher to be executed on the worker side
-JavaEmailDispatchable javaEmailDispatchable =
-  new JavaEmailDispatchable(javaEmail);
+  // option 2 - enqueue it in the dispatcher to be executed on the worker side
 
-request.getDispatcher().addDispatchMessage(javaEmailDispatchable);
+  MailGunEmailDispatchable mailGunEmailDispatchable =
+    new MailGunEmailDispatchable(mailGunEmail);
+
+  request.getDispatcher().addDispatchMessage(mailGunEmailDispatchable);
 ```
 
-### [email/mail_gun_email](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/email/mail_gun_email)
+## [twilio](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/twilio)
 
-+ An email client that sends emails using [mailgun](http://www.mailgun.com/).
++ a client that sends sms and mms using [twilio](https://www.twilio.com/)
 
-| Class | Explanation |
+### structure
+
+| class | explanation |
 | ----- | ----------- |
-| [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java) | Represents an email (from, to, cc, subject, ...). |
-| [MailGunEmailProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmailProperties.java) | Maps [mail_gun_email_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/mail_gun_email_properties.prop) properties file. |
-| [MailGunEmailSenderInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmailSenderInl.java) | Is an inline class that sends [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java) Objects synchronously. |
-| [MailGunEmailDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/dispatch_message/MailGunEmailDispatchable.java) | Represents a dispatchable version of [MailGunEmail](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/email/mail_gun_email/MailGunEmail.java). |
+| [TwilioSms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioSms.java) | represents an sms (from number, to number and message) |
+| [TwilioMms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioMms.java) | represents an mms (from number, to number, message and media url) |
+| [TwilioProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioProperties.java) | maps [twilio_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/twilio_properties.prop) properties file defining account id, username and password |
+| [TwilioSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioSender.java) | handles sending [TwilioSms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioSms.java) and [TwilioMms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioMms.java) objects synchronously and asynchronously |
+| [TwilioSmsDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/dispatch_message/TwilioSmsDispatchable.java) | represents a dispatchable version of [TwilioSms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioSms.java) |
+| [TwilioMmsDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/dispatch_message/TwilioMmsDispatchable.java) | represents a dispatchable version of [TwilioMms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioMms.java) |
 
-+ Usage example
+### usage teamplate
+
 ```java
-MailGunEmail mailGunEmail =
-  new MailGunEmail (
-    "John",
-    "example",
-    "Hola",
-    "This is a usage example body text.",
-    "contact@vangav.com");
+  // SMS example
+
+  // init SMS
+  TwilioSms twilioSms =
+    new TwilioSms (
+      "12345", // to phone number
+      "67890", // from phone number
+      "This is a usage template message.");
     
-// option 1 - send it directly
-MailGunEmailSenderInl.sendEmail(mailGunEmail);
+  // option 1 - send synchronously
+  String smsSid = TwilioSender.i().sendSync(twilioSms);
 
-// option 2 - enqueue it in the dispatcher to be executed on the worker side
-MailGunEmailDispatchable mailGunEmailDispatchable =
-  new MailGunEmailDispatchable(mailGunEmail);
+  // option 2 - send asynchronously
+  ListenableFuture<Message> futureMessage =
+    TwilioSender.i().sendAsync(twilioSms);
 
-request.getDispatcher().addDispatchMessage(mailGunEmailDispatchable);
+  // option 3 - dispatch to worker
+  
+  TwilioSmsDispatchable twilioSmsDispatchable =
+    new TwilioSmsDispatchable(twilioSms);
+  
+  request.getDispatcher().addDispatchMessage(twilioSmsDispatchable);
+
+  // MMS example
+  
+  // init MMS
+  TwilioMms twilioMms =
+    new TwilioMms (
+      "12345", // to phone number
+      "67890", // from phone number
+      "This is a usage template message.",
+      "example.com/media.png"); // media url
+    
+  // option 1 - send synchronously
+  String mmsSid = TwilioSender.i().sendSync(twilioMms);
+
+  // option 2 - send asynchronously
+  ListenableFuture<Message> futureMessage =
+    TwilioSender.i().sendAsync(twilioMms);
+
+  // option 3 - dispatch to worker
+
+  TwilioMmsDispatchable twilioMmsDispatchable =
+    new TwilioMmsDispatchable(twilioMms);
+  
+  request.getDispatcher().addDispatchMessage(twilioMmsDispatchable);
 ```
 
-### [jobs](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/jobs)
+## [DownloadInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/DownloadInl.java)
 
-+ Job class is a simplified and serializable version of HTTP GET requests.
-  + A main service can dispatch a job to a helper service.
-  + Can be serialized and stored in the database for tracking and retrying in case of failure.
-  + Can be stored in the database and get executed at a later point in time.
-  + etc ...
-+ JobExecutorInl executes jobs by issuing the jobs HTTP GET request asynchronously.
++ inline static methods for downloading files by urls
 
-### [rest_client](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/rest_client)
+### usage example
 
-+ Having a built-in REST client in a backend service simplifies operations like:
-  + Communicating with public APIs (e.g.: Facebook Graph API).
-  + Dividing a backend into smaller services (e.g.: one service response for authentication), then those services communicate with each other to serve a response for an incoming request.
-  
-| Class | Explanation |
-| ----- | ----------- |
-| [RestRequest](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequest.java) | Is the parent class for [RestRequestGetQuery](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestGetQuery.java) and [RestRequestPostJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestPostJson.java). This REST client uses default headers for GET and POST REST requests unless the [`addHeader`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequest.java#L88) method of this parent class is used to specify the headers to be used. |
-| [RestRequestGetQuery](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestGetQuery.java) | Represents a REST GET request. |
-| [RestRequestPostJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestRequestPostJson.java) | Represents a REST POST request. |
-| [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java) | Represents a REST JSON response. |
-| [RestResponseJsonGroup](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJsonGroup.java) | Represents a group of [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java) Objects where each Object maps to an HTTP Status code. Useful when the response's JSON structure differs depending on the HTTP Status code (e.g.: HTTP_OK 200, HTTP_BAD_REQUEST 400, ...). |
-| [RestSyncInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestSyncInl.java) | Is an inline class that handles sending GET/POST REST requests synchronously. And provides the ability to check the response's status, maps the response to a [RestResponseJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJson.java), [RestResponseJsonGroup](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestResponseJsonGroup.java), raw response String or write response's file (e.g.: when downloading files). |
-| [RestAsync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestAsync.java) | Represents an asynchronous REST GET/POST requests with JSON/FILE responses. This class inherits from the Runnable [LatchThread](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/LatchThread.java) so that it gets executed in [`executeInRestClientPool (RestAsync restAsync)`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/ThreadPool.java#L228) as in [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java#L800). |
-| [FutureResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/FutureResponse.java) | Used to hold future response of [RestAsync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestAsync.java) requests. Here's one usage example from [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java#L854). |
++ from [facebook api / Cover: `downloadCoverPhoto`](https://github.com/vangav/vos_backend/blob/a32cbc1c7159ddb04db11b33808e1c4f1bec5e74/src/com/vangav/backend/public_apis/facebook/json/fields/cover/Cover.java#L105)
 
-+ [Usage example](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/Car2GoApi.java#L325) from Car2GoApi.
-
-### [twilio](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/twilio)
-
-+ A client that sends SMSs and MMSs using [twilio](https://www.twilio.com/).
-
-| Class | Explanation |
-| ----- | ----------- |
-| [TwilioSms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioSms.java) | Represents an SMS (from number, to number and message). |
-| [TwilioMms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioMms.java) | Represents an MMS (from number, to number, message and media url). |
-| [TwilioProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioProperties.java) | Maps [twilio_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/twilio_properties.prop) properties file. |
-| [TwilioSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioSender.java) | Handles sending [TwilioSms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioSms.java) and [TwilioMms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioMms.java) Objects synchronously and asynchronously. |
-| [TwilioSmsDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/dispatch_message/TwilioSmsDispatchable.java) | Represents a dispatchable version of [TwilioSms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioSms.java). |
-| [TwilioMmsDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/dispatch_message/TwilioMmsDispatchable.java) | Represents a dispatchable version of [TwilioMms](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/twilio/TwilioMms.java). |
-
-+ Usage example
 ```java
-// SMS example
-// init SMS
-TwilioSms twilioSms =
-  new TwilioSms (
-    "12345", // to phone number
-    "67890", // from phone number
-    "This is a usage example message.");
+  /**
+   * downloadCoverPhoto
+   * @return the facebook user's cover photo as a string, and returns null or
+   *           throws an exception on failure
+   * @throws Exception
+   */
+  @JsonIgnore
+  public String downloadCoverPhoto () throws Exception {
     
-// option 1 - send synchronously
-String smsSid = TwilioSender.i().sendSync(twilioSms);
-
-// option 2 - send asynchronously
-ListenableFuture<Message> futureMessage = TwilioSender.i().sendAsync(twilioSms);
-
-// option 3 - dispatch to worker
-TwilioSmsDispatchable twilioSmsDispatchable =
-  new TwilioSmsDispatchable(twilioSms);
-  
-request.getDispatcher().addDispatchMessage(twilioSmsDispatchable);
-
-// MMS example
-// init MMS
-TwilioMms twilioMms =
-  new TwilioMms (
-    "12345", // to phone number
-    "67890", // from phone number
-    "This is a usage example message.",
-    "example.com/media.png"); // media url
-    
-// option 1 - send synchronously
-String mmsSid = TwilioSender.i().sendSync(twilioMms);
-
-// option 2 - send asynchronously
-ListenableFuture<Message> futureMessage = TwilioSender.i().sendAsync(twilioMms);
-
-// option 3 - dispatch to worker
-TwilioMmsDispatchable twilioMmsDispatchable =
-  new TwilioMmsDispatchable(twilioMms);
-  
-request.getDispatcher().addDispatchMessage(twilioMmsDispatchable);
+    return DownloadInl.downloadFileAsString(this.cover.source);
+  }
 ```
-
