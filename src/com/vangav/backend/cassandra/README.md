@@ -3,7 +3,7 @@
 
 # cassandra
 
-### package structure
+### structure
 
 | class/pkg | explanation |
 | ----- | ----------- |
