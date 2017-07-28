@@ -1,7 +1,7 @@
 
 > **why?** play framework powers linkedin's 500,000,000 members backend; it makes it easy to build web applications
 
-> vangav backend generated services add 100% of the play-framwork-code and tunes it for high performance and big scale; generated services offers a multitude of features on top of play framework as explained in this tutorial
+> vangav backend generated services generates 100% of the needed play-framwork-code and tunes it for high performance and big scale; generated services offers a multitude of features on top of play framework as explained in this tutorial
 
 # play framework
 
@@ -18,10 +18,15 @@
 | [ParamParsersInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/param/ParamParsersInl.java) | handles requests' params parsing like parsing an incoming date `string` into a `date` object |
 | **pkg: [request](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework/request)** | represents incoming requests' objects (header, params, state, thrown exceptions, dispatch queue, ...) as well as handling building a response for each request |
 | [Request](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java) | is the main class to deal with as explained in depth later in this tutorial; it holds objects from all other classes under this package |
-| []() |  |
-| []() |  |
-| []() |  |
-| []() |  |
+| [RequestType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestType.java) | represents supported http request types: `GET`, `POST`, ... |
+| [RequestState](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestState.java) | represents the response's http status (`OK`, `BAD_REQUEST`, ...) |
+| [RequestProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestProperties.java) | maps [request_properties](https://github.com/vangav/vos_backend/blob/master/prop/request_properties.prop) properties file defining how a request gets processed as explained in depther later in this tutorial |
+| [RequestHeader](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestHeader.java) | represents a request's header |
+| [RequestJsonBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBody.java), [RequestJsonBodyGet](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBodyGet.java) and [RequestJsonBodyPost](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/RequestJsonBodyPost.java) | represent a request's body content |
+| [UAgentInfo](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/third_party/UAgentInfo.java) | extracts agent-info from a request's header (e.g.: browser type, device type, ...) |
+| [ResponseBody](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBody.java), [ResponseBodyJson](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyJson.java), [ResponseBodyHtml](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyHtml.java) and [ResponseBodyFile](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyFile.java) | represents a response's body content |
+| [ResponseBodyError](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyError.java) and [ResponseBodyErrorProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyErrorProperties.java) | represents vangav backend's error responses and controls which parts of it get sent back to the requesting client |
+| **pkg: [controllers_generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework/controllers_generator)** | represents generator config files and handles using those config file to generate the api part of vangav backend services; config and generation are explained in depther later in this tutorial |
 
 
 
