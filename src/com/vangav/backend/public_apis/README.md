@@ -214,3 +214,7 @@
       (ErrorResponse)vehiclesSync.get(LocationType.ROMA).getSecond();
   }
 ```
+
+# exercise
+
+> what's the recommended way to add other service's apis (e.g.: [instagram api](https://any-api.com/instagram_com/instagram_com/docs/API_Description))?
