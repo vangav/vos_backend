@@ -5,11 +5,25 @@
 
 + this package handles requesting information from [facebook graph api](https://developers.facebook.com/docs/graph-api) and [car2go api](https://github.com/car2go/openAPI); to add other service's apis (e.g.: [instagram api](https://any-api.com/instagram_com/instagram_com/docs/API_Description)), it's recommended to use vangav backend's [client generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java)
 
-### [facebook](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook)
+## [facebook](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook)
 
 + facilitates querying [facebook graph api](https://developers.facebook.com/docs/graph-api) for user-info (pictures, fields, edges, ...) synchronously/asynchronously
 
-+ Usage example
+### structure
+
+| pkg/class | explanantion |
+| --------- | ------------ |
+| [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java) | is the main class to deal with to fetch data from facebook graph; using it is explained in details in the following section |
+| [FacebookGraphApiField](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiField.java) | is the parent class for all facebook graph's field-response |
+| [FacebookGraphApiFieldType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiFieldType.java) | is an enum representing all facebook graph's fields |
+| [fields](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/fields) | contains all the classes/packages representing facebook graph's fields-json-response like: [`favorite_athletes`](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/fields/favorite_athletes), [`Email`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/Email.java), [`Name`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/Name.java), ... |
+| [edge](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/edge) | has the parent class [FacebookGraphApiEdge](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/edge/FacebookGraphApiEdge.java) for all facebook graph's edges in addition to the static elements in each edge-response like [Paging](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/edge/Paging.java) |
+| [FacebookGraphApiEdgeType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/FacebookGraphApiEdgeType.java) | is an enum re[resenting all facebook graph's edges |
+| [edges](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges) | contains all packages representing facebook graph's edges-json-respone like: [`friends`](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/friends), [`movies`](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/movies), [`music`](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/music), ... |
+| [BadRequestResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/BadRequestResponse.java) and [BadRequestResponseError](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/BadRequestResponseError.java) | represent facebook graph's bad response (http status code `400`) json response |
+| [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/ErrorResponse.java) | represents facebook graph's response for all http status code other than success `200` and badrequest `400` |
+
+### usage template
 ```java
 // init Facebook Graph API
 FacebookGraph facebookGraph =
