@@ -1,4 +1,4 @@
-# vangav_backend_templates
+# vangav backend templates
 + contains the generator config files used to generate the template services
 + all the template services has a complete version (with the 10-% of logic code added to them) on github as follows
 
