@@ -36,69 +36,67 @@
 | [getEdgesSync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java#L880) and [getEdgesAsync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java#L903) | returns requested edges like: [`friends`](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/friends), [`movies`](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/movies), [`music`](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/music), ... |
 
 ### usage template
+
 ```java
-// init Facebook Graph API
-FacebookGraph facebookGraph =
-  new FacebookGraph("fb_access_token"); // init with user's facebook access token
+  // init Facebook Graph API
+  // init with user's facebook access token
+  FacebookGraph facebookGraph =
+    new FacebookGraph("fb_access_token");
   
-// following are examples for some of the avaialble operations
+  // following are examples for some of the avaialble features
   
-// get profile picture synchronously
-String profilePictureSync = facebookGraph.getProfilePictureSync(512);
+  // get profile picture synchronously with width = 512 pixels
+  String profilePictureSync =
+    facebookGraph.getProfilePictureSync(512);
 
-// get profile picture asynchronously
+  // get profile picture asynchronously with width = 512 pixels
 
-String profilePictureAsyncTrackingId =
-  facebookGraph.getProfilePictureAsync(512);
+  String profilePictureAsyncTrackingId =
+    facebookGraph.getProfilePictureAsync(512);
 
-// do other operations ...
+  // do other operations while the profile picture is being fetched ...
 
-String profilePictureAsync =
-  facebookGraph.getProfilePictureAsync(profilePictureAsyncTrackingId);
+  String profilePictureAsync =
+    facebookGraph.getProfilePictureAsync(
+      profilePictureAsyncTrackingId);
   
-// get fields synchronously
+  // get fields synchronously (favorite athletes and birthday)
 
-Map<
-  FacebookGraphApiFieldType,
-  Pair<FacebookApiResponseStatus, RestResponseJson> > fieldsSync =
-  facebookGraph.getFieldsSync(
-    FacebookGraphApiFieldType.FAVORITE_ATHLETES,
-    FacebookGraphApiFieldType.BIRTHDAY);
+  Map<
+    FacebookGraphApiFieldType,
+    Pair<FacebookApiResponseStatus, RestResponseJson> > fieldsSync =
+    facebookGraph.getFieldsSync(
+      FacebookGraphApiFieldType.FAVORITE_ATHLETES,
+      FacebookGraphApiFieldType.BIRTHDAY);
     
-if (fieldsSync.get(
-      FacebookGraphApiFieldType.FAVORITE_ATHLETES).getFirst() == SUCCESS) {
+  if (fieldsSync
+        .get(FacebookGraphApiFieldType.FAVORITE_ATHLETES)
+        .getFirst() == SUCCESS) {
   
-  FavoriteAthletes favoriteAthletes =
-    (FavoriteAthletes)fieldsSync.get(
-      FacebookGraphApiFieldType.FAVORITE_ATHLETES).getSecond();
-} else if (fieldsSync.get(
-             FacebookGraphApiFieldType.FAVORITE_ATHLETES).getFirst() == BAD_REQUEST) {
+    FavoriteAthletes favoriteAthletes =
+      (FavoriteAthletes)fieldsSync
+        .get(FacebookGraphApiFieldType.FAVORITE_ATHLETES)
+        .getSecond();
+  } else if (fieldsSync
+               .get(FacebookGraphApiFieldType.FAVORITE_ATHLETES)
+               .getFirst() == BAD_REQUEST) {
   
-  BadRequestResponse favoriteAthletesBadRequestResponse =
-    (BadRequestResponse)fieldsSync.get(
-      FacebookGraphApiFieldType.FAVORITE_ATHLETES).getSecond();
-} else {
+    BadRequestResponse favoriteAthletesBadRequestResponse =
+      (BadRequestResponse)fieldsSync
+        .get(FacebookGraphApiFieldType.FAVORITE_ATHLETES)
+        .getSecond();
+  } else {
 
-  ErrorResponse favoriteAthletesErrorResponse =
-    (ErrorResponse)fieldsSync.get(
-      FacebookGraphApiFieldType.FAVORITE_ATHLETES).getSecond();
-}
+    ErrorResponse favoriteAthletesErrorResponse =
+      (ErrorResponse)fieldsSync
+        .get(FacebookGraphApiFieldType.FAVORITE_ATHLETES)
+        .getSecond();
+  }
 
-// the same goes for BIRTHDAY field and any other fields
+  // the same goes for BIRTHDAY field and any other fields
 
-// getting edges is similar to getting fields
+  // getting edges is similar to getting fields
 ```
-
-| Class/Package | Explanation |
-| ------------- | ----------- |
-| [FacebookGraph](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/FacebookGraph.java) | Is the main entry point for getting any user-info using Facebook Graph API. |
-| [json](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json) | Has the JSON representation for all of the possible JSON responses from Facebook Graph API - fields, edges, bad request and error response. |
-| [BadRequestResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/BadRequestResponse.java) | Maps a bad request's response (http status code 400). |
-| [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/ErrorResponse.java) | Maps every response for http status codes other than 200 (success) and 400 (bad request). |
-| [FacebookGraphApiFieldType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiFieldType.java) | Is an enumeration of Facebook Graph API's fields. |
-| [FacebookGraphApiField](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/fields/FacebookGraphApiField.java) | Is the parent class for all the fields' classes implemented under [fields](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/fields) package. |
-| [FacebookGraphApiEdgeType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/facebook/json/edges/FacebookGraphApiEdgeType.java) | is an enumeration of Facebook Graph API's edges. |
-| [edge](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges/edge) | Is the parent class for all the edges' classes implemented under [edges](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/facebook/json/edges) package. |
 
 ### [car2go](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/car2go)
 
