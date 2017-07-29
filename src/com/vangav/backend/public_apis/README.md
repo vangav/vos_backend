@@ -178,37 +178,39 @@
 
 ## [car2go](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/car2go)
 
-+ This sub-package facilitates querying [car2go API](https://github.com/car2go/openAPI) public functions synchronously/asynchronously.
++ facilitates fetching data from car2go api synchronously/asynchronously
 
-+ Usage example
-```java
-// init car2go API
-Car2GoApi car2GoApi = new Car2GoApi("my_api_key");
+### structure
 
-// e.g.: get vehicles synchronously
-Map<LocationType, Pair<Boolean, RestResponseJson> > vehiclesSync =
-  car2GoApi.getEdgeSync(
-    EdgeType.VEHICLES,
-    LocationType.SEATTLE,
-    LocationType.ROMA);
-    
-// get Roma's vehicles
-
-if (vehiclesSync.get(LocationType.ROMA).getFirst() == true) {
-
-  Vehicles romaVehicles =
-    (Vehicles)vehiclesSync.get(LocationType.ROMA).getSecond();
-} else {
-
-  ErrorResponse romaVehiclesErrorResponse =
-    (ErrorResponse)vehiclesSync.get(LocationType.ROMA).getSecond();
-}
-```
-
-| Class/Package | Explanation |
+| class/package | explanation |
 | ------------- | ----------- |
-| [Car2GoApi](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/Car2GoApi.java) | Is the main entry point for getting info from car2go API's public functions. |
-| [LocationType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/LocationType.java) | Is an enumeration of the locations where car2go operates. |
-| [json](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/car2go/json) | Has mapping classes for the JSON response per car2go API's public function. |
-| [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/ErrorResponse.java) | In case car2go API returned a status code other than HTTP_OK (200), this class holds the error response as shown in the example above. |
+| [Car2GoApi](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/Car2GoApi.java) | is the main entry point for fetching data from car2go api |
+| [LocationType](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/LocationType.java) | is an enum representing the locations where car2go operates |
+| [json](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/car2go/json) | has the mapping classes for the json response per car2go api's public functions |
+| [ErrorResponse](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/public_apis/car2go/ErrorResponse.java) | in case car2go api returned a status code other than HTTP_OK (200), this class holds the error response as shown in the following example |
 
+### usage template
+
+```java
+  // init car2go API
+  Car2GoApi car2GoApi = new Car2GoApi("my_api_key");
+
+  // e.g.: get vehicles synchronously in Seattle and Roma
+  Map<LocationType, Pair<Boolean, RestResponseJson> > vehiclesSync =
+    car2GoApi.getEdgeSync(
+      EdgeType.VEHICLES,
+      LocationType.SEATTLE,
+      LocationType.ROMA);
+    
+  // get Roma's vehicles
+
+  if (vehiclesSync.get(LocationType.ROMA).getFirst() == true) {
+
+    Vehicles romaVehicles =
+      (Vehicles)vehiclesSync.get(LocationType.ROMA).getSecond();
+  } else {
+
+    ErrorResponse romaVehiclesErrorResponse =
+      (ErrorResponse)vehiclesSync.get(LocationType.ROMA).getSecond();
+  }
+```
