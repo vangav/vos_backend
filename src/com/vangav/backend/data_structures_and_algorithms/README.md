@@ -1,4 +1,4 @@
-# data_structures_and_algorithms
+# data structures and algorithms
 
 ### [algorithms](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/data_structures_and_algorithms/algorithms)
 
