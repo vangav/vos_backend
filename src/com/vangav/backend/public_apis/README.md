@@ -71,7 +71,7 @@
     
   if (fieldsSync
         .get(FacebookGraphApiFieldType.FAVORITE_ATHLETES)
-        .getFirst() == SUCCESS) {
+        .getFirst() == FacebookApiResponseStatus.SUCCESS) {
   
     FavoriteAthletes favoriteAthletes =
       (FavoriteAthletes)fieldsSync
@@ -79,7 +79,7 @@
         .getSecond();
   } else if (fieldsSync
                .get(FacebookGraphApiFieldType.FAVORITE_ATHLETES)
-               .getFirst() == BAD_REQUEST) {
+               .getFirst() == FacebookApiResponseStatus.BAD_REQUEST) {
   
     BadRequestResponse favoriteAthletesBadRequestResponse =
       (BadRequestResponse)fieldsSync
