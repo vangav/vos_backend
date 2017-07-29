@@ -98,7 +98,85 @@
   // getting edges is similar to getting fields
 ```
 
-### [car2go](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/car2go)
+### usage examples
+
++ in [instagram / HandlerLoginFacebook: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/login_facebook/HandlerLoginFacebook.java#L140)
+
+```java
+  // get user's facebook id
+  FacebookGraph facebookGraph =
+    new FacebookGraph(requestLoginFacebook.fb_access_token);
+
+  String facebookId = facebookGraph.getUserId();
+  
+  // get user's info from facebook
+      
+  // query Facebook Graph API for name
+  Map<
+    FacebookGraphApiFieldType,
+    Pair<Integer, RestResponseJson> > facebookGraphApiResponse =
+    facebookGraph.getFieldsSync(FacebookGraphApiFieldType.NAME);
+
+  // error communicating with Facebook Graph API?
+  if (facebookGraphApiResponse.get(
+        FacebookGraphApiFieldType.NAME).getFirst() !=
+        HttpURLConnection.HTTP_OK) {
+
+    throw new CodeException(
+      422,
+      1,
+      "Couldn't get user's name from Facebook Graph API. "
+        + "Facebook access token ["
+        + requestLoginFacebook.fb_access_token
+        + "], request issued from device_token ["
+        + requestLoginFacebook.device_token
+        + "]. Http Status code ["
+        + facebookGraphApiResponse.get(
+            FacebookGraphApiFieldType.NAME).getFirst()
+        + "], response ["
+        + facebookGraphApiResponse.get(
+            FacebookGraphApiFieldType.NAME).getSecond().toString()
+        + "]",
+      ExceptionClass.COMMUNICATION);
+  }
+
+  // extract name field
+  Name nameField =
+    ((Name)facebookGraphApiResponse.get(
+      FacebookGraphApiFieldType.NAME).getSecond() );
+
+  // get name
+  String name = nameField.name;
+
+  // get user's Facebook profile picture
+  String profilePicture =
+    facebookGraph.getProfilePictureSync(
+      Constants.kFacebookProfilePictureDimension);
+```
+
++ in [instagram / HandlerUpdateFacebookInfo: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/update_facebook_info/HandlerUpdateFacebookInfo.java#L117)
+
+```java
+  // authenticate Facebook's access token
+  FacebookAuthInl.validateFacebookAccessToken(
+    requestUpdateFacebookInfo.fb_access_token,
+    Constants.kFacebookAppId);
+
+  // get user's facebook id
+  FacebookGraph facebookGraph =
+    new FacebookGraph(requestUpdateFacebookInfo.fb_access_token);
+
+  String facebookId = facebookGraph.getUserId();
+
+  // get user's info from facebook
+
+  // get user's Facebook profile picture
+  String profilePicture =
+    facebookGraph.getProfilePictureSync(
+      Constants.kFacebookProfilePictureDimension);
+```
+
+## [car2go](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis/car2go)
 
 + This sub-package facilitates querying [car2go API](https://github.com/car2go/openAPI) public functions synchronously/asynchronously.
 
