@@ -1,7 +1,7 @@
 
 > **why?** fetching data from public apis is necessary in many scenarios like: aggregating topic-specific news from various news agencies, getting member data from facebook/twitter/google/..., integrating other services inyour app (weather info, public transportation, ...)
 
-# public_apis
+# public apis
 
 + this package handles requesting information from [facebook graph api](https://developers.facebook.com/docs/graph-api) and [car2go api](https://github.com/car2go/openAPI); to add other service's apis (e.g.: [instagram api](https://any-api.com/instagram_com/instagram_com/docs/API_Description)), it's recommended to use vangav backend's [client generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java)
 
