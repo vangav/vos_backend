@@ -1,14 +1,31 @@
+
+> **why?** authentication is important for protecting the privacy of users' info (e.g.: online banking, messages, ...) and cryptography is important for protecting users' info while stored (e.g.: passwords) or transferred to protected against hacks like "man in the middle attack"
+
 # security
 
-### [authentication](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication)
+## [authentication](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication)
 
-+ [facebook/FacebookAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java) usage example
+### [facebook auth](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication/facebook)
+
++ [FacebookAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java) is used to verify a user's facebook access token through using [`validateFacebookAccessToken`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java#L83) method
+
++ usage template
+
 ```java
-FacebookAuthInl.validateFacebookAccessToken(
-  facebookAccessToken, // user's facebook access token
-  facebookAppId); // facebook app's id
+  FacebookAuthInl.validateFacebookAccessToken(
+    facebookAccessToken, // user's facebook access token
+    facebookAppId); // facebook app's id
   
-// throws exceptions in case of authentication failure
+  // throws exceptions in case of authentication failure
+```
+
++ usage example from [instagram / HandlerLoginFacebook: `authenticateRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/login_facebook/HandlerLoginFacebook.java#L125)
+
+```java
+  // authenticate using Facebook Graph API
+  FacebookAuthInl.validateFacebookAccessToken(
+    requestLoginFacebook.fb_access_token,
+    Constants.kFacebookAppId);
 ```
 
 + [google/GoogleAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/google/GoogleAuthInl.java) usage example
@@ -25,7 +42,7 @@ String userAppId =
 
 + [transaction_tokens/TransactionTokensGeneratorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/transaction_tokens/TransactionTokensGeneratorInl.java) has inline methods for generating pairs of transaction tokens in the form of a map or a json object/
 
-### [cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/cryptography)
+## [cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/cryptography)
 
 + Usage examples
 ```java
