@@ -92,7 +92,7 @@
 
 ### usage templates
 
-+ asymmetric encrypting using RSA-1024
+#### asymmetric encrypting using RSA-1024
 
 ```java
   // generate a pair of public and private keys
@@ -133,7 +133,7 @@
   //     Hello World!
 ```
 
-+ password hashing example using salted-MD5
+#### password hashing example using salted-MD5
 
 ```java
   // generate salt
@@ -150,7 +150,7 @@
   //     3de3fff81f98ce98fc11ad57c3fc2ba3
 ```
 
-+ two-way encryption example using AES
+#### two-way encryption example using AES
 
 ```java
   String key = "myKey123";
