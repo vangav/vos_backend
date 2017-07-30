@@ -13,7 +13,7 @@
 | ----- | ----------- |
 | [AppleNotification](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/AppleNotification.java) | represents an apple push notification (to, alert, sound, ...) |
 | [AppleNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/AppleNotificationSender.java) | handles sending apple push notifications |
-| [AppleNotificationProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/AppleNotificationProperties.java) | maps [apple_notification_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/apple_notification_properties.prop) properties file |
+| [AppleNotificationProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/AppleNotificationProperties.java) | maps [apple_notification_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/apple_notification_properties.prop) properties file; make sure [`client_type`](https://github.com/vangav/vos_backend/blob/master/prop/apple_notification_properties.prop#L64) is set to `PRODUCTION` (with a production certificate) before releasing the app |
 | [AppleNotificationDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/dispatch_message/AppleNotificationDispatchable.java) | is the dispatchable version of [AppleNotification](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/apple/AppleNotification.java); used to handle notification sending in the worker service |
 
 ### usage template
