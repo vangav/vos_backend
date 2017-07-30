@@ -36,7 +36,8 @@
   AppleNotificationDispatchable appleNotificationDispatchable =
     new AppleNotificationDispatchable(appleNotification);
   
-  request.getDispatcher().addDispatchMessage(appleNotificationDispatchable);
+  request.getDispatcher()
+    .addDispatchMessage(appleNotificationDispatchable);
 ```
 
 ### usage example
@@ -54,30 +55,51 @@
 
 ## [android](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications/android)
 
-+ This sub-package is responsible for sending push notifications to Android devices through GCM (Google Cloud Messaging).
-+ Usage example
++ enables sending push notifications to android devices through gcm (google cloud messaging)
+
+### structure
+
+| class | explanation |
+| ----- | ----------- |
+| [AndroidNotification](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotification.java) | represents an android push notification (to, alert, sound, ...) |
+| [AndroidNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotificationSender.java) | handles sending android push notifications |
+| [AndroidNotificationProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotificationProperties.java) | maps [android_notification_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/android_notification_properties.prop) properties file |
+| [AndroidNotificationDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/dispatch_message/AndroidNotificationDispatchable.java) | is the dispatchable version of [AndroidNotification](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotification.java); used to handle notification sending in the worker service |
+
+### usage template
 ```java
-// init Android push notification
-AndroidNotification androidNotification =
-  new AndroidNotification(
-    message, // message to be sent, including the device's registration id
-    to); // registration token, notification key, or topic where the message will be sent
+  // init Android push notification
+  AndroidNotification androidNotification =
+    new AndroidNotification(
+      new Message.Builder()
+        .collapseKey("usage template notification")
+        .build(),
+      deviceToken);
     
-// option 1 - send it synchronously
-Result result =
-  AndroidNotificationSender.i().sendNotification(androidNotification);
+  // option 1 - send it synchronously
+  Result result =
+    AndroidNotificationSender.i()
+    .sendNotification(androidNotification);
 
-// option 2 - dispatch it to a worker instance to execute it
+  // option 2 - dispatch it to a worker instance to execute it
 
-AndroidNotificationDispatchable androidNotificationDispatchable =
-  new AndroidNotificationDispatchable(androidNotification);
+  AndroidNotificationDispatchable androidNotificationDispatchable =
+    new AndroidNotificationDispatchable(androidNotification);
   
-request.getDispatcher().addDispatchMessage(androidNotificationDispatchable);
+  request.getDispatcher()
+    .addDispatchMessage(androidNotificationDispatchable);
 ```
 
-| Class | Explanation |
-| ----- | ----------- |
-| [AndroidNotification](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotification.java) | Represents an Android push notification (to, alert, sound, etc ...). |
-| [AndroidNotificationSender](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotificationSender.java) | Handles sending Android push notifications through GCM (Google Cloud Messaging). |
-| [AndroidNotificationProperties](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotificationProperties.java) | Maps [android_notification_properties.prop](https://github.com/vangav/vos_backend/blob/master/prop/android_notification_properties.prop) properties file. |
-| [AndroidNotificationDispatchable](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/dispatch_message/AndroidNotificationDispatchable.java) | Is the dispatchable version of [AndroidNotification](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/push_notifications/android/AndroidNotification.java). |
+### usage example
+
++ in [instagram / HandlerComment: `dispatchPushNotifications`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/comment/HandlerComment.java#L294)
+
+```java
+  request.getDispatcher().addDispatchMessage(
+    new AndroidNotificationDispatchable(
+      new AndroidNotification(
+        new Message.Builder()
+          .collapseKey(commenterName + " commented on your photo")
+          .build(),
+        deviceToken) ) );
+```
