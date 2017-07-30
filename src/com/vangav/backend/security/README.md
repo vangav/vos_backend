@@ -179,3 +179,7 @@
   //   Decrypted:
   //     My secret message.
 ```
+
+# exercise
+
+> when would you use asymmetric encryption vs two-way encryption?
