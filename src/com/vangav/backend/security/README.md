@@ -7,7 +7,7 @@
 
 ### [facebook auth](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication/facebook)
 
-+ [FacebookAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java) is used to verify a user's facebook access token through using [`validateFacebookAccessToken`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java#L83) method
++ [FacebookAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java) is used to verify a user's facebook access token (facebook login) through using [`validateFacebookAccessToken`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/facebook/FacebookAuthInl.java#L83) method
 
 + usage template
 
@@ -28,17 +28,43 @@
     Constants.kFacebookAppId);
 ```
 
-+ [google/GoogleAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/google/GoogleAuthInl.java) usage example
+### [google auth](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication/google)
+
++ [GoogleAuthInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/google/GoogleAuthInl.java) is used to verify a user's google id token (google login) through using [`validateGoogleIdToken`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/google/GoogleAuthInl.java#L84) method
+
++ usage template
+
 ```java
-String userAppId =
-  GoogleAuthInl.validateGoogleIdToken(
-    googleIdToken,
-    googleAppId);
+  String userAppId =
+    GoogleAuthInl.validateGoogleIdToken(
+      googleIdToken,
+      googleAppId);
   
-// throws exceptions in case of authentication failure
+  // throws exceptions in case of authentication failure
 ```
 
-+ [o_auth_2/OAuth2Tokens](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/o_auth_2/OAuth2Tokens.java) generates an authentication code, an access token and a refresh token.
+### [o auth 2](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication/o_auth_2)
+
++ tutorial [digital ocean: o auth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2)
+
++ [OAuth2Tokens](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/o_auth_2/OAuth2Tokens.java) is used to generate: authentication code, access token and refresh token
+
++ usage example from [instagaram / HandlerLoginEmail: `processRequest`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/login_email/HandlerLoginEmail.java#L181)
+
+```java
+  // generate new authentication tokens
+  OAuth2Tokens oAuth2Tokens = new OAuth2Tokens();
+
+  // insert into ig_auth.auth_codes
+  AuthCodes.i().executeSyncInsert(
+    userId,
+    requestLoginEmail.device_token,
+    oAuth2Tokens.getAuthorizationCode(), // auth code
+    oAuth2Tokens.getAccessToken(),       // access token
+    oAuth2Tokens.getRefreshToken(),      // refresh token
+    ((int)Constants.kAuthCodeLifeTime.getAs(
+      TimeUnitType.SECOND).getValue() ) );
+```
 
 + [transaction_tokens/TransactionTokensGeneratorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/transaction_tokens/TransactionTokensGeneratorInl.java) has inline methods for generating pairs of transaction tokens in the form of a map or a json object/
 
