@@ -45,7 +45,7 @@
 
 ### [o auth 2](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/authentication/o_auth_2)
 
-+ tutorial [digital ocean: o auth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2)
++ if you are not familiar with `o auth 2`, here's a good tutorial [digital ocean: o auth 2](https://www.digitalocean.com/community/tutorials/an-introduction-to-oauth-2)
 
 + [OAuth2Tokens](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/o_auth_2/OAuth2Tokens.java) is used to generate: authentication code, access token and refresh token
 
@@ -66,7 +66,19 @@
       TimeUnitType.SECOND).getValue() ) );
 ```
 
-+ [transaction_tokens/TransactionTokensGeneratorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/transaction_tokens/TransactionTokensGeneratorInl.java) has inline methods for generating pairs of transaction tokens in the form of a map or a json object/
+### [transaction tokens](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/transaction_tokens/TransactionTokensGeneratorInl.java)
+
++ [TransactionTokensGeneratorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/security/authentication/transaction_tokens/TransactionTokensGeneratorInl.java) has inline static methods for generating transaction token pairs
+
++ pairs of <server token, client token> are generated where both the server and authentic client sides keep a copy of those pairs; a client token can be viewed as a one-time-use password
+
++ upon authentication (past the first layer authentication using a user-password), the server sends an unused server token and the client replies with the corresponding client token
+
++ upon exhausting all tokens, the server generates a new set of tokens and securely give the client a copy of those newly issued tokens
+
++ transaction tokens are used as a second layer of authentication usually for accessing highly sensitive tools/information like in online banking money transfer where some banks use a form of transaction tokens called TAN (Transaction Authentication Number) to authenticate every transfer
+
++ tokens can be generated in a json format (ready to be sent to the client) or a map object which can then be optionally transformed into json format
 
 ## [cryptography](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security/cryptography)
 
