@@ -39,6 +39,19 @@
   request.getDispatcher().addDispatchMessage(appleNotificationDispatchable);
 ```
 
+### usage example
+
++ in [instagram / HandlerComment: `dispatchPushNotifications`](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/comment/HandlerComment.java#L284)
+
+```java
+  request.getDispatcher().addDispatchMessage(
+    new AppleNotificationDispatchable(
+      new AppleNotificationBuilder(deviceToken)
+        .alertBody(commenterName + " commented on your photo")
+        .badgeNumber(1)
+        .build() ) );
+```
+
 ## [android](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications/android)
 
 + This sub-package is responsible for sending push notifications to Android devices through GCM (Google Cloud Messaging).
