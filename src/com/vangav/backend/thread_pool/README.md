@@ -116,7 +116,7 @@
 
 ### usage example from [instagram jobs](https://github.com/vangav/vos_instagram_jobs)
 
-+ jobs are initialized in [Global](https://github.com/vangav/vos_instagram_jobs/blob/master/app/Global.java); `posts rank` and `users rank` are initialized four times since each job handles 25% of the load
++ jobs are initialized in [Global](https://github.com/vangav/vos_instagram_jobs/blob/master/app/Global.java#L145); `posts rank` and `users rank` are initialized four times since each job handles 25% of the load
 
 ```java
   // start periodic jobs
@@ -130,7 +130,7 @@
   // ...
 ```
 
-+ [RestJobs](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/rest_jobs/RestJobs.java) is one of the `PeriodicJob` classes
++ [RestJobs](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/rest_jobs/RestJobs.java#L78) is one of the `PeriodicJob` classes
 
 ```java
   /**
@@ -141,7 +141,7 @@
   }
 ```
 
-+ constructing the `PeriodicJob`
++ [constructing](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/rest_jobs/RestJobs.java#L87) the `PeriodicJob`
 
 ```java
   /**
@@ -165,6 +165,15 @@
         1.0,
         TimeUnitType.HOUR) );
   }
+```
+
++ [getting data](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/rest_jobs/RestJobs.java#L110) from the `CycleLog`
+
+```java
+  // get cycle's planned start calendar
+  Calendar plannedStartCalendar =
+    CalendarAndDateOperationsInl.getCalendarFromUnixTime(
+      cycleLog.getPlannedStartTime() );
 ```
 
 # exercise
