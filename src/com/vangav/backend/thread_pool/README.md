@@ -98,15 +98,78 @@
 
 ## [periodic jobs](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/thread_pool/periodic_jobs)
 
++ periodic jobs are useful for various applications like:
+  + sending weekly newsletters to a service's members
+  + crawling a third-party service (e.g.: crawl cars/parking-spots from car2go, uber, drive now, ...)
+  + monitoring a service's health and notifying system admins on service failure(s)
+  + ...
+
 ### structure
 
 | class | explanation |
 | ----- | ----------- |
-| []() |  |
-| []() |  |
-| []() |  |
-| []() |  |
-| []() |  |
+| [PeriodicJob](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/periodic_jobs/PeriodicJob.java) | is the parent class for all `periodic jobs`, handles get a job's next cycle and offers the api for fetching a job's status, logs, ... |
+| [CycleLog](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/periodic_jobs/CycleLog.java) | handles setting/getting each periodic job cycle's logs (info, status, errors, ...); child classes get each cycle's `CycleLog` object in their `process` and `postProcess` methods |
+| [CycleTicker](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/periodic_jobs/CycleTicker.java) | optionally used during a initialization of a `PeriodicJob` offering: defining a load for a job (e.g.: 25%, 50%, 10%, ...) for load distribution between multiple jobs per-task, starting a job in the past/future and defining a periodic job's life-time (e.g.: run for a year then self-terminate) |
+| [PeriodicJobRunner](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/periodic_jobs/PeriodicJobRunner.java) | handles processing a single `PeriodicJob`; keeps executing cycles at the defined time forever or till an optionally defined life-time for the periodic job; *this a protected class for use by the `PeriodicJobsManager`, you won't need to directly use it* |
+| [PeriodicJobsManager](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/periodic_jobs/PeriodicJobsManager.java) | is the class where `PeriodicJob` objects are registered to start processing |
+
+### usage example from [instagram jobs](https://github.com/vangav/vos_instagram_jobs)
+
++ jobs are initialized in [Global](https://github.com/vangav/vos_instagram_jobs/blob/master/app/Global.java); `posts rank` and `users rank` are initialized four times since each job handles 25% of the load
+
+```java
+  // start periodic jobs
+        
+  PeriodicJobsManager.i().registerNewPeriodicJob(new PostsRank() );
+  PeriodicJobsManager.i().registerNewPeriodicJob(new PostsRank() );
+  PeriodicJobsManager.i().registerNewPeriodicJob(new PostsRank() );
+  PeriodicJobsManager.i().registerNewPeriodicJob(new PostsRank() );
+
+  PeriodicJobsManager.i().registerNewPeriodicJob(new RestJobs() );
+
+  PeriodicJobsManager.i().registerNewPeriodicJob(new UsersRank() );
+  PeriodicJobsManager.i().registerNewPeriodicJob(new UsersRank() );
+  PeriodicJobsManager.i().registerNewPeriodicJob(new UsersRank() );
+  PeriodicJobsManager.i().registerNewPeriodicJob(new UsersRank() );
+```
+
++ [RestJobs](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/rest_jobs/RestJobs.java) is one of the `PeriodicJob` classes
+
+```java
+  /**
+   * RestJobs this job crawls hourly unfinished jobs
+   */
+  public class RestJobs extends PeriodicJob<RestJobs> {
+    //...
+  }
+```
+
++ constructing the `PeriodicJob`
+
+```java
+  /**
+   * Constructor - RestJobs
+   * @return new RestJobs Object
+   * @throws Exception
+   */
+  public RestJobs () throws Exception {
+
+    super(
+      // job's name
+      "rest_jobs",
+      // start next cycle "on time" even if the previous one is still running
+      PeriodicJob.Type.ASYNC,
+      // start from the exact past hour (e.g.: 14:00:00)
+      RoundedOffCalendarInl.getRoundedCalendar(
+        RoundingType.PAST,
+        RoundingFactor.HOUR_OF_DAY),
+      // start a new cycle every 1 hour
+      new Period(
+        1.0,
+        TimeUnitType.HOUR) );
+  }
+```
 
 # exercise
 
