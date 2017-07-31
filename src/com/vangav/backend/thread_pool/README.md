@@ -122,16 +122,12 @@
   // start periodic jobs
         
   PeriodicJobsManager.i().registerNewPeriodicJob(new PostsRank() );
-  PeriodicJobsManager.i().registerNewPeriodicJob(new PostsRank() );
-  PeriodicJobsManager.i().registerNewPeriodicJob(new PostsRank() );
-  PeriodicJobsManager.i().registerNewPeriodicJob(new PostsRank() );
+  // ...
 
   PeriodicJobsManager.i().registerNewPeriodicJob(new RestJobs() );
 
   PeriodicJobsManager.i().registerNewPeriodicJob(new UsersRank() );
-  PeriodicJobsManager.i().registerNewPeriodicJob(new UsersRank() );
-  PeriodicJobsManager.i().registerNewPeriodicJob(new UsersRank() );
-  PeriodicJobsManager.i().registerNewPeriodicJob(new UsersRank() );
+  // ...
 ```
 
 + [RestJobs](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/rest_jobs/RestJobs.java) is one of the `PeriodicJob` classes
