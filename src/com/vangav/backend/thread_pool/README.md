@@ -44,10 +44,12 @@
 + using [`executeInRestClientPool`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/ThreadPool.java#L228) in [JobsExecutorInl: `executeJobsSync`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/jobs/JobsExecutorInl.java#L126)
 
 ```java
-  CountDownLatch countDownLatch = new CountDownLatch(jobs.length);
+  CountDownLatch countDownLatch =
+    new CountDownLatch(jobs.length);
 
   RestAsync currRestAsync;
-  RestResponseJsonGroup restResponseJsonGroup = new RestResponseJsonGroup();
+  RestResponseJsonGroup restResponseJsonGroup =
+    new RestResponseJsonGroup();
 
   for (Job job : jobs) {
 
@@ -77,10 +79,12 @@
 + [RestAsync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestAsync.java) is a great example for utilizing `latch threads`; here's a usage example in [JobsExecutorInl: `executeJobsSync`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/jobs/JobsExecutorInl.java#L113)
 
 ```java
-  CountDownLatch countDownLatch = new CountDownLatch(jobs.length);
+  CountDownLatch countDownLatch =
+    new CountDownLatch(jobs.length);
 
   RestAsync currRestAsync;
-  RestResponseJsonGroup restResponseJsonGroup = new RestResponseJsonGroup();
+  RestResponseJsonGroup restResponseJsonGroup =
+    new RestResponseJsonGroup();
 
   for (Job job : jobs) {
 
