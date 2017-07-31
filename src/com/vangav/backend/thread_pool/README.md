@@ -72,6 +72,42 @@
       afterProcessingRequest) );
 ```
 
+## [LatchThread](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/thread_pool/LatchThread.java)
+
++ [RestAsync](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/rest_client/RestAsync.java) is a great example for utilizing `latch threads`; here's a usage example in [JobsExecutorInl: `executeJobsSync`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/networks/jobs/JobsExecutorInl.java#L113)
+
+```java
+  CountDownLatch countDownLatch = new CountDownLatch(jobs.length);
+
+  RestAsync currRestAsync;
+  RestResponseJsonGroup restResponseJsonGroup = new RestResponseJsonGroup();
+
+  for (Job job : jobs) {
+
+    currRestAsync =
+      new RestAsync(
+        countDownLatch,
+        job.getRequest(),
+        restResponseJsonGroup);
+
+    ThreadPool.i().executeInRestClientPool(currRestAsync);
+  }
+
+  countDownLatch.await();
+```
+
+## [periodic jobs](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/thread_pool/periodic_jobs)
+
+### structure
+
+| class | explanation |
+| ----- | ----------- |
+| []() |  |
+| []() |  |
+| []() |  |
+| []() |  |
+| []() |  |
+
 # exercise
 
 > what's the difference between threads, thread pools, latch threads and periodic jobs?
