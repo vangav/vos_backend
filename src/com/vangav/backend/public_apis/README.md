@@ -218,3 +218,6 @@
 # exercise
 
 > what's the recommended way to add other service's apis (e.g.: [instagram api](https://any-api.com/instagram_com/instagram_com/docs/API_Description))?
+
+# next tutorial -> [push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications)
+> handles building and sending apple and android notifications
