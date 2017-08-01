@@ -65,3 +65,6 @@
 | [`getCpuUsage`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/system/SystemInfoInl.java#L177) | servers cpu usage (e.g.: `90.8`) |
 | [`getFreeRam`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/system/SystemInfoInl.java#L267) | e.g.: `1 GB`, `234 MB`, `95749 KB`, ... |
 | [`getUsableDisk`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/system/SystemInfoInl.java#L330) | because usable disk space can be more or less than the free disk space (because of things like low-priority cache buffers, ...) |
+
+# next tutorial -> [thread pool](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/thread_pool)
+> contains latch threads, periodic jobs and the thread pools responsible for maintaining top performance for vangav backend services (in-memory threads, cassandra, dispatcher and rest client)
