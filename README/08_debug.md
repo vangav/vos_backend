@@ -10,5 +10,5 @@
 5. from the browser/client send the problematic request that will trigger your first break point and you go from there
 6. to stop the service from the terminal press `control + d`, then execute `exit` to stop the debugger
 
-## next tutorial -> [deploy on a production server](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
+# next tutorial -> [deploy on a production server](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
 > once your service is ready for release, this tutorial has the step-by-step process till your service is up and running on a production server - as well as how to scale it up
