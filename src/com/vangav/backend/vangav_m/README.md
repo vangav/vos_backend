@@ -182,14 +182,14 @@
 
 1. go to vangav mighty's directory `cd vangav_m`
 2. run the generator `java -jar vangav_m_json_client.jar`; running this command will do the following:
-  + load available solutions (`.mlang` files under `vangav_m/solutions`
-  + verify loaded solutions and notify/cancel if verification failed
-  + clear old generated solutions (by deleting generated solution directories like [posts rank](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank) and their `jars` from the service's [lib](https://github.com/vangav/vos_instagram_jobs/tree/master/lib) directory)
-  + generate/re-generate solutions
-  + extract generated solutions (copy generated `jars` to the service's [lib](https://github.com/vangav/vos_instagram_jobs/tree/master/lib) directory)
-  + clear old class path links (for vangav mighty solutions only) in `.classpath`
-  + add class path links (for all generated vangav mighty solutions) in `.classpath`
-  + clear: deletes any intermediate files/directories/scripts used during the generation/linking process
+    + load available solutions (`.mlang` files under `vangav_m/solutions`
+    + verify loaded solutions and notify/cancel if verification failed
+    + clear old generated solutions (by deleting generated solution directories like [posts rank](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank) and their `jars` from the service's [lib](https://github.com/vangav/vos_instagram_jobs/tree/master/lib) directory)
+    + generate/re-generate solutions
+    + extract generated solutions (copy generated `jars` to the service's [lib](https://github.com/vangav/vos_instagram_jobs/tree/master/lib) directory)
+    + clear old class path links (for vangav mighty solutions only) in `.classpath`
+    + add class path links (for all generated vangav mighty solutions) in `.classpath`
+    + clear: deletes any intermediate files/directories/scripts used during the generation/linking process
 
 
 
