@@ -225,3 +225,6 @@
 | class | explanation |
 | ----- | ----------- |
 | [RandomGeneratorInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/content/generation/RandomGeneratorInl.java) | generates random strings, emails, ...; one usage is for generating random user data when stress-testing a service with a larger number of simulated users |
+
+# next tutorial -> [data structures and algorithms](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/data_structures_and_algorithms)
+> has data structures (e.g.: heap, kd-tree, tuples, ...) and algorithms (collections, matricies, strings, arrays, ...)
