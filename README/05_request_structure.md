@@ -28,5 +28,5 @@
 # exercise
 + how to get the request's param-values from the request object?
 
-## next tutorial -> [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
+# next tutorial -> [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
 > explains what happens whenever an error happens during request processing and how to manually return various types of error response
