@@ -191,6 +191,56 @@
     + add class path links (for all generated vangav mighty solutions) in `.classpath`
     + clear: deletes any intermediate files/directories/scripts used during the generation/linking process
 
+### 3. [use generated solution(s)](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L452)
+
++ [import](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L56) generated solution(s)
+
+```java
+  import vangav_m.vangavmpostsrank.VangavMPostsRank;
+```
+
++ [get instance](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L236)
+
+```java
+  // get a new vangavMPostsRank instance
+  VangavMPostsRank vangavMPostsRank = new VangavMPostsRank();
+  
+  // alternatively use the singleton instance
+  // VangavMPostsRank.i(). ...
+```
+
++ [process](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L452) inputs into outputs
+
+```java
+  // calculate post's rank
+       
+  // 1- set input value(s)
+  vangavMPostsRank.setPostHour(
+    postHour);
+  vangavMPostsRank.setPostLikesCount(
+    postLikesCount);
+  vangavMPostsRank.setPostCommentsCount(
+    postCommentsCount);
+  vangavMPostsRank.setUserRegisteredSinceDays(
+    userRegisteredSinceDays);
+  vangavMPostsRank.setUserFollowCountLastWeek(
+    userFollowCountLastWeek);
+  vangavMPostsRank.setUserUnfollowCountLastWeek(
+    userUnfollowCountLastWeek);
+  vangavMPostsRank.setUserPostsCountLastWeek(
+    userPostsCountLastWeek);
+  vangavMPostsRank.setUserLikesCountLastWeek(
+    userLikesCountLastWeek);
+  vangavMPostsRank.setUserCommentsCountLastWeek(
+    userCommentsCountLastWeek);
+
+  // 2- process input(s) into output(s)
+  vangavMPostsRank.process();
+
+  // 3- get output value(s)
+  postRank = vangavMPostsRank.getPostRank();
+```
+
 
 
 
