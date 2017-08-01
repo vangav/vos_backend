@@ -61,7 +61,7 @@
   }
 ```
 
-+ [user's activity and fame](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L30): recently active users (more posts) and more famous (more follows, likes, ...) get a boost; last week's data is used to make it a fair game
++ [user's activity and fame](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L30): recently active users (more posts) and more famous (more follows, likes, ...) get a boost; last week's data is used to make it a fair game - `mid` is at 1% to get an even rank distribution as most of the users get ~1% of the likes/comments a celebrty gets
 
 ```json
   {
@@ -95,6 +95,88 @@
     "mid": 10
   }
 ```
+
+#### output
+
++ [post rank](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L65): the double representing the rank of each post
+
+```json
+  "outputs": [
+    {
+      "name": "PostRank",
+      "min": 0,
+      "max": 1000,
+      "mid": 500
+    }
+  ]
+```
+
+#### relations
+
++ [relations](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L71): shows how each input is directly/inversely proportional with its output(s); notice how weights are set to define the relative effect each relation has on the final output (e.g.: comments' effect on the rank is `twice` that of post-hour's)
+
+```json
+  "relations": [
+    {
+      "input_name": "PostHour",
+      "output_name": "PostRank",
+      "relation": "DIRECTLY_PROPORTIONAL",
+      "weight": 1.0
+    },
+    {
+      "input_name": "PostLikesCount",
+      "output_name": "PostRank",
+      "relation": "DIRECTLY_PROPORTIONAL",
+      "weight": 1.5
+    },
+    {
+      "input_name": "PostCommentsCount",
+      "output_name": "PostRank",
+      "relation": "DIRECTLY_PROPORTIONAL",
+      "weight": 2.0
+    },
+    {
+      "input_name": "UserRegisteredSinceDays",
+      "output_name": "PostRank",
+      "relation": "INVERSELY_PROPORTIONAL",
+      "weight": 0.5
+    },
+    {
+      "input_name": "UserFollowCountLastWeek",
+      "output_name": "PostRank",
+      "relation": "DIRECTLY_PROPORTIONAL",
+      "weight": 1.0
+    },
+    {
+      "input_name": "UserUnfollowCountLastWeek",
+      "output_name": "PostRank",
+      "relation": "INVERSELY_PROPORTIONAL",
+      "weight": 1.0
+    },
+    {
+      "input_name": "UserPostsCountLastWeek",
+      "output_name": "PostRank",
+      "relation": "DIRECTLY_PROPORTIONAL",
+      "weight": 1.0
+    },
+    {
+      "input_name": "UserLikesCountLastWeek",
+      "output_name": "PostRank",
+      "relation": "DIRECTLY_PROPORTIONAL",
+      "weight": 1.0
+    },
+    {
+      "input_name": "UserCommentsCountLastWeek",
+      "output_name": "PostRank",
+      "relation": "DIRECTLY_PROPORTIONAL",
+      "weight": 1.0
+    }
+  ]
+```
+
++ visit [vangav mighty](http://vangav.com/) to learn more about the rest of the features: [`inputs_multi_range`](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L4), [`finite_inputs`](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L61), [`outputs_multi_range`](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L62) and [`relative_relations`](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L127)
+
+
 
 
 
