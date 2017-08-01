@@ -183,3 +183,6 @@
 # exercise
 
 > when would you use asymmetric encryption vs two-way encryption?
+
+# next tutorial -> [system](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/system)
+> handles fetching system info (cpu usage, free ram/disk, os type, number of cores, ...) and console operation (interactive, commands, ...)
