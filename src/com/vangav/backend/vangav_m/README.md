@@ -241,6 +241,86 @@
   postRank = vangavMPostsRank.getPostRank();
 ```
 
+## [generated solution structure](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank)
+
+### structure
+
+| file/directory | explanation |
+| -------------- | ----------- |
+| [vangav_m_VangavMPostsRank.jar](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank) | is the `lib` file containing the generated solution; gets linked and imported to use the solution as explained above in this tutorial |
+| [vangav_m_VangavMPostsRank.README](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/vangav_m_VangavMPostsRank.README) | represents a mini-tutorial specific to each generated solution; explained in depth later in this tutorial |
+| [mlang](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/mlang) | contains the `.mlang` file used to generate this solution; kept for reference |
+| [example](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/example) | contains a ready-to-run example for using the generated solution to further explain how to exactly use the generated solution; explained in depth later in this tutorial |
+
+### [vangav_m_VangavMPostsRank.README](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/vangav_m_VangavMPostsRank.README)
+
+#### [solution info](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/vangav_m_VangavMPostsRank.README#L13)
+
++ explains how to link/use the generated solution and has the solution's id for support requests
+
+```
+  /**
+   * Solution: VangavMPostsRank
+   * Solution UUID: e7ede357-712c-446b-9178-622309e272b6
+   * REFER to example/VangavMPostsRankExample.java for a functional example of how to use this solution
+   * Usage:
+   * 1- link vangav_m_VangavMPostsRank.jar to your project
+   *    in eclipse:
+   *    a- copy vangav_m_VangavMPostsRank.jar to your project's lib directory
+   *    b- right click project -> proerties -> Java Build Path
+   *    c- libraries tab -> Add JARS...
+   * 2- import vangav_m.vangavmpostsrank.*;
+   * 3- set inputs --> VangavMPostsRank.setInputName(double value);
+   * 4- repeat (3) for as many inputs needed for a processing step
+   * 5- process --> VangavMPostsRank.process();
+   * 6- get outputs --> double output = VangavMPostsRank.getOutputName();
+   *      returns output's value or Double.NaN otherwise
+   * */
+```
+
+#### [solution's api](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/vangav_m_VangavMPostsRank.README#L32)
+
++ lists all the api methods provided by the generated solution
+
+```
+  /**
+   * API:-
+
+   * Static instance getter (recommended unless technically infeasible):
+   * public static VangavMPostsRank instance ();
+
+   * Constructor (for cases like using the same solution in different threads):
+   * public VangavMPostsRank ();
+
+   * Input Setters (multi-range input setters followed by single-range input setters):
+   * -- single-range input setters
+   * public void setPostHour (double value);
+   * public void setPostLikesCount (double value);
+   * public void setPostCommentsCount (double value);
+   * public void setUserRegisteredSinceDays (double value);
+   * public void setUserFollowCountLastWeek (double value);
+   * public void setUserUnfollowCountLastWeek (double value);
+   * public void setUserPostsCountLastWeek (double value);
+   * public void setUserLikesCountLastWeek (double value);
+   * public void setUserCommentsCountLastWeek (double value);
+
+
+   * Process inputs into outputs:
+   * public static void process();
+
+   * Output Getters: (multi-range output getters followed by single-range output getters)
+   * -- single-range output getters
+   * public double getPostRank ();
+
+   * */
+```
+
+
+
+
+
+
+
 
 
 
