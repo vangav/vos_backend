@@ -78,5 +78,5 @@
 # exercise
 > when would you use a worker service?
 
-## next tutorial -> [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
+# next tutorial -> [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
 > explains how to start and use the debugger
