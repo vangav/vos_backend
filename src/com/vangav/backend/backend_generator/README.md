@@ -43,3 +43,6 @@ this package manages the generation of vangav backends (api, database clients/sc
 ### [defaults](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_generator/defaults)
 
 + contains the default `CommonPlayHandler` and `Global` classes used by [BackendGeneratorMain](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/backend_generator/BackendGeneratorMain.java) for new service generation; during generation they get modified(if needed) then added to the new service
+
+## next tutorial -> [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)
+> handles generating database clients, contains the framework for generated clients and handles all cassandra operations
