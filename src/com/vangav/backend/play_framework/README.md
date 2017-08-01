@@ -361,3 +361,6 @@ throw new CodeException(
 + what's the difference between `after_response` and `after_processing`?
 + what are the classes generated per-controller?
 + how to get the request's param-values from the request object?
+
+# next tutorial -> [properties](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/properties)
+> handles loading and extracting data from properties files
