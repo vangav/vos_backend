@@ -173,7 +173,7 @@ cassandra updater is used after a service is generated to update the database; i
 2. `cd` to [`vos_instagram_jobs/vangav_m`](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m)
 3. execute `java -jar vangav_m_json_client.jar`; this updates all vangav mighty solutions and link them in the service's build
 4. import [`vangav_m.vangavmpostsrank.VangavMPostsRank;`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L56) one or more of the generated solutions in the source file where vangav mighty solution(s) will be used
-5. create a new instance [`new VangavMPostsRank();`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L236) or use the solution's singleton instance `VangavMPostsRank.i()`
+5. create a new instance [`new VangavMPostsRank();`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L236) or use the solution's singleton instance `VangavMPostsRank.instance()`
 6. [`setInputs(...)`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L454) each time there's a new set of input(s) to be processed
 7. [`process()`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L473) the solution to set the solution's output(s) value(s)
 8. [`getOutputs`](https://github.com/vangav/vos_instagram_jobs/blob/master/app/com/vangav/vos_instagram_jobs/periodic_jobs/posts_rank/PostsRank.java#L475) to get the processed output values
