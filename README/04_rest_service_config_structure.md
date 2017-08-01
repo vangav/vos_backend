@@ -243,5 +243,5 @@
 + what's a `.client_java` config file?
 + what's the difference between `after_response` and `after_processing`?
 
-## next tutorial -> [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
+# next tutorial -> [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
 > when implementing a service's logic, the passed request object keeps all the request's information from start to finish; this tutorial shows how to use that object
