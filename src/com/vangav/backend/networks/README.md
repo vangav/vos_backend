@@ -405,3 +405,6 @@
 # exercise
 
 > when would one use a [rest job](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks/jobs)?
+
+# next tutorial -> [play framework](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework)
+> handles generating api code and contains the framework for generated vangav backend services; *vangav backend services' backbone*
