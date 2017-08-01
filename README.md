@@ -23,11 +23,11 @@
 ### [great templates](https://github.com/vangav)
 | template | services | features | db tables | code: total | code: generated |
 | -------- | -------- | -------- | --------- | ----------- | --------------- |
-| instagram | 7 | 47 | 52 | 67,715 + 190,996 | 238,465 **(92.17%)** |
-| analytics | 2 | 9 | 4 | 67,715 + 10,252 | 74,552 **(95.62%)** |
-| whatsapp | 3 | 7 | 7 | 67,715 + 7,834 | 74,408 **(98.49%)** |
-| geo_server | 1 | 3 | 3 | 67,715 + 2,691 | 70,300 **(99.85%)** |
-| calculate_sum | 1 | 1 | 0 | 67,715 + 544 | 68,258 **(99.99%)** |
+| [instagram](https://github.com/vangav/vos_instagram) | 7 | 47 | 52 | 67,715 + 190,996 | 238,465 **(92.17%)** |
+| analytics [writer](https://github.com/vangav/vos_vangav_analytics_writer) & [reader](https://github.com/vangav/vos_vangav_analytics_reader) | 2 | 9 | 4 | 67,715 + 10,252 | 74,552 **(95.62%)** |
+| [whatsapp](https://github.com/vangav/vos_whatsapp) | 3 | 7 | 7 | 67,715 + 7,834 | 74,408 **(98.49%)** |
+| [geo server](https://github.com/vangav/vos_geo_server) | 1 | 3 | 3 | 67,715 + 2,691 | 70,300 **(99.85%)** |
+| [calculate sum](https://github.com/vangav/vos_calculate_sum) | 1 | 1 | 0 | 67,715 + 544 | 68,258 **(99.99%)** |
 
 ### roadmap
 | time | effect |
