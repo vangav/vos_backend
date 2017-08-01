@@ -92,3 +92,6 @@
 
 # exercise
 > when would you use a worker service?
+
+# next tutorial -> [exceptions](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/exceptions)
+> vangav exceptions are used to handle `bad request` and `internal error`; those exceptions can be returned to the client and loggable (in database, text files, ...)
