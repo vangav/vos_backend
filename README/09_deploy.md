@@ -84,5 +84,5 @@
 2. execute `kill -9 (pid)` (pid) got from step (1)
 3. repeat step (1) to make sure you get one (pid) only - that's the pid for the `grep command`
 
-## next tutorial -> [vangav backend error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
+# next tutorial -> [vangav backend error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
 > vangav backend detects various types of errors (e.g.: invalid request param, invalid generator config, wrong utility method arguments, unauthorized third-party authentication, invalid vangav mighty solution, ...); this tutorial lists all of vangav backend's error codes/sub-codes with reference to the code producing them for ease of tracing if you get one
