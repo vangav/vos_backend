@@ -115,3 +115,6 @@
 | [failure to init `afterResponse` thread](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L402) |
 | [failure to start `afterResponse` thread](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L396) |
 | [all `afterResponse` steps](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java#L471) |
+
+# next tutorial -> [files](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/files)
+> simplifies various types of files needed for vangav backend services like: properties, json config, images, http response files, ommiting comments, directory operations, ...
