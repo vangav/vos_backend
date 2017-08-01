@@ -68,3 +68,6 @@
 > when is it nexcessary to use [SequentialIds](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SequentialIds.java) or [SnowFlake](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SnowFlake.java)?
 
 > what's the difference between [SequentialIds](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SequentialIds.java) and [SnowFlake](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/ids/SnowFlake.java)?
+
+# next tutorial -> [math](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)
+> handles mathematical and geometric operations like: numeric, ranges, circles, line segments, straight lines, ...
