@@ -183,3 +183,6 @@
 # exercise
 
 > what's the difference between threads, thread pools, latch threads and periodic jobs?
+
+# next tutorial -> [vangav mighty](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)
+> handles generating and binding [vangav mighty](http://vangav.com/) solutions
