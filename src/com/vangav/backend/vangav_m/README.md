@@ -22,7 +22,7 @@
 
 #### inputs
 
-+ [post hour](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L7]: since ranking happens every hour, we will give more recent ones a slight boost
++ [post hour](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L7): since ranking happens every hour, we will give more recent ones a slight boost
 
 ```json
   {
