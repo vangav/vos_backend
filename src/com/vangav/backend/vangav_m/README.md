@@ -317,8 +317,8 @@
 
 ### [example](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/example)
 
-+ [ExampleManifest.txt](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/example/ExampleManifest.txt): used when compiling the example
-
-+ [compileExample.sh](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/example/compileExample.sh): used to compile the example into an executable `jar`
-
-+ [VangavMPostsRankExample.java](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/example/VangavMPostsRankExample.java): contains a working example as well as the exact steps to follow to compile and run it
+| file | explanation |
+| ---- | ----------- |
+| [ExampleManifest.txt](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/example/ExampleManifest.txt) | used when compiling the example |
+| [compileExample.sh](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/example/compileExample.sh) | used to compile the example into an executable `jar` |
+| [VangavMPostsRankExample.java](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank/example/VangavMPostsRankExample.java) | contains a working example as well as the exact steps to follow to compile and run it |
