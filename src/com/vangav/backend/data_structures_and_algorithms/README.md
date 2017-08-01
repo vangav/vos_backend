@@ -34,3 +34,6 @@
 ### [tuple](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/data_structures_and_algorithms/tuple)
 
 has representations of [Pair](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/data_structures_and_algorithms/tuple/Pair.java), [Triple](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/data_structures_and_algorithms/tuple/Triple.java) and [Quadruple](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/data_structures_and_algorithms/tuple/Quadruple.java); all of them are generic and hashable (e.g.: can be used as keys in a hash table)
+
+# next tutorial -> [dispatcher - worker](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher)
+> handles generating worker services, contains the framework for dispatchers/workers and handles all of their operations
