@@ -249,6 +249,6 @@
 | | 211 : 16 | relative relation's max_output doesn't belong to any of the solution's outputs |
 | | 211 : 17 | relative relation's min_output doesn't belong to any of the solution's outputs |
 
-## next tutorials -> [utilities, design and src code tutorials](https://github.com/vangav/vos_backend#utilities-design-and-src-code-tutorials)
+# next tutorials -> [utilities, design and src code tutorials](https://github.com/vangav/vos_backend#utilities-design-and-src-code-tutorials)
 
 > the set of tutorials explaining in-depth with examples all the utilities provided by vangav backend (security, push notifications, geo services, periodic jobs, ...) as well as the design and src code used
