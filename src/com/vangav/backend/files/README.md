@@ -114,3 +114,6 @@
 ### [JsonFile](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/files/JsonFile.java)
 
 + [vangav analytics writer / ActionsJson](https://github.com/vangav/vos_vangav_analytics_writer/blob/39e222517d2946c2b2af1c3998f23b321f9bbd5f/app/com/vangav/vos_vangav_analytics_writer/actions/json/ActionsJson.java) represents a `JsonFile` child class
+
+# next tutorial -> [geo services](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo)
+> handles reverse geo coding, geo grids and geo hashing
