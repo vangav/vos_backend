@@ -9,7 +9,9 @@
 
 + this section explains how vangav mighty is used to rank posts in [instagram jobs](https://github.com/vangav/vos_instagram_jobs) service
 
-### 1. [describe the solution](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang)
+### 1. [describe/update the solution(s)](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang)
+
++ add/remove/edit `.mlang` solution files any time under a service's [vangav_m/soltions](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions) directory
 
 #### header
 
@@ -175,6 +177,19 @@
 ```
 
 + visit [vangav mighty](http://vangav.com/) to learn more about the rest of the features: [`inputs_multi_range`](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L4), [`finite_inputs`](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L61), [`outputs_multi_range`](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L62) and [`relative_relations`](https://github.com/vangav/vos_instagram_jobs/blob/master/vangav_m/solutions/VangavMPostsRank.mlang#L127)
+
+### 2. [generate/re-generate solution(s)](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m)
+
+1. go to vangav mighty's directory `cd vangav_m`
+2. run the generator `java -jar vangav_m_json_client.jar`; running this command will do the following:
+  + load available solutions (`.mlang` files under `vangav_m/solutions`
+  + verify loaded solutions and notify/cancel if verification failed
+  + clear old generated solutions (by deleting generated solution directories like [posts rank](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m/solutions/generated_solutions/vangav_m_VangavMPostsRank) and their `jars` from the service's [lib](https://github.com/vangav/vos_instagram_jobs/tree/master/lib) directory)
+  + generate/re-generate solutions
+  + extract generated solutions (copy generated `jars` to the service's [lib](https://github.com/vangav/vos_instagram_jobs/tree/master/lib) directory)
+  + clear old class path links (for vangav mighty solutions only) in `.classpath`
+  + add class path links (for all generated vangav mighty solutions) in `.classpath`
+  + clear: deletes any intermediate files/directories/scripts used during the generation/linking process
 
 
 
