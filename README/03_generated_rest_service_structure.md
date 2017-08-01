@@ -183,5 +183,5 @@ cassandra updater is used after a service is generated to update the database; i
 + what are the classes generated per-controller?
 + what's cassandra_updater used for
 
-## next tutorial -> [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
+# next tutorial -> [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
 > explains the building blocks of the config used to generate a service
