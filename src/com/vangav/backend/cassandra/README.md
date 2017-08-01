@@ -148,5 +148,5 @@
 
 > when would one use [**`BatchStatement`**](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/controllers/post_photo/HandlerPostPhoto.java#L163) vs [**`getBoundStatementxxx`**](https://github.com/vangav/vos_whatsapp/blob/master/app/com/vangav/vos_whatsapp/controllers/send_message/HandlerSendMessage.java#L172)?
 
-## next tutorial -> [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
+# next tutorial -> [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
 > contains different compression algorithms
