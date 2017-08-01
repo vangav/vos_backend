@@ -10,3 +10,6 @@
 | [Motion2DInl](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/geometry/Motion2DInl.java) | given two points and a step, it generates the points to go through from start to end using [`getLinearMotionPath`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/geometry/Motion2DInl.java#L113) |
 | [Point](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/geometry/Point.java) | extends [Point2D.Double](https://docs.oracle.com/javase/7/docs/api/java/awt/geom/Point2D.Double.html) by adding extra functionalities like arithmetic operators, distance calculation, ... |
 | [StraightLine](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/geometry/StraightLine.java) | represents straight lines and provides some operations like: [`getIntersectionPoint`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/geometry/StraightLine.java#L221), [`getNearestPointOnLine`](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/math/geometry/StraightLine.java#L271), ... |
+
+# next tutorial -> [metrics](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/metrics)
+> handles distance, time, date and calendar operations
