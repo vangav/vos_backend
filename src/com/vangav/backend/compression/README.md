@@ -30,3 +30,6 @@
     "Decompressed: " + RunLengthEncodingInl.decompress(compressed) );
   // prints --> Decompressed: aaabccccZZZZZZZZZZ
 ```
+
+# next tutorial -> [content: verifiction/formatting/generation](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content)
+> handles content (code, phriction-wiki, text, ...) checking, formatting and generation; vangav backend relies on this package to verify generation config and format generated code, scripts, wiki, ...
