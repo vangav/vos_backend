@@ -229,3 +229,6 @@
 # exercise
 
 > what's the difference between `geo grids` and `geo hash`?
+
+# next tutorial -> [ids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/ids)
+> handles uuid operations, sequential ids and twitter's snow flake ids
