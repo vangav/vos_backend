@@ -104,3 +104,6 @@ this package is responsible for handling all metrics-related operations
         TimeUnitType.HOUR) );
   }
 ```
+
+# next tutorial -> [networks](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)
+> has sync/async rest client, rest jobs, email clients, twilio messaging and download utility
