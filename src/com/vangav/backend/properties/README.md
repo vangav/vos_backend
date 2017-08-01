@@ -37,3 +37,6 @@
 1. add properties file under `conf/prop`, e.g.: [constants_properties](https://github.com/vangav/vos_instagram/blob/master/conf/prop/constants_properties.prop)
 
 2. add a mapping class that inherits from [PropertiesFile](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/properties/PropertiesFile.java), e.g.: [ConstantsProperties](https://github.com/vangav/vos_instagram/blob/master/app/com/vangav/vos_instagram/common/properties/ConstantsProperties.java)
+
+# next tutorial -> [public apis](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis)
+> handles fetching data from facebook graph api and car2go api
