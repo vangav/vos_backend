@@ -103,3 +103,6 @@
           .build(),
         deviceToken) ) );
 ```
+
+# next tutorial -> [security](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)
+> handles authentication (facebook, google, oauth 2 and transaction tokens) and cryptography (asymmetric, hashing and two-way encryption)
