@@ -72,7 +72,7 @@ vos_calculate_sum is a service that takes a two floats (a and b) request and ret
 ### init
 1. create a workspace directory `my_services` - this is the directory to contain both of vos_backend and all the services generated using it
 2. download this `vos_backend.zip` project (from the green `clone or download` button up there) inside the workspace directory created in (1) and unzip it
-3. **rename** downloaded vos_backend-master to vos_backend
+3. **rename** downloaded `vos_backend-master` to `vos_backend`
 
 ### generate a new service
 1. create a new directory `my_services/vos_calculate_sum`
