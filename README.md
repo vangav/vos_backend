@@ -244,4 +244,4 @@ in the terminal session where you started the service press `control + d`
 
 # free consulting
 
-+ vangav's [consultant](https://www.facebook.com/mustapha.abdallah)
+[![vangav's consultant](http://www.footballhighlights247.com/images/mobile-share/fb-messenger-64x64.png)](https://www.facebook.com/mustapha.abdallah)
