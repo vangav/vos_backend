@@ -3,6 +3,8 @@
 
 # [vangav mighty](http://vangav.com/)
 
+![vangav mighty](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/19577087_1969407699941540_3691967286106965212_o.png?oh=96e5becc5bc4637e77eeb2d22b532c38&oe=59F3F6D9)
+
 + this package has the source code for the built-in utility [vangav_m_json_client.jar](https://github.com/vangav/vos_geo_server/tree/master/vangav_m) which gets added to each vangav backend service like in [instagram jobs](https://github.com/vangav/vos_instagram_jobs/tree/master/vangav_m)
 
 ## usage example
