@@ -210,3 +210,15 @@ in the terminal session where you started the service press `control + d`
 + handles generating and binding [vangav mighty](http://vangav.com/) solutions
 
 ![vangav mighty](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/19577087_1969407699941540_3691967286106965212_o.png?oh=96e5becc5bc4637e77eeb2d22b532c38&oe=59F3F6D9)
+
+# share
+
++ [facebook](https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/vangav/vos_backend)
++ [twitter](https://twitter.com/home?status=vangav%20backend%20%7C%20build%20big%20tech%2010x%20faster%20%7C%20https%3A//github.com/vangav/vos_backend)
++ [google plus](https://plus.google.com/share?url=https%3A//github.com/vangav/vos_backend)
++ [linkedin](https://www.linkedin.com/shareArticle?mini=true&url=https%3A//github.com/vangav/vos_backend&title=vangav%20backend%20%7C%20build%20big%20tech%2010x%20faster&summary=&source=)
++ [pinterest](https://pinterest.com/pin/create/button/?url=https%3A//github.com/vangav/vos_backend&media=https%3A//scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/20645143_1969408006608176_5289565717021239224_o.png?oh=acf20113a3673409d238924cfec648d2%26oe=5A3414B5&description=)
+
+# free consulting
+
++ vangav's [consultant](https://www.facebook.com/mustapha.abdallah)
