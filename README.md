@@ -1,5 +1,7 @@
+
 # vangav backend
-## build big tech 10x faster
+
+![Image of Yaktocat](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/20645143_1969408006608176_5289565717021239224_o.png?oh=acf20113a3673409d238924cfec648d2&oe=5A3414B5)
 
 ### built on top tech
 | tech | ref |
