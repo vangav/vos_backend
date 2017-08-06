@@ -1,7 +1,7 @@
 
 # vangav backend
 
-![Image of Yaktocat](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/20645143_1969408006608176_5289565717021239224_o.png?oh=acf20113a3673409d238924cfec648d2&oe=5A3414B5)
+![vangav backend](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/20645143_1969408006608176_5289565717021239224_o.png?oh=acf20113a3673409d238924cfec648d2&oe=5A3414B5)
 
 ### built on top tech
 | tech | ref |
@@ -207,4 +207,7 @@ in the terminal session where you started the service press `control + d`
 + contains latch threads, periodic jobs and the thread pools responsible for maintaining top performance for vangav backend services (in-memory threads, cassandra, dispatcher and rest client)
 
 ### [vangav mighty](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)
+
 + handles generating and binding [vangav mighty](http://vangav.com/) solutions
+
+![vangav mighty](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/19577087_1969407699941540_3691967286106965212_o.png?oh=96e5becc5bc4637e77eeb2d22b532c38&oe=59F3F6D9)
