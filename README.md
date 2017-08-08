@@ -40,6 +40,10 @@
 | 1-2 weeks | full command of modifying/extending the underlying backend |
 | thereafter | best-in-class-level in implementing top class backend services, finishing a year's worth of work every month |
 
+# in a nutshell
+
+![vangav backend generator](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/p720x720/20690308_1970492503166393_1992568418424374307_o.png?oh=6e5ae9894bf979b1827a768b5b74f227&oe=5A379F4A)
+
 # system requirements
 
 + unix operating system (e.g.: mac os, ubuntu, etc ...)
