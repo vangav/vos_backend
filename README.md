@@ -3,9 +3,6 @@
 
 ![vangav backend](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/20645143_1969408006608176_5289565717021239224_o.png?oh=acf20113a3673409d238924cfec648d2&oe=5A3414B5)
 
-## [quick start on YouTube](https://www.youtube.com/watch?v=1-PH3AYlB8w)
-[![YouTube icon](https://image.flaticon.com/icons/png/128/174/174883.png)](https://www.youtube.com/watch?v=1-PH3AYlB8w)
-
 ### built on top tech
 | tech | ref |
 | ------------- | ------------- |
@@ -74,7 +71,7 @@
 
 # quick start example: [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
-> 5-10 min: this tutorial explains how to generate and use the first vangav backend service
+> 5-10 min: this tutorial explains how to generate and use the first vangav backend service, you can also watch it [on YouTube](https://www.youtube.com/watch?v=1-PH3AYlB8w)
 
 vos_calculate_sum is a service that takes a two floats (a and b) request and returns a double (c) response representing the summation of a and b
 
