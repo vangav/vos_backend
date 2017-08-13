@@ -75,7 +75,7 @@
 
 ### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=1uFcNgj3nRk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) learn more on [YouTube](https://www.youtube.com/watch?v=1uFcNgj3nRk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)
 
-> 5-10 min: this tutorial explains how to generate and use the first vangav backend service, you can also watch it [**on YouTube**](https://www.youtube.com/watch?v=1-PH3AYlB8w)
+> 5-10 min: this tutorial explains how to generate and use the first vangav backend service
 
 vos_calculate_sum is a service that takes a two floats (a and b) request and returns a double (c) response representing the summation of a and b
 
