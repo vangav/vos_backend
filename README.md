@@ -73,7 +73,7 @@
 
 # quick start example: [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
-### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=1uFcNgj3nRk) learn more on [YouTube](https://www.youtube.com/watch?v=1uFcNgj3nRk)
+### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=1uFcNgj3nRk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) learn more on [YouTube](https://www.youtube.com/watch?v=1uFcNgj3nRk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)
 
 > 5-10 min: this tutorial explains how to generate and use the first vangav backend service, you can also watch it [**on YouTube**](https://www.youtube.com/watch?v=1-PH3AYlB8w)
 
@@ -127,7 +127,7 @@ in the terminal session where you started the service press `control + d`
 # vangav backend tutorials
 
 ### 1. [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
-#### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=v3PxKDMehvY) learn more on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY)
+#### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) learn more on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)
 + shows how to add controllers (api entry points) before and after service generation
 
 ### 2. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
