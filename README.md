@@ -1,4 +1,6 @@
 
+### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=1uFcNgj3nRk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) learn more on [YouTube](https://www.youtube.com/watch?v=1uFcNgj3nRk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)
+
 # vangav backend
 
 ![vangav backend](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/20645143_1969408006608176_5289565717021239224_o.png?oh=acf20113a3673409d238924cfec648d2&oe=5A3414B5)
@@ -71,6 +73,8 @@
 
 # quick start example: [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
+### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=1uFcNgj3nRk) learn more on [YouTube](https://www.youtube.com/watch?v=1uFcNgj3nRk)
+
 > 5-10 min: this tutorial explains how to generate and use the first vangav backend service, you can also watch it [**on YouTube**](https://www.youtube.com/watch?v=1-PH3AYlB8w)
 
 vos_calculate_sum is a service that takes a two floats (a and b) request and returns a double (c) response representing the summation of a and b
@@ -123,7 +127,9 @@ in the terminal session where you started the service press `control + d`
 # vangav backend tutorials
 
 ### 1. [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
+#### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=v3PxKDMehvY) learn more on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY)
 + shows how to add controllers (api entry points) before and after service generation
+
 ### 2. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
 + explains the building blocks of vangav backend
 ### 3. [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
