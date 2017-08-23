@@ -1,4 +1,6 @@
 
+### [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=325) **on [YouTube](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=325)**
+
 > **why?** so far in the previous tutorials like `calculate sum` you noticeed that implementing a service's controller logic always starts from a [`processRequest`](https://github.com/vangav/vos_calculate_sum/blob/master/app/com/vangav/vos_calculate_sum/controllers/calculate_sum/HandlerCalculateSum.java#L86) method that takes a `Request` object as a param using which we get the request's body then get the response object to set the result's values - but what else can the `Request` object offer? it's the information carrier for every request and offers various api methods to access/update that information as explained in this tutorial
 
 # [request](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/Request.java) object
