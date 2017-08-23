@@ -1,4 +1,6 @@
 
+### [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=283) **on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=283)**
+
 > **why?** we do our best building bullet-proof services as well as educating members how to use them; but what happens when things go wrong (e.g.: a member missed a request param, put a string in place of an int, ...), when you want to intentionally return an error response in some circumstances (e.g.: detecting a spammy behavior, ...), ... - this tutorial answers these questions :))
 
 # [error response](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/request/response/ResponseBodyError.java)
