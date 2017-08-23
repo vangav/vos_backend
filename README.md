@@ -135,49 +135,49 @@ in the terminal session where you started the service press `control + d`
 
 ### 1. [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=1ObkXurqNs0&index=3&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) **on [YouTube](https://www.youtube.com/watch?v=1ObkXurqNs0&index=3&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=1ObkXurqNs0&index=3&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) on [YouTube](https://www.youtube.com/watch?v=1ObkXurqNs0&index=3&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)
 
 + shows how to add controllers (api entry points) before and after service generation
 
 ### 2. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=87) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=87)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=87) on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=87)
 
 + explains the building blocks of vangav backend
 
 ### 3. [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=406) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=406)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=406) on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=406)
 
 + generates a service that has a backend database and also uses the geo services utility
 
 ### 4. [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=638) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=638)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=638) on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=638)
 
 + explains the building blocks of a generated service
 
 ### 5. [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=491) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=491)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=491) on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=491)
 
 + explains the building blocks of the config used to generate a service
 
 ### 6. [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=325) **on [YouTube](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=325)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=325) on [YouTube](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=325)
 
 + when implementing a service's logic, the passed request object keeps all the request's information from start to finish; this tutorial shows how to use that object
 
 ### 7. [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=283) **on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=283)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=283) on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=283)
 
 + explains what happens whenever an error happens during request processing and how to manually return various types of error response
 
 ### 8. [using dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=663) **on [YouTube](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=663)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=663) on [YouTube](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=663)
 
 + shows why and how to us the dispatcher with one or more worker service(s)
 
@@ -187,13 +187,13 @@ in the terminal session where you started the service press `control + d`
 
 ### 10. [deploy on a production server](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=2cAfe3Caank&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=6&t=40) **on [YouTube](https://www.youtube.com/watch?v=2cAfe3Caank&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=6&t=40)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=2cAfe3Caank&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=6&t=40) on [YouTube](https://www.youtube.com/watch?v=2cAfe3Caank&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=6&t=40)
 
 + once your service is ready for release, this tutorial has the step-by-step process till your service is up and running on a production server - as well as how to scale it up
 
 ### 11. [vangav backend error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=369) **on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=369)**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=369) on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=369)
 
 + vangav backend detects various types of errors (e.g.: invalid request param, invalid generator config, wrong utility method arguments, unauthorized third-party authentication, invalid vangav mighty solution, ...); this tutorial lists all of vangav backend's error codes/sub-codes with reference to the code producing them for ease of tracing if you get one
 
@@ -293,31 +293,31 @@ in the terminal session where you started the service press `control + d`
 
 ### [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() on [YouTube]()
 
 + simple service
 
 ### [geo server](https://github.com/vangav/vos_geo_server)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() on [YouTube]()
 
 + a more advanced service with a databse and uses geo services utility
 
 ### [whatsapp](https://github.com/vangav/vos_whatsapp)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() on [YouTube]()
 
 + service oriented architecture (main + worker + analytics), multi-keyspace database and basic authentication
 
 ### [vangav analytics](https://github.com/vangav/vos_vangav_analytics_writer)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() on [YouTube]()
 
 + service oriented architecture (writer + reader) and generic service design (handles any type of analytics)
 
 ### [instagram](https://github.com/vangav/vos_instagram)
 
-+ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() on [YouTube]()
 
 #### covered topics
 
