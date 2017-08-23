@@ -1,4 +1,6 @@
 
+### [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=638) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=638)**
+
 > **why?** although you only need to know ~5% of what's explained in this tutorial to generate a vangav backend service as shown in the `calculate sum` and `geo server` tutorials; understanding every bit of the generated service is useful as you get to scale and want to tune every bit in the generated service
 
 # generated service structure
