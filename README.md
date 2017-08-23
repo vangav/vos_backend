@@ -78,7 +78,7 @@
 
 # quick start example: [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
-### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=1uFcNgj3nRk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) learn more on [YouTube](https://www.youtube.com/watch?v=1uFcNgj3nRk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)
+[![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) **on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)**
 
 > 5-10 min: this tutorial explains how to generate and use the first vangav backend service
 
@@ -131,115 +131,196 @@ in the terminal session where you started the service press `control + d`
 
 # vangav backend tutorials
 
+[![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=192) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=192)**
+
 ### 1. [expand calculate sum to calculator](https://github.com/vangav/vos_backend/blob/master/README/00_expanding_calculate_sum_example.md)
-#### [![YouTube Play Icon](http://extensiondl.maxthon.com/skinpack/842028/1404121512/icons/icon_32.png)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) learn more on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=1ObkXurqNs0&index=3&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) **on [YouTube](https://www.youtube.com/watch?v=1ObkXurqNs0&index=3&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)**
+
 + shows how to add controllers (api entry points) before and after service generation
 
 ### 2. [project's contents](https://github.com/vangav/vos_backend/blob/master/README/01_project_contents.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=87) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=87)**
+
 + explains the building blocks of vangav backend
+
 ### 3. [next example with database (geo server)](https://github.com/vangav/vos_backend/blob/master/README/02_intermediate_example_vos_geo_server.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=406) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=406)**
+
 + generates a service that has a backend database and also uses the geo services utility
+
 ### 4. [generated service structure](https://github.com/vangav/vos_backend/blob/master/README/03_generated_rest_service_structure.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=638) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=638)**
+
 + explains the building blocks of a generated service
+
 ### 5. [service generator config structure](https://github.com/vangav/vos_backend/blob/master/README/04_rest_service_config_structure.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=491) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=491)**
+
 + explains the building blocks of the config used to generate a service
+
 ### 6. [request object](https://github.com/vangav/vos_backend/blob/master/README/05_request_structure.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=325) **on [YouTube](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=325)**
+
 + when implementing a service's logic, the passed request object keeps all the request's information from start to finish; this tutorial shows how to use that object
+
 ### 7. [error response](https://github.com/vangav/vos_backend/blob/master/README/06_error_response.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=283) **on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=283)**
+
 + explains what happens whenever an error happens during request processing and how to manually return various types of error response
+
 ### 8. [using dispatcher - worker(s)](https://github.com/vangav/vos_backend/blob/master/README/07_dispatcher_worker.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=663) **on [YouTube](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=663)**
+
 + shows why and how to us the dispatcher with one or more worker service(s)
+
 ### 9. [debugging](https://github.com/vangav/vos_backend/blob/master/README/08_debug.md)
+
 + explains how to start and use the debugger
+
 ### 10. [deploy on a production server](https://github.com/vangav/vos_backend/blob/master/README/09_deploy.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=2cAfe3Caank&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=6&t=40) **on [YouTube](https://www.youtube.com/watch?v=2cAfe3Caank&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=6&t=40)**
+
 + once your service is ready for release, this tutorial has the step-by-step process till your service is up and running on a production server - as well as how to scale it up
+
 ### 11. [vangav backend error codes](https://github.com/vangav/vos_backend/blob/master/README/10_error_codes.md)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=369) **on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&index=2&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=369)**
+
 + vangav backend detects various types of errors (e.g.: invalid request param, invalid generator config, wrong utility method arguments, unauthorized third-party authentication, invalid vangav mighty solution, ...); this tutorial lists all of vangav backend's error codes/sub-codes with reference to the code producing them for ease of tracing if you get one
 
 # utilities, design and src code tutorials
 
+[![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=192) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=192)**
+
 ### [java clients](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_client_java) 
+
 + handles generating java clients and contains vangav backend's client framework
 
 ### [backend generator](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/backend_generator)
+
 + manages all vangav backend generators (api, database client, worker and java client)
 
 ### [cassandra](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/cassandra)
+
 + handles generating database clients, contains the framework for generated clients and handles all cassandra operations
 
 ### [compression](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/compression)
+
 + contains different compression algorithms
 
 ### [content: verifiction/formatting/generation](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/content)
+
 + handles content (code, phriction-wiki, text, ...) checking, formatting and generation; vangav backend relies on this package to verify generation config and format generated code, scripts, wiki, ...
 
 ### [data structures and algorithms](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/data_structures_and_algorithms)
+
 + has data structures (e.g.: heap, kd-tree, tuples, ...) and algorithms (collections, matricies, strings, arrays, ...)
 
 ### [dispatcher - worker](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/dispatcher)
+
 + handles generating worker services, contains the framework for dispatchers/workers and handles all of their operations
 
 ### [exceptions](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/exceptions)
+
 + vangav exceptions are used to handle `bad request` and `internal error`; those exceptions can be returned to the client and loggable (in database, text files, ...)
 
 ### [files](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/files)
+
 + simplifies various types of files needed for vangav backend services like: properties, json config, images, http response files, ommiting comments, directory operations, ...
 
 ### [geo services](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/geo)
+
 + handles reverse geo coding, geo grids and geo hashing
 
 ### [ids](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/ids)
+
 + handles uuid operations, sequential ids and twitter's snow flake ids
 
 ### [math](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/math)
+
 + handles mathematical and geometric operations like: numeric, ranges, circles, line segments, straight lines, ...
 
 ### [metrics](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/metrics)
+
 + handles distance, time, date and calendar operations
 
 ### [networks](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/networks)
+
 + has sync/async rest client, rest jobs, email clients, twilio messaging and download utility
 
 ### [play framework](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/play_framework)
+
 + handles generating api code and contains the framework for generated vangav backend services; *vangav backend services' backbone*
 
 ### [properties](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/properties)
+
 + handles loading and extracting data from properties files
 
 ### [public apis](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/public_apis)
+
 + handles fetching data from facebook graph api and car2go api
 
 ### [push notifications](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/push_notifications)
+
 + handles building and sending apple and android notifications
 
 ### [security](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/security)
+
 + handles authentication (facebook, google, oauth 2 and transaction tokens) and cryptography (asymmetric, hashing and two-way encryption)
 
 ### [system](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/system)
+
 + handles fetching system info (cpu usage, free ram/disk, os type, number of cores, ...) and console operation (interactive, commands, ...)
 
 ### [thread pool](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/thread_pool)
+
 + contains latch threads, periodic jobs and the thread pools responsible for maintaining top performance for vangav backend services (in-memory threads, cassandra, dispatcher and rest client)
 
 ### [vangav mighty](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)
+
 + handles generating and binding [vangav mighty](http://vangav.com/) solutions
 
 # templates
 
 ### [calculate sum](https://github.com/vangav/vos_calculate_sum)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
+
 + simple service
 
 ### [geo server](https://github.com/vangav/vos_geo_server)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
+
 + a more advanced service with a databse and uses geo services utility
 
 ### [whatsapp](https://github.com/vangav/vos_whatsapp)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
+
 + service oriented architecture (main + worker + analytics), multi-keyspace database and basic authentication
 
 ### [vangav analytics](https://github.com/vangav/vos_vangav_analytics_writer)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
+
 + service oriented architecture (writer + reader) and generic service design (handles any type of analytics)
 
 ### [instagram](https://github.com/vangav/vos_instagram)
+
++ [![YouTube Play Icon](http://youtube.com/favicon.ico)]() **on [YouTube]()**
+
 #### covered topics
+
 + service oriented architecture (main + dispense + jobs + worker + dash board)
 + multi-keyspace database
 + oauth 2 and facebook authentication
