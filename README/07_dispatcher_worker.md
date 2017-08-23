@@ -1,4 +1,6 @@
 
+### [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=663) **on [YouTube](https://www.youtube.com/watch?v=BZhmi7MCG6g&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=7&t=663)**
+
 > **why?** every software service needs instrumentation (logging, analytics, ...), one of the limitiations of some types of instrumentation is that they may cause a dramatic increase in service's execution time; this tutorial presents vangav backend's simple solution for this problem through isolating user-experience-related operations from instrumentation-related operations using worker services
 
 # using [dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java) - [worker(s)](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/worker/ParentWorkerHandler.java)
