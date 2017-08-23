@@ -64,6 +64,8 @@
 
 + followed by a set of booleans (check_source ... logging) whose values go into the generated [request_properties.prop](https://github.com/vangav/vos_geo_server/blob/master/conf/prop/request_properties.prop); for each received request, [ParentPlayHandler.java](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/play_framework/ParentPlayHandler.java) checks each value to decide what to execute and what to skip
 
+![request processing sequence](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/21014184_1976185449263765_8236912530216930706_o.png?oh=55c35785597f163b7b61af3aae66aa83&oe=5A2DC22E)
+
 > whenever in doubt, set to true; that will make it easier to expand the service as time goes on
 
 | boolean | code ref | explanation |
