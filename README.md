@@ -273,23 +273,23 @@ in the terminal session where you started the service press `control + d`
 
 ### [calculate sum](https://github.com/vangav/vos_calculate_sum)
 
-+ simple service | on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=2) | but my phone was under 10%
++ simple service | **on [YouTube](https://www.youtube.com/watch?v=v3PxKDMehvY&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=2)** | but my phone was under 10%
 
 ### [geo server](https://github.com/vangav/vos_geo_server)
 
-+ a more advanced service with a databse and uses geo services utility | on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) | I tried to make it slow!
++ a more advanced service with a databse and uses geo services utility | **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)** | I tried to make it slow!
 
 ### [whatsapp](https://github.com/vangav/vos_whatsapp)
 
-+ service oriented architecture (main + worker + analytics), multi-keyspace database and basic authentication | on [YouTube](https://www.youtube.com/watch?v=2cAfe3Caank&index=6&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv) | am I a hologram?
++ service oriented architecture (main + worker + analytics), multi-keyspace database and basic authentication | **on [YouTube](https://www.youtube.com/watch?v=2cAfe3Caank&index=6&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv)** | am I a hologram?
 
 ### [vangav analytics](https://github.com/vangav/vos_vangav_analytics_writer)
 
-+ service oriented architecture (writer + reader) and generic service design (handles any type of analytics) | on [YouTube](https://www.youtube.com/watch?v=jIMGtZ_9QXs&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=8) | it may be foolish to turn this down!
++ service oriented architecture (writer + reader) and generic service design (handles any type of analytics) | **on [YouTube](https://www.youtube.com/watch?v=jIMGtZ_9QXs&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=8)** | it may be foolish to turn this down!
 
 ### [instagram](https://github.com/vangav/vos_instagram)
 
-+ on [YouTube](https://www.youtube.com/watch?v=PnAepsoA_bs&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=9) | [in-spuh-rey-shuh n]
++ **on [YouTube](https://www.youtube.com/watch?v=PnAepsoA_bs&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=9)** | [in-spuh-rey-shuh n]
 
 #### covered topics
 
