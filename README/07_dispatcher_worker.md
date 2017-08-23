@@ -5,6 +5,8 @@
 
 # using [dispatcher](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/Dispatcher.java) - [worker(s)](https://github.com/vangav/vos_backend/blob/master/src/com/vangav/backend/dispatcher/worker/ParentWorkerHandler.java)
 
+![dispatcher-worker design](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/21015886_1976185472597096_8042485924961729100_o.png?oh=54db3d0734f655f7228d58df78258d79&oe=5A60161E)
+
 ### what's a worker service and why use it
 
 + if you are unfamiliar with workers, think of it as a private secondary-backend service accessible only by the primary-backend service
