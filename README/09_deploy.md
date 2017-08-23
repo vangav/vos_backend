@@ -1,4 +1,6 @@
 
+### [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=2cAfe3Caank&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=6&t=40) **on [YouTube](https://www.youtube.com/watch?v=2cAfe3Caank&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=6&t=40)**
+
 > **why?** once you are done with a development phase of a service, you want to bring it to life by deploying it on a server; this tutorial gives you a detailed step-by-step process from making a production version of your service till running it on your server(s)
 
 # deploy on a production server
