@@ -1,4 +1,6 @@
 
+### [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=vTl-w00v2qk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=10&t=837) **on [YouTube](https://www.youtube.com/watch?v=vTl-w00v2qk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=10&t=837)**
+
 > **why?** our ability to intuitively come up with great solutions (algorithms) is orders of magnitude faster than the time it takes to turn them into executable algorithms; so we developed [vangav mighty](http://vangav.com/) which provides a natural way to explain a solution and it takes care of generating 100% of the code
 
 # [vangav mighty](http://vangav.com/)
