@@ -1,4 +1,6 @@
 
+### [![YouTube Play Icon](http://youtube.com/favicon.ico)](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=87) **on [YouTube](https://www.youtube.com/watch?v=gDrcH1bopfU&index=4&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&t=87)**
+
 > **why?** knowing why each building block is there empowers you to understand your generated services as well as evolve and tune vangav backend to your needs
 
 # project's contents
