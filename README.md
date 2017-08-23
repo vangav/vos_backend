@@ -267,7 +267,7 @@ in the terminal session where you started the service press `control + d`
 
 ### [vangav mighty](https://github.com/vangav/vos_backend/tree/master/src/com/vangav/backend/vangav_m)
 
-+ handles generating and binding [vangav mighty](http://vangav.com/) solutions
++ handles generating and binding [vangav mighty](http://vangav.com/) solutions | on [YouTube](https://www.youtube.com/watch?v=vTl-w00v2qk&list=PLTcKayTjao6rOj02gtRdiVhvzB1SWGyhv&index=10&t=837)
 
 # templates
 
