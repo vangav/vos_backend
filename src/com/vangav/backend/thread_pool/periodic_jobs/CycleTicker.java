@@ -109,7 +109,14 @@ public final class CycleTicker {
     
     this.initialCycle = cycleTicker.initialCycle;
     this.cycleStep = cycleTicker.cycleStep;
-    this.runFor = new Period(cycleTicker.runFor);
+    
+    if (cycleTicker.runFor == null) {
+      
+      this.runFor = null;
+    } else {
+      
+      this.runFor = new Period(cycleTicker.runFor);
+    }
   }
   
   /**

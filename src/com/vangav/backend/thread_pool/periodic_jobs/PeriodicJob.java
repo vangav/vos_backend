@@ -433,8 +433,16 @@ public abstract class PeriodicJob
       (Calendar)this.startCalendar.clone();
     getNextPeriodicJob.startTime =
       this.startTime;
-    getNextPeriodicJob.endCalendar =
-      (Calendar)this.endCalendar.clone();
+    
+    if (this.endCalendar == null) {
+      
+      getNextPeriodicJob.endCalendar = null;
+    } else {
+      
+      getNextPeriodicJob.endCalendar =
+        (Calendar)this.endCalendar.clone();
+    }
+    
     getNextPeriodicJob.endTime =
       this.endTime;
     getNextPeriodicJob.execPeriod =
