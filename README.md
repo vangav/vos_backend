@@ -3,8 +3,6 @@
 
 # vangav backend
 
-![vangav backend](https://scontent-ams4-1.xx.fbcdn.net/v/t31.0-8/20690308_1970492503166393_1992568418424374307_o.png?_nc_cat=110&_nc_oc=AQmdAO440kmTIwgfnyLyOe2gxb1g5qz9XY4PJWwtuCbQR2z_Ci7tSjjGqpU_tTjIMwA&_nc_ht=scontent-ams4-1.xx&oh=e4c6e2aee034803b8dd47d902b58975c&oe=5DF8AE86)
-
 <!---![illustration](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/20748060_1972622799620030_8862065064707862972_o.png?oh=6d5e001708c907fb1c1117d2f2c15a6b&oe=5A2C84BA)--->
 
 ### built on top tech
@@ -49,7 +47,7 @@
 
 # in a nutshell
 
-![vangav backend generator](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/p720x720/20690308_1970492503166393_1992568418424374307_o.png?oh=6e5ae9894bf979b1827a768b5b74f227&oe=5A379F4A)
+![vangav backend](https://scontent-ams4-1.xx.fbcdn.net/v/t31.0-8/20690308_1970492503166393_1992568418424374307_o.png?_nc_cat=110&_nc_oc=AQmdAO440kmTIwgfnyLyOe2gxb1g5qz9XY4PJWwtuCbQR2z_Ci7tSjjGqpU_tTjIMwA&_nc_ht=scontent-ams4-1.xx&oh=e4c6e2aee034803b8dd47d902b58975c&oe=5DF8AE86)
 
 # system requirements
 
