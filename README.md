@@ -3,8 +3,6 @@
 
 # vangav backend
 
-<!---![illustration](https://scontent-mad1-1.xx.fbcdn.net/v/t31.0-8/20748060_1972622799620030_8862065064707862972_o.png?oh=6d5e001708c907fb1c1117d2f2c15a6b&oe=5A2C84BA)--->
-
 ### built on top tech
 | tech | ref |
 | ------------- | ------------- |
@@ -26,7 +24,7 @@
 
 ### [great templates](https://github.com/vangav)
 
-![instagram backend design](https://scontent-ams4-1.xx.fbcdn.net/v/t31.0-8/20934888_1976185579263752_2421544181147844904_o.png?_nc_cat=109&_nc_oc=AQktLJTFriw15bLblk5_WXuvqStSYE_chKsUDSzSXtFZ2-zvmrxHMIbq1v07ox2c4NU&_nc_ht=scontent-ams4-1.xx&oh=bf58361a9a8860444110cc5b1dc4acad&oe=5E31BDD7)
+[![illustration](https://github.com/vangav/vos_backend/blob/master/doc/20934888_1976185579263752_2421544181147844904_o.png)](https://github.com/vangav/vos_backend/blob/master/doc/20934888_1976185579263752_2421544181147844904_o.png)
 
 | template | services | features | db tables | code: total | code: generated |
 | -------- | -------- | -------- | --------- | ----------- | --------------- |
@@ -47,7 +45,7 @@
 
 # in a nutshell
 
-![vangav backend](https://scontent-ams4-1.xx.fbcdn.net/v/t31.0-8/20690308_1970492503166393_1992568418424374307_o.png?_nc_cat=110&_nc_oc=AQmdAO440kmTIwgfnyLyOe2gxb1g5qz9XY4PJWwtuCbQR2z_Ci7tSjjGqpU_tTjIMwA&_nc_ht=scontent-ams4-1.xx&oh=e4c6e2aee034803b8dd47d902b58975c&oe=5DF8AE86)
+[![illustration](https://github.com/vangav/vos_backend/blob/master/doc/20690308_1970492503166393_1992568418424374307_o.png)](https://github.com/vangav/vos_backend/blob/master/doc/20690308_1970492503166393_1992568418424374307_o.png)
 
 # system requirements
 
